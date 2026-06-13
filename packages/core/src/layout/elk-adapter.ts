@@ -1,6 +1,7 @@
 import ELK from "elkjs/lib/elk.bundled.js";
 import { NodeEdgeDiagramType } from "@glyphic/schema";
 import { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
+import { measureTextWidth, wrapTextToWidth } from "../text-metrics.js";
 
 const elk = new ELK();
 
@@ -70,31 +71,18 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promi
     // Dynamic height for wrapped text in regular shapes
     if (node.label && node.shape !== "table" && node.shape !== "class") {
       const explicitLines = node.label.split('\n');
-      let maxExplicitLineChars = 0;
+      let maxLineWidth = 0;
       for (const el of explicitLines) {
-        if (el.length > maxExplicitLineChars) maxExplicitLineChars = el.length;
+        maxLineWidth = Math.max(maxLineWidth, measureTextWidth(el, 14, 600));
       }
       // Ensure width fits the longest explicit line without breaking words
-      dim.width = Math.max(dim.width, maxExplicitLineChars * 9 + 30);
+      dim.width = Math.max(dim.width, maxLineWidth + 30);
 
-      const maxCharsPerLine = Math.floor(dim.width / 9);
       let totalLines = 0;
-
       for (const el of explicitLines) {
-        const words = el.split(" ");
-        let currentLine = "";
-        let numLines = 1;
-        for (const word of words) {
-          if ((currentLine + " " + word).trim().length > maxCharsPerLine) {
-            numLines++;
-            currentLine = word;
-          } else {
-            currentLine = currentLine ? currentLine + " " + word : word;
-          }
-        }
-        totalLines += numLines;
+        totalLines += wrapTextToWidth(el, dim.width - 24, 14, 600).length;
       }
-      
+
       // If text wraps to more than 2 lines overall, expand the height to accommodate
       if (totalLines > 2) {
         dim.height += (totalLines - 2) * 18;

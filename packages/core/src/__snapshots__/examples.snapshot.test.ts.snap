@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 01_cloud_architecture.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="803" height="2250" viewBox="0 0 803 2250" role="img">
+"<svg xmlns="http://www.w3.org/2000/svg" width="775.4688" height="2250" viewBox="0 0 775.4688 2250" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -109,40 +109,40 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 01_cloud_archite
           <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </marker>
       
-<style>
+<style><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
-    </style>
+    ]]></style>
 </defs>
-<rect x="0" y="0" width="803" height="2250" fill="#ffffff"/>
+<rect x="0" y="0" width="775.4688" height="2250" fill="#ffffff"/>
 <g transform="translate(40, 40)">
-<rect x="165" y="661" width="546" height="1118" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="266" y="901" width="405" height="215" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="205" y="1200" width="414" height="539" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<path d="M 135 154 L 135 330" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 166 464 L 166 482 L 506 482 L 506 724" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 463.5 838 L 463.5 856 L 376 856 L 376 964" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 548.5 838 L 548.5 964" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 399.3333333333333 1078 L 399.3333333333333 1131 L 430 1131 L 430 1185 L 463 1185 L 463 1263.6862915010151" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 521 1078 L 521 1263.6862915010151" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 352.66666666666663 1078 L 352.66666666666663 1131 L 315 1131 L 315 1263" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 492 1447 L 492 1517" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 492 1447 L 492 1517" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
-<path d="M 576 1078 L 576 1131 L 629 1131 L 629 1908 L 150.66666666666666 1908 L 150.66666666666666 1976.6862915010151" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<rect x="165" y="661" width="515.6458666666666" height="1118" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="260.6458666666666" y="901" width="380" height="215" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="205" y="1200" width="393.4688" height="539" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<path d="M 133.31626666666665 154 L 133.31626666666665 330" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 162.63253333333336 464 L 162.63253333333336 482 L 494.3418666666666 482 L 494.3418666666666 724" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 458.0378666666666 838 L 458.0378666666666 856 L 370.6458666666666 856 L 370.6458666666666 964" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 530.6458666666666 838 L 530.6458666666666 964" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 393.97919999999993 1078 L 393.97919999999993 1131 L 416.3125333333333 1131 L 416.3125333333333 1185 L 456.1562666666666 1185 L 456.1562666666666 1263.6862915010151" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 507.31253333333325 1078 L 507.3125333333333 1263.6862915010151" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 347.31253333333325 1078 L 347.31253333333325 1131 L 315 1131 L 315 1263" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 481.7344 1447 L 481.7344 1517" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 481.7344 1447 L 481.7344 1517" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
+<path d="M 553.9792 1078 L 553.9792 1131 L 608.4688 1131 L 608.4688 1908 L 150.66666666666666 1908 L 150.66666666666666 1976.6862915010151" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
 <path d="M 104 464 L 104 1976.6862915010151" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
 <g>
-<rect x="57" y="12" width="156" height="140" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="64.88106666666667" y="12" width="136.8704" height="140" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
 </g>
-<rect x="42" y="332" width="186" height="130" rx="30" ry="30" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="378.5" y="726" width="255" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="306" y="966" width="140" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="466" y="966" width="165" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="45.36746666666666" y="332" width="175.8976" height="130" rx="30" ry="30" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="385.4298666666666" y="726" width="217.82399999999998" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="300.6458666666666" y="966" width="140" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="460.6458666666666" y="966" width="140" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
 <g>
-<path d="M 405,1292 A 87,27 0 0,0 579,1292 L 579,1418 A 87,27 0 0,1 405,1418 Z" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
-<ellipse cx="492" cy="1292" rx="87" ry="27" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<path d="M 405,1292 A 76.7344,27 0 0,0 558.4688,1292 L 558.4688,1418 A 76.7344,27 0 0,1 405,1418 Z" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<ellipse cx="481.7344" cy="1292" rx="76.7344" ry="27" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
 </g>
 <g>
-<path d="M 405,1546 A 87,27 0 0,0 579,1546 L 579,1672 A 87,27 0 0,1 405,1672 Z" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<ellipse cx="492" cy="1546" rx="87" ry="27" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<path d="M 406.456,1546 A 75.27839999999998,27 0 0,0 557.0128,1546 L 557.0128,1672 A 75.27839999999998,27 0 0,1 406.456,1672 Z" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<ellipse cx="481.7344" cy="1546" rx="75.27839999999998" ry="27" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
 </g>
 <g>
 <path d="M 245,1292 A 70,27 0 0,0 385,1292 L 385,1418 A 70,27 0 0,1 245,1418 Z" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
@@ -153,58 +153,58 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 01_cloud_archite
 <ellipse cx="127.33333333333334" cy="2005" rx="70" ry="27" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
 </g>
 <g>
-<rect x="374.5" y="671" width="127" height="20" fill="#f0f4ff" stroke="none"/>
-<text x="438" y="681" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Production VPC</text>
+<rect x="359.3229333333333" y="671" width="127" height="20" fill="#f0f4ff" stroke="none"/>
+<text x="422.8229333333333" y="681" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Production VPC</text>
 </g>
 <g>
-<rect x="400.75" y="911" width="135.5" height="20" fill="#f0f4ff" stroke="none"/>
-<text x="468.5" y="921" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">API ECS Cluster</text>
+<rect x="382.8958666666666" y="911" width="135.5" height="20" fill="#f0f4ff" stroke="none"/>
+<text x="450.6458666666666" y="921" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">API ECS Cluster</text>
 </g>
 <g>
-<rect x="340" y="1210" width="144" height="20" fill="#f0f4ff" stroke="none"/>
-<text x="412" y="1220" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Database Cluster</text>
+<rect x="329.7344" y="1210" width="144" height="20" fill="#f0f4ff" stroke="none"/>
+<text x="401.7344" y="1220" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Database Cluster</text>
 </g>
 <g>
-<g transform="translate(123, 57)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24">
+<g transform="translate(121.31626666666665, 57)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24">
     <path fill="#1e293b" d="M320 16a104 104 0 1 1 0 208 104 104 0 1 1 0-208zM96 88a72 72 0 1 1 0 144 72 72 0 1 1 0-144zM0 416c0-70.7 57.3-128 128-128 12.8 0 25.2 1.9 36.9 5.4-32.9 36.8-52.9 85.4-52.9 138.6l0 16c0 11.4 2.4 22.2 6.7 32L32 480c-17.7 0-32-14.3-32-32l0-32zm521.3 64c4.3-9.8 6.7-20.6 6.7-32l0-16c0-53.2-20-101.8-52.9-138.6 11.7-3.5 24.1-5.4 36.9-5.4 70.7 0 128 57.3 128 128l0 32c0 17.7-14.3 32-32 32l-86.7 0zM472 160a72 72 0 1 1 144 0 72 72 0 1 1 -144 0zM160 432c0-88.4 71.6-160 160-160s160 71.6 160 160l0 16c0 17.7-14.3 32-32 32l-256 0c-17.7 0-32-14.3-32-32l0-16z" />
   </svg></g>
-<text x="135" y="98" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">External Users</text>
+<text x="133.31626666666665" y="98" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">External Users</text>
 </g>
 <g>
-<g transform="translate(123, 372)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+<g transform="translate(121.31626666666665, 372)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
     <path fill="#1e293b" d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z" />
   </svg></g>
-<text x="135" y="413" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">CloudFront CDN</text>
+<text x="133.31626666666665" y="413" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">CloudFront CDN</text>
 </g>
 <g>
-<g transform="translate(494, 756)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
+<g transform="translate(482.3418666666666, 756)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
     <path fill="#1e293b" d="M248 88l80 0 0 48-80 0 0-48zm-8-56c-26.5 0-48 21.5-48 48l0 64c0 26.5 21.5 48 48 48l16 0 0 32-224 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0 0 32-16 0c-26.5 0-48 21.5-48 48l0 64c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-64c0-26.5-21.5-48-48-48l-16 0 0-32 192 0 0 32-16 0c-26.5 0-48 21.5-48 48l0 64c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-64c0-26.5-21.5-48-48-48l-16 0 0-32 96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-224 0 0-32 16 0c26.5 0 48-21.5 48-48l0-64c0-26.5-21.5-48-48-48l-96 0zM448 376l8 0 0 48-80 0 0-48 72 0zm-256 0l8 0 0 48-80 0 0-48 72 0z" />
   </svg></g>
-<text x="506" y="797" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Application Load Balancer</text>
+<text x="494.3418666666666" y="797" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Application Load Balancer</text>
 </g>
 <g>
-<g transform="translate(364, 996)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24">
+<g transform="translate(358.6458666666666, 996)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24">
     <path fill="#1e293b" d="M128 96l0 64 128 0 0-64c0-35.3-28.7-64-64-64s-64 28.7-64 64zM64 160l0-64C64 25.3 121.3-32 192-32S320 25.3 320 96l0 64c35.3 0 64 28.7 64 64l0 224c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 224c0-35.3 28.7-64 64-64z" />
   </svg></g>
-<text x="376" y="1037" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Auth Service</text>
+<text x="370.6458666666666" y="1037" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Auth Service</text>
 </g>
 <g>
-<g transform="translate(536.5, 996)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(518.6458666666666, 996)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#1e293b" d="M0 128l0 32 512 0 0-32c0-35.3-28.7-64-64-64L64 64C28.7 64 0 92.7 0 128zm0 80L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-176-512 0zM64 360c0-13.3 10.7-24 24-24l48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-48 0c-13.3 0-24-10.7-24-24zm144 0c0-13.3 10.7-24 24-24l64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0c-13.3 0-24-10.7-24-24z" />
   </svg></g>
-<text x="548.5" y="1037" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Billing Service</text>
+<text x="530.6458666666666" y="1037" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Billing Service</text>
 </g>
 <g>
-<g transform="translate(480, 1348)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+<g transform="translate(469.7344, 1348)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
     <path fill="#ffffff" d="M448 205.8c-14.8 9.8-31.8 17.7-49.5 24-47 16.8-108.7 26.2-174.5 26.2S96.4 246.5 49.5 229.8c-17.6-6.3-34.7-14.2-49.5-24L0 288c0 44.2 100.3 80 224 80s224-35.8 224-80l0-82.2zm0-77.8l0-48C448 35.8 347.7 0 224 0S0 35.8 0 80l0 48c0 44.2 100.3 80 224 80s224-35.8 224-80zM398.5 389.8C351.6 406.5 289.9 416 224 416S96.4 406.5 49.5 389.8c-17.6-6.3-34.7-14.2-49.5-24L0 432c0 44.2 100.3 80 224 80s224-35.8 224-80l0-66.2c-14.8 9.8-31.8 17.7-49.5 24z" />
   </svg></g>
-<text x="492" y="1389" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Postgres Primary</text>
+<text x="481.7344" y="1389" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Postgres Primary</text>
 </g>
 <g>
-<g transform="translate(480, 1602)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+<g transform="translate(469.7344, 1602)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
     <path fill="#1e293b" d="M448 205.8c-14.8 9.8-31.8 17.7-49.5 24-47 16.8-108.7 26.2-174.5 26.2S96.4 246.5 49.5 229.8c-17.6-6.3-34.7-14.2-49.5-24L0 288c0 44.2 100.3 80 224 80s224-35.8 224-80l0-82.2zm0-77.8l0-48C448 35.8 347.7 0 224 0S0 35.8 0 80l0 48c0 44.2 100.3 80 224 80s224-35.8 224-80zM398.5 389.8C351.6 406.5 289.9 416 224 416S96.4 406.5 49.5 389.8c-17.6-6.3-34.7-14.2-49.5-24L0 432c0 44.2 100.3 80 224 80s224-35.8 224-80l0-66.2c-14.8 9.8-31.8 17.7-49.5 24z" />
   </svg></g>
-<text x="492" y="1643" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Postgres Replica</text>
+<text x="481.7344" y="1643" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Postgres Replica</text>
 </g>
 <g>
 <g transform="translate(303, 1348)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
@@ -218,20 +218,20 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 01_cloud_archite
   </svg></g>
 <text x="127.33333333333334" y="2102" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">S3 Storage</text>
 </g>
-<text x="104" y="239" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">HTTPS</text>
-<text x="552" y="549" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Forward Cache</text>
-<text x="552" y="563" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Miss</text>
-<text x="345" y="863" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">/auth</text>
-<text x="579.5" y="863" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">/billing</text>
-<text x="384" y="1148" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Read/Write</text>
-<text x="384" y="1162" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Users</text>
-<text x="475" y="1148" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Read/Write</text>
-<text x="475" y="1162" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Invoices</text>
+<text x="102.31626666666666" y="239" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">HTTPS</text>
+<text x="540.3418666666666" y="549" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Forward Cache</text>
+<text x="540.3418666666666" y="563" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Miss</text>
+<text x="339.6458666666666" y="863" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">/auth</text>
+<text x="561.6458666666666" y="863" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">/billing</text>
+<text x="370.31253333333325" y="1148" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Read/Write</text>
+<text x="370.31253333333325" y="1162" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Users</text>
+<text x="461.31253333333325" y="1148" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Read/Write</text>
+<text x="461.31253333333325" y="1162" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Invoices</text>
 <text x="260" y="1155" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Session Cache</text>
-<text x="443" y="1472" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Async</text>
-<text x="443" y="1486" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Replication</text>
-<text x="663" y="1871" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Store PDF</text>
-<text x="663" y="1885" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Receipts</text>
+<text x="432.7344" y="1472" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Async</text>
+<text x="432.7344" y="1486" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Replication</text>
+<text x="642.4688" y="1871" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Store PDF</text>
+<text x="642.4688" y="1885" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Receipts</text>
 <text x="52" y="1210" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Serve Static</text>
 <text x="52" y="1224" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Assets</text>
 </g>
@@ -239,7 +239,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 01_cloud_archite
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 02_ecommerce_checkout_sequence.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1667.9999999999998" height="1430" viewBox="0 0 1667.9999999999998 1430" role="img">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1630" height="1430" viewBox="0 0 1630 1430" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -348,33 +348,33 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 02_ecommerce_che
         </marker>
       
 </defs>
-<rect x="0" y="0" width="1667.9999999999998" height="1430" fill="#0f172a"/>
+<rect x="0" y="0" width="1630" height="1430" fill="#0f172a"/>
 <g transform="translate(40, 40)">
-<path d="M 1270.3999999999999 112 L 1270.3999999999999 1308" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 992.8 112 L 992.8 1308" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 715.1999999999999 112 L 715.1999999999999 1308" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 437.59999999999997 112 L 437.59999999999997 1308" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 1240 112 L 1240 1308" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 970 112 L 970 1308" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 700 112 L 700 1308" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 430 112 L 430 1308" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
 <path d="M 160 112 L 160 1308" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 162 190 L 435.59999999999997 190" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 439.59999999999997 270 L 713.1999999999999 270" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 717.1999999999999 350 L 1268.3999999999999 350" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 1268.3999999999999 430 L 717.1999999999999 430" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 1268.3999999999999 430 L 717.1999999999999 430" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
-<path d="M 717.1999999999999 510 L 990.8 510" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 990.8 590 L 717.1999999999999 590" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 990.8 590 L 717.1999999999999 590" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
-<path d="M 713.1999999999999 670 L 439.59999999999997 670" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 713.1999999999999 670 L 439.59999999999997 670" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
-<path d="M 162 750 L 435.59999999999997 750" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 439.59999999999997 830 L 990.8 830" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-open-solid)"/>
-<path d="M 990.8 910 L 717.1999999999999 910" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-open-solid)"/>
-<path d="M 717.1999999999999 990 L 1268.3999999999999 990" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 1268.3999999999999 1070 L 717.1999999999999 1070" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 1268.3999999999999 1070 L 717.1999999999999 1070" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
-<path d="M 990.8 1150 L 439.59999999999997 1150" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 990.8 1150 L 439.59999999999997 1150" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
-<path d="M 435.59999999999997 1230 L 162 1230" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 435.59999999999997 1230 L 162 1230" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
+<path d="M 162 190 L 428 190" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 432 270 L 698 270" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 702 350 L 1238 350" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 1238 430 L 702 430" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 1238 430 L 702 430" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
+<path d="M 702 510 L 968 510" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 968 590 L 702 590" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 968 590 L 702 590" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
+<path d="M 698 670 L 432 670" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 698 670 L 432 670" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
+<path d="M 162 750 L 428 750" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 432 830 L 968 830" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-open-solid)"/>
+<path d="M 968 910 L 702 910" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-open-solid)"/>
+<path d="M 702 990 L 1238 990" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 1238 1070 L 702 1070" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 1238 1070 L 702 1070" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
+<path d="M 968 1150 L 432 1150" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 968 1150 L 432 1150" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
+<path d="M 428 1230 L 162 1230" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 428 1230 L 162 1230" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
 <g>
 <rect x="100" y="50" width="120" height="60" rx="6" ry="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
 <circle cx="160" cy="63.4" r="5.3999999999999995" fill="#3b82f6" opacity="0.3"/>
@@ -383,65 +383,65 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 02_ecommerce_che
 <line x1="160" y1="67" x2="140" y2="82" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
 <line x1="160" y1="67" x2="180" y2="82" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
 </g>
-<rect x="377.59999999999997" y="50" width="120" height="60" rx="20" ry="20" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
-<rect x="655.1999999999999" y="50" width="120" height="60" rx="20" ry="20" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
-<rect x="932.8" y="50" width="120" height="60" rx="20" ry="20" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+<rect x="370" y="50" width="120" height="60" rx="20" ry="20" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+<rect x="640" y="50" width="120" height="60" rx="20" ry="20" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+<rect x="910" y="50" width="120" height="60" rx="20" ry="20" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
 <g>
-<path d="M 1210.3999999999999,59 A 60,9 0 0,0 1330.3999999999999,59 L 1330.3999999999999,101 A 60,9 0 0,1 1210.3999999999999,101 Z" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
-<ellipse cx="1270.3999999999999" cy="59" rx="60" ry="9" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+<path d="M 1180,59 A 60,9 0 0,0 1300,59 L 1300,101 A 60,9 0 0,1 1180,101 Z" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+<ellipse cx="1240" cy="59" rx="60" ry="9" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
 </g>
 <g>
 <text x="160" y="98" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Customer</text>
 </g>
 <g>
-<text x="437.59999999999997" y="80" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Web Store</text>
+<text x="430" y="80" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Web Store</text>
 </g>
 <g>
-<text x="715.1999999999999" y="80" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Cart API</text>
+<text x="700" y="80" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Cart API</text>
 </g>
 <g>
-<text x="992.8" y="71" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Stripe</text>
-<text x="992.8" y="89" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Gateway</text>
+<text x="970" y="71" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Stripe</text>
+<text x="970" y="89" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Gateway</text>
 </g>
 <g>
-<text x="1270.3999999999999" y="86" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Inventory DB</text>
+<text x="1240" y="86" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Inventory DB</text>
 </g>
-<rect x="262.79999999999995" y="178" width="72" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="298.79999999999995" y="183" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Click</text>
-<text x="298.79999999999995" y="197" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">&apos;Checkout&apos;</text>
-<rect x="528.4" y="265" width="96" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="576.4" y="270" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">POST /checkout</text>
-<rect x="953.8" y="345" width="78" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="992.8" y="350" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Check Stock</text>
-<rect x="944.8" y="425" width="96" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="992.8" y="430" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Stock Reserved</text>
-<rect x="806" y="498" width="96" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="854" y="503" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Create Payment</text>
-<text x="854" y="517" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Intent</text>
-<rect x="809" y="585" width="90" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="854" y="590" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Client Secret</text>
-<rect x="531.4" y="658" width="90" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="576.4" y="663" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Render Stripe</text>
-<text x="576.4" y="677" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Elements</text>
-<rect x="259.79999999999995" y="738" width="78" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="298.79999999999995" y="743" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Submit Card</text>
-<text x="298.79999999999995" y="757" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Details</text>
-<rect x="688.2" y="818" width="54" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="715.2" y="823" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Confirm</text>
-<text x="715.2" y="837" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Payment</text>
-<rect x="776" y="898" width="156" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="854" y="903" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Webhook:</text>
-<text x="854" y="917" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">payment_intent.succeeded</text>
-<rect x="950.8" y="985" width="84" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="992.8" y="990" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Deduct Stock</text>
-<rect x="965.8" y="1065" width="54" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="992.8" y="1070" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Updated</text>
-<rect x="676.1999999999999" y="1138" width="78" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="715.1999999999999" y="1143" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Payment</text>
-<text x="715.1999999999999" y="1157" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Success URL</text>
-<rect x="256.79999999999995" y="1218" width="84" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="298.79999999999995" y="1223" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Show Order</text>
-<text x="298.79999999999995" y="1237" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Confirmation</text>
+<rect x="259" y="178" width="72" height="24" rx="2" ry="2" fill="#0f172a"/>
+<text x="295" y="183" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Click</text>
+<text x="295" y="197" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">&apos;Checkout&apos;</text>
+<rect x="517" y="265" width="96" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="565" y="270" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">POST /checkout</text>
+<rect x="931" y="345" width="78" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="970" y="350" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Check Stock</text>
+<rect x="922" y="425" width="96" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="970" y="430" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Stock Reserved</text>
+<rect x="787" y="498" width="96" height="24" rx="2" ry="2" fill="#0f172a"/>
+<text x="835" y="503" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Create Payment</text>
+<text x="835" y="517" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Intent</text>
+<rect x="790" y="585" width="90" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="835" y="590" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Client Secret</text>
+<rect x="520" y="658" width="90" height="24" rx="2" ry="2" fill="#0f172a"/>
+<text x="565" y="663" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Render Stripe</text>
+<text x="565" y="677" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Elements</text>
+<rect x="256" y="738" width="78" height="24" rx="2" ry="2" fill="#0f172a"/>
+<text x="295" y="743" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Submit Card</text>
+<text x="295" y="757" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Details</text>
+<rect x="673" y="818" width="54" height="24" rx="2" ry="2" fill="#0f172a"/>
+<text x="700" y="823" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Confirm</text>
+<text x="700" y="837" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Payment</text>
+<rect x="757" y="898" width="156" height="24" rx="2" ry="2" fill="#0f172a"/>
+<text x="835" y="903" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Webhook:</text>
+<text x="835" y="917" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">payment_intent.succeeded</text>
+<rect x="928" y="985" width="84" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="970" y="990" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Deduct Stock</text>
+<rect x="943" y="1065" width="54" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="970" y="1070" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Updated</text>
+<rect x="661" y="1138" width="78" height="24" rx="2" ry="2" fill="#0f172a"/>
+<text x="700" y="1143" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Payment</text>
+<text x="700" y="1157" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Success URL</text>
+<rect x="253" y="1218" width="84" height="24" rx="2" ry="2" fill="#0f172a"/>
+<text x="295" y="1223" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Show Order</text>
+<text x="295" y="1237" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Confirmation</text>
 </g>
 </svg>"
 `;
@@ -555,9 +555,9 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 03_complex_erd.j
           <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </marker>
       
-<style>
+<style><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
-    </style>
+    ]]></style>
 </defs>
 <rect x="0" y="0" width="931" height="796" fill="#ffffff"/>
 <g transform="translate(40, 40)">
@@ -632,7 +632,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 03_complex_erd.j
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 04_oauth_flowchart.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="745.5" height="1874" viewBox="0 0 745.5 1874" role="img">
+"<svg xmlns="http://www.w3.org/2000/svg" width="675.4197333333333" height="1874" viewBox="0 0 675.4197333333333 1874" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -741,72 +741,72 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 04_oauth_flowcha
         </marker>
       
 </defs>
-<rect x="0" y="0" width="745.5" height="1874" fill="#ffffff"/>
+<rect x="0" y="0" width="675.4197333333333" height="1874" fill="#ffffff"/>
 <g transform="translate(40, 40)">
-<path d="M 538 84 L 538 160" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 576.5 289 L 576.5 1710" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 499.5 289 L 499.5 322 L 344 322 L 344 490" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 344 564 L 344 640" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 344 784 L 344 860" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 344 934 L 344 1010" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 344 1084 L 344 1160" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 391.5 1289 L 391.5 1490" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 296.5 1289 L 296.5 1322 L 94.5 1322 L 94.5 1525" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 391.5 1634 L 391.5 1652 L 503.5 1652 L 503.5 1710" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<rect x="446.5" y="12" width="183" height="70" rx="35" ry="35" fill="#f0f4ff" stroke="#3b82f6" stroke-width="3"/>
-<polygon points="538,162 653.5,237 538,312 422.5,237" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="430.5" y="1712" width="219" height="70" rx="20" ry="20" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
-<rect x="203" y="492" width="282" height="70" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<path d="M 191.55786666666665 84 L 191.55786666666665 160" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 226.1157333333333 289 L 226.1157333333333 322 L 544.4197333333333 322 L 544.4197333333333 1642 L 445.74399999999997 1642 L 445.74399999999997 1710" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 157 289 L 157 490" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 157 564 L 157 640" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 157 784 L 157 860" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 157 934 L 157 1010" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 157 1084 L 157 1160" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 197.38186666666664 1289 L 197.38186666666664 1322 L 382.3573333333333 1322 L 382.3573333333333 1490" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 116.61813333333333 1289 L 116.61813333333333 1525" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 382.3573333333333 1634 L 382.3573333333333 1710" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<rect x="112.49386666666668" y="12" width="158.12799999999996" height="70" rx="35" ry="35" fill="#f0f4ff" stroke="#3b82f6" stroke-width="3"/>
+<polygon points="191.55786666666665,162 295.2314666666666,237 191.55786666666665,312 87.88426666666668,237" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="318.97066666666666" y="1712" width="190.15999999999997" height="70" rx="20" ry="20" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
+<rect x="40.80800000000002" y="492" width="232.38399999999996" height="70" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
 <g>
-<rect x="243.5" y="642" width="201" height="140" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<circle cx="344" cy="662.6" r="12.6" fill="#3b82f6" opacity="0.3"/>
-<line x1="344" y1="675.2" x2="344" y2="707" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
-<line x1="293.75" y1="691.2" x2="394.25" y2="691.2" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
-<line x1="344" y1="707" x2="310.5" y2="722" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
-<line x1="344" y1="707" x2="377.5" y2="722" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
+<rect x="66.28800000000001" y="642" width="181.42399999999998" height="140" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="157" cy="662.6" r="12.6" fill="#3b82f6" opacity="0.3"/>
+<line x1="157" y1="675.2" x2="157" y2="707" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
+<line x1="111.644" y1="691.2" x2="202.356" y2="691.2" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
+<line x1="157" y1="707" x2="126.76266666666668" y2="722" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
+<line x1="157" y1="707" x2="187.23733333333334" y2="722" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
 </g>
-<rect x="171.5" y="862" width="345" height="70" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="221" y="1012" width="246" height="70" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<polygon points="344,1162 486.5,1237 344,1312 201.5,1237" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="12" y="1527" width="165" height="70" rx="20" ry="20" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
+<rect x="15.036799999999971" y="862" width="283.92640000000006" height="70" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="45.904000000000025" y="1012" width="222.19199999999995" height="70" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<polygon points="157,1162 278.14559999999994,1237 157,1312 35.85440000000003,1237" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="42.94133333333335" y="1527" width="147.35359999999997" height="70" rx="20" ry="20" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
 <g>
-<path d="M 237,1513 A 154.5,21 0 0,0 546,1513 L 546,1611 A 154.5,21 0 0,1 237,1611 Z" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<ellipse cx="391.5" cy="1513" rx="154.5" ry="21" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-</g>
-<g>
-<text x="538" y="47" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">User Clicks Login</text>
+<path d="M 250.29493333333332,1513 A 132.0624,21 0 0,0 514.4197333333333,1513 L 514.4197333333333,1611 A 132.0624,21 0 0,1 250.29493333333332,1611 Z" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<ellipse cx="382.3573333333333" cy="1513" rx="132.0624" ry="21" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
 </g>
 <g>
-<text x="538" y="237" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Has active session?</text>
+<text x="191.55786666666665" y="47" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">User Clicks Login</text>
 </g>
 <g>
-<text x="540" y="1747" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Redirect to Dashboard</text>
+<text x="191.55786666666665" y="237" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Has active session?</text>
 </g>
 <g>
-<text x="344" y="527" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Redirect to Auth0 /authorize</text>
+<text x="414.05066666666664" y="1747" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Redirect to Dashboard</text>
 </g>
 <g>
-<text x="344" y="754" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">User Grants Consent</text>
+<text x="157" y="527" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Redirect to Auth0 /authorize</text>
 </g>
 <g>
-<text x="344" y="897" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Redirect back to /callback?code=...</text>
+<text x="157" y="754" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">User Grants Consent</text>
 </g>
 <g>
-<text x="344" y="1047" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Exchange Code for Tokens</text>
+<text x="157" y="897" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Redirect back to /callback?code=...</text>
 </g>
 <g>
-<text x="344" y="1237" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Verify ID Token Signature</text>
+<text x="157" y="1047" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Exchange Code for Tokens</text>
 </g>
 <g>
-<text x="94.5" y="1562" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Show Error Page</text>
+<text x="157" y="1237" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Verify ID Token Signature</text>
 </g>
 <g>
-<text x="391.5" y="1576" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Store Tokens in HttpOnly Cookie</text>
+<text x="116.61813333333333" y="1562" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Show Error Page</text>
 </g>
-<text x="592.5" y="894" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Yes</text>
-<text x="322" y="399" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">No</text>
-<text x="360.5" y="1399" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Valid</text>
-<text x="57.5" y="1399" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Invalid</text>
+<g>
+<text x="382.3573333333333" y="1576" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Store Tokens in HttpOnly Cookie</text>
+</g>
+<text x="560.4197333333333" y="894" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Yes</text>
+<text x="135" y="399" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">No</text>
+<text x="351.3573333333333" y="1399" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Valid</text>
+<text x="79.61813333333333" y="1399" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Invalid</text>
 </g>
 </svg>"
 `;
@@ -1093,9 +1093,9 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 06_uml_class_dia
           <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </marker>
       
-<style>
+<style><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
-    </style>
+    ]]></style>
 </defs>
 <rect x="0" y="0" width="526" height="420" fill="#ffffff"/>
 <g transform="translate(40, 40)">
@@ -1405,7 +1405,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 08_risk_quadrant
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 09_product_mindmap.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1072.7072165300724" height="997.1973731159887" viewBox="0 0 1072.7072165300724 997.1973731159887" role="img">
+"<svg xmlns="http://www.w3.org/2000/svg" width="955.801355093751" height="877.0041715230624" viewBox="0 0 955.801355093751 877.0041715230624" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -1514,44 +1514,44 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 09_product_mindm
         </marker>
       
 </defs>
-<rect x="0" y="0" width="1072.7072165300724" height="997.1973731159887" fill="#ffffff"/>
+<rect x="0" y="0" width="955.801355093751" height="877.0041715230624" fill="#ffffff"/>
 <g transform="translate(40, 40)">
-<path d="M 533.1104073049513 515.587505852638 L 549.3088364634649 668.137235824957" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 521.0077395081727 401.6098672633507 L 504.809310349659 249.06013729103174" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 646.6775204455571 728.3310129267014 L 808.7661748264035 768.5837789205291" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 479.89815522459185 741.004962021889 L 323.0592923374228 817.7343811074288" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 420.8816680712356 212.0253359364962 L 184 211.88333291998185" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 574.2199915885323 176.1924110940996 L 724.0765494610567 102.87890690228852" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<rect x="426.559073406562" y="403.5986865579943" width="201" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="461.73647874188833" y="670.1260551196006" width="183" height="70" rx="20" ry="20" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
-<rect x="422.8816680712356" y="177.07131799638813" width="156" height="70" rx="20" ry="20" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
-<rect x="810.7072165300723" y="745.1745399785773" width="170" height="90" rx="30" ry="30" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
-<rect x="151.2627616092944" y="815.1973731159887" width="170" height="90" rx="30" ry="30" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
-<rect x="12" y="166.83322426497142" width="170" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
-<rect x="702.3553852038299" y="12" width="231" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<path d="M 458.2256249466415 455.4985636265883 L 465.8431534050249 583.6834679190985" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 451.4514685892918 341.505607896474 L 443.8339401309083 213.3207036039638" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 548.3098146950406 642.1455745395535 L 691.8692500577067 680.5368327167056" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 387.848396724711 652.7122228637655 L 256.1689338287649 705.3100379039497" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 369.1768816196143 167.37026731739718 L 183.98490225732263 144.4854265941069" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 513.9662968112222 147.43249200506315 L 636.7273597071686 98.39702710922185" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<rect x="366.89294676796663" y="343.50208576153113" width="175.8912" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="389.70570965899634" y="585.6799457841556" width="156.67199999999997" height="70" rx="20" ry="20" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
+<rect x="371.1617838769369" y="141.32422573890665" width="140.94719999999995" height="70" rx="20" ry="20" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<rect x="693.801355093751" y="658.7845759241854" width="170" height="90" rx="30" ry="30" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
+<rect x="84.31162089447969" y="695.0041715230624" width="170" height="90" rx="30" ry="30" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
+<rect x="12" y="88.73638853995055" width="170" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<rect x="638.5846726414537" y="12" width="203.56159999999997" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
 <g>
-<g transform="translate(515.059073406562, 433.5986865579943)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(442.83854676796665, 373.50208576153113)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#1e293b" d="M120 56c0-30.9 25.1-56 56-56l24 0c17.7 0 32 14.3 32 32l0 448c0 17.7-14.3 32-32 32l-32 0c-29.8 0-54.9-20.4-62-48-.7 0-1.3 0-2 0-44.2 0-80-35.8-80-80 0-18 6-34.6 16-48-19.4-14.6-32-37.8-32-64 0-30.9 17.6-57.8 43.2-71.1-7.1-12-11.2-26-11.2-40.9 0-44.2 35.8-80 80-80l0-24zm272 0l0 24c44.2 0 80 35.8 80 80 0 15-4.1 29-11.2 40.9 25.7 13.3 43.2 40.1 43.2 71.1 0 26.2-12.6 49.4-32 64 10 13.4 16 30 16 48 0 44.2-35.8 80-80 80-.7 0-1.3 0-2 0-7.1 27.6-32.2 48-62 48l-32 0c-17.7 0-32-14.3-32-32l0-448c0-17.7 14.3-32 32-32l24 0c30.9 0 56 25.1 56 56z" />
   </svg></g>
-<text x="527.059073406562" y="474.5986865579943" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Glyphic Core Engine</text>
+<text x="454.83854676796665" y="414.50208576153113" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Glyphic Core Engine</text>
 </g>
 <g>
-<text x="553.2364787418883" y="705.1260551196006" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Layout Strategies</text>
+<text x="468.0417096589963" y="620.6799457841556" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Layout Strategies</text>
 </g>
 <g>
-<text x="500.8816680712356" y="212.07131799638813" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Render Engines</text>
+<text x="441.6353838769369" y="176.32422573890665" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Render Engines</text>
 </g>
 <g>
-<text x="895.7072165300723" y="790.1745399785773" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">ELK.js</text>
+<text x="778.801355093751" y="703.7845759241854" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">ELK.js</text>
 </g>
 <g>
-<text x="236.2627616092944" y="860.1973731159887" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Grid Adapter</text>
+<text x="169.3116208944797" y="740.0041715230624" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Grid Adapter</text>
 </g>
 <g>
-<text x="97" y="211.83322426497142" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">SVG Compiler</text>
+<text x="97" y="133.73638853995055" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">SVG Compiler</text>
 </g>
 <g>
-<text x="817.8553852038299" y="57" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">React Flow Exporter</text>
+<text x="740.3654726414537" y="57" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">React Flow Exporter</text>
 </g>
 </g>
 </svg>"
@@ -2019,7 +2019,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 12_complex_git_h
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 13_star_wars_battle.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="2910" height="620" viewBox="0 0 2910 620" role="img">
+"<svg xmlns="http://www.w3.org/2000/svg" width="2856.1440000000002" height="620" viewBox="0 0 2856.1440000000002 620" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -2862,139 +2862,139 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 13_star_wars_bat
           <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </marker>
       
-<style>
+<style><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
-    </style>
+    ]]></style>
 </defs>
-<rect x="0" y="0" width="2910" height="620" fill="#0a0a1a"/>
+<rect x="0" y="0" width="2856.1440000000002" height="620" fill="#0a0a1a"/>
 <g transform="translate(40, 40)">
-<rect x="2220" y="27.999999999999986" width="598" height="345" rx="6" ry="6" fill="#1a1a2e" stroke="#e94560" stroke-width="2"/>
-<rect x="12" y="262" width="634" height="266" rx="6" ry="6" fill="#1a1a2e" stroke="#e94560" stroke-width="2"/>
-<path d="M 1534 201.33333333333331 L 1804 201.33333333333334" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow-solid-ef4444)"/>
-<path d="M 1985 223 L 2297 223" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow-solid-ef4444)"/>
-<path d="M 2449 223 L 2602 223 L 2602 259.6666666666667 L 2620 259.6666666666667" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-solid-a855f7)"/>
-<path d="M 2449 159.66666666666669 L 2496 159.66666666666669 L 2496 148 L 2628 148" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-solid-a855f7)"/>
-<path d="M 261.2 374.66666666666663 L 284 374.66666666666663 L 284 337 L 661 337 L 661 381 L 1736 381 L 1736 244.66666666666669 L 1804 244.66666666666669" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 261.2 374.66666666666663 L 284 374.66666666666663 L 284 337 L 661 337 L 661 381 L 1736 381 L 1736 244.66666666666669 L 1804 244.66666666666669" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed-f59e0b)"/>
-<path d="M 261.2 418 L 418 418" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
-<path d="M 560 394.66666666666663 L 596 394.66666666666663 L 596 327 L 843 327 L 843 219.66666666666663 L 932.5 219.66666666666663" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
-<path d="M 560 441.3333333333333 L 661 441.3333333333333 L 661 467 L 911 467" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
-<path d="M 1076.5 201.33333333333331 L 1344 201.33333333333331" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 1076.5 201.33333333333331 L 1344 201.33333333333331" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed-ef4444)"/>
-<path d="M 1098 467 L 2145 467 L 2145 296.33333333333337 L 2620 296.33333333333337" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="3,3"/>
-<path d="M 1098 467 L 2145 467 L 2145 296.33333333333337 L 2620 296.33333333333337" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dotted-78716c)"/>
-<path d="M 390.1666666666667 138.66666666666666 L 661 138.66666666666666 L 661 183 L 932.5 182.99999999999997" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3,3"/>
-<path d="M 390.1666666666667 138.66666666666666 L 661 138.66666666666666 L 661 183 L 932.5 182.99999999999997" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dotted-38bdf8)"/>
-<path d="M 390.1666666666667 75.33333333333333 L 2145 75.33333333333333 L 2145 159.66666666666669 L 2297 159.66666666666669" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
-<path d="M 390.1666666666667 75.33333333333333 L 2145 75.33333333333333 L 2145 159.66666666666669 L 2297 159.66666666666669" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dotted-dc2626)"/>
-<polygon points="1366,136.33333333333331 1512,136.33333333333331 1532,201.33333333333331 1512,266.3333333333333 1366,266.3333333333333 1346,201.33333333333331" fill="#dc2626" stroke="#b01e1e" stroke-width="2"/>
-<polygon points="2373,96.33333333333333 2484,191.33333333333331 2373,286.3333333333333 2262,191.33333333333331" fill="#7c3aed" stroke="#632ebd" stroke-width="2"/>
-<rect x="2622" y="223" width="156" height="110" rx="6" ry="6" fill="#4c1d95" stroke="#3c1777" stroke-width="2"/>
-<rect x="2630" y="92.99999999999999" width="140" height="110" rx="6" ry="6" fill="#4c1d95" stroke="#3c1777" stroke-width="2"/>
-<rect x="1806" y="158" width="177" height="130" rx="30" ry="30" fill="#1e40af" stroke="#18338c" stroke-width="2"/>
+<rect x="2182.1440000000002" y="27.999999999999986" width="582" height="345" rx="6" ry="6" fill="#1a1a2e" stroke="#e94560" stroke-width="2"/>
+<rect x="12" y="262" width="616.144" height="266" rx="6" ry="6" fill="#1a1a2e" stroke="#e94560" stroke-width="2"/>
+<path d="M 1501.8784 201.33333333333331 L 1773.144 201.33333333333334" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow-solid-ef4444)"/>
+<path d="M 1947.144 223 L 2269.7552 223" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow-solid-ef4444)"/>
+<path d="M 2400.5328000000004 223 L 2564.1440000000002 223 L 2564.1440000000002 259.6666666666667 L 2582.1440000000002 259.6666666666667" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-solid-a855f7)"/>
+<path d="M 2400.5328000000004 159.66666666666669 L 2458.1440000000002 159.66666666666669 L 2458.1440000000002 148 L 2582.1440000000002 148" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-solid-a855f7)"/>
+<path d="M 244.53439999999998 374.66666666666663 L 266.144 374.66666666666663 L 266.144 337 L 643.144 337 L 643.144 381 L 1705.144 381 L 1705.144 244.66666666666669 L 1773.144 244.66666666666669" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 244.53439999999998 374.66666666666663 L 266.144 374.66666666666663 L 266.144 337 L 643.144 337 L 643.144 381 L 1705.144 381 L 1705.144 244.66666666666669 L 1773.144 244.66666666666669" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed-f59e0b)"/>
+<path d="M 244.53439999999998 418 L 400.1264 418" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
+<path d="M 542.1615999999999 394.66666666666663 L 578.144 394.66666666666663 L 578.144 327 L 825.144 327 L 825.144 219.66666666666663 L 908.144 219.66666666666663" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
+<path d="M 542.1615999999999 441.3333333333333 L 643.144 441.3333333333333 L 643.144 467 L 898.0608 467" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
+<path d="M 1052.144 201.33333333333331 L 1314.4096 201.33333333333331" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 1052.144 201.33333333333331 L 1314.4096 201.33333333333331" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed-ef4444)"/>
+<path d="M 1062.2272 467 L 2107.1440000000002 467 L 2107.1440000000002 296.33333333333337 L 2582.1440000000002 296.33333333333337" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="3,3"/>
+<path d="M 1062.2272 467 L 2107.1440000000002 467 L 2107.1440000000002 296.33333333333337 L 2582.1440000000002 296.33333333333337" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dotted-78716c)"/>
+<path d="M 381.2386666666667 138.66666666666666 L 643.144 138.66666666666666 L 643.144 183 L 908.144 182.99999999999997" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3,3"/>
+<path d="M 381.2386666666667 138.66666666666666 L 643.144 138.66666666666666 L 643.144 183 L 908.144 182.99999999999997" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dotted-38bdf8)"/>
+<path d="M 381.2386666666667 75.33333333333333 L 2107.1440000000002 75.33333333333333 L 2107.1440000000002 159.66666666666669 L 2269.7552 159.66666666666669" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+<path d="M 381.2386666666667 75.33333333333333 L 2107.1440000000002 75.33333333333333 L 2107.1440000000002 159.66666666666669 L 2269.7552 159.66666666666669" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dotted-dc2626)"/>
+<polygon points="1336.4096,136.33333333333331 1479.8784,136.33333333333331 1499.8784,201.33333333333331 1479.8784,266.3333333333333 1336.4096,266.3333333333333 1316.4096,201.33333333333331" fill="#dc2626" stroke="#b01e1e" stroke-width="2"/>
+<polygon points="2335.1440000000002,96.33333333333333 2430.2272000000003,191.33333333333331 2335.1440000000002,286.3333333333333 2240.0608,191.33333333333331" fill="#7c3aed" stroke="#632ebd" stroke-width="2"/>
+<rect x="2584.1440000000002" y="223" width="140" height="110" rx="6" ry="6" fill="#4c1d95" stroke="#3c1777" stroke-width="2"/>
+<rect x="2584.1440000000002" y="92.99999999999999" width="140" height="110" rx="6" ry="6" fill="#4c1d95" stroke="#3c1777" stroke-width="2"/>
+<rect x="1775.144" y="158" width="170" height="130" rx="30" ry="30" fill="#1e40af" stroke="#18338c" stroke-width="2"/>
 <g>
-<rect x="420" y="348" width="138" height="140" rx="6" ry="6" fill="#059669" stroke="#047854" stroke-width="2"/>
+<rect x="402.1264" y="348" width="138.03519999999997" height="140" rx="6" ry="6" fill="#059669" stroke="#047854" stroke-width="2"/>
 </g>
-<polygon points="72,331.3333333333333 254,331.3333333333333 274,396.3333333333333 254,461.3333333333333 72,461.3333333333333 52,396.3333333333333" fill="#d97706" stroke="#ad5f04" stroke-width="2"/>
-<rect x="934.5" y="146.33333333333331" width="140" height="110" rx="20" ry="20" fill="#b91c1c" stroke="#941616" stroke-width="2"/>
-<rect x="913" y="412" width="183" height="110" rx="20" ry="20" fill="#78716c" stroke="#605a56" stroke-width="2"/>
-<polygon points="331.5,12 416.5,107 331.5,202 246.5,107" fill="#0ea5e9" stroke="#0b84ba" stroke-width="2"/>
+<polygon points="72,331.3333333333333 236.144,331.3333333333333 256.144,396.3333333333333 236.144,461.3333333333333 72,461.3333333333333 52,396.3333333333333" fill="#d97706" stroke="#ad5f04" stroke-width="2"/>
+<rect x="910.144" y="146.33333333333331" width="140" height="110" rx="20" ry="20" fill="#b91c1c" stroke="#941616" stroke-width="2"/>
+<rect x="900.0608" y="412" width="160.16639999999998" height="110" rx="20" ry="20" fill="#78716c" stroke="#605a56" stroke-width="2"/>
+<polygon points="322.572,12 407.572,107 322.572,202 237.572,107" fill="#0ea5e9" stroke="#0b84ba" stroke-width="2"/>
 <g>
-<rect x="2434.25" y="37.999999999999986" width="169.5" height="20" fill="#1a1a2e" stroke="none"/>
-<text x="2519" y="47.999999999999986" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#eaeaea">Imperial Star Fleet</text>
-</g>
-<g>
-<rect x="265.5" y="272" width="127" height="20" fill="#1a1a2e" stroke="none"/>
-<text x="329" y="282" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#eaeaea">Rebel Alliance</text>
-<rect x="278.25" y="290" width="101.5" height="20" fill="#1a1a2e" stroke="none"/>
-<text x="329" y="300" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#eaeaea">Secret Base</text>
+<rect x="2388.3940000000002" y="37.999999999999986" width="169.5" height="20" fill="#1a1a2e" stroke="none"/>
+<text x="2473.1440000000002" y="47.999999999999986" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#eaeaea">Imperial Star Fleet</text>
 </g>
 <g>
-<g transform="translate(1427, 167.33333333333331)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+<rect x="256.572" y="272" width="127" height="20" fill="#1a1a2e" stroke="none"/>
+<text x="320.072" y="282" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#eaeaea">Rebel Alliance</text>
+<rect x="269.322" y="290" width="101.5" height="20" fill="#1a1a2e" stroke="none"/>
+<text x="320.072" y="300" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#eaeaea">Secret Base</text>
+</g>
+<g>
+<g transform="translate(1396.144, 167.33333333333331)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
     <path fill="#ffffff" d="M384 144C384 64.5 312.4 0 224 0S64 64.5 64 144c0 47.1 25.1 88.9 64 115.2l0 28.8c0 17.7 14.3 32 32 32l128 0c17.7 0 32-14.3 32-32l0-28.8c38.9-26.3 64-68.1 64-115.2zM160 128a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm96 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM445.5 339.7c-6.8-16.3-25.5-24-41.8-17.2L224 397.3 44.3 322.5c-16.3-6.8-35 .9-41.8 17.2s.9 35 17.2 41.8L140.8 432 19.7 482.5C3.4 489.3-4.3 508 2.5 524.3s25.5 24 41.8 17.2L224 466.7 403.7 541.5c16.3 6.8 35-.9 41.8-17.2s-.9-35-17.2-41.8L307.2 432 428.3 381.5c16.3-6.8 24-25.5 17.2-41.8z" />
   </svg></g>
-<text x="1439" y="208.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Death Star</text>
-<text x="1439" y="226.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Command Center</text>
+<text x="1408.144" y="208.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Death Star</text>
+<text x="1408.144" y="226.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Command Center</text>
 </g>
 <g>
-<g transform="translate(2361, 157.33333333333331)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+<g transform="translate(2323.1440000000002, 157.33333333333331)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
     <path fill="#ffffff" d="M224-32c17.7 0 32 14.3 32 32l0 32 32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0 0 64 153.8 0c21.1 0 38.2 17.1 38.2 38.2 0 6.4-1.6 12.7-4.7 18.3L352 384 408.2 454.3c5 6.3 7.8 14.1 7.8 22.2 0 19.6-15.9 35.5-35.5 35.5L67.5 512c-19.6 0-35.5-15.9-35.5-35.5 0-8.1 2.7-15.9 7.8-22.2L96 384 4.7 216.6C1.6 210.9 0 204.6 0 198.2 0 177.1 17.1 160 38.2 160l153.8 0 0-64-32 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-32c0-17.7 14.3-32 32-32z" />
   </svg></g>
-<text x="2373" y="198.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Executor</text>
-<text x="2373" y="216.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">(Vader&apos;s Flagship)</text>
+<text x="2335.1440000000002" y="198.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Executor</text>
+<text x="2335.1440000000002" y="216.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">(Vader&apos;s Flagship)</text>
 </g>
 <g>
-<g transform="translate(2688, 253)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(2642.1440000000002, 253)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#ffffff" d="M128 320L24.5 320c-24.9 0-40.2-27.1-27.4-48.5L50 183.3C58.7 168.8 74.3 160 91.2 160l95 0c76.1-128.9 189.6-135.4 265.5-124.3 12.8 1.9 22.8 11.9 24.6 24.6 11.1 75.9 4.6 189.4-124.3 265.5l0 95c0 16.9-8.8 32.5-23.3 41.2l-88.2 52.9c-21.3 12.8-48.5-2.6-48.5-27.4L192 384c0-35.3-28.7-64-64-64l-.1 0zM400 160a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
   </svg></g>
-<text x="2700" y="294" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">ISD Devastator</text>
+<text x="2654.1440000000002" y="294" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">ISD Devastator</text>
 </g>
 <g>
-<g transform="translate(2688, 123)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(2642.1440000000002, 123)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#ffffff" d="M128 320L24.5 320c-24.9 0-40.2-27.1-27.4-48.5L50 183.3C58.7 168.8 74.3 160 91.2 160l95 0c76.1-128.9 189.6-135.4 265.5-124.3 12.8 1.9 22.8 11.9 24.6 24.6 11.1 75.9 4.6 189.4-124.3 265.5l0 95c0 16.9-8.8 32.5-23.3 41.2l-88.2 52.9c-21.3 12.8-48.5-2.6-48.5-27.4L192 384c0-35.3-28.7-64-64-64l-.1 0zM400 160a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
   </svg></g>
-<text x="2700" y="164" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">ISD Avenger</text>
+<text x="2654.1440000000002" y="164" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">ISD Avenger</text>
 </g>
 <g>
-<g transform="translate(1882.5, 198)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(1848.144, 198)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#ffffff" d="M232 0c154.6 0 280 125.4 280 280 0 13.3-10.7 24-24 24s-24-10.7-24-24c0-128.1-103.9-232-232-232-13.3 0-24-10.7-24-24S218.7 0 232 0zM208 120c0-13.3 10.7-24 24-24 101.6 0 184 82.4 184 184 0 13.3-10.7 24-24 24s-24-10.7-24-24c0-75.1-60.9-136-136-136-13.3 0-24-10.7-24-24zM26.4 142.7c8.8-17.9 32.4-19.9 46.5-5.8l128.5 128.5 32-32c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-32 32 128.5 128.5c14.1 14.1 12 37.6-5.8 46.5-34.2 16.9-72.6 26.4-113.3 26.4-141.4 0-256-114.6-256-256 0-40.7 9.5-79.2 26.4-113.3z" />
   </svg></g>
-<text x="1894.5" y="239" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">HoloNet Relay</text>
+<text x="1860.144" y="239" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">HoloNet Relay</text>
 </g>
 <g>
-<g transform="translate(477, 384)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
+<g transform="translate(459.144, 384)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
     <path fill="#ffffff" d="M309.5-18.9c-4.1-8-12.4-13.1-21.4-13.1s-17.3 5.1-21.4 13.1L193.1 125.3 33.2 150.7c-8.9 1.4-16.3 7.7-19.1 16.3s-.5 18 5.8 24.4l114.4 114.5-25.2 159.9c-1.4 8.9 2.3 17.9 9.6 23.2s16.9 6.1 25 2L288.1 417.6 432.4 491c8 4.1 17.7 3.3 25-2s11-14.2 9.6-23.2L441.7 305.9 556.1 191.4c6.4-6.4 8.6-15.8 5.8-24.4s-10.1-14.9-19.1-16.3L383 125.3 309.5-18.9z" />
   </svg></g>
-<text x="489" y="425" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Mon Mothma</text>
-<text x="489" y="443" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">High Command</text>
+<text x="471.144" y="425" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Mon Mothma</text>
+<text x="471.144" y="443" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">High Command</text>
 </g>
 <g>
-<g transform="translate(151, 371.3333333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+<g transform="translate(142.072, 371.3333333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
     <path fill="#0f172a" d="M171-16c-36.4 0-57.8 58.3-68.3 112L72 96c-13.3 0-24 10.7-24 24s10.7 24 24 24l24 0 0 32c0 17 3.3 33.2 9.3 48l-9.3 0 0 0-20.5 0c-15.2 0-27.5 12.3-27.5 27.5 0 3 .5 5.9 1.4 8.7l28.9 86.6C40.2 379.6 16 428.1 16 482.3 16 498.7 29.3 512 45.7 512l356.6 0c16.4 0 29.7-13.3 29.7-29.7 0-54.2-24.2-102.7-62.3-135.4l28.9-86.6c.9-2.8 1.4-5.7 1.4-8.7 0-15.2-12.3-27.5-27.5-27.5l-20.5 0 0 0-9.3 0c6-14.8 9.3-31 9.3-48l0-32 24 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-30.7 0c-10.4-53.7-31.9-112-68.3-112-9.6 0-19 3.9-27.5 8.2-8.2 4.1-18.4 7.8-25.5 7.8s-17.3-3.7-25.5-7.8C190-12.1 180.6-16 171-16zm93.7 484.4l-24.8-70.9 27.9-32.5c2.7-3.2 4.2-7.2 4.2-11.4 0-9.7-7.8-17.5-17.5-17.5l-61 0c-9.7 0-17.5 7.8-17.5 17.5 0 4.2 1.5 8.2 4.2 11.4l27.9 32.5-24.8 70.9-57-180.4 35.7 0c18.4 10.2 39.5 16 62 16s43.6-5.8 62-16l35.7 0-57 180.4zM224 256c-34.7 0-64.2-22.1-75.3-53 5.7 3.2 12.3 5 19.3 5l12.4 0c16.5 0 31.1-10.6 36.3-26.2 2.3-7 12.2-7 14.5 0 5.2 15.6 19.9 26.2 36.3 26.2l12.4 0c7 0 13.6-1.8 19.3-5-11.1 30.9-40.6 53-75.3 53z" />
   </svg></g>
-<text x="163" y="412.3333333333333" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Bothan Spy Network</text>
+<text x="154.072" y="412.3333333333333" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Bothan Spy Network</text>
 </g>
 <g>
-<g transform="translate(992.5, 167.33333333333331)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
+<g transform="translate(968.144, 167.33333333333331)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
     <path fill="#ffffff" d="M496.2 206.8c-10.7-4.5-22.2-6.8-33.8-6.8L362 200 248 48 296 48c13.3 0 24-10.7 24-24S309.3 0 296 0L152 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l8 0 0 152-54.4 0-52.8-66c-3-3.8-7.6-6-12.5-6L16 128c-8.8 0-16 7.2-16 16l0 88 40 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-40 0 0 88c0 8.8 7.2 16 16 16l24.3 0c4.9 0 9.5-2.2 12.5-6l52.8-66 54.4 0 0 152-8 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l144 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-48 0 114-152 100.4 0c11.6 0 23.1-2.3 33.8-6.8l65-27.1c8.9-3.7 14.8-12.5 14.8-22.2s-5.8-18.4-14.8-22.2l-65-27.1z" />
   </svg></g>
-<text x="1004.5" y="208.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Red Squadron</text>
-<text x="1004.5" y="226.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">X-Wings</text>
+<text x="980.144" y="208.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Red Squadron</text>
+<text x="980.144" y="226.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">X-Wings</text>
 </g>
 <g>
-<g transform="translate(992.5, 442)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
+<g transform="translate(968.144, 442)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
     <path fill="#ffffff" d="M0 368l0 64c0 26.5 21.5 48 48 48l50 0c40.6 0 80.4-11 115.2-31.9l133.5-80.1-93.3 0-64.9 38.9c-14 8.4-28.9 14.7-44.5 19l0-66.4c9.7-5.6 17.8-13.7 23.4-23.4l198.8 0c67.1 0 127.8-20.6 170.3-70.6 4.6-5.4 4.6-13.3 0-18.8-42.5-50.1-103.2-70.6-170.3-70.6l-198.8 0c-5.6-9.7-13.7-17.8-23.4-23.4l0-66.4c15.6 4.2 30.6 10.6 44.5 19l64.9 38.9 93.3 0-133.5-80.1C178.4 43 138.6 32 98 32L48 32C21.5 32 0 53.5 0 80L0 368zm96 0l0 64-48 0 0-64 48 0zM96 80l0 64-48 0 0-64 48 0zM416 224c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16z" />
   </svg></g>
-<text x="1004.5" y="483" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Millennium Falcon</text>
+<text x="980.144" y="483" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Millennium Falcon</text>
 </g>
 <g>
-<g transform="translate(319.5, 82)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(310.572, 82)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#ffffff" d="M224 160a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32 352a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm0-448c53 0 96 43 96 96s-43 96-96 96-96 43-96 96 43 96 96 96C150 448 64 362 64 256S150 64 256 64zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
   </svg></g>
-<text x="331.5" y="123" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">The Force</text>
+<text x="322.572" y="123" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">The Force</text>
 </g>
-<text x="1670" y="211.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Command Signal</text>
-<text x="2094" y="233" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Encrypted</text>
-<text x="2094" y="247" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Orders</text>
-<text x="2549" y="233" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Fleet Command</text>
-<text x="2549" y="158" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Fleet Command</text>
-<text x="1210" y="391" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Intercept</text>
-<text x="1210" y="405" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Intel</text>
-<text x="328" y="428" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Brief</text>
-<text x="328" y="442" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Leadership</text>
-<text x="777" y="337" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Attack Order</text>
-<text x="777" y="477" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Shield Mission</text>
-<text x="1210" y="211.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Trench Run</text>
-<text x="1670" y="477" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Distraction</text>
-<text x="777" y="193" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Use the Force,</text>
-<text x="777" y="207" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Luke</text>
-<text x="1434" y="59.33333333333333" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Dark Side</text>
+<text x="1639.144" y="211.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Command Signal</text>
+<text x="2056.1440000000002" y="233" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Encrypted</text>
+<text x="2056.1440000000002" y="247" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Orders</text>
+<text x="2511.1440000000002" y="233" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Fleet Command</text>
+<text x="2511.1440000000002" y="158" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Fleet Command</text>
+<text x="1179.144" y="391" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Intercept</text>
+<text x="1179.144" y="405" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Intel</text>
+<text x="310.144" y="428" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Brief</text>
+<text x="310.144" y="442" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Leadership</text>
+<text x="759.144" y="337" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Attack Order</text>
+<text x="759.144" y="477" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Shield Mission</text>
+<text x="1179.144" y="211.33333333333331" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Trench Run</text>
+<text x="1639.144" y="477" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Distraction</text>
+<text x="759.144" y="193" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Use the Force,</text>
+<text x="759.144" y="207" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Luke</text>
+<text x="1403.144" y="59.33333333333333" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#a78bfa">Dark Side</text>
 </g>
 </svg>"
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices_k8s.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1237" height="2691" viewBox="0 0 1237 2691" role="img">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1187.6666666666665" height="2691" viewBox="0 0 1187.6666666666665 2691" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -3522,81 +3522,81 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices
           <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </marker>
       
-<style>
+<style><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
-    </style>
+    ]]></style>
 </defs>
-<rect x="0" y="0" width="1237" height="2691" fill="#0f172a"/>
+<rect x="0" y="0" width="1187.6666666666665" height="2691" fill="#0f172a"/>
 <g transform="translate(40, 40)">
-<rect x="12" y="1021" width="1133" height="1003" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+<rect x="12" y="1021" width="1072.7888" height="1003" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
 <rect x="52" y="1111" width="220" height="215" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
-<rect x="292" y="1111" width="802" height="215" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
-<rect x="190" y="1420" width="625" height="539" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+<rect x="292" y="1111" width="741.7888" height="215" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+<rect x="197" y="1420" width="611" height="539" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
 <rect x="715.6666666666666" y="2296.5" width="380" height="215" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
-<rect x="281.16666666666663" y="2214" width="236" height="385" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+<rect x="269.2858666666666" y="2214" width="236" height="385" rx="6" ry="6" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
 <path d="M 342 144 L 342 320" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
 <path d="M 342 454 L 342 644" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
 <path d="M 291 781 L 291 946 L 162 946 L 162 1174" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
 <path d="M 325 819 L 325 906 L 402 906 L 402 1174" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 359 819 L 359 876 L 519 876 L 519 946 L 565.5 946 L 565.5 1174" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 393 781 L 393 846 L 648 846 L 648 946 L 741.5 946 L 741.5 1174" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 359 819 L 359 876 L 519 876 L 519 946 L 562 946 L 562 1174" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 393 781 L 393 846 L 648 846 L 648 946 L 726.9872 946 L 726.9872 1174" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
 <path d="M 425.3333333333333 1288 L 425.3333333333333 1341 L 469.66666666666663 1341 L 469.66666666666663 1483.6862915010151" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 541 1288 L 541 1341 L 572.6666666666666 1341 L 572.6666666666666 1405 L 516.3333333333333 1405 L 516.3333333333333 1483.6862915010151" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 590 1288 L 590 1341 L 681.6666666666666 1341 L 681.6666666666666 1405 L 657 1405 L 657 1508" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
-<path d="M 769 1288 L 769 1341 L 825.6666666666666 1341 L 825.6666666666666 2359.5" fill="none" stroke="#6366f1" stroke-width="2" marker-end="url(#arrow-solid-6366f1)"/>
-<path d="M 714 1288 L 714 1351 L 814.6666666666666 1351 L 814.6666666666666 1405 L 716 1405 L 716 1508" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
-<path d="M 686.5 1642 L 686.5 1974 L 1104 1974 L 1104 1096 L 949 1096 L 949 1174" fill="none" stroke="#eab308" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 686.5 1642 L 686.5 1974 L 1104 1974 L 1104 1096 L 949 1096 L 949 1174" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed-eab308)"/>
-<path d="M 949 1288 L 949 2139 L 985.6666666666666 2139 L 985.6666666666666 2359.5" fill="none" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-solid-0ea5e9)"/>
-<path d="M 378.6666666666667 1288 L 378.66666666666663 1405 L 314.5 1405 L 314.5 1483" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 538.6666666666666 1288 L 538.6666666666666 1341 L 572.6666666666666 1341 L 572.6666666666666 1405 L 516.3333333333334 1405 L 516.3333333333333 1483.6862915010151" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 585.3333333333333 1288 L 585.3333333333333 1341 L 681.6666666666666 1341 L 681.6666666666666 1405 L 654.6666666666667 1405 L 654.6666666666667 1508" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
+<path d="M 751.9829333333333 1288 L 751.9829333333333 1341 L 825.6666666666666 1341 L 825.6666666666666 2359.5" fill="none" stroke="#6366f1" stroke-width="2" marker-end="url(#arrow-solid-6366f1)"/>
+<path d="M 701.9914666666666 1288 L 701.9914666666666 1351 L 814.6666666666666 1351 L 814.6666666666666 1405 L 711.3333333333334 1405 L 711.3333333333333 1508" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-solid-22c55e)"/>
+<path d="M 683 1642 L 683 1974 L 1043.7888 1974 L 1043.7888 1096 L 907.8815999999999 1096 L 907.8815999999999 1174" fill="none" stroke="#eab308" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 683 1642 L 683 1974 L 1043.7888 1974 L 1043.7888 1096 L 907.8815999999999 1096 L 907.8815999999999 1174" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed-eab308)"/>
+<path d="M 907.8815999999999 1288 L 907.8815999999999 2139 L 985.6666666666666 2139 L 985.6666666666666 2359.5" fill="none" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-solid-0ea5e9)"/>
+<path d="M 378.6666666666667 1288 L 378.66666666666663 1405 L 318 1405 L 318 1483" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
 <path d="M 493 1667 L 493 1737.6862915010151" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="8,5"/>
 <path d="M 493 1667 L 493 1737.6862915010151" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
-<path d="M 185.33333333333331 1288 L 185.33333333333331 1341 L 223.66666666666666 1341 L 223.66666666666666 1405 L 230 1405 L 230 1719.6862915010151 L 441 1719.6862915010151 L 441 1737.6862915010151" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="8,5"/>
-<path d="M 185.33333333333331 1288 L 185.33333333333331 1341 L 223.66666666666666 1341 L 223.66666666666666 1405 L 230 1405 L 230 1719.6862915010151 L 441 1719.6862915010151 L 441 1737.6862915010151" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
+<path d="M 185.33333333333331 1288 L 185.33333333333331 1341 L 223.66666666666666 1341 L 223.66666666666666 1405 L 237 1405 L 237 1719.6862915010151 L 446.33333333333337 1719.6862915010151 L 446.33333333333337 1737.6862915010151" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="8,5"/>
+<path d="M 185.33333333333331 1288 L 185.33333333333331 1341 L 223.66666666666666 1341 L 223.66666666666666 1405 L 237 1405 L 237 1719.6862915010151 L 446.33333333333337 1719.6862915010151 L 446.33333333333337 1737.6862915010151" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dashed)"/>
 <path d="M 138.66666666666666 1288 L 138.66666666666663 2312" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 148.66666666666666 2026 L 148.66666666666666 2044 L 407.16666666666663 2044 L 407.16666666666663 2277" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="3,3"/>
-<path d="M 148.66666666666666 2026 L 148.66666666666666 2044 L 407.16666666666663 2044 L 407.16666666666663 2277" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dotted)"/>
-<path d="M 407.16666666666663 2391 L 407.16666666666663 2447" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 148.66666666666666 2026 L 148.66666666666666 2044 L 395.2858666666666 2044 L 395.2858666666666 2277" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="3,3"/>
+<path d="M 148.66666666666666 2026 L 148.66666666666666 2044 L 395.2858666666666 2044 L 395.2858666666666 2277" fill="none" stroke="transparent" stroke-width="2" marker-end="url(#arrow-dotted)"/>
+<path d="M 395.2858666666666 2391 L 395.2858666666666 2447" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-solid)"/>
 <rect x="257" y="12" width="170" height="130" rx="30" ry="30" fill="#0ea5e9" stroke="#0b84ba" stroke-width="2"/>
-<polygon points="269,322 415,322 435,387 415,452 269,452 249,387" fill="#f97316" stroke="#c75c11" stroke-width="2"/>
+<polygon points="276.3808,322 407.61920000000003,322 427.61920000000003,387 407.61920000000003,452 276.3808,452 256.3808,387" fill="#f97316" stroke="#c75c11" stroke-width="2"/>
 <polygon points="342,646 427,741 342,836 257,741" fill="#8b5cf6" stroke="#6f49c4" stroke-width="2"/>
 <rect x="92" y="1176" width="140" height="110" rx="20" ry="20" fill="#171717" stroke="#121212" stroke-width="2"/>
 <rect x="332" y="1176" width="140" height="110" rx="20" ry="20" fill="#2563eb" stroke="#1d4fbc" stroke-width="2"/>
-<rect x="492" y="1176" width="147" height="110" rx="20" ry="20" fill="#16a34a" stroke="#11823b" stroke-width="2"/>
-<rect x="659" y="1176" width="165" height="110" rx="20" ry="20" fill="#dc2626" stroke="#b01e1e" stroke-width="2"/>
-<rect x="844" y="1176" width="210" height="110" rx="20" ry="20" fill="#eab308" stroke="#bb8f06" stroke-width="2"/>
-<polygon points="618,1510 755,1510 775,1575 755,1640 618,1640 598,1575" fill="#171717" stroke="#121212" stroke-width="2"/>
+<rect x="492" y="1176" width="140" height="110" rx="20" ry="20" fill="#16a34a" stroke="#11823b" stroke-width="2"/>
+<rect x="652" y="1176" width="149.9744" height="110" rx="20" ry="20" fill="#dc2626" stroke="#b01e1e" stroke-width="2"/>
+<rect x="821.9744000000001" y="1176" width="171.81439999999998" height="110" rx="20" ry="20" fill="#eab308" stroke="#bb8f06" stroke-width="2"/>
+<polygon points="618,1510 748,1510 768,1575 748,1640 618,1640 598,1575" fill="#171717" stroke="#121212" stroke-width="2"/>
 <g>
 <path d="M 423,1512 A 70,27 0 0,0 563,1512 L 563,1638 A 70,27 0 0,1 423,1638 Z" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
 <ellipse cx="493" cy="1512" rx="70" ry="27" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
 </g>
 <g>
-<path d="M 389,1766 A 78,27 0 0,0 545,1766 L 545,1892 A 78,27 0 0,1 389,1892 Z" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
-<ellipse cx="467" cy="1766" rx="78" ry="27" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+<path d="M 399.6666666666667,1766 A 70,27 0 0,0 539.6666666666667,1766 L 539.6666666666667,1892 A 70,27 0 0,1 399.6666666666667,1892 Z" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
+<ellipse cx="469.6666666666667" cy="1766" rx="70" ry="27" fill="#1e293b" stroke="#6366f1" stroke-width="2"/>
 </g>
 <g>
-<path d="M 241,1512 A 73.5,27 0 0,0 388,1512 L 388,1638 A 73.5,27 0 0,1 241,1638 Z" fill="#dc2626" stroke="#b01e1e" stroke-width="2"/>
-<ellipse cx="314.5" cy="1512" rx="73.5" ry="27" fill="#dc2626" stroke="#b01e1e" stroke-width="2"/>
+<path d="M 248,1512 A 70,27 0 0,0 388,1512 L 388,1638 A 70,27 0 0,1 248,1638 Z" fill="#dc2626" stroke="#b01e1e" stroke-width="2"/>
+<ellipse cx="318" cy="1512" rx="70" ry="27" fill="#dc2626" stroke="#b01e1e" stroke-width="2"/>
 </g>
 <rect x="755.6666666666666" y="2361.5" width="140" height="110" rx="20" ry="20" fill="#6366f1" stroke="#4f51c0" stroke-width="2"/>
 <rect x="915.6666666666666" y="2361.5" width="140" height="110" rx="20" ry="20" fill="#0ea5e9" stroke="#0b84ba" stroke-width="2"/>
 <g>
-<path d="M 56.16666666666663,2341 A 82.5,27 0 0,0 221.16666666666663,2341 L 221.16666666666663,2467 A 82.5,27 0 0,1 56.16666666666663,2467 Z" fill="#22c55e" stroke="#1b9d4b" stroke-width="2"/>
-<ellipse cx="138.66666666666663" cy="2341" rx="82.5" ry="27" fill="#22c55e" stroke="#1b9d4b" stroke-width="2"/>
+<path d="M 68.04746666666662,2341 A 70.6192,27 0 0,0 209.28586666666664,2341 L 209.28586666666664,2467 A 70.6192,27 0 0,1 68.04746666666662,2467 Z" fill="#22c55e" stroke="#1b9d4b" stroke-width="2"/>
+<ellipse cx="138.66666666666663" cy="2341" rx="70.6192" ry="27" fill="#22c55e" stroke="#1b9d4b" stroke-width="2"/>
 </g>
-<rect x="337.16666666666663" y="2279" width="140" height="110" rx="20" ry="20" fill="#e11d48" stroke="#b41739" stroke-width="2"/>
-<rect x="337.16666666666663" y="2449" width="140" height="110" rx="20" ry="20" fill="#f97316" stroke="#c75c11" stroke-width="2"/>
+<rect x="325.2858666666666" y="2279" width="140" height="110" rx="20" ry="20" fill="#e11d48" stroke="#b41739" stroke-width="2"/>
+<rect x="325.2858666666666" y="2449" width="140" height="110" rx="20" ry="20" fill="#f97316" stroke="#c75c11" stroke-width="2"/>
 <g>
-<rect x="472.5" y="1031" width="212" height="20" fill="#1e293b" stroke="none"/>
-<text x="578.5" y="1041" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Kubernetes Cluster (EKS)</text>
+<rect x="442.3944" y="1031" width="212" height="20" fill="#1e293b" stroke="none"/>
+<text x="548.3944" y="1041" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Kubernetes Cluster (EKS)</text>
 </g>
 <g>
 <rect x="77.25" y="1121" width="169.5" height="20" fill="#1e293b" stroke="none"/>
 <text x="162" y="1131" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Namespace: frontend</text>
 </g>
 <g>
-<rect x="608.25" y="1121" width="169.5" height="20" fill="#1e293b" stroke="none"/>
-<text x="693" y="1131" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Namespace: services</text>
+<rect x="578.1444" y="1121" width="169.5" height="20" fill="#1e293b" stroke="none"/>
+<text x="662.8944" y="1131" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Namespace: services</text>
 </g>
 <g>
 <rect x="434.75" y="1430" width="135.5" height="20" fill="#1e293b" stroke="none"/>
@@ -3607,8 +3607,8 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices
 <text x="905.6666666666666" y="2316.5" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">External Services</text>
 </g>
 <g>
-<rect x="314.41666666666663" y="2224" width="169.5" height="20" fill="#1e293b" stroke="none"/>
-<text x="399.16666666666663" y="2234" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Observability Stack</text>
+<rect x="302.5358666666666" y="2224" width="169.5" height="20" fill="#1e293b" stroke="none"/>
+<text x="387.2858666666666" y="2234" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Observability Stack</text>
 </g>
 <g>
 <g transform="translate(330, 52)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
@@ -3642,28 +3642,28 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices
 <text x="402" y="1247" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">User Service</text>
 </g>
 <g>
-<g transform="translate(553.5, 1206)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24">
+<g transform="translate(550, 1206)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24">
     <path fill="#ffffff" d="M24-16C10.7-16 0-5.3 0 8S10.7 32 24 32l45.3 0c3.9 0 7.2 2.8 7.9 6.6l52.1 286.3c6.2 34.2 36 59.1 70.8 59.1L456 384c13.3 0 24-10.7 24-24s-10.7-24-24-24l-255.9 0c-11.6 0-21.5-8.3-23.6-19.7l-5.1-28.3 303.6 0c30.8 0 57.2-21.9 62.9-52.2L568.9 69.9C572.6 50.2 557.5 32 537.4 32l-412.7 0-.4-2c-4.8-26.6-28-46-55.1-46L24-16zM208 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm224 0a48 48 0 1 0 0-96 48 48 0 1 0 0 96z" />
   </svg></g>
-<text x="565.5" y="1247" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Order Service</text>
+<text x="562" y="1247" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Order Service</text>
 </g>
 <g>
-<g transform="translate(729.5, 1206)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(714.9872, 1206)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#ffffff" d="M0 128l0 32 512 0 0-32c0-35.3-28.7-64-64-64L64 64C28.7 64 0 92.7 0 128zm0 80L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-176-512 0zM64 360c0-13.3 10.7-24 24-24l48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-48 0c-13.3 0-24-10.7-24-24zm144 0c0-13.3 10.7-24 24-24l64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0c-13.3 0-24-10.7-24-24z" />
   </svg></g>
-<text x="741.5" y="1247" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Payment Service</text>
+<text x="726.9872" y="1247" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Payment Service</text>
 </g>
 <g>
-<g transform="translate(937, 1206)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+<g transform="translate(895.8816, 1206)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
     <path fill="#0f172a" d="M224 0c-17.7 0-32 14.3-32 32l0 3.2C119 50 64 114.6 64 192l0 21.7c0 48.1-16.4 94.8-46.4 132.4L7.8 358.3C2.7 364.6 0 372.4 0 380.5 0 400.1 15.9 416 35.5 416l376.9 0c19.6 0 35.5-15.9 35.5-35.5 0-8.1-2.7-15.9-7.8-22.2l-9.8-12.2C400.4 308.5 384 261.8 384 213.7l0-21.7c0-77.4-55-142-128-156.8l0-3.2c0-17.7-14.3-32-32-32zM162 464c7.1 27.6 32.2 48 62 48s54.9-20.4 62-48l-124 0z" />
   </svg></g>
-<text x="949" y="1247" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Notification Service</text>
+<text x="907.8816" y="1247" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Notification Service</text>
 </g>
 <g>
-<g transform="translate(674.5, 1550)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(671, 1550)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#ffffff" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L96 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
   </svg></g>
-<text x="686.5" y="1591" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Kafka Cluster</text>
+<text x="683" y="1591" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Kafka Cluster</text>
 </g>
 <g>
 <g transform="translate(481, 1559)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
@@ -3673,17 +3673,17 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices
 <text x="493" y="1618" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">(Primary)</text>
 </g>
 <g>
-<g transform="translate(455, 1813)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+<g transform="translate(457.6666666666667, 1813)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
     <path fill="#f1f5f9" d="M448 205.8c-14.8 9.8-31.8 17.7-49.5 24-47 16.8-108.7 26.2-174.5 26.2S96.4 246.5 49.5 229.8c-17.6-6.3-34.7-14.2-49.5-24L0 288c0 44.2 100.3 80 224 80s224-35.8 224-80l0-82.2zm0-77.8l0-48C448 35.8 347.7 0 224 0S0 35.8 0 80l0 48c0 44.2 100.3 80 224 80s224-35.8 224-80zM398.5 389.8C351.6 406.5 289.9 416 224 416S96.4 406.5 49.5 389.8c-17.6-6.3-34.7-14.2-49.5-24L0 432c0 44.2 100.3 80 224 80s224-35.8 224-80l0-66.2c-14.8 9.8-31.8 17.7-49.5 24z" />
   </svg></g>
-<text x="467" y="1854" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f1f5f9">PostgreSQL</text>
-<text x="467" y="1872" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f1f5f9">(Read Replica)</text>
+<text x="469.6666666666667" y="1854" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f1f5f9">PostgreSQL</text>
+<text x="469.6666666666667" y="1872" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f1f5f9">(Read Replica)</text>
 </g>
 <g>
-<g transform="translate(302.5, 1568)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(306, 1568)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#ffffff" d="M64 64C28.7 64 0 92.7 0 128l0 7.4C0 142.2 4.4 148 10.1 151.7 23.3 160.3 32 175.1 32 192s-8.7 31.7-21.9 40.3C4.4 236 0 241.8 0 248.6l0 55.4 512 0 0-55.4c0-6.8-4.4-12.6-10.1-16.3-13.2-8.6-21.9-23.4-21.9-40.3s8.7-31.7 21.9-40.3c5.7-3.7 10.1-9.5 10.1-16.3l0-7.4c0-35.3-28.7-64-64-64L64 64zM512 416l0-64-512 0 0 64c0 17.7 14.3 32 32 32l64 0 0-24c0-13.3 10.7-24 24-24s24 10.7 24 24l0 24 88 0 0-24c0-13.3 10.7-24 24-24s24 10.7 24 24l0 24 88 0 0-24c0-13.3 10.7-24 24-24s24 10.7 24 24l0 24 64 0c17.7 0 32-14.3 32-32zM160 160l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32s32 14.3 32 32zm128 0l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32s32 14.3 32 32zm128 0l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32s32 14.3 32 32z" />
   </svg></g>
-<text x="314.5" y="1609" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Redis Cluster</text>
+<text x="318" y="1609" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Redis Cluster</text>
 </g>
 <g>
 <g transform="translate(813.6666666666666, 2391.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
@@ -3704,16 +3704,16 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices
 <text x="138.66666666666663" y="2438" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">S3 Object Store</text>
 </g>
 <g>
-<g transform="translate(395.16666666666663, 2309)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(383.2858666666666, 2309)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#ffffff" d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7 262.6 153.4c-12.5-12.5-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l73.4-73.4 57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z" />
   </svg></g>
-<text x="407.16666666666663" y="2350" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Prometheus</text>
+<text x="395.2858666666666" y="2350" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Prometheus</text>
 </g>
 <g>
-<g transform="translate(395.16666666666663, 2479)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(383.2858666666666, 2479)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#0f172a" d="M32 32c17.7 0 32 14.3 32 32l0 336c0 8.8 7.2 16 16 16l400 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L80 480c-44.2 0-80-35.8-80-80L0 64C0 46.3 14.3 32 32 32zm96 64c0-17.7 14.3-32 32-32l192 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32zm32 80l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 112l256 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-256 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z" />
   </svg></g>
-<text x="407.16666666666663" y="2520" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Grafana</text>
+<text x="395.2858666666666" y="2520" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Grafana</text>
 </g>
 <text x="311" y="229" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">HTTPS</text>
 <text x="293" y="539" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">TLS</text>
@@ -3727,16 +3727,16 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices
 <text x="626.6666666666666" y="1375" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">order.created</text>
 <text x="791.6666666666666" y="2116" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Charge</text>
 <text x="747.6666666666666" y="1375" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">payment.succeeded</text>
-<text x="1046" y="1375" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Consume Events</text>
-<text x="986" y="2116" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Send Email</text>
+<text x="985.7888" y="1375" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Consume Events</text>
+<text x="944.8815999999999" y="2116" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Send Email</text>
 <text x="323.66666666666663" y="1375" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Session Cache</text>
 <text x="444" y="1692" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Streaming</text>
 <text x="444" y="1706" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Replication</text>
 <text x="180.66666666666663" y="1368" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Read-Only</text>
 <text x="180.66666666666663" y="1382" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Queries</text>
 <text x="83.66666666666663" y="2116" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Static Assets</text>
-<text x="349.16666666666663" y="2116" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Metrics Scrape</text>
-<text x="358.16666666666663" y="2416" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Data Source</text>
+<text x="337.2858666666666" y="2116" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Metrics Scrape</text>
+<text x="346.2858666666666" y="2416" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Data Source</text>
 </g>
 </svg>"
 `;
@@ -3850,9 +3850,9 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 15_coffee_shop_s
           <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#a16207" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </marker>
       
-<style>
+<style><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
-    </style>
+    ]]></style>
 </defs>
 <rect x="0" y="0" width="2170" height="1630" fill="#fefce8"/>
 <g transform="translate(40, 40)">
@@ -4151,7 +4151,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 16_startup_fundi
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 17_ai_startup_mindmap.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1620.3581633683134" height="1535.2684569411415" viewBox="0 0 1620.3581633683134 1535.2684569411415" role="img">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1544.4873282894168" height="1457.0518183325132" viewBox="0 0 1544.4873282894168 1457.0518183325132" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -4260,124 +4260,124 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 17_ai_startup_mi
         </marker>
       
 </defs>
-<rect x="0" y="0" width="1620.3581633683134" height="1535.2684569411415" fill="#ffffff"/>
+<rect x="0" y="0" width="1544.4873282894168" height="1457.0518183325132" fill="#ffffff"/>
 <g transform="translate(40, 40)">
-<path d="M 840.8121777070355 776.0999117021614 L 893.2934968585104 813.6983726215545" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 741.2159973362893 781.5802320159368 L 692.4200469945044 880.6611285406159" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 697.2463033351675 706.7635716091567 L 632.7970288172173 690.6177167948513" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 758.9240064543158 667.8176992723257 L 737.7702774095425 550.3891320261764" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 840.850744118893 677.0370907776178 L 893.7205686931226 641.8107077628463" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 1015.7734548129496 850.7759085593248 L 1341.395684677177 854.9039358659006" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 997.2245837535177 885.9829473931514 L 1259.828211019286 1063.4388925620788" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 957.8897699761811 886.730912646802 L 1100.6467365940034 1259.5754583945047" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 687.9155193347094 954.3315313981985 L 834.5256083510294 1351.3922686720325" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 667.1544878345552 954.4189952410744 L 594.3701201825803 1330.9626267228732" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 639.910242174702 953.9101738384346 L 395.38658718207245 1213.1216712184896" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 602.3793126126244 938.4180547520336 L 267.01303557001273 1036.1680095200213" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 488.9478288773403 695.0413676470075 L 183.9091527025028 790.2577254586073" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 488.916934342469 654.572825158237 L 197.9317787714461 581.6751221180023" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 525.0167345818924 636.1696486277799 L 265.7268302876769 372.6447869489968" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 698.695457744328 476.9254869137528 L 449.7129876303941 196.60426537048065" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 724.4512392260059 476.4524957159015 L 657.3514733822427 103.96831815513748" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 745.4007824735056 476.5560147085656 L 888.5735460861845 107.20498222618264" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 965.0231094151193 568.8880303638182 L 1130.9478373322154 211.84610689830248" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 1004.5717854392497 569.6275749544328 L 1266.779783660242 402.67600269067873" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<path d="M 1019.9146095699058 604.2466350283792 L 1348.3585716874238 597.6087818404328" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
-<rect x="699.1863505725416" y="669.7860174274632" width="140" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
-<rect x="873.7736155088089" y="814.8631413233762" width="140" height="70" rx="20" ry="20" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
-<rect x="1343.3955239813176" y="821.0892661486915" width="183" height="70" rx="20" ry="20" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
-<rect x="1230.577422682427" y="1064.558698631854" width="195" height="90" rx="30" ry="30" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
-<rect x="1021.0917513262224" y="1261.4432297179305" width="195" height="90" rx="30" ry="30" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
-<rect x="604.2994129378986" y="882.4553431290894" width="140" height="70" rx="20" ry="20" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
-<rect x="758.8340991931752" y="1353.2684569411415" width="186" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
-<rect x="500.29223534849984" y="1332.926278834858" width="170" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
-<rect x="263.06405187046175" y="1214.5765019278347" width="177" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
-<rect x="95.09293524473856" y="1016.5028045093964" width="170" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
-<rect x="490.85698157984314" y="637.5952709765446" width="140" height="70" rx="20" ry="20" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
-<rect x="12" y="772.3860000911703" width="170" height="90" rx="30" ry="30" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
-<rect x="25.99173153407196" y="514.8948710485721" width="170" height="90" rx="30" ry="30" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
-<rect x="135.04728757233477" y="281.21916460023215" width="170" height="90" rx="30" ry="30" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
-<rect x="661.1107583177741" y="478.42081387103894" width="140" height="70" rx="20" ry="20" fill="#f59e0b" stroke="#c47e08" stroke-width="2"/>
-<rect x="323.4156456352107" y="105.10893841319455" width="170" height="90" rx="30" ry="30" fill="#f59e0b" stroke="#c47e08" stroke-width="2"/>
-<rect x="563.890541777246" y="12" width="170" height="90" rx="30" ry="30" fill="#f59e0b" stroke="#c47e08" stroke-width="2"/>
-<rect x="821.739903351111" y="15.340183063709333" width="170" height="90" rx="30" ry="30" fill="#f59e0b" stroke="#c47e08" stroke-width="2"/>
-<rect x="877.9150178890162" y="570.7017469326705" width="140" height="70" rx="20" ry="20" fill="#8b5cf6" stroke="#6f49c4" stroke-width="2"/>
-<rect x="1059.7031346067808" y="120.0323903294501" width="186" height="90" rx="30" ry="30" fill="#8b5cf6" stroke="#6f49c4" stroke-width="2"/>
-<rect x="1254.1421833686888" y="311.60183071244103" width="170" height="90" rx="30" ry="30" fill="#8b5cf6" stroke="#6f49c4" stroke-width="2"/>
-<rect x="1350.3581633683134" y="550.8505199035536" width="170" height="90" rx="30" ry="30" fill="#8b5cf6" stroke="#6f49c4" stroke-width="2"/>
+<path d="M 800.3498199448371 736.4631809612262 L 843.4777598434988 765.4814215461392" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 704.657606899587 745.0899543438294 L 665.1954376236497 838.4252303071075" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 656.7315981202324 673.4236326038807 L 601.777119221826 662.1024920411782" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 717.6018221217877 631.2846867423713 L 697.088003656953 525.9037178627771" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 800.3549157642999 640.5043939145536 L 843.4721238396774 611.7793581600844" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 969.1552865860741 802.2147292755457 L 1275.999586800274 804.8434695426557" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 954.0361615615374 837.6689959265027 L 1196.1722587529644 991.220159207898" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 913.611137039848 838.4238923395839 L 1064.641507231195 1176.4111247110338" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 666.0996124561246 912.0928649277563 L 827.7226027971241 1273.22630111593" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 645.1893421384167 912.2531588420012 L 602.2687497100759 1270.6559626648386" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 619.5454062291977 911.81166728061 L 404.6201207718215 1172.9845374220702" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 577.7374639584464 901.2228801752333 L 277.7907120022251 1009.5305635550338" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 457.94452713237075 674.1059767315753 L 183.87372718092973 776.4060310166685" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 457.859389404775 632.4540833694113 L 185.7794188461122 576.4030452604844" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 491.81191880958266 610.89526412374 L 244.54786394041005 374.19225606088605" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 655.7444742830977 452.4808373770495 L 417.5969496922247 198.21251437683998" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 682.697258134313 451.9774174679922 L 614.9516150844864 103.96315019739242" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 704.1133390416143 452.0745808402938 L 838.0804004461783 104.77626981120912" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 914.2366156690298 538.8465156526614 L 1066.1281129961214 201.16965384384795" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 951.8732941836377 539.5616141792365 L 1194.6816954310352 377.8006765247431" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 969.6719652723812 573.7064045988634 L 1272.488072028693 565.4458257330641" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<rect x="658.6904630287579" y="633.2478369397637" width="140" height="110" rx="6" ry="6" fill="#f0f4ff" stroke="#3b82f6" stroke-width="2"/>
+<rect x="827.1553599758108" y="766.5979046965092" width="140" height="70" rx="20" ry="20" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
+<rect x="1277.9995134105375" y="770.5716242180808" width="165.99039999999997" height="70" rx="20" ry="20" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
+<rect x="1177.815742904851" y="992.2912504378914" width="182.01279999999997" height="90" rx="30" ry="30" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
+<rect x="997.1802072371095" y="1178.2371123541084" width="176.77119999999996" height="90" rx="30" ry="30" fill="#ef4444" stroke="#bf3636" stroke-width="2"/>
+<rect x="579.6185846226986" y="840.2673477111732" width="140" height="70" rx="20" ry="20" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<rect x="762.1862675229897" y="1275.0518183325132" width="172.98559999999998" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<rect x="511.6419554217753" y="1272.6417737956667" width="170" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<rect x="281.3177076442164" y="1174.528856991507" width="170" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<rect x="105.90959133797287" y="995.9024415540978" width="170" height="90" rx="30" ry="30" fill="#3b82f6" stroke="#2f68c4" stroke-width="2"/>
+<rect x="459.8182543133005" y="612.2782877052952" width="140" height="70" rx="20" ry="20" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
+<rect x="12" y="763.8326412507105" width="170" height="90" rx="30" ry="30" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
+<rect x="13.820553937586737" y="513.4886995595175" width="170" height="90" rx="30" ry="30" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
+<rect x="111.0953555345078" y="282.8092324793309" width="170" height="90" rx="30" ry="30" fill="#10b981" stroke="#0c9467" stroke-width="2"/>
+<rect x="619.8926308956331" y="453.9405676653846" width="140" height="70" rx="20" ry="20" fill="#f59e0b" stroke="#c47e08" stroke-width="2"/>
+<rect x="289.08280042355045" y="106.75278408850488" width="170" height="90" rx="30" ry="30" fill="#f59e0b" stroke="#c47e08" stroke-width="2"/>
+<rect x="520.809608250341" y="12" width="170" height="90" rx="30" ry="30" fill="#f59e0b" stroke="#c47e08" stroke-width="2"/>
+<rect x="771.1585146649849" y="12.910282986118318" width="170" height="90" rx="30" ry="30" fill="#f59e0b" stroke="#c47e08" stroke-width="2"/>
+<rect x="827.6727090116573" y="540.6704861696604" width="140" height="70" rx="20" ry="20" fill="#8b5cf6" stroke="#6f49c4" stroke-width="2"/>
+<rect x="1002.1901512848251" y="109.34568332684898" width="170" height="90" rx="30" ry="30" fill="#8b5cf6" stroke="#6f49c4" stroke-width="2"/>
+<rect x="1178.8926041562836" y="286.69180453431915" width="170" height="90" rx="30" ry="30" fill="#8b5cf6" stroke="#6f49c4" stroke-width="2"/>
+<rect x="1274.4873282894168" y="518.0725562748912" width="170" height="90" rx="30" ry="30" fill="#8b5cf6" stroke="#6f49c4" stroke-width="2"/>
 <g>
-<g transform="translate(757.1863505725416, 690.7860174274632)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<g transform="translate(716.6904630287579, 654.2478369397637)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
     <path fill="#1e293b" d="M128 320L24.5 320c-24.9 0-40.2-27.1-27.4-48.5L50 183.3C58.7 168.8 74.3 160 91.2 160l95 0c76.1-128.9 189.6-135.4 265.5-124.3 12.8 1.9 22.8 11.9 24.6 24.6 11.1 75.9 4.6 189.4-124.3 265.5l0 95c0 16.9-8.8 32.5-23.3 41.2l-88.2 52.9c-21.3 12.8-48.5-2.6-48.5-27.4L192 384c0-35.3-28.7-64-64-64l-.1 0zM400 160a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
   </svg></g>
-<text x="769.1863505725416" y="731.7860174274632" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">AI Startup</text>
-<text x="769.1863505725416" y="749.7860174274632" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Playbook</text>
+<text x="728.6904630287579" y="695.2478369397637" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">AI Startup</text>
+<text x="728.6904630287579" y="713.2478369397637" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Playbook</text>
 </g>
 <g>
-<text x="943.7736155088089" y="849.8631413233762" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Ideation</text>
+<text x="897.1553599758108" y="801.5979046965092" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Ideation</text>
 </g>
 <g>
-<text x="1434.8955239813176" y="856.0892661486915" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Problem Discovery</text>
+<text x="1360.9947134105375" y="805.5716242180808" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Problem Discovery</text>
 </g>
 <g>
-<text x="1328.077422682427" y="1109.558698631854" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Market Research</text>
+<text x="1268.822142904851" y="1037.2912504378914" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Market Research</text>
 </g>
 <g>
-<text x="1118.5917513262225" y="1306.4432297179305" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Defensible Moat</text>
+<text x="1085.5658072371095" y="1223.2371123541084" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Defensible Moat</text>
 </g>
 <g>
-<text x="674.2994129378986" y="917.4553431290894" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Build</text>
+<text x="649.6185846226986" y="875.2673477111732" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Build</text>
 </g>
 <g>
-<text x="851.8340991931752" y="1398.2684569411415" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">MVP in 4 Weeks</text>
+<text x="848.6790675229897" y="1320.0518183325132" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">MVP in 4 Weeks</text>
 </g>
 <g>
-<text x="585.2922353484998" y="1377.926278834858" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Tech Stack</text>
+<text x="596.6419554217753" y="1317.6417737956667" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Tech Stack</text>
 </g>
 <g>
-<text x="351.56405187046175" y="1259.5765019278347" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Data Pipeline</text>
+<text x="366.3177076442164" y="1219.528856991507" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Data Pipeline</text>
 </g>
 <g>
-<text x="180.09293524473856" y="1061.5028045093964" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">GPU Infra</text>
+<text x="190.90959133797287" y="1040.9024415540978" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">GPU Infra</text>
 </g>
 <g>
-<text x="560.8569815798431" y="672.5952709765446" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Launch</text>
+<text x="529.8182543133005" y="647.2782877052952" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Launch</text>
 </g>
 <g>
-<text x="97" y="817.3860000911703" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Private Beta</text>
+<text x="97" y="808.8326412507105" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Private Beta</text>
 </g>
 <g>
-<text x="110.99173153407196" y="559.8948710485721" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Product Hunt</text>
+<text x="98.82055393758674" y="558.4886995595175" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Product Hunt</text>
 </g>
 <g>
-<text x="220.04728757233477" y="326.21916460023215" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">HN Launch</text>
+<text x="196.0953555345078" y="327.8092324793309" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">HN Launch</text>
 </g>
 <g>
-<text x="731.1107583177741" y="513.420813871039" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Growth</text>
+<text x="689.8926308956331" y="488.9405676653846" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Growth</text>
 </g>
 <g>
-<text x="408.4156456352107" y="141.10893841319455" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Product-Led</text>
-<text x="408.4156456352107" y="159.10893841319455" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Growth</text>
+<text x="374.08280042355045" y="142.75278408850488" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Product-Led</text>
+<text x="374.08280042355045" y="160.75278408850488" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Growth</text>
 </g>
 <g>
-<text x="648.890541777246" y="48" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Community</text>
-<text x="648.890541777246" y="66" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Building</text>
+<text x="605.809608250341" y="48" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Community</text>
+<text x="605.809608250341" y="66" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Building</text>
 </g>
 <g>
-<text x="906.739903351111" y="51.34018306370933" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Enterprise</text>
-<text x="906.739903351111" y="69.34018306370933" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Sales</text>
+<text x="856.1585146649849" y="48.91028298611832" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Enterprise</text>
+<text x="856.1585146649849" y="66.91028298611832" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Sales</text>
 </g>
 <g>
-<text x="947.9150178890162" y="605.7017469326705" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Fundraising</text>
+<text x="897.6727090116573" y="575.6704861696604" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Fundraising</text>
 </g>
 <g>
-<text x="1152.7031346067808" y="165.0323903294501" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">YC Application</text>
+<text x="1087.190151284825" y="154.34568332684898" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">YC Application</text>
 </g>
 <g>
-<text x="1339.1421833686888" y="356.60183071244103" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Pitch Deck</text>
+<text x="1263.8926041562836" y="331.69180453431915" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Pitch Deck</text>
 </g>
 <g>
-<text x="1435.3581633683134" y="586.8505199035536" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Term Sheet</text>
-<text x="1435.3581633683134" y="604.8505199035536" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Negotiation</text>
+<text x="1359.4873282894168" y="554.0725562748912" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Term Sheet</text>
+<text x="1359.4873282894168" y="572.0725562748912" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Negotiation</text>
 </g>
 </g>
 </svg>"
@@ -4708,9 +4708,9 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 19_saas_class_di
           <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </marker>
       
-<style>
+<style><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
-    </style>
+    ]]></style>
 </defs>
 <rect x="0" y="0" width="1122" height="1418" fill="#ffffff"/>
 <g transform="translate(40, 40)">

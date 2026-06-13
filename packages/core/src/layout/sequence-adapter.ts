@@ -1,9 +1,10 @@
 import { SequenceDiagramType } from "@glyphic/schema";
 import { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
+import { measureTextWidth } from "../text-metrics.js";
 
-// Basic heuristic for font width (Inter 14px/12px)
+// Proportional font-width estimate (Inter).
 function estimateTextWidth(text: string, fontSize: number = 12): number {
-  return text.length * (fontSize * 0.6);
+  return measureTextWidth(text, fontSize);
 }
 
 // Custom grid-based layout calculator for sequence diagrams

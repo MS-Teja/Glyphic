@@ -4,6 +4,7 @@ import { getPerimeterIntersection, BoundingBox } from "../../math/geometry.js";
 import { getIconSVG } from "../icon-adapter.js";
 import { escapeXml, escapeCssString, sanitizeSvg, isHttpsUrl } from "../sanitize.js";
 import { ThemeColors, DEFAULT_THEME, resolveFontFamily } from "../theme.js";
+import { wrapTextToWidth } from "../../text-metrics.js";
 
 // Re-exported so the strategy modules can keep importing them from here.
 export type { ThemeColors } from "../theme.js";
@@ -352,22 +353,11 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
   }
 
   const lines: string[] = [];
-  const maxCharsPerLine = Math.floor(node.width / 9);
-
   if (node.label) {
-    const explicitLines = node.label.split('\n');
-    for (const el of explicitLines) {
-      const words = el.split(" ");
-      let currentLine = "";
-      for (const word of words) {
-        if ((currentLine + " " + word).trim().length > maxCharsPerLine) {
-          if (currentLine) lines.push(currentLine);
-          currentLine = word;
-        } else {
-          currentLine = currentLine ? currentLine + " " + word : word;
-        }
-      }
-      if (currentLine) lines.push(currentLine);
+    // Wrap to the node width using proportional glyph metrics (kept in sync
+    // with the node sizing in elk-adapter so the text fits its box).
+    for (const el of node.label.split('\n')) {
+      lines.push(...wrapTextToWidth(el, node.width - 24, 14, 600));
     }
   }
 
@@ -708,19 +698,23 @@ export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<Theme
     }
   }
 
+  // CSS is wrapped in CDATA so characters like '&' in the font URL are not
+  // parsed as XML entities (SVG is XML; a bare '&' is a malformed entity and
+  // makes resvg reject the document). escapeCssString escapes '<'/'>' so the
+  // CDATA section itself cannot be broken out of.
   if (theme.customFontUrl && isHttpsUrl(theme.customFontUrl)) {
-    defs += `\n<style>
+    defs += `\n<style><![CDATA[
       @font-face {
         font-family: '${escapeCssString(theme.fontFamily || 'CustomFont')}';
         src: url('${escapeCssString(theme.customFontUrl)}');
       }
-    </style>`;
+    ]]></style>`;
   } else if (theme.fontFamily) {
     // Percent-encode the family name so it cannot break out of the url().
     const encodedFontName = encodeURIComponent(theme.fontFamily.trim()).replace(/%20/g, '+');
-    defs += `\n<style>
+    defs += `\n<style><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=${encodedFontName}:wght@400;500;600;700&display=swap');
-    </style>`;
+    ]]></style>`;
   }
 
   for (const edge of layout.edges) {

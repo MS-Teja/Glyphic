@@ -1,0 +1,9 @@
+{
+  "type": "timeline",
+  "title": "Glyphic Roadmap",
+  "periods": [
+    { "label": "2024", "events": ["Company founded", "First layout prototype", "Seed round closed"] },
+    { "label": "2025", "events": ["Public beta launch", "Native MCP integration", "Crossed 1,000 users"] },
+    { "label": "2026", "events": ["v1.0 release", "13 first-class diagram types"] }
+  ]
+}

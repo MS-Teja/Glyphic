@@ -22,6 +22,10 @@ export function buildFlowSceneGraph(layout: LayoutResult, diagramType: string, t
     buildSankeyDiagram(layout, theme, rootGroup.children);
   } else if (diagramType === "git") {
     buildGitGraph(layout, theme, rootGroup.children);
+  } else if (diagramType === "timeline") {
+    buildTimeline(layout, theme, rootGroup.children);
+  } else if (diagramType === "journey") {
+    buildJourney(layout, theme, rootGroup.children);
   }
 
   elements.push(rootGroup);
@@ -149,6 +153,86 @@ function buildGitGraph(layout: LayoutResult, theme: ThemeColors, elements: Scene
       const tagY = node.y + (node.metadata?.alternateLabel ? -45 : 45);
       elements.push({ type: 'rect', x: node.x - 30, y: tagY - 10, width: 60, height: 20, rx: 4, ry: 4, fill: theme.nodeBackground, stroke: theme.nodeBorder, strokeWidth: 1 });
       elements.push({ type: 'text', x: node.x, y: tagY, content: node.metadata.tag, textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 10, fontWeight: 600, fill: theme.nodeText });
+    }
+  }
+}
+
+const CHRONO_PALETTE = ["#4f46e5", "#ec4899", "#f59e0b", "#10b981", "#3b82f6", "#8b5cf6", "#ef4444", "#14b8a6"];
+
+function wrapLabel(text: string, maxChars: number): string[] {
+  const words = String(text).split(" ");
+  const lines: string[] = [];
+  let cur = "";
+  for (const w of words) {
+    if ((cur + " " + w).trim().length > maxChars) {
+      if (cur) lines.push(cur);
+      cur = w;
+    } else {
+      cur = cur ? cur + " " + w : w;
+    }
+  }
+  if (cur) lines.push(cur);
+  return lines.length ? lines : [""];
+}
+
+function buildChronoTitle(layout: LayoutResult, theme: ThemeColors, elements: SceneElement[]) {
+  const config = layout.nodes.find((n) => n.shape === "chrono_config")?.metadata;
+  if (config?.title) {
+    elements.push({ type: 'text', x: layout.width / 2, y: 52, content: config.title, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 26, fontWeight: 700, fill: theme.nodeText });
+  }
+}
+
+function buildColumnHeader(node: LayoutResult["nodes"][number], color: string, theme: ThemeColors, elements: SceneElement[]) {
+  elements.push({ type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, rx: 10, ry: 10, fill: color });
+  elements.push({ type: 'text', x: node.x + node.width / 2, y: node.y + node.height / 2, content: node.label, textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 16, fontWeight: 700, fill: '#ffffff' });
+}
+
+function buildTimeline(layout: LayoutResult, theme: ThemeColors, elements: SceneElement[]) {
+  buildChronoTitle(layout, theme, elements);
+  for (const node of layout.nodes) {
+    const color = CHRONO_PALETTE[(node.metadata?.idx ?? 0) % CHRONO_PALETTE.length];
+    if (node.shape === "timeline_period") {
+      buildColumnHeader(node, color, theme, elements);
+    } else if (node.shape === "timeline_event") {
+      elements.push({ type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, rx: 8, ry: 8, fill: theme.nodeBackground, stroke: color, strokeWidth: 1.5 });
+      elements.push({ type: 'rect', x: node.x, y: node.y, width: 6, height: node.height, rx: 3, ry: 3, fill: color });
+      const lines = wrapLabel(node.label, 32);
+      const lh = 18;
+      const startY = node.y + node.height / 2 - ((lines.length - 1) * lh) / 2;
+      lines.forEach((line, k) => {
+        elements.push({ type: 'text', x: node.x + 18, y: startY + k * lh, content: line, textAnchor: 'start', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 13, fill: theme.nodeText });
+      });
+    }
+  }
+}
+
+const SCORE_COLORS = ["#ef4444", "#f97316", "#eab308", "#84cc16", "#22c55e"];
+const scoreColor = (s: number): string => SCORE_COLORS[Math.max(1, Math.min(5, Math.round(s))) - 1];
+
+function buildJourney(layout: LayoutResult, theme: ThemeColors, elements: SceneElement[]) {
+  buildChronoTitle(layout, theme, elements);
+  for (const node of layout.nodes) {
+    if (node.shape === "journey_section") {
+      const color = CHRONO_PALETTE[(node.metadata?.idx ?? 0) % CHRONO_PALETTE.length];
+      buildColumnHeader(node, color, theme, elements);
+    } else if (node.shape === "journey_task") {
+      const score = node.metadata?.score ?? 3;
+      const sc = scoreColor(score);
+      elements.push({ type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, rx: 8, ry: 8, fill: theme.nodeBackground, stroke: sc, strokeWidth: 1.5 });
+      elements.push({ type: 'rect', x: node.x, y: node.y, width: 6, height: node.height, rx: 3, ry: 3, fill: sc });
+      // satisfaction score pill (top-right)
+      const pillX = node.x + node.width - 24;
+      const pillY = node.y + 22;
+      elements.push({ type: 'circle', cx: pillX, cy: pillY, r: 13, fill: sc });
+      elements.push({ type: 'text', x: pillX, y: pillY, content: String(score), textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 13, fontWeight: 700, fill: '#ffffff' });
+      const lines = wrapLabel(node.label, 24).slice(0, 2);
+      lines.forEach((line, k) => {
+        elements.push({ type: 'text', x: node.x + 18, y: node.y + 26 + k * 17, content: line, textAnchor: 'start', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: theme.nodeText });
+      });
+      const actors = (node.metadata?.actors ?? []) as string[];
+      if (actors.length) {
+        elements.push({ type: 'text', x: node.x + 18, y: node.y + node.height - 18, content: actors.join(", "), textAnchor: 'start', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 11, fill: theme.edgeLabelColor });
+      }
     }
   }
 }

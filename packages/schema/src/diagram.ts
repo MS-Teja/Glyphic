@@ -328,7 +328,27 @@ export const ClassDiagram = BaseDiagram.extend({
   })).max(MAX_EDGES).default([])
 });
 
-export const DiagramInput = z.discriminatedUnion("type", [NodeEdgeDiagram, SequenceDiagram, PieChart, QuadrantChart, Mindmap, GanttChart, SankeyDiagram, GitGraph, CanvasDiagram, StateDiagram, ErdDiagram, ClassDiagram]);
+export const TimelineDiagram = BaseDiagram.extend({
+  type: z.literal("timeline"),
+  periods: z.array(z.object({
+    label: z.string().describe("The time period, e.g. '2021' or 'Q1 2026'"),
+    events: z.array(z.string()).max(50).default([]).describe("Events that happened in this period")
+  })).min(1).max(MAX_SECTIONS)
+});
+
+export const JourneyDiagram = BaseDiagram.extend({
+  type: z.literal("journey"),
+  sections: z.array(z.object({
+    label: z.string().describe("Stage of the journey, e.g. 'Onboarding'"),
+    tasks: z.array(z.object({
+      label: z.string().describe("The task/step the user performs"),
+      score: z.number().min(1).max(5).describe("Satisfaction 1 (frustrated) to 5 (delighted)"),
+      actors: z.array(z.string()).max(20).optional().describe("Who is involved")
+    })).min(1).max(MAX_TASKS)
+  })).min(1).max(MAX_SECTIONS)
+});
+
+export const DiagramInput = z.discriminatedUnion("type", [NodeEdgeDiagram, SequenceDiagram, PieChart, QuadrantChart, Mindmap, GanttChart, SankeyDiagram, GitGraph, CanvasDiagram, StateDiagram, ErdDiagram, ClassDiagram, TimelineDiagram, JourneyDiagram]);
 
 export type DiagramInputType = z.infer<typeof DiagramInput>;
 export type NodeEdgeDiagramType = z.infer<typeof NodeEdgeDiagram>;
@@ -343,3 +363,5 @@ export type CanvasDiagramType = z.infer<typeof CanvasDiagram>;
 export type StateDiagramType = z.infer<typeof StateDiagram>;
 export type ErdDiagramType = z.infer<typeof ErdDiagram>;
 export type ClassDiagramType = z.infer<typeof ClassDiagram>;
+export type TimelineDiagramType = z.infer<typeof TimelineDiagram>;
+export type JourneyDiagramType = z.infer<typeof JourneyDiagram>;

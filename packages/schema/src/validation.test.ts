@@ -83,4 +83,19 @@ describe("new first-class diagram types", () => {
       })
     ).not.toThrow();
   });
+
+  it("accepts a valid timeline", () => {
+    expect(() =>
+      DiagramInput.parse({ type: "timeline", periods: [{ label: "2024", events: ["Founded"] }] })
+    ).not.toThrow();
+  });
+
+  it("validates journey task score range (1-5)", () => {
+    expect(() =>
+      DiagramInput.parse({ type: "journey", sections: [{ label: "S", tasks: [{ label: "t", score: 3 }] }] })
+    ).not.toThrow();
+    expect(() =>
+      DiagramInput.parse({ type: "journey", sections: [{ label: "S", tasks: [{ label: "t", score: 9 }] }] })
+    ).toThrow();
+  });
 });

@@ -1,0 +1,27 @@
+{
+  "type": "journey",
+  "title": "New User Onboarding",
+  "sections": [
+    {
+      "label": "Discover",
+      "tasks": [
+        { "label": "Find product via search", "score": 4, "actors": ["User"] },
+        { "label": "Read landing page", "score": 3, "actors": ["User"] }
+      ]
+    },
+    {
+      "label": "Sign Up",
+      "tasks": [
+        { "label": "Create an account", "score": 2, "actors": ["User", "Auth"] },
+        { "label": "Verify email address", "score": 2, "actors": ["User"] }
+      ]
+    },
+    {
+      "label": "Activate",
+      "tasks": [
+        { "label": "Render first diagram", "score": 5, "actors": ["User"] },
+        { "label": "Invite teammates", "score": 4, "actors": ["User", "Team"] }
+      ]
+    }
+  ]
+}

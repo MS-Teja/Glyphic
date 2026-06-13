@@ -9,6 +9,7 @@ import { layoutSankeyDiagram, layoutGitGraph } from "./layout/flow-adapter.js";
 import { layoutStateDiagram } from "./layout/state-adapter.js";
 import { layoutErdDiagram } from "./layout/erd-adapter.js";
 import { layoutClassDiagram } from "./layout/class-adapter.js";
+import { layoutTimeline, layoutJourney } from "./layout/chrono-adapter.js";
 
 /** Which scene-builder a diagram type renders through. */
 export type RenderStrategy = "scene" | "data-viz" | "flow" | "canvas";
@@ -44,4 +45,6 @@ export const DIAGRAM_REGISTRY: Record<DiagramInputType["type"], DiagramHandler> 
   state: { layout: layoutStateDiagram, render: "scene" },
   erd: { layout: layoutErdDiagram, render: "scene" },
   class: { layout: layoutClassDiagram, render: "scene" },
+  timeline: { layout: layoutTimeline, render: "flow" },
+  journey: { layout: layoutJourney, render: "flow" },
 };

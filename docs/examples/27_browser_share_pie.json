@@ -1,0 +1,12 @@
+{
+  "type": "pie",
+  "title": "Browser Market Share",
+  "legend": true,
+  "data": [
+    { "label": "Chrome", "value": 64 },
+    { "label": "Safari", "value": 19 },
+    { "label": "Edge", "value": 5 },
+    { "label": "Firefox", "value": 3 },
+    { "label": "Other", "value": 9 }
+  ]
+}

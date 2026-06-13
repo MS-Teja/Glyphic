@@ -196,6 +196,22 @@ function buildPieChart(layout: LayoutResult, theme: ThemeColors, elements: Scene
       textAnchor: info.textAnchor, dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 12, fontWeight: 600, fill: theme.nodeText
     });
   }
+
+  // Optional color legend (top-right).
+  if (metadata.legend) {
+    const lx = layout.width - 210;
+    let ly = 72;
+    for (const info of sliceInfos) {
+      elements.push({ type: 'rect', x: lx, y: ly - 8, width: 16, height: 16, rx: 3, ry: 3, fill: info.sliceColor });
+      elements.push({
+        type: 'text', x: lx + 24, y: ly,
+        content: `${info.slice.label} (${Number(info.rawValue.toFixed(1))}%)`,
+        textAnchor: 'start', dominantBaseline: 'central',
+        fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 13, fill: theme.nodeText
+      });
+      ly += 26;
+    }
+  }
 }
 
 function buildQuadrantChart(layout: LayoutResult, theme: ThemeColors, elements: SceneElement[]) {

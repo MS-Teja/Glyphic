@@ -112,6 +112,7 @@ export const PieChart = BaseDiagram.extend({
     color: z.string().optional().describe("Custom hex color for the slice (e.g. #ec4899)"),
     explode: z.number().optional().describe("Offset radius to explode the slice outwards (e.g. 20)")
   })).min(1).max(MAX_PIE_SLICES).describe("Data points for the pie chart. Total values should equal 100."),
+  legend: z.boolean().default(false).describe("Show a color legend listing each slice")
 });
 
 export const QuadrantChart = BaseDiagram.extend({

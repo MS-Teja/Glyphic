@@ -20,7 +20,8 @@ export function layoutPieChart(diagram: PieChartType): LayoutResult {
     metadata: {
       cx: diagram.cx,
       cy: diagram.cy,
-      radius: diagram.radius
+      radius: diagram.radius,
+      legend: diagram.legend
     }
   });
 

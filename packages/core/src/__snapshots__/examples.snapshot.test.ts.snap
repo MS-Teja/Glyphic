@@ -5950,3 +5950,146 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 26_onboarding_jo
 </g>
 </svg>"
 `;
+
+exports[`docs/examples SVG snapshots (refactor guard) > renders 27_browser_share_pie.json to a stable SVG 1`] = `
+"<svg xmlns="http://www.w3.org/2000/svg" width="880" height="680" viewBox="0 0 880 680" role="img" aria-label="Browser Market Share">
+<title>Browser Market Share</title>
+<defs>
+
+        <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b" />
+        </marker>
+        <marker id="arrow-open-solid" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-solid" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-solid" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-solid" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#64748b" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-solid" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+        <marker id="arrow-dashed" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b" />
+        </marker>
+        <marker id="arrow-open-dashed" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-dashed" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-dashed" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-dashed" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#64748b" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-dashed" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+        <marker id="arrow-dotted" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b" />
+        </marker>
+        <marker id="arrow-open-dotted" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-dotted" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-dotted" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-dotted" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#64748b" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-dotted" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+</defs>
+<rect x="0" y="0" width="880" height="680" fill="#ffffff"/>
+<g transform="translate(40, 40)">
+<text x="400" y="40" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="700" fill="#1e293b">Browser Market Share</text>
+<path d="M 400 300 L 400 150 A 150 150 0 1 1 284.4230135836316 395.61359846230346 Z" fill="#4f46e5" stroke="#ffffff" stroke-width="2"/>
+<path d="M 522.1516520829126 357.48020436128485 L 556.0826665503884 373.44692779497507 L 578.5826665503884 373.44692779497507" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="581.5826665503884" y="373.44692779497507" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#1e293b">Chrome (64%)</text>
+<path d="M 400 300 L 284.4230135836316 395.61359846230346 A 150 150 0 0 1 268.55399799342047 227.73694888474267 Z" fill="#ec4899" stroke="#ffffff" stroke-width="2"/>
+<path d="M 265.5991347785842 312.7046222979994 L 228.26556110596871 316.23368404744366 L 205.76556110596871 316.23368404744366" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="202.76556110596871" y="316.23368404744366" text-anchor="end" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#1e293b">Safari (19%)</text>
+<path d="M 400 300 L 268.55399799342047 227.73694888474267 A 150 150 0 0 1 297.3179341106967 190.65470588678826 Z" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
+<path d="M 293.3290733292818 217.25754775684817 L 263.6982603651934 194.27353324486154 L 241.1982603651934 194.27353324486154" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="238.1982603651934" y="194.27353324486154" text-anchor="end" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#1e293b">Edge (5%)</text>
+<path d="M 400 300 L 297.3179341106967 190.65470588678826 A 150 150 0 0 1 319.62598075315054 173.3508111746977 Z" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+<path d="M 317.25754775684817 193.3290733292818 L 294.27353324486154 163.6982603651934 L 271.77353324486154 163.6982603651934" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="268.77353324486154" y="163.6982603651934" text-anchor="end" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#1e293b">Firefox (3%)</text>
+<path d="M 400 300 L 319.62598075315054 173.3508111746977 A 150 150 0 0 1 400.0000000000001 150 Z" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>
+<path d="M 362.3362006847041 170.36035243361266 L 351.87403420823307 134.3493392207273 L 329.37403420823307 134.3493392207273" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+<text x="326.37403420823307" y="134.3493392207273" text-anchor="end" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#1e293b">Other (9%)</text>
+<rect x="590" y="64" width="16" height="16" rx="3" ry="3" fill="#4f46e5"/>
+<text x="614" y="72" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#1e293b">Chrome (64%)</text>
+<rect x="590" y="90" width="16" height="16" rx="3" ry="3" fill="#ec4899"/>
+<text x="614" y="98" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#1e293b">Safari (19%)</text>
+<rect x="590" y="116" width="16" height="16" rx="3" ry="3" fill="#f59e0b"/>
+<text x="614" y="124" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#1e293b">Edge (5%)</text>
+<rect x="590" y="142" width="16" height="16" rx="3" ry="3" fill="#10b981"/>
+<text x="614" y="150" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#1e293b">Firefox (3%)</text>
+<rect x="590" y="168" width="16" height="16" rx="3" ry="3" fill="#3b82f6"/>
+<text x="614" y="176" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#1e293b">Other (9%)</text>
+</g>
+</svg>"
+`;

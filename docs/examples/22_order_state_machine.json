@@ -1,0 +1,23 @@
+{
+  "type": "state",
+  "title": "Order Lifecycle",
+  "direction": "TB",
+  "states": [
+    { "id": "start", "kind": "initial" },
+    { "id": "pending", "label": "Pending", "kind": "state" },
+    { "id": "paid", "label": "Paid", "kind": "state" },
+    { "id": "shipped", "label": "Shipped", "kind": "state" },
+    { "id": "delivered", "label": "Delivered", "kind": "state" },
+    { "id": "cancelled", "label": "Cancelled", "kind": "state" },
+    { "id": "done", "kind": "final" }
+  ],
+  "transitions": [
+    { "from": "start", "to": "pending" },
+    { "from": "pending", "to": "paid", "label": "payment received" },
+    { "from": "pending", "to": "cancelled", "label": "cancel" },
+    { "from": "paid", "to": "shipped", "label": "fulfill" },
+    { "from": "shipped", "to": "delivered", "label": "deliver" },
+    { "from": "delivered", "to": "done" },
+    { "from": "cancelled", "to": "done" }
+  ]
+}

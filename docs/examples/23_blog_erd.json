@@ -1,0 +1,44 @@
+{
+  "type": "erd",
+  "title": "Blog Database Schema",
+  "direction": "LR",
+  "entities": [
+    {
+      "id": "users",
+      "label": "users",
+      "color": "#8b5cf6",
+      "attributes": [
+        { "name": "id", "type": "uuid", "key": "PK" },
+        { "name": "email", "type": "varchar(255)" },
+        { "name": "name", "type": "varchar(120)" }
+      ]
+    },
+    {
+      "id": "posts",
+      "label": "posts",
+      "color": "#3b82f6",
+      "attributes": [
+        { "name": "id", "type": "uuid", "key": "PK" },
+        { "name": "author_id", "type": "uuid", "key": "FK" },
+        { "name": "title", "type": "varchar(200)" },
+        { "name": "body", "type": "text" }
+      ]
+    },
+    {
+      "id": "comments",
+      "label": "comments",
+      "color": "#10b981",
+      "attributes": [
+        { "name": "id", "type": "uuid", "key": "PK" },
+        { "name": "post_id", "type": "uuid", "key": "FK" },
+        { "name": "user_id", "type": "uuid", "key": "FK" },
+        { "name": "body", "type": "text" }
+      ]
+    }
+  ],
+  "relationships": [
+    { "from": "users", "to": "posts", "cardinality": "one-to-many", "label": "writes" },
+    { "from": "posts", "to": "comments", "cardinality": "one-to-many", "label": "has" },
+    { "from": "users", "to": "comments", "cardinality": "one-to-many", "label": "makes" }
+  ]
+}

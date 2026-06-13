@@ -1,0 +1,35 @@
+{
+  "type": "class",
+  "title": "Shapes Hierarchy",
+  "direction": "TB",
+  "classes": [
+    {
+      "id": "Shape",
+      "label": "Shape",
+      "attributes": ["# x: number", "# y: number"],
+      "methods": ["+ area(): number", "+ move(dx, dy): void"]
+    },
+    {
+      "id": "Circle",
+      "label": "Circle",
+      "attributes": ["- radius: number"],
+      "methods": ["+ area(): number"]
+    },
+    {
+      "id": "Rectangle",
+      "label": "Rectangle",
+      "attributes": ["- width: number", "- height: number"],
+      "methods": ["+ area(): number"]
+    },
+    {
+      "id": "Canvas",
+      "label": "Canvas",
+      "methods": ["+ draw(s: Shape): void"]
+    }
+  ],
+  "relationships": [
+    { "from": "Circle", "to": "Shape", "type": "inheritance" },
+    { "from": "Rectangle", "to": "Shape", "type": "inheritance" },
+    { "from": "Canvas", "to": "Shape", "type": "aggregation", "label": "contains" }
+  ]
+}

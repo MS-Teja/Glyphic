@@ -52,3 +52,35 @@ describe("schema validation hardening", () => {
     expect(() => DiagramInput.parse(baseFlow)).not.toThrow();
   });
 });
+
+describe("new first-class diagram types", () => {
+  it("accepts a valid state diagram and rejects an unknown kind", () => {
+    expect(() =>
+      DiagramInput.parse({ type: "state", states: [{ id: "s", kind: "initial" }], transitions: [] })
+    ).not.toThrow();
+    expect(() => DiagramInput.parse({ type: "state", states: [{ id: "s", kind: "bogus" }] })).toThrow();
+  });
+
+  it("accepts a valid ERD and rejects an invalid cardinality", () => {
+    expect(() =>
+      DiagramInput.parse({
+        type: "erd",
+        entities: [{ id: "u", attributes: [{ name: "id", key: "PK" }] }],
+        relationships: []
+      })
+    ).not.toThrow();
+    expect(() =>
+      DiagramInput.parse({ type: "erd", entities: [{ id: "u" }], relationships: [{ from: "u", to: "u", cardinality: "lots" }] })
+    ).toThrow();
+  });
+
+  it("accepts a valid UML class diagram", () => {
+    expect(() =>
+      DiagramInput.parse({
+        type: "class",
+        classes: [{ id: "A", attributes: ["x: number"], methods: ["go(): void"] }],
+        relationships: [{ from: "A", to: "A", type: "inheritance" }]
+      })
+    ).not.toThrow();
+  });
+});

@@ -273,7 +273,62 @@ export const CanvasDiagram = BaseDiagram.extend({
     .describe("List of elements to draw")
 });
 
-export const DiagramInput = z.discriminatedUnion("type", [NodeEdgeDiagram, SequenceDiagram, PieChart, QuadrantChart, Mindmap, GanttChart, SankeyDiagram, GitGraph, CanvasDiagram]);
+export const StateDiagram = BaseDiagram.extend({
+  type: z.literal("state"),
+  direction: z.enum(["TB", "BT", "LR", "RL"]).default("TB").describe("Layout direction"),
+  states: z.array(z.object({
+    id: z.string().regex(/^[a-zA-Z0-9_-]+$/),
+    label: z.string().optional().describe("Display label (defaults to id)"),
+    kind: z.enum(["state", "initial", "final", "composite"]).default("state").describe("initial = start dot, final = end dot, composite = nested container"),
+    parent: z.string().optional().describe("id of the composite state this nests inside")
+  })).min(1).max(MAX_NODES),
+  transitions: z.array(z.object({
+    from: z.string().describe("source state id"),
+    to: z.string().describe("target state id"),
+    label: z.string().optional().describe("event/guard label")
+  })).max(MAX_EDGES).default([])
+});
+
+export const ErdDiagram = BaseDiagram.extend({
+  type: z.literal("erd"),
+  direction: z.enum(["TB", "BT", "LR", "RL"]).default("LR").describe("Layout direction"),
+  entities: z.array(z.object({
+    id: z.string().regex(/^[a-zA-Z0-9_-]+$/),
+    label: z.string().optional().describe("Entity/table name (defaults to id)"),
+    color: z.string().optional(),
+    attributes: z.array(z.object({
+      name: z.string(),
+      type: z.string().optional().describe("e.g. 'uuid', 'varchar(255)'"),
+      key: z.enum(["PK", "FK"]).optional().describe("Primary or foreign key")
+    })).max(100).optional()
+  })).min(1).max(MAX_NODES),
+  relationships: z.array(z.object({
+    from: z.string(),
+    to: z.string(),
+    label: z.string().optional(),
+    cardinality: z.enum(["one-to-one", "one-to-many", "many-to-one", "many-to-many", "zero-or-one", "zero-or-many"]).optional().describe("Crow's-foot cardinality")
+  })).max(MAX_EDGES).default([])
+});
+
+export const ClassDiagram = BaseDiagram.extend({
+  type: z.literal("class"),
+  direction: z.enum(["TB", "BT", "LR", "RL"]).default("TB").describe("Layout direction"),
+  classes: z.array(z.object({
+    id: z.string().regex(/^[a-zA-Z0-9_-]+$/),
+    label: z.string().optional().describe("Class name (defaults to id)"),
+    color: z.string().optional(),
+    attributes: z.array(z.string()).max(100).optional().describe("e.g. '+ name: string'"),
+    methods: z.array(z.string()).max(100).optional().describe("e.g. '+ getName(): string'")
+  })).min(1).max(MAX_NODES),
+  relationships: z.array(z.object({
+    from: z.string(),
+    to: z.string(),
+    label: z.string().optional(),
+    type: z.enum(["association", "inheritance", "extends", "implements", "composition", "aggregation", "dependency"]).optional().describe("UML relationship kind")
+  })).max(MAX_EDGES).default([])
+});
+
+export const DiagramInput = z.discriminatedUnion("type", [NodeEdgeDiagram, SequenceDiagram, PieChart, QuadrantChart, Mindmap, GanttChart, SankeyDiagram, GitGraph, CanvasDiagram, StateDiagram, ErdDiagram, ClassDiagram]);
 
 export type DiagramInputType = z.infer<typeof DiagramInput>;
 export type NodeEdgeDiagramType = z.infer<typeof NodeEdgeDiagram>;
@@ -285,3 +340,6 @@ export type GanttChartType = z.infer<typeof GanttChart>;
 export type SankeyDiagramType = z.infer<typeof SankeyDiagram>;
 export type GitGraphType = z.infer<typeof GitGraph>;
 export type CanvasDiagramType = z.infer<typeof CanvasDiagram>;
+export type StateDiagramType = z.infer<typeof StateDiagram>;
+export type ErdDiagramType = z.infer<typeof ErdDiagram>;
+export type ClassDiagramType = z.infer<typeof ClassDiagram>;

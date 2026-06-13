@@ -37,7 +37,7 @@ Historically, if an LLM needed to generate a diagram, it had two bad options:
 ---
 
 ## Supported Diagrams
-Glyphic handles the mathematical routing for 11+ complex diagram types seamlessly:
+Glyphic handles the mathematical routing for 13 complex diagram types seamlessly:
 - Architecture (Nested VPCs, Clusters)
 - Entity-Relationship (ERD) & UML Class
 - Sequence & State

@@ -38,13 +38,13 @@ Historically, if an LLM needed to generate a diagram, it had two bad options:
 ---
 
 ## Supported Diagrams
-Glyphic handles the mathematical routing for 15 complex diagram types seamlessly:
-- Architecture (Nested VPCs, Clusters)
+Glyphic handles the mathematical routing for 18 complex diagram types seamlessly:
+- Architecture (Nested VPCs, Clusters) & C4 Context
 - Entity-Relationship (ERD) & UML Class
 - Sequence & State machines
 - Flowcharts, Gantt & Timelines
-- Sankeys & Git Trees
-- User Journeys
+- Sankeys, Git Trees & Treemaps
+- User Journeys & Kanban Boards
 - Mindmaps, Pies & Quadrant Charts
 
 Check out the [Examples Gallery](./docs/examples/README.md) to see the JSON schemas side-by-side with their rendered outputs.

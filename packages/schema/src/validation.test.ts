@@ -114,4 +114,13 @@ describe("new first-class diagram types", () => {
     ).not.toThrow();
     expect(() => DiagramInput.parse({ type: "c4", elements: [{ id: "p", label: "User", kind: "alien" }] })).toThrow();
   });
+
+  it("accepts a valid treemap and rejects a depth bomb", () => {
+    expect(() =>
+      DiagramInput.parse({ type: "treemap", root: { label: "r", children: [{ label: "a", value: 1 }] } })
+    ).not.toThrow();
+    let n: any = { label: "leaf", value: 1 };
+    for (let i = 0; i < 15; i++) n = { label: "g", children: [n] };
+    expect(() => DiagramInput.parse({ type: "treemap", root: n })).toThrow();
+  });
 });

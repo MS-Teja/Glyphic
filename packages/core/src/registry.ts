@@ -11,6 +11,7 @@ import { layoutErdDiagram } from "./layout/erd-adapter.js";
 import { layoutClassDiagram } from "./layout/class-adapter.js";
 import { layoutTimeline, layoutJourney, layoutKanban } from "./layout/chrono-adapter.js";
 import { layoutC4Diagram } from "./layout/c4-adapter.js";
+import { layoutTreemap } from "./layout/treemap-adapter.js";
 
 /** Which scene-builder a diagram type renders through. */
 export type RenderStrategy = "scene" | "data-viz" | "flow" | "canvas";
@@ -50,4 +51,5 @@ export const DIAGRAM_REGISTRY: Record<DiagramInputType["type"], DiagramHandler> 
   journey: { layout: layoutJourney, render: "flow" },
   kanban: { layout: layoutKanban, render: "flow" },
   c4: { layout: layoutC4Diagram, render: "scene" },
+  treemap: { layout: layoutTreemap, render: "data-viz" },
 };

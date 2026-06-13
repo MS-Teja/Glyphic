@@ -37,6 +37,8 @@ export function buildDataVizSceneGraph(layout: LayoutResult, diagramType: string
     buildPieChart(layout, theme, rootGroup.children);
   } else if (diagramType === "quadrant") {
     buildQuadrantChart(layout, theme, rootGroup.children);
+  } else if (diagramType === "treemap") {
+    buildTreemap(layout, theme, rootGroup.children);
   }
 
   elements.push(rootGroup);
@@ -279,5 +281,30 @@ function buildQuadrantChart(layout: LayoutResult, theme: ThemeColors, elements: 
       elements.push({ type: 'line', x1: px, y1: py, x2: lx, y2: ly - 8, stroke: theme.edgeColor, strokeDasharray: "2 2", strokeWidth: 1 });
     }
     elements.push({ type: 'text', x: lx, y: ly, content: pt.label, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 12, fontWeight: 500, fill: theme.nodeText });
+  }
+}
+
+function relativeLuminance(hex: string): number {
+  if (!hex.startsWith("#")) return 0.5;
+  const h = hex.length === 4 ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
+  const r = parseInt(h.slice(1, 3), 16);
+  const g = parseInt(h.slice(3, 5), 16);
+  const b = parseInt(h.slice(5, 7), 16);
+  return (r * 0.299 + g * 0.587 + b * 0.114) / 255;
+}
+
+function buildTreemap(layout: LayoutResult, theme: ThemeColors, elements: SceneElement[]) {
+  const palette = getColorsForSlices(40);
+  for (const node of layout.nodes) {
+    if (node.shape !== "treemap_rect") continue;
+    const color = node.metadata?.color || palette[(node.metadata?.topIdx ?? 0) % palette.length];
+    elements.push({ type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, fill: color, stroke: theme.background, strokeWidth: 2 });
+    if (node.width > 46 && node.height > 22) {
+      const textColor = relativeLuminance(color) > 0.6 ? "#1e293b" : "#ffffff";
+      elements.push({ type: 'text', x: node.x + 8, y: node.y + 18, content: node.label, textAnchor: 'start', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 13, fontWeight: 600, fill: textColor });
+      if (node.height > 40 && node.metadata?.value != null) {
+        elements.push({ type: 'text', x: node.x + 8, y: node.y + 36, content: String(node.metadata.value), textAnchor: 'start', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 11, fill: textColor });
+      }
+    }
   }
 }

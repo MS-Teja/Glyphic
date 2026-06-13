@@ -380,7 +380,36 @@ export const C4Diagram = BaseDiagram.extend({
   })).max(MAX_EDGES).default([])
 });
 
-export const DiagramInput = z.discriminatedUnion("type", [NodeEdgeDiagram, SequenceDiagram, PieChart, QuadrantChart, Mindmap, GanttChart, SankeyDiagram, GitGraph, CanvasDiagram, StateDiagram, ErdDiagram, ClassDiagram, TimelineDiagram, JourneyDiagram, KanbanDiagram, C4Diagram]);
+const TreemapNode: z.ZodType<any> = z.lazy(() =>
+  z.object({
+    label: z.string(),
+    value: z.number().min(0).optional().describe("Leaf size; parent nodes sum their children"),
+    color: z.string().optional(),
+    children: z.array(TreemapNode).optional()
+  })
+);
+
+function treemapWithinLimits(root: any): boolean {
+  let count = 0;
+  const walk = (n: any, depth: number): boolean => {
+    if (depth > 12) return false;
+    if (++count > 2000) return false;
+    if (Array.isArray(n?.children)) {
+      for (const c of n.children) if (!walk(c, depth + 1)) return false;
+    }
+    return true;
+  };
+  return walk(root, 1);
+}
+
+export const TreemapDiagram = BaseDiagram.extend({
+  type: z.literal("treemap"),
+  width: z.number().optional().describe("Canvas width (default 900)"),
+  height: z.number().optional().describe("Canvas height (default 600)"),
+  root: TreemapNode.refine(treemapWithinLimits, "Treemap exceeds depth (12) or node-count (2000) limits")
+});
+
+export const DiagramInput = z.discriminatedUnion("type", [NodeEdgeDiagram, SequenceDiagram, PieChart, QuadrantChart, Mindmap, GanttChart, SankeyDiagram, GitGraph, CanvasDiagram, StateDiagram, ErdDiagram, ClassDiagram, TimelineDiagram, JourneyDiagram, KanbanDiagram, C4Diagram, TreemapDiagram]);
 
 export type DiagramInputType = z.infer<typeof DiagramInput>;
 export type NodeEdgeDiagramType = z.infer<typeof NodeEdgeDiagram>;
@@ -399,3 +428,4 @@ export type TimelineDiagramType = z.infer<typeof TimelineDiagram>;
 export type JourneyDiagramType = z.infer<typeof JourneyDiagram>;
 export type KanbanDiagramType = z.infer<typeof KanbanDiagram>;
 export type C4DiagramType = z.infer<typeof C4Diagram>;
+export type TreemapDiagramType = z.infer<typeof TreemapDiagram>;

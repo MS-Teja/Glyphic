@@ -1,0 +1,34 @@
+{
+  "type": "treemap",
+  "title": "Disk Usage by Directory (MB)",
+  "root": {
+    "label": "root",
+    "children": [
+      {
+        "label": "node_modules",
+        "children": [
+          { "label": "react", "value": 120 },
+          { "label": "typescript", "value": 85 },
+          { "label": "elkjs", "value": 60 },
+          { "label": "vitest", "value": 45 }
+        ]
+      },
+      {
+        "label": "src",
+        "children": [
+          { "label": "core", "value": 90 },
+          { "label": "render", "value": 50 },
+          { "label": "schema", "value": 30 }
+        ]
+      },
+      {
+        "label": "docs",
+        "children": [
+          { "label": "examples", "value": 40 },
+          { "label": "images", "value": 25 }
+        ]
+      },
+      { "label": "dist", "value": 70 }
+    ]
+  }
+}

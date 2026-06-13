@@ -15,7 +15,7 @@ const MAX_CANVAS_ELEMENTS = 5000;
 const MAX_CANVAS_DEPTH = 20;
 const MAX_CUSTOM_ICONS = 50;
 
-export const ThemeConfig = z.object({
+const ThemeObject = z.object({
   background: z.string().max(64).optional().describe("Background color of the diagram (hex)"),
   nodeBackground: z.string().max(64).optional().describe("Default background color for nodes (hex)"),
   nodeBorder: z.string().max(64).optional().describe("Default border color for nodes (hex)"),
@@ -40,7 +40,12 @@ export const ThemeConfig = z.object({
     .refine((obj) => Object.keys(obj).length <= MAX_CUSTOM_ICONS, `At most ${MAX_CUSTOM_ICONS} custom icons are allowed`)
     .optional()
     .describe("Map of icon name to raw SVG string for custom brand icons")
-}).optional().describe("Optional custom color theme for the diagram");
+});
+
+export const ThemeConfig = z
+  .union([z.enum(["light", "dark", "pastel", "mono"]), ThemeObject])
+  .optional()
+  .describe("A named preset ('light' | 'dark' | 'pastel' | 'mono') or a custom color theme object");
 
 const BaseDiagram = z.object({
   title: z.string().max(500).optional().describe("A descriptive title for the diagram"),

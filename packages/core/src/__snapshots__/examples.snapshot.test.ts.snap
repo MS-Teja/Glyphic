@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 01_cloud_architecture.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="803" height="2250" viewBox="0 0 803 2250">
+"<svg xmlns="http://www.w3.org/2000/svg" width="803" height="2250" viewBox="0 0 803 2250" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -239,7 +239,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 01_cloud_archite
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 02_ecommerce_checkout_sequence.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1667.9999999999998" height="1430" viewBox="0 0 1667.9999999999998 1430">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1667.9999999999998" height="1430" viewBox="0 0 1667.9999999999998 1430" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -447,7 +447,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 02_ecommerce_che
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 03_complex_erd.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="931" height="796" viewBox="0 0 931 796">
+"<svg xmlns="http://www.w3.org/2000/svg" width="931" height="796" viewBox="0 0 931 796" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -632,7 +632,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 03_complex_erd.j
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 04_oauth_flowchart.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="745.5" height="1874" viewBox="0 0 745.5 1874">
+"<svg xmlns="http://www.w3.org/2000/svg" width="745.5" height="1874" viewBox="0 0 745.5 1874" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -812,7 +812,8 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 04_oauth_flowcha
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 05_software_release_gantt.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="700" viewBox="0 0 1080 700">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="700" viewBox="0 0 1080 700" role="img" aria-label="v2.0 Enterprise Release Schedule">
+<title>v2.0 Enterprise Release Schedule</title>
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -984,7 +985,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 05_software_rele
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 06_uml_class_diagram.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="526" height="420" viewBox="0 0 526 420">
+"<svg xmlns="http://www.w3.org/2000/svg" width="526" height="420" viewBox="0 0 526 420" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -1137,7 +1138,8 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 06_uml_class_dia
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 07_market_share_pie.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="880" height="680" viewBox="0 0 880 680">
+"<svg xmlns="http://www.w3.org/2000/svg" width="880" height="680" viewBox="0 0 880 680" role="img" aria-label="Global Smartphone Market Share 2026">
+<title>Global Smartphone Market Share 2026</title>
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -1266,7 +1268,8 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 07_market_share_
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 08_risk_quadrant.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="880" height="880" viewBox="0 0 880 880">
+"<svg xmlns="http://www.w3.org/2000/svg" width="880" height="880" viewBox="0 0 880 880" role="img" aria-label="Enterprise IT Risk Matrix">
+<title>Enterprise IT Risk Matrix</title>
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -1402,7 +1405,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 08_risk_quadrant
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 09_product_mindmap.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1072.7072165300724" height="997.1973731159887" viewBox="0 0 1072.7072165300724 997.1973731159887">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1072.7072165300724" height="997.1973731159887" viewBox="0 0 1072.7072165300724 997.1973731159887" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -1555,7 +1558,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 09_product_mindm
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 10_energy_sankey.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="680" viewBox="0 0 1080 680">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="680" viewBox="0 0 1080 680" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -1685,7 +1688,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 10_energy_sankey
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 11_git_history.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="480" viewBox="0 0 1140 480">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="480" viewBox="0 0 1140 480" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -1821,7 +1824,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 11_git_history.j
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 12_complex_git_history.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="3700" height="600" viewBox="0 0 3700 600">
+"<svg xmlns="http://www.w3.org/2000/svg" width="3700" height="600" viewBox="0 0 3700 600" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -2016,7 +2019,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 12_complex_git_h
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 13_star_wars_battle.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="2910" height="620" viewBox="0 0 2910 620">
+"<svg xmlns="http://www.w3.org/2000/svg" width="2910" height="620" viewBox="0 0 2910 620" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -2991,7 +2994,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 13_star_wars_bat
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices_k8s.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1237" height="2691" viewBox="0 0 1237 2691">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1237" height="2691" viewBox="0 0 1237 2691" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -3739,7 +3742,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 15_coffee_shop_sequence.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="2170" height="1630" viewBox="0 0 2170 1630">
+"<svg xmlns="http://www.w3.org/2000/svg" width="2170" height="1630" viewBox="0 0 2170 1630" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -3984,7 +3987,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 15_coffee_shop_s
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 16_startup_funding_sankey.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="680" viewBox="0 0 1080 680">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="680" viewBox="0 0 1080 680" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -4148,7 +4151,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 16_startup_fundi
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 17_ai_startup_mindmap.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1620.3581633683134" height="1535.2684569411415" viewBox="0 0 1620.3581633683134 1535.2684569411415">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1620.3581633683134" height="1535.2684569411415" viewBox="0 0 1620.3581633683134 1535.2684569411415" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -4381,7 +4384,8 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 17_ai_startup_mi
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 18_mars_mission_gantt.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1120" viewBox="0 0 1080 1120">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1120" viewBox="0 0 1080 1120" role="img" aria-label="Mars Colony Alpha: Mission Timeline">
+<title>Mars Colony Alpha: Mission Timeline</title>
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -4596,7 +4600,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 18_mars_mission_
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 19_saas_class_diagram.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1122" height="1418" viewBox="0 0 1122 1418">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1122" height="1418" viewBox="0 0 1122 1418" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -4863,7 +4867,8 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 19_saas_class_di
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 20_developer_time_pie.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="880" height="680" viewBox="0 0 880 680">
+"<svg xmlns="http://www.w3.org/2000/svg" width="880" height="680" viewBox="0 0 880 680" role="img" aria-label="Where Does My Time Go? (A Developer&apos;s Week)">
+<title>Where Does My Time Go? (A Developer&apos;s Week)</title>
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -5004,7 +5009,8 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 20_developer_tim
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 21_programming_lang_quadrant.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="880" height="880" viewBox="0 0 880 880">
+"<svg xmlns="http://www.w3.org/2000/svg" width="880" height="880" viewBox="0 0 880 880" role="img" aria-label="Programming Languages: Hype vs. Actual Usage (2026)">
+<title>Programming Languages: Hype vs. Actual Usage (2026)</title>
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">

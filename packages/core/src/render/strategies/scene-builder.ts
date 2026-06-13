@@ -3,31 +3,14 @@ import { SceneGraph, SceneElement, SceneRect, ScenePath, SceneText, SceneCircle,
 import { getPerimeterIntersection, BoundingBox } from "../../math/geometry.js";
 import { getIconSVG } from "../icon-adapter.js";
 import { escapeXml, escapeCssString, sanitizeSvg, isHttpsUrl } from "../sanitize.js";
-import { resolveFontFamily } from "../theme.js";
+import { ThemeColors, DEFAULT_THEME, resolveFontFamily } from "../theme.js";
+
+// Re-exported so the strategy modules can keep importing them from here.
+export type { ThemeColors } from "../theme.js";
+export { DEFAULT_THEME } from "../theme.js";
 
 // Padding around the entire diagram
 export const PADDING = 40;
-
-export interface ThemeColors {
-  background: string;
-  nodeBackground: string;
-  nodeBorder: string;
-  nodeText: string;
-  edgeColor: string;
-  edgeLabelColor: string;
-  fontFamily?: string;
-  customFontUrl?: string;
-  customIcons?: Record<string, string>;
-}
-
-export const DEFAULT_THEME: ThemeColors = {
-  background: "#ffffff",
-  nodeBackground: "#f0f4ff",
-  nodeBorder: "#3b82f6",
-  nodeText: "#1e293b",
-  edgeColor: "#64748b",
-  edgeLabelColor: "#475569",
-};
 
 function darkenHex(hex: string, amount: number = 0.2): string {
   if (!hex.startsWith("#")) return hex;

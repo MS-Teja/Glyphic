@@ -85,8 +85,13 @@ function renderElement(el: SceneElement): string {
   }
 }
 
-export function renderSceneGraphToSVG(scene: SceneGraph, extraDefs: string = ''): string {
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${scene.width}" height="${scene.height}" viewBox="0 0 ${scene.width} ${scene.height}">\n`;
+export function renderSceneGraphToSVG(scene: SceneGraph, extraDefs: string = '', title?: string): string {
+  // role="img" + <title> make the diagram accessible to screen readers.
+  const ariaLabel = title ? ` aria-label="${escapeXml(title)}"` : '';
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${scene.width}" height="${scene.height}" viewBox="0 0 ${scene.width} ${scene.height}" role="img"${ariaLabel}>\n`;
+  if (title) {
+    svg += `<title>${escapeXml(title)}</title>\n`;
+  }
   if (extraDefs) {
     svg += `<defs>\n${extraDefs}\n</defs>\n`;
   }

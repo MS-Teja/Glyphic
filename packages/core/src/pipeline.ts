@@ -1,6 +1,7 @@
 import { DiagramInput, DiagramInputType } from "@glyphic/schema";
 import { layoutDiagram } from "./layout/index.js";
 import { DIAGRAM_REGISTRY } from "./registry.js";
+import { resolveThemePartial, DEFAULT_THEME } from "./render/theme.js";
 import { rasterizeSVG } from "./render/rasterizer.js";
 
 import { buildSceneGraph, getMarkerDefs } from "./render/strategies/scene-builder.js";
@@ -27,6 +28,10 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
   const validatedDiagram: DiagramInputType = DiagramInput.parse(input);
   const handler = DIAGRAM_REGISTRY[validatedDiagram.type];
 
+  // Resolve theme once (preset name or object) and apply it to every strategy.
+  const themePartial = resolveThemePartial((validatedDiagram as any).theme);
+  const fullTheme = { ...DEFAULT_THEME, ...themePartial };
+
   let svg = "";
   let scene: SceneGraph;
   let layoutWidth = 0;
@@ -36,7 +41,7 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
 
   if (handler.render === "canvas") {
     // Canvas bypasses the layout engine entirely
-    scene = buildCanvasSceneGraph(validatedDiagram as any);
+    scene = buildCanvasSceneGraph(validatedDiagram as any, fullTheme);
     layoutWidth = scene.width;
     layoutHeight = scene.height;
   } else {
@@ -47,16 +52,18 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
 
     const diagType = validatedDiagram.type as string;
     if (handler.render === "data-viz") {
-      scene = buildDataVizSceneGraph(layout, diagType);
+      scene = buildDataVizSceneGraph(layout, diagType, fullTheme);
     } else if (handler.render === "flow") {
-      scene = buildFlowSceneGraph(layout, diagType);
+      scene = buildFlowSceneGraph(layout, diagType, fullTheme);
     } else {
-      scene = buildSceneGraph(layout, (validatedDiagram as any).theme, handler.maskLabels ?? false);
+      // buildSceneGraph merges DEFAULT_THEME and auto-contrasts edge labels,
+      // so pass the partial (not the merged theme) to preserve that behavior.
+      scene = buildSceneGraph(layout, themePartial, handler.maskLabels ?? false);
     }
   }
 
   const defs = scene.defs || getMarkerDefs();
-  svg = renderSceneGraphToSVG(scene, defs);
+  svg = renderSceneGraphToSVG(scene, defs, (validatedDiagram as any).title);
 
   // 4. Rasterize to PNG
   const png = rasterizeSVG(svg, { dpi: 2, fontBuffer }); // 2x resolution for crispness

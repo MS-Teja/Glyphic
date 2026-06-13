@@ -1,19 +1,49 @@
 import { z } from "zod";
 
+// Size caps — defense against resource-exhaustion via oversized payloads.
+// Generous enough for real diagrams, small enough to bound layout/render cost.
+const MAX_NODES = 1000;
+const MAX_EDGES = 2000;
+const MAX_PARTICIPANTS = 100;
+const MAX_MESSAGES = 1000;
+const MAX_SECTIONS = 100;
+const MAX_TASKS = 1000;
+const MAX_COMMITS = 1000;
+const MAX_PIE_SLICES = 200;
+const MAX_POINTS = 500;
+const MAX_CANVAS_ELEMENTS = 5000;
+const MAX_CANVAS_DEPTH = 20;
+const MAX_CUSTOM_ICONS = 50;
+
 export const ThemeConfig = z.object({
-  background: z.string().optional().describe("Background color of the diagram (hex)"),
-  nodeBackground: z.string().optional().describe("Default background color for nodes (hex)"),
-  nodeBorder: z.string().optional().describe("Default border color for nodes (hex)"),
-  nodeText: z.string().optional().describe("Default text color for nodes (hex)"),
-  edgeColor: z.string().optional().describe("Color of the connecting edges/lines (hex)"),
-  edgeLabelColor: z.string().optional().describe("Color of the text labels on edges (hex)"),
-  fontFamily: z.string().optional().describe("Google Font family name (e.g. 'Roboto', 'Fira Code')"),
-  customFontUrl: z.string().optional().describe("URL to a custom .ttf font file"),
-  customIcons: z.record(z.string()).optional().describe("Map of icon name to raw SVG string for custom brand icons")
+  background: z.string().max(64).optional().describe("Background color of the diagram (hex)"),
+  nodeBackground: z.string().max(64).optional().describe("Default background color for nodes (hex)"),
+  nodeBorder: z.string().max(64).optional().describe("Default border color for nodes (hex)"),
+  nodeText: z.string().max(64).optional().describe("Default text color for nodes (hex)"),
+  edgeColor: z.string().max(64).optional().describe("Color of the connecting edges/lines (hex)"),
+  edgeLabelColor: z.string().max(64).optional().describe("Color of the text labels on edges (hex)"),
+  fontFamily: z
+    .string()
+    .max(100)
+    .regex(/^[a-zA-Z0-9 _-]+$/, "fontFamily may only contain letters, numbers, spaces, hyphens, and underscores")
+    .optional()
+    .describe("Google Font family name (e.g. 'Roboto', 'Fira Code')"),
+  customFontUrl: z
+    .string()
+    .url()
+    .max(500)
+    .refine((u) => u.startsWith("https://"), "customFontUrl must be an https URL")
+    .optional()
+    .describe("HTTPS URL to a custom .ttf font file"),
+  customIcons: z
+    .record(z.string().max(20000))
+    .refine((obj) => Object.keys(obj).length <= MAX_CUSTOM_ICONS, `At most ${MAX_CUSTOM_ICONS} custom icons are allowed`)
+    .optional()
+    .describe("Map of icon name to raw SVG string for custom brand icons")
 }).optional().describe("Optional custom color theme for the diagram");
 
 const BaseDiagram = z.object({
-  title: z.string().optional().describe("A descriptive title for the diagram"),
+  title: z.string().max(500).optional().describe("A descriptive title for the diagram"),
   theme: ThemeConfig,
   exportFormat: z.array(z.enum(["png", "svg", "react-flow"])).default(["png"]).describe("Requested export formats (png, svg, react-flow)"),
 });
@@ -33,19 +63,19 @@ export const NodeEdgeDiagram = BaseDiagram.extend({
     width: z.number().optional().describe("Explicit width"),
     height: z.number().optional().describe("Explicit height"),
     metadata: z.record(z.any()).optional().describe("Additional structured data, such as 'fields' for tables or 'methods'/'attributes' for classes")
-  })).min(1),
+  })).min(1).max(MAX_NODES),
   edges: z.array(z.object({
     source: z.string().describe("ID of the source node"),
     target: z.string().describe("ID of the target node"),
     label: z.string().optional().describe("Optional text label on the edge"),
     style: z.enum(["solid", "dashed", "dotted"]).default("solid"),
     arrow: z.enum([
-      "forward", "back", "both", "none", "open", 
+      "forward", "back", "both", "none", "open",
       "inheritance", "composition", "aggregation", "dependency",
       "crow", "crow-one", "crow-zero-many", "zero-one", "one-one"
     ]).default("forward"),
     metadata: z.record(z.any()).optional().describe("Additional structured data, such as 'labelPosition'")
-  })).default([]),
+  })).max(MAX_EDGES).default([]),
 });
 
 export const SequenceDiagram = BaseDiagram.extend({
@@ -54,13 +84,13 @@ export const SequenceDiagram = BaseDiagram.extend({
     id: z.string().regex(/^[a-zA-Z0-9_-]+$/).describe("Unique identifier"),
     label: z.string().describe("Display name of the actor or system"),
     shape: z.enum(["actor", "service", "database"]).default("service")
-  })).min(2),
+  })).min(2).max(MAX_PARTICIPANTS),
   messages: z.array(z.object({
     source: z.string().describe("ID of the participant sending the message (can be same as target for self-messages)"),
     target: z.string().describe("ID of the participant receiving the message"),
     label: z.string().describe("Description of the API call or action"),
     type: z.enum(["sync", "async", "return"]).default("sync").describe("Sync (solid line), async (solid line, open arrow), or return (dashed line)")
-  })).min(1).describe("Ordered list of messages in chronological sequence"),
+  })).min(1).max(MAX_MESSAGES).describe("Ordered list of messages in chronological sequence"),
 });
 
 export const PieChart = BaseDiagram.extend({
@@ -73,10 +103,10 @@ export const PieChart = BaseDiagram.extend({
   radius: z.number().optional().describe("Radius of the pie chart (e.g. 200)"),
   data: z.array(z.object({
     label: z.string().describe("Label for the pie slice"),
-    value: z.number().describe("Percentage value (e.g. 50 for 50%)"),
+    value: z.number().min(0).describe("Percentage value (e.g. 50 for 50%)"),
     color: z.string().optional().describe("Custom hex color for the slice (e.g. #ec4899)"),
     explode: z.number().optional().describe("Offset radius to explode the slice outwards (e.g. 20)")
-  })).min(1).describe("Data points for the pie chart. Total values should equal 100."),
+  })).min(1).max(MAX_PIE_SLICES).describe("Data points for the pie chart. Total values should equal 100."),
 });
 
 export const QuadrantChart = BaseDiagram.extend({
@@ -94,7 +124,7 @@ export const QuadrantChart = BaseDiagram.extend({
     label: z.string().describe("Label of the data point"),
     x: z.number().min(0).max(1).describe("X coordinate (0.0 to 1.0)"),
     y: z.number().min(0).max(1).describe("Y coordinate (0.0 to 1.0)")
-  })).describe("Data points plotted on the quadrant")
+  })).min(1).max(MAX_POINTS).describe("Data points plotted on the quadrant")
 });
 
 export const Mindmap = BaseDiagram.extend({
@@ -104,12 +134,12 @@ export const Mindmap = BaseDiagram.extend({
     label: z.string(),
     icon: z.string().optional(),
     shape: z.enum(["rectangle", "rounded", "cloud"]).default("rounded")
-  })).min(1),
+  })).min(1).max(MAX_NODES),
   edges: z.array(z.object({
     source: z.string(),
     target: z.string(),
     label: z.string().optional()
-  })).default([])
+  })).max(MAX_EDGES).default([])
 });
 
 export const GanttChart = BaseDiagram.extend({
@@ -126,8 +156,11 @@ export const GanttChart = BaseDiagram.extend({
       end: z.union([z.string(), z.number()]).optional().describe("End date or generic numeric value"),
       duration: z.number().optional().describe("Duration if end is not provided"),
       dependencies: z.array(z.string()).optional().describe("Array of task IDs that must finish before this starts")
-    }))
-  })).min(1)
+    }).refine((t) => t.end !== undefined || t.duration !== undefined, {
+      message: "Each task must have either 'end' or 'duration'",
+      path: ["end"],
+    })).max(MAX_TASKS)
+  })).min(1).max(MAX_SECTIONS)
 });
 
 export const SankeyDiagram = BaseDiagram.extend({
@@ -136,12 +169,12 @@ export const SankeyDiagram = BaseDiagram.extend({
     id: z.string().regex(/^[a-zA-Z0-9_-]+$/),
     label: z.string().optional(),
     color: z.string().optional()
-  })).min(2),
+  })).min(2).max(MAX_NODES),
   edges: z.array(z.object({
     source: z.string(),
     target: z.string(),
     value: z.number().min(0).describe("Weight/Thickness of the flow")
-  })).min(1)
+  })).min(1).max(MAX_EDGES)
 });
 
 export const GitGraph = BaseDiagram.extend({
@@ -152,7 +185,7 @@ export const GitGraph = BaseDiagram.extend({
     branch: z.string().describe("Name of the branch this commit belongs to"),
     parents: z.array(z.string()).optional().describe("Array of parent commit IDs. 2 parents indicate a merge."),
     tag: z.string().optional()
-  })).min(1)
+  })).min(1).max(MAX_COMMITS)
 });
 
 const CanvasRect = z.object({
@@ -199,7 +232,7 @@ const CanvasRawSvg = z.object({
   type: z.literal("raw-svg"), svg: z.string(), x: z.number().optional(), y: z.number().optional()
 });
 
-export const CanvasElement: z.ZodType<any> = z.lazy(() => 
+export const CanvasElement: z.ZodType<any> = z.lazy(() =>
   z.discriminatedUnion("type", [
     CanvasRect, CanvasCircle, CanvasEllipse, CanvasPath, CanvasPolygon, CanvasLine, CanvasText, CanvasRawSvg,
     z.object({
@@ -210,11 +243,29 @@ export const CanvasElement: z.ZodType<any> = z.lazy(() =>
   ])
 );
 
+// Bound recursion depth and total element count for canvas trees.
+function canvasWithinLimits(elements: any[]): boolean {
+  let count = 0;
+  const walk = (els: any[], depth: number): boolean => {
+    if (depth > MAX_CANVAS_DEPTH) return false;
+    for (const el of els) {
+      if (++count > MAX_CANVAS_ELEMENTS) return false;
+      if (el && el.type === "group" && Array.isArray(el.children)) {
+        if (!walk(el.children, depth + 1)) return false;
+      }
+    }
+    return true;
+  };
+  return walk(elements, 1);
+}
+
 export const CanvasDiagram = BaseDiagram.extend({
   type: z.literal("canvas"),
   width: z.number().describe("Canvas width"),
   height: z.number().describe("Canvas height"),
-  elements: z.array(CanvasElement).describe("List of elements to draw")
+  elements: z.array(CanvasElement)
+    .refine(canvasWithinLimits, `Canvas exceeds element (${MAX_CANVAS_ELEMENTS}) or nesting depth (${MAX_CANVAS_DEPTH}) limits`)
+    .describe("List of elements to draw")
 });
 
 export const DiagramInput = z.discriminatedUnion("type", [NodeEdgeDiagram, SequenceDiagram, PieChart, QuadrantChart, Mindmap, GanttChart, SankeyDiagram, GitGraph, CanvasDiagram]);

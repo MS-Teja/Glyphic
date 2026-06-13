@@ -2,6 +2,7 @@ import { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "../../l
 import { SceneGraph, SceneElement, SceneRect, ScenePath, SceneText, SceneCircle, SceneGroup, ScenePolygon, SceneEllipse } from "../../scene/scene-graph.js";
 import { getPerimeterIntersection, BoundingBox } from "../../math/geometry.js";
 import { getIconSVG } from "../icon-adapter.js";
+import { escapeXml, escapeCssString, sanitizeSvg, isHttpsUrl } from "../sanitize.js";
 
 // Padding around the entire diagram
 export const PADDING = 40;
@@ -701,21 +702,23 @@ export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<Theme
 
   if (theme.customIcons) {
     for (const [iconName, svgContent] of Object.entries(theme.customIcons)) {
-      defs += `\n<g id="icon-${iconName}">${svgContent}</g>`;
+      // iconName goes into an attribute; svgContent is caller-supplied markup.
+      defs += `\n<g id="icon-${escapeXml(iconName)}">${sanitizeSvg(String(svgContent))}</g>`;
     }
   }
 
-  if (theme.customFontUrl) {
+  if (theme.customFontUrl && isHttpsUrl(theme.customFontUrl)) {
     defs += `\n<style>
       @font-face {
-        font-family: '${theme.fontFamily || 'CustomFont'}';
-        src: url('${theme.customFontUrl}');
+        font-family: '${escapeCssString(theme.fontFamily || 'CustomFont')}';
+        src: url('${escapeCssString(theme.customFontUrl)}');
       }
     </style>`;
   } else if (theme.fontFamily) {
-    const encodedFontName = theme.fontFamily.replace(/ /g, '+');
+    // Percent-encode the family name so it cannot break out of the url().
+    const encodedFontName = encodeURIComponent(theme.fontFamily.trim()).replace(/%20/g, '+');
     defs += `\n<style>
-      @import url('https://fonts.googleapis.com/css2?family=${encodedFontName}:wght@400;500;600;700&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=${encodedFontName}:wght@400;500;600;700&display=swap');
     </style>`;
   }
 

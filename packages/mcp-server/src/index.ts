@@ -9,6 +9,9 @@ import { DiagramInput } from "@glyphic/schema";
 import { z } from "zod";
 import { processDiagram } from "@glyphic/core";
 import { zodToJsonSchema } from "zod-to-json-schema";
+import * as os from "node:os";
+import * as path from "node:path";
+import * as fs from "node:fs/promises";
 
 const server = new Server(
   {
@@ -57,27 +60,22 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     }
     case "render_diagram": {
       try {
-        const diagramInput = (request.params.arguments as any).diagram;
-        
-        // Let core handle validation and processing
-        const result = await processDiagram(diagramInput);
+        // Validate the input here too (consistent with the HTTP API) so malformed
+        // LLM output yields a clean error instead of crashing the renderer.
+        const validated = DiagramInput.parse((request.params.arguments as any)?.diagram);
+        const result = await processDiagram(validated);
 
-        const os = await import('os');
-        const path = await import('path');
-        const fs = await import('fs/promises');
-        
         const outputDir = path.join(os.homedir(), 'Desktop', 'Glyphic Diagrams');
         await fs.mkdir(outputDir, { recursive: true });
-        
-        const exportFormat = diagramInput.exportFormat || ["png"];
-        
-        const safeTitle = (diagramInput.title || 'diagram').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+
+        const exportFormat = validated.exportFormat || ["png"];
+        const safeTitle = (validated.title || 'diagram').replace(/[^a-z0-9]/gi, '_').toLowerCase();
         const baseFilename = `${safeTitle}_${Date.now()}`;
-        
+
         let textContent = `Diagram generated successfully.`;
         const contentBlocks: any[] = [];
-        
-        if (exportFormat.includes("png")) {
+
+        if (exportFormat.includes("png") && result.png) {
           const filepath = path.join(outputDir, `${baseFilename}.png`);
           await fs.writeFile(filepath, result.png);
           textContent += `\n\nPNG saved to: ${filepath}`;
@@ -87,13 +85,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             mimeType: "image/png",
           });
         }
-        
-        if (exportFormat.includes("svg")) {
+
+        if (exportFormat.includes("svg") && result.svg) {
           const filepath = path.join(outputDir, `${baseFilename}.svg`);
           await fs.writeFile(filepath, result.svg, 'utf8');
           textContent += `\n\nSVG saved to: ${filepath}`;
         }
-        
+
         if (exportFormat.includes("react-flow") && result.reactFlow) {
           const filepath = path.join(outputDir, `${baseFilename}_react_flow.json`);
           const rfJson = JSON.stringify(result.reactFlow, null, 2);
@@ -103,32 +101,19 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
 
         textContent += `\n\nPlease tell the user that the diagram has been saved to the exact file paths above so they can find it. If they requested react-flow, provide them the json string.`;
-        
-        contentBlocks.unshift({
-          type: "text",
-          text: textContent,
-        });
 
+        contentBlocks.unshift({ type: "text", text: textContent });
         return { content: contentBlocks };
       } catch (error) {
-        if (error instanceof Error) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: `Error rendering diagram: ${error.message}\n${error.stack}`,
-              },
-            ],
-            isError: true,
-          };
-        }
+        // Surface only the message (Zod issues formatted) — never the stack trace.
+        const message =
+          error instanceof z.ZodError
+            ? `Invalid diagram input:\n${error.issues.map((i) => `- ${i.path.join(".") || "(root)"}: ${i.message}`).join("\n")}`
+            : error instanceof Error
+              ? error.message
+              : "Unknown error occurred while rendering the diagram.";
         return {
-          content: [
-            {
-              type: "text",
-              text: "Unknown error occurred while rendering the diagram.",
-            },
-          ],
+          content: [{ type: "text", text: `Error rendering diagram: ${message}` }],
           isError: true,
         };
       }

@@ -1,6 +1,7 @@
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { escapeXml } from "./sanitize.js";
 
 // Ex: getIconSVG("fas-user", "#fff") or getIconSVG("fab-aws", "#000")
 export function getIconSVG(iconName: string, color: string, width: number = 24, height: number = 24): string {
@@ -19,15 +20,17 @@ export function getIconSVG(iconName: string, color: string, width: number = 24, 
     iconDef = (fab as any)[camelName];
   }
 
+  // Unknown icon: callers treat the empty string as "no icon".
   if (!iconDef) {
-    console.error("ICON NOT FOUND:", iconName, "CAMEL:", camelName, "HAS FAS:", !!fas, "KEYS IN FAS:", fas ? Object.keys(fas).length : 0);
     return "";
   }
 
   const [iconWidth, iconHeight, , , iconPath] = iconDef.icon;
-  
-  // FontAwesome paths are usually 512x512
+  // Duotone/dual-layer icons expose an array of path strings; use the primary layer.
+  const pathData = Array.isArray(iconPath) ? iconPath[0] : iconPath;
+
+  // FontAwesome paths are usually 512x512. `color` is caller-controlled — escape it.
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${iconWidth} ${iconHeight}" width="${width}" height="${height}">
-    <path fill="${color}" d="${iconPath}" />
+    <path fill="${escapeXml(color)}" d="${pathData}" />
   </svg>`;
 }

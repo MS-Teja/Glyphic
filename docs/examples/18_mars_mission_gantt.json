@@ -1,0 +1,43 @@
+{
+  "type": "gantt",
+  "title": "Mars Colony Alpha: Mission Timeline",
+  "sections": [
+    {
+      "label": "Pre-Launch Phase",
+      "tasks": [
+        { "id": "crew_select", "label": "Crew Selection & Training", "start": 0, "duration": 90 },
+        { "id": "cargo_build", "label": "Cargo Module Assembly", "start": 15, "duration": 120 },
+        { "id": "hab_test", "label": "Habitat Pressure Testing", "start": 60, "duration": 45, "dependencies": ["crew_select"] },
+        { "id": "supply_pack", "label": "Supply Chain & Packing", "start": 100, "duration": 35, "dependencies": ["cargo_build"] }
+      ]
+    },
+    {
+      "label": "Launch & Transit",
+      "tasks": [
+        { "id": "launch_window", "label": "Launch Window (Earth-Mars)", "start": 135, "duration": 14, "dependencies": ["hab_test", "supply_pack"] },
+        { "id": "transit", "label": "Interplanetary Transit", "start": 149, "duration": 210, "dependencies": ["launch_window"] },
+        { "id": "mid_correct", "label": "Mid-Course Correction Burn", "start": 250, "duration": 3, "dependencies": ["launch_window"] },
+        { "id": "mars_orbit", "label": "Mars Orbit Insertion", "start": 356, "duration": 7, "dependencies": ["transit", "mid_correct"] }
+      ]
+    },
+    {
+      "label": "Surface Operations",
+      "tasks": [
+        { "id": "descent", "label": "EDL (Entry, Descent, Landing)", "start": 363, "duration": 1, "dependencies": ["mars_orbit"] },
+        { "id": "hab_deploy", "label": "Inflate Habitat Modules", "start": 364, "duration": 14, "dependencies": ["descent"] },
+        { "id": "solar_array", "label": "Deploy Solar Array Farm", "start": 370, "duration": 21, "dependencies": ["descent"] },
+        { "id": "water_drill", "label": "Ice Extraction Drill Setup", "start": 378, "duration": 30, "dependencies": ["hab_deploy"] },
+        { "id": "greenhouse", "label": "Hydroponic Greenhouse Build", "start": 400, "duration": 45, "dependencies": ["solar_array", "water_drill"] },
+        { "id": "first_harvest", "label": "First Crop Harvest", "start": 445, "duration": 7, "dependencies": ["greenhouse"] }
+      ]
+    },
+    {
+      "label": "Science & Exploration",
+      "tasks": [
+        { "id": "geo_survey", "label": "Geological Survey (Rover)", "start": 380, "duration": 60, "dependencies": ["descent"] },
+        { "id": "atmo_study", "label": "Atmospheric Composition Study", "start": 370, "duration": 90, "dependencies": ["descent"] },
+        { "id": "bio_search", "label": "Subsurface Biosignature Search", "start": 420, "duration": 40, "dependencies": ["water_drill", "geo_survey"] }
+      ]
+    }
+  ]
+}

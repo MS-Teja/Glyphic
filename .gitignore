@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.turbo/
+*.tsbuildinfo
+
+# Internal / Private (kept locally for reference, not pushed)
+.internal/
+internal/
+massive_arch_elk_raw.json
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# System
+.DS_Store
+Thumbs.db
+
+# Test outputs
+coverage/
+test-outputs/
+
+# IDEs
+.idea/
+.vscode/
+*.swp

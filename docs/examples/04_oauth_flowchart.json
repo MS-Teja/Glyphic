@@ -1,0 +1,107 @@
+{
+  "type": "flowchart",
+  "nodes": [
+    {
+      "id": "start",
+      "label": "User Clicks Login",
+      "shape": "state_start"
+    },
+    {
+      "id": "check_session",
+      "label": "Has active session?",
+      "shape": "diamond"
+    },
+    {
+      "id": "dashboard",
+      "label": "Redirect to Dashboard",
+      "shape": "rounded",
+      "metadata": {
+        "color": "#10b981"
+      }
+    },
+    {
+      "id": "redirect_auth",
+      "label": "Redirect to Auth0 /authorize",
+      "shape": "rectangle"
+    },
+    {
+      "id": "user_consent",
+      "label": "User Grants Consent",
+      "shape": "person"
+    },
+    {
+      "id": "callback",
+      "label": "Redirect back to /callback?code=...",
+      "shape": "rectangle"
+    },
+    {
+      "id": "exchange",
+      "label": "Exchange Code for Tokens",
+      "shape": "rectangle"
+    },
+    {
+      "id": "verify",
+      "label": "Verify ID Token Signature",
+      "shape": "diamond"
+    },
+    {
+      "id": "error",
+      "label": "Show Error Page",
+      "shape": "rounded",
+      "metadata": {
+        "color": "#ef4444"
+      }
+    },
+    {
+      "id": "store",
+      "label": "Store Tokens in HttpOnly Cookie",
+      "shape": "cylinder"
+    }
+  ],
+  "edges": [
+    {
+      "source": "start",
+      "target": "check_session"
+    },
+    {
+      "source": "check_session",
+      "target": "dashboard",
+      "label": "Yes"
+    },
+    {
+      "source": "check_session",
+      "target": "redirect_auth",
+      "label": "No"
+    },
+    {
+      "source": "redirect_auth",
+      "target": "user_consent"
+    },
+    {
+      "source": "user_consent",
+      "target": "callback"
+    },
+    {
+      "source": "callback",
+      "target": "exchange"
+    },
+    {
+      "source": "exchange",
+      "target": "verify"
+    },
+    {
+      "source": "verify",
+      "target": "store",
+      "label": "Valid"
+    },
+    {
+      "source": "verify",
+      "target": "error",
+      "label": "Invalid"
+    },
+    {
+      "source": "store",
+      "target": "dashboard"
+    }
+  ]
+}

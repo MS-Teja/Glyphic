@@ -1,0 +1,128 @@
+{
+  "type": "architecture",
+  "theme": {
+    "fontFamily": "Fira Code"
+  },
+  "nodes": [
+    {
+      "id": "users",
+      "label": "users",
+      "shape": "table",
+      "metadata": {
+        "color": "#8b5cf6"
+      }
+    },
+    {
+      "id": "organizations",
+      "label": "organizations",
+      "shape": "table",
+      "metadata": {
+        "color": "#8b5cf6"
+      }
+    },
+    {
+      "id": "org_members",
+      "label": "org_members",
+      "shape": "table",
+      "metadata": {
+        "color": "#8b5cf6"
+      }
+    },
+    {
+      "id": "projects",
+      "label": "projects",
+      "shape": "table",
+      "metadata": {
+        "color": "#ec4899"
+      }
+    },
+    {
+      "id": "tasks",
+      "label": "tasks",
+      "shape": "table",
+      "metadata": {
+        "color": "#ec4899"
+      }
+    },
+    {
+      "id": "comments",
+      "label": "comments",
+      "shape": "table",
+      "metadata": {
+        "color": "#ec4899"
+      }
+    },
+    {
+      "id": "tags",
+      "label": "tags",
+      "shape": "table",
+      "metadata": {
+        "color": "#10b981"
+      }
+    },
+    {
+      "id": "task_tags",
+      "label": "task_tags",
+      "shape": "table",
+      "metadata": {
+        "color": "#10b981"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "organizations",
+      "target": "org_members",
+      "label": "1:N",
+      "arrow": "crow"
+    },
+    {
+      "source": "users",
+      "target": "org_members",
+      "label": "1:N",
+      "arrow": "crow"
+    },
+    {
+      "source": "organizations",
+      "target": "projects",
+      "label": "1:N",
+      "arrow": "crow"
+    },
+    {
+      "source": "projects",
+      "target": "tasks",
+      "label": "1:N",
+      "arrow": "crow"
+    },
+    {
+      "source": "users",
+      "target": "tasks",
+      "label": "Assignee (1:N)",
+      "arrow": "crow-zero-many"
+    },
+    {
+      "source": "tasks",
+      "target": "comments",
+      "label": "1:N",
+      "arrow": "crow"
+    },
+    {
+      "source": "users",
+      "target": "comments",
+      "label": "Author (1:N)",
+      "arrow": "crow"
+    },
+    {
+      "source": "tasks",
+      "target": "task_tags",
+      "label": "1:N",
+      "arrow": "crow"
+    },
+    {
+      "source": "tags",
+      "target": "task_tags",
+      "label": "1:N",
+      "arrow": "crow"
+    }
+  ]
+}

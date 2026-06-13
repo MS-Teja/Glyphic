@@ -1,0 +1,41 @@
+{
+  "type": "sankey",
+  "nodes": [
+    { "id": "vc_a", "label": "Sequoia Capital", "color": "#dc2626" },
+    { "id": "vc_b", "label": "a16z", "color": "#ea580c" },
+    { "id": "vc_c", "label": "Y Combinator", "color": "#f59e0b" },
+    { "id": "series_a", "label": "Series A", "color": "#8b5cf6" },
+    { "id": "series_b", "label": "Series B", "color": "#6366f1" },
+    { "id": "engineering", "label": "Engineering", "color": "#3b82f6" },
+    { "id": "marketing", "label": "Marketing", "color": "#ec4899" },
+    { "id": "ops", "label": "Operations", "color": "#14b8a6" },
+    { "id": "rd", "label": "R&D", "color": "#06b6d4" },
+    { "id": "salaries", "label": "Salaries", "color": "#10b981" },
+    { "id": "infra", "label": "Cloud Infra", "color": "#0ea5e9" },
+    { "id": "ads", "label": "Paid Ads", "color": "#f43f5e" },
+    { "id": "content", "label": "Content & Events", "color": "#d946ef" },
+    { "id": "revenue", "label": "Revenue", "color": "#22c55e" }
+  ],
+  "edges": [
+    { "source": "vc_a", "target": "series_a", "value": 15 },
+    { "source": "vc_b", "target": "series_a", "value": 10 },
+    { "source": "vc_c", "target": "series_a", "value": 5 },
+    { "source": "vc_a", "target": "series_b", "value": 25 },
+    { "source": "vc_b", "target": "series_b", "value": 20 },
+    { "source": "series_a", "target": "engineering", "value": 18 },
+    { "source": "series_a", "target": "marketing", "value": 8 },
+    { "source": "series_a", "target": "ops", "value": 4 },
+    { "source": "series_b", "target": "engineering", "value": 22 },
+    { "source": "series_b", "target": "rd", "value": 15 },
+    { "source": "series_b", "target": "marketing", "value": 8 },
+    { "source": "engineering", "target": "salaries", "value": 28 },
+    { "source": "engineering", "target": "infra", "value": 12 },
+    { "source": "rd", "target": "salaries", "value": 10 },
+    { "source": "rd", "target": "infra", "value": 5 },
+    { "source": "marketing", "target": "ads", "value": 10 },
+    { "source": "marketing", "target": "content", "value": 6 },
+    { "source": "ops", "target": "salaries", "value": 4 },
+    { "source": "ads", "target": "revenue", "value": 10 },
+    { "source": "content", "target": "revenue", "value": 6 }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "type": "mindmap",
+  "nodes": [
+    {
+      "id": "core",
+      "label": "Glyphic Core Engine",
+      "shape": "rectangle",
+      "icon": "fas-brain"
+    },
+    {
+      "id": "layout",
+      "label": "Layout Strategies",
+      "shape": "rounded"
+    },
+    {
+      "id": "render",
+      "label": "Render Engines",
+      "shape": "rounded"
+    },
+    {
+      "id": "elk",
+      "label": "ELK.js",
+      "shape": "cloud"
+    },
+    {
+      "id": "grid",
+      "label": "Grid Adapter",
+      "shape": "cloud"
+    },
+    {
+      "id": "svg",
+      "label": "SVG Compiler",
+      "shape": "cloud"
+    },
+    {
+      "id": "react",
+      "label": "React Flow Exporter",
+      "shape": "cloud"
+    }
+  ],
+  "edges": [
+    {
+      "source": "core",
+      "target": "layout"
+    },
+    {
+      "source": "core",
+      "target": "render"
+    },
+    {
+      "source": "layout",
+      "target": "elk"
+    },
+    {
+      "source": "layout",
+      "target": "grid"
+    },
+    {
+      "source": "render",
+      "target": "svg"
+    },
+    {
+      "source": "render",
+      "target": "react"
+    }
+  ]
+}

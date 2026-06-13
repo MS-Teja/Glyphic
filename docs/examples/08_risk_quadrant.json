@@ -1,0 +1,34 @@
+{
+  "type": "quadrant",
+  "title": "Enterprise IT Risk Matrix",
+  "xAxis": {
+    "left": "Low Urgency",
+    "right": "High Urgency"
+  },
+  "yAxis": {
+    "bottom": "Low Impact",
+    "top": "High Impact"
+  },
+  "points": [
+    {
+      "label": "Legacy DB Migration",
+      "x": 0.8,
+      "y": 0.9
+    },
+    {
+      "label": "UI Redesign",
+      "x": 0.2,
+      "y": 0.4
+    },
+    {
+      "label": "Security Patch 4.1",
+      "x": 0.9,
+      "y": 0.8
+    },
+    {
+      "label": "New Employee Onboarding",
+      "x": 0.4,
+      "y": 0.2
+    }
+  ]
+}

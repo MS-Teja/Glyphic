@@ -1,0 +1,179 @@
+{
+  "type": "architecture",
+  "direction": "LR",
+  "theme": {
+    "background": "#0a0a1a",
+    "nodeBackground": "#1a1a2e",
+    "nodeBorder": "#e94560",
+    "nodeText": "#eaeaea",
+    "edgeColor": "#533a71",
+    "edgeLabelColor": "#a78bfa",
+    "fontFamily": "Outfit"
+  },
+  "nodes": [
+    {
+      "id": "death_star",
+      "label": "Death Star\nCommand Center",
+      "shape": "hexagon",
+      "icon": "fas-skull-crossbones",
+      "metadata": { "color": "#dc2626" }
+    },
+    {
+      "id": "imperial_fleet",
+      "label": "Imperial Star Fleet",
+      "shape": "rectangle"
+    },
+    {
+      "id": "vader_sd",
+      "label": "Executor\n(Vader's Flagship)",
+      "shape": "diamond",
+      "groupId": "imperial_fleet",
+      "icon": "fas-chess-king",
+      "metadata": { "color": "#7c3aed" }
+    },
+    {
+      "id": "isd_1",
+      "label": "ISD Devastator",
+      "shape": "rectangle",
+      "groupId": "imperial_fleet",
+      "icon": "fas-rocket",
+      "metadata": { "color": "#4c1d95" }
+    },
+    {
+      "id": "isd_2",
+      "label": "ISD Avenger",
+      "shape": "rectangle",
+      "groupId": "imperial_fleet",
+      "icon": "fas-rocket",
+      "metadata": { "color": "#4c1d95" }
+    },
+    {
+      "id": "imperial_comms",
+      "label": "HoloNet Relay",
+      "shape": "cloud",
+      "icon": "fas-satellite-dish",
+      "metadata": { "color": "#1e40af" }
+    },
+    {
+      "id": "rebel_base",
+      "label": "Rebel Alliance\nSecret Base",
+      "shape": "rectangle"
+    },
+    {
+      "id": "command",
+      "label": "Mon Mothma\nHigh Command",
+      "shape": "person",
+      "groupId": "rebel_base",
+      "icon": "fas-star",
+      "metadata": { "color": "#059669" }
+    },
+    {
+      "id": "intel",
+      "label": "Bothan Spy Network",
+      "shape": "hexagon",
+      "groupId": "rebel_base",
+      "icon": "fas-user-secret",
+      "metadata": { "color": "#d97706" }
+    },
+    {
+      "id": "x_wing_squad",
+      "label": "Red Squadron\nX-Wings",
+      "shape": "rounded",
+      "icon": "fas-fighter-jet",
+      "metadata": { "color": "#b91c1c" }
+    },
+    {
+      "id": "falcon",
+      "label": "Millennium Falcon",
+      "shape": "rounded",
+      "icon": "fas-shuttle-space",
+      "metadata": { "color": "#78716c" }
+    },
+    {
+      "id": "force",
+      "label": "The Force",
+      "shape": "diamond",
+      "icon": "fas-yin-yang",
+      "metadata": { "color": "#0ea5e9" }
+    }
+  ],
+  "edges": [
+    {
+      "source": "death_star",
+      "target": "imperial_comms",
+      "label": "Command Signal",
+      "metadata": { "color": "#ef4444" }
+    },
+    {
+      "source": "imperial_comms",
+      "target": "vader_sd",
+      "label": "Encrypted Orders",
+      "metadata": { "color": "#ef4444" }
+    },
+    {
+      "source": "vader_sd",
+      "target": "isd_1",
+      "label": "Fleet Command",
+      "metadata": { "color": "#a855f7" }
+    },
+    {
+      "source": "vader_sd",
+      "target": "isd_2",
+      "label": "Fleet Command",
+      "metadata": { "color": "#a855f7" }
+    },
+    {
+      "source": "intel",
+      "target": "imperial_comms",
+      "label": "Intercept Intel",
+      "style": "dashed",
+      "metadata": { "color": "#f59e0b" }
+    },
+    {
+      "source": "intel",
+      "target": "command",
+      "label": "Brief Leadership",
+      "metadata": { "color": "#22c55e" }
+    },
+    {
+      "source": "command",
+      "target": "x_wing_squad",
+      "label": "Attack Order",
+      "metadata": { "color": "#22c55e" }
+    },
+    {
+      "source": "command",
+      "target": "falcon",
+      "label": "Shield Mission",
+      "metadata": { "color": "#22c55e" }
+    },
+    {
+      "source": "x_wing_squad",
+      "target": "death_star",
+      "label": "Trench Run",
+      "style": "dashed",
+      "metadata": { "color": "#ef4444" }
+    },
+    {
+      "source": "falcon",
+      "target": "isd_1",
+      "label": "Distraction",
+      "style": "dotted",
+      "metadata": { "color": "#78716c" }
+    },
+    {
+      "source": "force",
+      "target": "x_wing_squad",
+      "label": "Use the Force, Luke",
+      "style": "dotted",
+      "metadata": { "color": "#38bdf8" }
+    },
+    {
+      "source": "force",
+      "target": "vader_sd",
+      "label": "Dark Side",
+      "style": "dotted",
+      "metadata": { "color": "#dc2626" }
+    }
+  ]
+}

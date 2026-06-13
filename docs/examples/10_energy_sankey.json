@@ -1,0 +1,52 @@
+{
+  "type": "sankey",
+  "nodes": [
+    {
+      "id": "coal",
+      "label": "Coal Plant",
+      "color": "#334155"
+    },
+    {
+      "id": "solar",
+      "label": "Solar Farm",
+      "color": "#f59e0b"
+    },
+    {
+      "id": "grid",
+      "label": "National Grid",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "city",
+      "label": "Metropolis",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "industry",
+      "label": "Heavy Industry",
+      "color": "#ef4444"
+    }
+  ],
+  "edges": [
+    {
+      "source": "coal",
+      "target": "grid",
+      "value": 60
+    },
+    {
+      "source": "solar",
+      "target": "grid",
+      "value": 40
+    },
+    {
+      "source": "grid",
+      "target": "city",
+      "value": 50
+    },
+    {
+      "source": "grid",
+      "target": "industry",
+      "value": 50
+    }
+  ]
+}

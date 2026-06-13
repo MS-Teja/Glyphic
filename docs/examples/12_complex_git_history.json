@@ -1,0 +1,140 @@
+{
+  "type": "git",
+  "commits": [
+    {
+      "id": "init",
+      "message": "Initial monorepo setup",
+      "branch": "main"
+    },
+    {
+      "id": "ci",
+      "message": "Add GitHub Actions CI",
+      "branch": "main",
+      "parents": ["init"]
+    },
+    {
+      "id": "schema-start",
+      "message": "Create @glyphic/schema package",
+      "branch": "feature/schema",
+      "parents": ["ci"]
+    },
+    {
+      "id": "core-start",
+      "message": "Bootstrap @glyphic/core",
+      "branch": "feature/core-engine",
+      "parents": ["ci"]
+    },
+    {
+      "id": "schema-zod",
+      "message": "Add Zod validators for all types",
+      "branch": "feature/schema",
+      "parents": ["schema-start"]
+    },
+    {
+      "id": "core-elk",
+      "message": "Integrate ELK.js layout engine",
+      "branch": "feature/core-engine",
+      "parents": ["core-start"]
+    },
+    {
+      "id": "schema-merge",
+      "message": "Merge schema into main",
+      "branch": "main",
+      "parents": ["ci", "schema-zod"],
+      "tag": "v0.1.0"
+    },
+    {
+      "id": "core-svg",
+      "message": "Pure SVG renderer pipeline",
+      "branch": "feature/core-engine",
+      "parents": ["core-elk"]
+    },
+    {
+      "id": "hotfix-ci",
+      "message": "Fix Node 20 CI matrix",
+      "branch": "hotfix/ci-node20",
+      "parents": ["schema-merge"]
+    },
+    {
+      "id": "hotfix-merge",
+      "message": "Merge CI hotfix",
+      "branch": "main",
+      "parents": ["schema-merge", "hotfix-ci"]
+    },
+    {
+      "id": "core-shapes",
+      "message": "Add cylinder, diamond, hexagon shapes",
+      "branch": "feature/core-engine",
+      "parents": ["core-svg"]
+    },
+    {
+      "id": "core-merge",
+      "message": "Merge core engine",
+      "branch": "main",
+      "parents": ["hotfix-merge", "core-shapes"],
+      "tag": "v0.2.0"
+    },
+    {
+      "id": "mcp-start",
+      "message": "Scaffold MCP server package",
+      "branch": "feature/mcp-server",
+      "parents": ["core-merge"]
+    },
+    {
+      "id": "gantt-start",
+      "message": "Custom Gantt time adapter",
+      "branch": "feature/gantt-sankey",
+      "parents": ["core-merge"]
+    },
+    {
+      "id": "mcp-tool",
+      "message": "Implement generate_diagram tool",
+      "branch": "feature/mcp-server",
+      "parents": ["mcp-start"]
+    },
+    {
+      "id": "gantt-done",
+      "message": "Gantt + Sankey flow engine complete",
+      "branch": "feature/gantt-sankey",
+      "parents": ["gantt-start"]
+    },
+    {
+      "id": "gantt-merge",
+      "message": "Merge Gantt & Sankey",
+      "branch": "main",
+      "parents": ["core-merge", "gantt-done"]
+    },
+    {
+      "id": "mcp-merge",
+      "message": "Merge MCP server",
+      "branch": "main",
+      "parents": ["gantt-merge", "mcp-tool"],
+      "tag": "v1.0.0"
+    },
+    {
+      "id": "api-start",
+      "message": "Fastify + BullMQ API server",
+      "branch": "feature/hosted-api",
+      "parents": ["mcp-merge"]
+    },
+    {
+      "id": "api-queue",
+      "message": "Add Redis queue + worker threads",
+      "branch": "feature/hosted-api",
+      "parents": ["api-start"]
+    },
+    {
+      "id": "api-deploy",
+      "message": "Railway deployment config",
+      "branch": "feature/hosted-api",
+      "parents": ["api-queue"]
+    },
+    {
+      "id": "api-merge",
+      "message": "Merge hosted API",
+      "branch": "main",
+      "parents": ["mcp-merge", "api-deploy"],
+      "tag": "v1.1.0"
+    }
+  ]
+}

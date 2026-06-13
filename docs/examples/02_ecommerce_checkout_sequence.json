@@ -1,0 +1,124 @@
+{
+  "type": "sequence",
+  "theme": {
+    "background": "#0f172a",
+    "nodeBackground": "#1e293b",
+    "nodeBorder": "#3b82f6",
+    "nodeText": "#f8fafc",
+    "edgeColor": "#94a3b8",
+    "edgeLabelColor": "#cbd5e1"
+  },
+  "participants": [
+    {
+      "id": "user",
+      "label": "Customer",
+      "shape": "actor"
+    },
+    {
+      "id": "frontend",
+      "label": "Web Store",
+      "shape": "service"
+    },
+    {
+      "id": "cart_api",
+      "label": "Cart API",
+      "shape": "service"
+    },
+    {
+      "id": "stripe",
+      "label": "Stripe Gateway",
+      "shape": "service"
+    },
+    {
+      "id": "inventory",
+      "label": "Inventory DB",
+      "shape": "database"
+    }
+  ],
+  "messages": [
+    {
+      "source": "user",
+      "target": "frontend",
+      "label": "Click 'Checkout'",
+      "type": "sync"
+    },
+    {
+      "source": "frontend",
+      "target": "cart_api",
+      "label": "POST /checkout",
+      "type": "sync"
+    },
+    {
+      "source": "cart_api",
+      "target": "inventory",
+      "label": "Check Stock",
+      "type": "sync"
+    },
+    {
+      "source": "inventory",
+      "target": "cart_api",
+      "label": "Stock Reserved",
+      "type": "return"
+    },
+    {
+      "source": "cart_api",
+      "target": "stripe",
+      "label": "Create Payment Intent",
+      "type": "sync"
+    },
+    {
+      "source": "stripe",
+      "target": "cart_api",
+      "label": "Client Secret",
+      "type": "return"
+    },
+    {
+      "source": "cart_api",
+      "target": "frontend",
+      "label": "Render Stripe Elements",
+      "type": "return"
+    },
+    {
+      "source": "user",
+      "target": "frontend",
+      "label": "Submit Card Details",
+      "type": "sync"
+    },
+    {
+      "source": "frontend",
+      "target": "stripe",
+      "label": "Confirm Payment",
+      "type": "async"
+    },
+    {
+      "source": "stripe",
+      "target": "cart_api",
+      "label": "Webhook: payment_intent.succeeded",
+      "type": "async"
+    },
+    {
+      "source": "cart_api",
+      "target": "inventory",
+      "label": "Deduct Stock",
+      "type": "sync"
+    },
+    {
+      "source": "inventory",
+      "target": "cart_api",
+      "label": "Updated",
+      "type": "return"
+    },
+    {
+      "source": "stripe",
+      "target": "frontend",
+      "label": "Payment Success URL",
+      "type": "return"
+    },
+    {
+      "source": "frontend",
+      "target": "user",
+      "label": "Show Order Confirmation",
+      "type": "return"
+    }
+  ]
+}

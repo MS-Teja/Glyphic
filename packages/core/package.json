@@ -1,0 +1,33 @@
+{
+  "name": "@glyphic/core",
+  "version": "1.0.0",
+  "description": "Layout and rendering engine for Glyphic",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-brands-svg-icons": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
+    "@glyphic/schema": "workspace:*",
+    "@resvg/resvg-js": "^2.6.2",
+    "d3-sankey": "^0.12.3",
+    "d3-shape": "^3.2.0",
+    "elkjs": "^0.9.3"
+  },
+  "devDependencies": {
+    "@types/d3-sankey": "^0.12.5",
+    "@types/d3-shape": "^3.1.8",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}

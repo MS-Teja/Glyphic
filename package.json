@@ -1,0 +1,39 @@
+{
+  "name": "glyphic-monorepo",
+  "version": "1.0.0",
+  "description": "Glyphic: Machine-first diagramming infrastructure",
+  "private": true,
+  "packageManager": "pnpm@11.5.2",
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "builtDependencies": [
+      "msgpackr-extract"
+    ]
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test",
+    "release": "turbo build && pnpm --filter @glyphic/schema --filter @glyphic/core --filter @glyphic/mcp-server publish --access public",
+    "lint": "turbo lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.5.2",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "turbo": "^2.9.16",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
+  }
+}

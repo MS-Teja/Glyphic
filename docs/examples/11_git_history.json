@@ -1,0 +1,52 @@
+{
+  "type": "git",
+  "commits": [
+    {
+      "id": "c1",
+      "message": "Initial commit",
+      "branch": "main"
+    },
+    {
+      "id": "c2",
+      "message": "Add core schemas",
+      "branch": "main",
+      "parents": [
+        "c1"
+      ]
+    },
+    {
+      "id": "f1",
+      "message": "Start pie chart feature",
+      "branch": "feature/pie",
+      "parents": [
+        "c2"
+      ]
+    },
+    {
+      "id": "c3",
+      "message": "Hotfix: Fastify crash",
+      "branch": "main",
+      "parents": [
+        "c2"
+      ]
+    },
+    {
+      "id": "f2",
+      "message": "Add explosion radius",
+      "branch": "feature/pie",
+      "parents": [
+        "f1"
+      ]
+    },
+    {
+      "id": "c4",
+      "message": "Merge PR #12",
+      "branch": "main",
+      "parents": [
+        "c3",
+        "f2"
+      ],
+      "tag": "v1.1.0"
+    }
+  ]
+}

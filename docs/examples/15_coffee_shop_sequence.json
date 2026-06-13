@@ -1,0 +1,39 @@
+{
+  "type": "sequence",
+  "theme": {
+    "background": "#fefce8",
+    "nodeBackground": "#fef9c3",
+    "nodeBorder": "#ca8a04",
+    "nodeText": "#422006",
+    "edgeColor": "#a16207",
+    "edgeLabelColor": "#854d0e",
+    "fontFamily": "Outfit"
+  },
+  "participants": [
+    { "id": "barista", "label": "Barista", "shape": "actor" },
+    { "id": "pos", "label": "POS Terminal", "shape": "service" },
+    { "id": "order_q", "label": "Order Queue", "shape": "service" },
+    { "id": "espresso", "label": "Espresso Machine", "shape": "service" },
+    { "id": "milk", "label": "Milk Steamer", "shape": "service" },
+    { "id": "inventory", "label": "Inventory DB", "shape": "database" },
+    { "id": "customer", "label": "Customer", "shape": "actor" }
+  ],
+  "messages": [
+    { "source": "customer", "target": "barista", "label": "Order: Oat Milk Latte, Extra Shot", "type": "sync" },
+    { "source": "barista", "target": "pos", "label": "Ring up order ($6.50)", "type": "sync" },
+    { "source": "pos", "target": "inventory", "label": "Check oat milk stock", "type": "sync" },
+    { "source": "inventory", "target": "pos", "label": "Oat milk: 3 cartons remaining", "type": "return" },
+    { "source": "pos", "target": "order_q", "label": "Enqueue: Latte #247", "type": "sync" },
+    { "source": "pos", "target": "barista", "label": "Order confirmed", "type": "return" },
+    { "source": "order_q", "target": "espresso", "label": "Pull double shot", "type": "async" },
+    { "source": "order_q", "target": "milk", "label": "Steam oat milk (65°C)", "type": "async" },
+    { "source": "espresso", "target": "order_q", "label": "Espresso ready (18s extraction)", "type": "return" },
+    { "source": "milk", "target": "order_q", "label": "Milk steamed & textured", "type": "return" },
+    { "source": "order_q", "target": "barista", "label": "All components ready", "type": "sync" },
+    { "source": "barista", "target": "barista", "label": "Pour latte art (rosetta)", "type": "sync" },
+    { "source": "barista", "target": "inventory", "label": "Deduct: 250ml oat milk, 18g beans", "type": "async" },
+    { "source": "inventory", "target": "barista", "label": "Stock updated", "type": "return" },
+    { "source": "barista", "target": "customer", "label": "Oat Milk Latte ready! ☕", "type": "sync" },
+    { "source": "customer", "target": "barista", "label": "Thanks! *tips $2*", "type": "return" }
+  ]
+}

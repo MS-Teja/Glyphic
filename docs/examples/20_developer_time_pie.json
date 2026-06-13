@@ -1,0 +1,14 @@
+{
+  "type": "pie",
+  "title": "Where Does My Time Go? (A Developer's Week)",
+  "data": [
+    { "label": "Meetings", "value": 25, "color": "#ef4444", "explode": 12 },
+    { "label": "Actually Coding", "value": 20, "color": "#22c55e" },
+    { "label": "Debugging", "value": 18, "color": "#f59e0b" },
+    { "label": "Code Review", "value": 12, "color": "#3b82f6" },
+    { "label": "Stack Overflow", "value": 10, "color": "#8b5cf6" },
+    { "label": "Waiting for CI", "value": 8, "color": "#06b6d4" },
+    { "label": "Slack", "value": 5, "color": "#ec4899" },
+    { "label": "Updating Jira", "value": 2, "color": "#78716c" }
+  ]
+}

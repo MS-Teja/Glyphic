@@ -1,0 +1,14 @@
+[providers]
+node = true
+
+[phases.setup]
+nixPkgs = ["pnpm", "nodejs_20"]
+
+[phases.install]
+cmds = ["pnpm install"]
+
+[phases.build]
+cmds = ["pnpm turbo build --filter @glyphic/api"]
+
+[start]
+cmd = "node apps/api/dist/index.js"

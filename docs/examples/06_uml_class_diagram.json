@@ -1,0 +1,64 @@
+{
+  "type": "architecture",
+  "theme": {
+    "fontFamily": "Fira Code"
+  },
+  "nodes": [
+    {
+      "id": "animal",
+      "label": "Animal",
+      "shape": "class",
+      "metadata": {
+        "color": "#f59e0b",
+        "attributes": [
+          "+ name: String",
+          "+ age: Int"
+        ],
+        "methods": [
+          "+ eat(): void",
+          "+ sleep(): void"
+        ]
+      }
+    },
+    {
+      "id": "dog",
+      "label": "Dog",
+      "shape": "class",
+      "metadata": {
+        "color": "#3b82f6",
+        "attributes": [
+          "+ breed: String"
+        ],
+        "methods": [
+          "+ bark(): void"
+        ]
+      }
+    },
+    {
+      "id": "cat",
+      "label": "Cat",
+      "shape": "class",
+      "metadata": {
+        "color": "#3b82f6",
+        "attributes": [
+          "+ isIndoor: Boolean"
+        ],
+        "methods": [
+          "+ meow(): void"
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "dog",
+      "target": "animal",
+      "arrow": "inheritance"
+    },
+    {
+      "source": "cat",
+      "target": "animal",
+      "arrow": "inheritance"
+    }
+  ]
+}

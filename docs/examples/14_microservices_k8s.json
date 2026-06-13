@@ -1,0 +1,199 @@
+{
+  "type": "architecture",
+  "theme": {
+    "background": "#0f172a",
+    "nodeBackground": "#1e293b",
+    "nodeBorder": "#6366f1",
+    "nodeText": "#f1f5f9",
+    "edgeColor": "#475569",
+    "edgeLabelColor": "#94a3b8",
+    "fontFamily": "Outfit"
+  },
+  "nodes": [
+    {
+      "id": "internet",
+      "label": "Internet",
+      "shape": "cloud",
+      "icon": "fas-globe",
+      "metadata": { "color": "#0ea5e9" }
+    },
+    {
+      "id": "cdn",
+      "label": "Cloudflare CDN",
+      "shape": "hexagon",
+      "icon": "fas-shield-halved",
+      "metadata": { "color": "#f97316" }
+    },
+    {
+      "id": "gateway",
+      "label": "API Gateway\n(Kong)",
+      "shape": "diamond",
+      "icon": "fas-door-open",
+      "metadata": { "color": "#8b5cf6" }
+    },
+    {
+      "id": "k8s_cluster",
+      "label": "Kubernetes Cluster (EKS)",
+      "shape": "rectangle"
+    },
+    {
+      "id": "ns_frontend",
+      "label": "Namespace: frontend",
+      "shape": "rectangle",
+      "groupId": "k8s_cluster"
+    },
+    {
+      "id": "nextjs",
+      "label": "Next.js SSR",
+      "shape": "rounded",
+      "groupId": "ns_frontend",
+      "icon": "fas-code",
+      "metadata": { "color": "#171717" }
+    },
+    {
+      "id": "ns_services",
+      "label": "Namespace: services",
+      "shape": "rectangle",
+      "groupId": "k8s_cluster"
+    },
+    {
+      "id": "user_svc",
+      "label": "User Service",
+      "shape": "rounded",
+      "groupId": "ns_services",
+      "icon": "fas-users",
+      "metadata": { "color": "#2563eb" }
+    },
+    {
+      "id": "order_svc",
+      "label": "Order Service",
+      "shape": "rounded",
+      "groupId": "ns_services",
+      "icon": "fas-shopping-cart",
+      "metadata": { "color": "#16a34a" }
+    },
+    {
+      "id": "payment_svc",
+      "label": "Payment Service",
+      "shape": "rounded",
+      "groupId": "ns_services",
+      "icon": "fas-credit-card",
+      "metadata": { "color": "#dc2626" }
+    },
+    {
+      "id": "notif_svc",
+      "label": "Notification Service",
+      "shape": "rounded",
+      "groupId": "ns_services",
+      "icon": "fas-bell",
+      "metadata": { "color": "#eab308" }
+    },
+    {
+      "id": "ns_data",
+      "label": "Namespace: data",
+      "shape": "rectangle",
+      "groupId": "k8s_cluster"
+    },
+    {
+      "id": "kafka",
+      "label": "Kafka Cluster",
+      "shape": "hexagon",
+      "groupId": "ns_data",
+      "icon": "fas-stream",
+      "metadata": { "color": "#171717" }
+    },
+    {
+      "id": "postgres",
+      "label": "PostgreSQL\n(Primary)",
+      "shape": "database",
+      "groupId": "ns_data",
+      "icon": "fas-database",
+      "metadata": { "color": "#3b82f6" }
+    },
+    {
+      "id": "pg_replica",
+      "label": "PostgreSQL\n(Read Replica)",
+      "shape": "database",
+      "groupId": "ns_data",
+      "icon": "fas-database"
+    },
+    {
+      "id": "redis",
+      "label": "Redis Cluster",
+      "shape": "cylinder",
+      "groupId": "ns_data",
+      "icon": "fas-memory",
+      "metadata": { "color": "#dc2626" }
+    },
+    {
+      "id": "external",
+      "label": "External Services",
+      "shape": "rectangle"
+    },
+    {
+      "id": "stripe",
+      "label": "Stripe API",
+      "shape": "rounded",
+      "groupId": "external",
+      "icon": "fas-credit-card",
+      "metadata": { "color": "#6366f1" }
+    },
+    {
+      "id": "sendgrid",
+      "label": "SendGrid",
+      "shape": "rounded",
+      "groupId": "external",
+      "icon": "fas-envelope",
+      "metadata": { "color": "#0ea5e9" }
+    },
+    {
+      "id": "s3",
+      "label": "S3 Object Store",
+      "shape": "cylinder",
+      "icon": "fas-box-archive",
+      "metadata": { "color": "#22c55e" }
+    },
+    {
+      "id": "monitoring",
+      "label": "Observability Stack",
+      "shape": "rectangle"
+    },
+    {
+      "id": "prometheus",
+      "label": "Prometheus",
+      "shape": "rounded",
+      "groupId": "monitoring",
+      "icon": "fas-chart-line",
+      "metadata": { "color": "#e11d48" }
+    },
+    {
+      "id": "grafana",
+      "label": "Grafana",
+      "shape": "rounded",
+      "groupId": "monitoring",
+      "icon": "fas-chart-bar",
+      "metadata": { "color": "#f97316" }
+    }
+  ],
+  "edges": [
+    { "source": "internet", "target": "cdn", "label": "HTTPS" },
+    { "source": "cdn", "target": "gateway", "label": "TLS Termination" },
+    { "source": "gateway", "target": "nextjs", "label": "SSR Routes" },
+    { "source": "gateway", "target": "user_svc", "label": "/api/users" },
+    { "source": "gateway", "target": "order_svc", "label": "/api/orders" },
+    { "source": "gateway", "target": "payment_svc", "label": "/api/payments" },
+    { "source": "user_svc", "target": "postgres", "label": "Read/Write" },
+    { "source": "order_svc", "target": "postgres", "label": "Write Orders" },
+    { "source": "order_svc", "target": "kafka", "label": "order.created", "metadata": { "color": "#22c55e" } },
+    { "source": "payment_svc", "target": "stripe", "label": "Charge", "metadata": { "color": "#6366f1" } },
+    { "source": "payment_svc", "target": "kafka", "label": "payment.succeeded", "metadata": { "color": "#22c55e" } },
+    { "source": "kafka", "target": "notif_svc", "label": "Consume Events", "style": "dashed", "metadata": { "color": "#eab308" } },
+    { "source": "notif_svc", "target": "sendgrid", "label": "Send Email", "metadata": { "color": "#0ea5e9" } },
+    { "source": "user_svc", "target": "redis", "label": "Session Cache" },
+    { "source": "postgres", "target": "pg_replica", "label": "Streaming Replication", "style": "dashed" },
+    { "source": "nextjs", "target": "pg_replica", "label": "Read-Only Queries", "style": "dashed" },
+    { "source": "nextjs", "target": "s3", "label": "Static Assets" },
+    { "source": "k8s_cluster", "target": "prometheus", "label": "Metrics Scrape", "style": "dotted" },
+    { "source": "prometheus", "target": "grafana", "label": "Data Source" }
+  ]
+}

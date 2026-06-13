@@ -1,0 +1,27 @@
+{
+  "type": "pie",
+  "title": "Global Smartphone Market Share 2026",
+  "data": [
+    {
+      "label": "Apple",
+      "value": 45,
+      "color": "#94a3b8",
+      "explode": 10
+    },
+    {
+      "label": "Samsung",
+      "value": 30,
+      "color": "#3b82f6"
+    },
+    {
+      "label": "Google",
+      "value": 15,
+      "color": "#10b981"
+    },
+    {
+      "label": "Other",
+      "value": 10,
+      "color": "#f59e0b"
+    }
+  ]
+}

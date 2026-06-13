@@ -1,0 +1,84 @@
+{
+  "type": "gantt",
+  "title": "v2.0 Enterprise Release Schedule",
+  "sections": [
+    {
+      "label": "Engineering",
+      "tasks": [
+        {
+          "id": "core",
+          "label": "Core API Refactor",
+          "start": 0,
+          "duration": 14
+        },
+        {
+          "id": "frontend",
+          "label": "React Migration",
+          "start": 7,
+          "duration": 21
+        },
+        {
+          "id": "qa_eng",
+          "label": "Integration Testing",
+          "start": 28,
+          "duration": 7,
+          "dependencies": [
+            "core",
+            "frontend"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Security & Compliance",
+      "tasks": [
+        {
+          "id": "audit",
+          "label": "External Pen Test",
+          "start": 14,
+          "duration": 14
+        },
+        {
+          "id": "soc2",
+          "label": "SOC2 Review",
+          "start": 28,
+          "duration": 10,
+          "dependencies": [
+            "audit"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Marketing & Launch",
+      "tasks": [
+        {
+          "id": "assets",
+          "label": "Prepare Marketing Assets",
+          "start": 20,
+          "duration": 10
+        },
+        {
+          "id": "beta",
+          "label": "Private Beta",
+          "start": 35,
+          "duration": 14,
+          "dependencies": [
+            "qa_eng"
+          ]
+        },
+        {
+          "id": "ga",
+          "label": "General Availability Launch",
+          "start": 49,
+          "duration": 2,
+          "dependencies": [
+            "beta",
+            "soc2",
+            "assets"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "type": "architecture",
+  "theme": {
+    "fontFamily": "Outfit"
+  },
+  "nodes": [
+    {
+      "id": "users",
+      "label": "External Users",
+      "shape": "person",
+      "icon": "fas-users"
+    },
+    {
+      "id": "cdn",
+      "label": "CloudFront CDN",
+      "shape": "cloud",
+      "icon": "fas-bolt"
+    },
+    {
+      "id": "vpc",
+      "label": "Production VPC",
+      "shape": "rectangle"
+    },
+    {
+      "id": "alb",
+      "label": "Application Load Balancer",
+      "shape": "rectangle",
+      "groupId": "vpc",
+      "icon": "fas-network-wired"
+    },
+    {
+      "id": "api_cluster",
+      "label": "API ECS Cluster",
+      "shape": "rectangle",
+      "groupId": "vpc"
+    },
+    {
+      "id": "auth_svc",
+      "label": "Auth Service",
+      "shape": "rectangle",
+      "groupId": "api_cluster",
+      "icon": "fas-lock"
+    },
+    {
+      "id": "billing_svc",
+      "label": "Billing Service",
+      "shape": "rectangle",
+      "groupId": "api_cluster",
+      "icon": "fas-credit-card"
+    },
+    {
+      "id": "db_cluster",
+      "label": "Database Cluster",
+      "shape": "rectangle",
+      "groupId": "vpc"
+    },
+    {
+      "id": "pg_master",
+      "label": "Postgres Primary",
+      "shape": "database",
+      "groupId": "db_cluster",
+      "icon": "fas-database",
+      "metadata": {
+        "color": "#3b82f6"
+      }
+    },
+    {
+      "id": "pg_replica",
+      "label": "Postgres Replica",
+      "shape": "database",
+      "groupId": "db_cluster",
+      "icon": "fas-database"
+    },
+    {
+      "id": "redis",
+      "label": "Redis Cache",
+      "shape": "cylinder",
+      "groupId": "db_cluster",
+      "icon": "fas-memory",
+      "metadata": {
+        "color": "#ef4444"
+      }
+    },
+    {
+      "id": "s3",
+      "label": "S3 Storage",
+      "shape": "cylinder",
+      "icon": "fas-archive",
+      "metadata": {
+        "color": "#10b981"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "users",
+      "target": "cdn",
+      "label": "HTTPS"
+    },
+    {
+      "source": "cdn",
+      "target": "alb",
+      "label": "Forward Cache Miss"
+    },
+    {
+      "source": "alb",
+      "target": "auth_svc",
+      "label": "/auth"
+    },
+    {
+      "source": "alb",
+      "target": "billing_svc",
+      "label": "/billing"
+    },
+    {
+      "source": "auth_svc",
+      "target": "pg_master",
+      "label": "Read/Write Users"
+    },
+    {
+      "source": "billing_svc",
+      "target": "pg_master",
+      "label": "Read/Write Invoices"
+    },
+    {
+      "source": "auth_svc",
+      "target": "redis",
+      "label": "Session Cache"
+    },
+    {
+      "source": "pg_master",
+      "target": "pg_replica",
+      "label": "Async Replication",
+      "style": "dashed"
+    },
+    {
+      "source": "billing_svc",
+      "target": "s3",
+      "label": "Store PDF Receipts"
+    },
+    {
+      "source": "cdn",
+      "target": "s3",
+      "label": "Serve Static Assets"
+    }
+  ]
+}

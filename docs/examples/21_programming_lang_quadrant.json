@@ -1,0 +1,28 @@
+{
+  "type": "quadrant",
+  "title": "Programming Languages: Hype vs. Actual Usage (2026)",
+  "xAxis": {
+    "left": "Niche / Declining",
+    "right": "Mainstream / Growing"
+  },
+  "yAxis": {
+    "bottom": "Low Hype",
+    "top": "Maximum Hype"
+  },
+  "points": [
+    { "label": "Rust", "x": 0.55, "y": 0.95 },
+    { "label": "Python", "x": 0.92, "y": 0.75 },
+    { "label": "TypeScript", "x": 0.85, "y": 0.70 },
+    { "label": "Go", "x": 0.70, "y": 0.50 },
+    { "label": "Zig", "x": 0.20, "y": 0.85 },
+    { "label": "Java", "x": 0.88, "y": 0.20 },
+    { "label": "C++", "x": 0.65, "y": 0.15 },
+    { "label": "PHP", "x": 0.60, "y": 0.05 },
+    { "label": "Mojo", "x": 0.10, "y": 0.90 },
+    { "label": "Kotlin", "x": 0.55, "y": 0.40 },
+    { "label": "Swift", "x": 0.50, "y": 0.35 },
+    { "label": "COBOL", "x": 0.15, "y": 0.02 },
+    { "label": "Elixir", "x": 0.25, "y": 0.55 },
+    { "label": "C#", "x": 0.75, "y": 0.25 }
+  ]
+}

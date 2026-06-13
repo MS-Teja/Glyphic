@@ -1,0 +1,28 @@
+{
+  "name": "@glyphic/mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for Glyphic",
+  "main": "dist/index.js",
+  "bin": {
+    "glyphic-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@glyphic/core": "workspace:*",
+    "@glyphic/schema": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.0.1",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.23.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

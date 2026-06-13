@@ -1,0 +1,165 @@
+{
+  "type": "architecture",
+  "theme": {
+    "fontFamily": "Fira Code"
+  },
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "shape": "class",
+      "icon": "fas-user",
+      "metadata": {
+        "color": "#6366f1",
+        "attributes": [
+          "- id: UUID",
+          "- email: String",
+          "- passwordHash: String",
+          "- role: Role",
+          "- createdAt: DateTime",
+          "- lastLogin: DateTime?"
+        ],
+        "methods": [
+          "+ authenticate(pwd): Boolean",
+          "+ generateToken(): JWT",
+          "+ hasPermission(p): Boolean",
+          "+ resetPassword(): void"
+        ]
+      }
+    },
+    {
+      "id": "role",
+      "label": "<<enum>> Role",
+      "shape": "class",
+      "metadata": {
+        "color": "#8b5cf6",
+        "attributes": [
+          "ADMIN",
+          "EDITOR",
+          "VIEWER",
+          "GUEST"
+        ],
+        "methods": []
+      }
+    },
+    {
+      "id": "workspace",
+      "label": "Workspace",
+      "shape": "class",
+      "icon": "fas-building",
+      "metadata": {
+        "color": "#0ea5e9",
+        "attributes": [
+          "- id: UUID",
+          "- name: String",
+          "- slug: String",
+          "- plan: Plan",
+          "- memberLimit: Int"
+        ],
+        "methods": [
+          "+ invite(email): Invitation",
+          "+ removeMember(uid): void",
+          "+ upgrade(plan): Boolean",
+          "+ getUsage(): Stats"
+        ]
+      }
+    },
+    {
+      "id": "membership",
+      "label": "Membership",
+      "shape": "class",
+      "metadata": {
+        "color": "#14b8a6",
+        "attributes": [
+          "- userId: UUID",
+          "- workspaceId: UUID",
+          "- role: Role",
+          "- joinedAt: DateTime"
+        ],
+        "methods": [
+          "+ changeRole(r): void",
+          "+ isActive(): Boolean"
+        ]
+      }
+    },
+    {
+      "id": "project",
+      "label": "Project",
+      "shape": "class",
+      "icon": "fas-folder-open",
+      "metadata": {
+        "color": "#f59e0b",
+        "attributes": [
+          "- id: UUID",
+          "- name: String",
+          "- description: Text",
+          "- status: ProjectStatus",
+          "- workspaceId: UUID",
+          "- ownerId: UUID"
+        ],
+        "methods": [
+          "+ archive(): void",
+          "+ clone(): Project",
+          "+ addCollaborator(uid): void",
+          "+ getDiagrams(): Diagram[]"
+        ]
+      }
+    },
+    {
+      "id": "diagram",
+      "label": "Diagram",
+      "shape": "class",
+      "icon": "fas-project-diagram",
+      "metadata": {
+        "color": "#ec4899",
+        "attributes": [
+          "- id: UUID",
+          "- title: String",
+          "- type: DiagramType",
+          "- schemaJSON: JSONB",
+          "- svgCache: Text?",
+          "- version: Int",
+          "- projectId: UUID"
+        ],
+        "methods": [
+          "+ render(): RenderResult",
+          "+ fork(): Diagram",
+          "+ getHistory(): Version[]",
+          "+ export(fmt): Buffer"
+        ]
+      }
+    },
+    {
+      "id": "api_key",
+      "label": "APIKey",
+      "shape": "class",
+      "icon": "fas-key",
+      "metadata": {
+        "color": "#ef4444",
+        "attributes": [
+          "- id: UUID",
+          "- keyHash: String",
+          "- prefix: String",
+          "- workspaceId: UUID",
+          "- scopes: String[]",
+          "- expiresAt: DateTime?"
+        ],
+        "methods": [
+          "+ validate(): Boolean",
+          "+ revoke(): void",
+          "+ rotate(): APIKey"
+        ]
+      }
+    }
+  ],
+  "edges": [
+    { "source": "user", "target": "role", "label": "has", "arrow": "aggregation" },
+    { "source": "user", "target": "membership", "label": "1..*", "arrow": "composition" },
+    { "source": "workspace", "target": "membership", "label": "1..*", "arrow": "composition" },
+    { "source": "workspace", "target": "project", "label": "0..*", "arrow": "composition" },
+    { "source": "workspace", "target": "api_key", "label": "0..*", "arrow": "composition" },
+    { "source": "project", "target": "diagram", "label": "1..*", "arrow": "composition" },
+    { "source": "user", "target": "project", "label": "owns", "arrow": "forward", "style": "dashed" },
+    { "source": "diagram", "target": "diagram", "label": "forked from", "arrow": "dependency", "style": "dotted" }
+  ]
+}

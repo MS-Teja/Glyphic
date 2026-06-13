@@ -28,7 +28,8 @@ Historically, if an LLM needed to generate a diagram, it had two bad options:
 ## 🔥 Cool Features
 
 - **Native FontAwesome Integration**: Simply provide an icon identifier (e.g., `"icon": "fas-database"` or `"icon": "fab-aws"`) and Glyphic will automatically inject the crisp vector directly into the node. No plugins or CSS required.
-- **Custom Theming**: Override the global color palette, default node colors, text colors, and even the edge label colors directly in the JSON. You can also specify Google Fonts (`"fontFamily": "Outfit"`) or provide a direct `.ttf` URL!
+- **Custom Theming**: Pick a built-in preset (`"theme": "dark"` — also `light`, `pastel`, `mono`) or override the palette, node/text/edge colors directly in the JSON. You can also specify Google Fonts (`"fontFamily": "Outfit"`) or provide a direct `.ttf` URL!
+- **Accessible Output**: Every rendered SVG includes `role="img"` and a `<title>` derived from the diagram title, so it works with screen readers out of the box.
 - **Multiple Export Formats**: Out of the box, Glyphic doesn't just output static images. You can request:
   - `png` (High-res raster for chat interfaces)
   - `svg` (Pure scalable vector strings)
@@ -37,12 +38,13 @@ Historically, if an LLM needed to generate a diagram, it had two bad options:
 ---
 
 ## Supported Diagrams
-Glyphic handles the mathematical routing for 13 complex diagram types seamlessly:
+Glyphic handles the mathematical routing for 15 complex diagram types seamlessly:
 - Architecture (Nested VPCs, Clusters)
 - Entity-Relationship (ERD) & UML Class
-- Sequence & State
-- Flowcharts & Timelines (Gantt)
+- Sequence & State machines
+- Flowcharts, Gantt & Timelines
 - Sankeys & Git Trees
+- User Journeys
 - Mindmaps, Pies & Quadrant Charts
 
 Check out the [Examples Gallery](./docs/examples/README.md) to see the JSON schemas side-by-side with their rendered outputs.

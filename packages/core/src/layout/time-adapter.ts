@@ -23,6 +23,7 @@ export function layoutGanttChart(diagram: GanttChartType): LayoutResult {
   let maxTime = -Infinity;
 
   const parsedTasks: any[] = [];
+  const parsedTaskMap = new Map<string, any>();
 
   for (const section of diagram.sections) {
     for (const t of section.tasks) {
@@ -39,7 +40,9 @@ export function layoutGanttChart(diagram: GanttChartType): LayoutResult {
       if (start < minTime) minTime = start;
       if (end > maxTime) maxTime = end;
 
-      parsedTasks.push({ ...t, parsedStart: start, parsedEnd: end, sectionId: section.id || section.label });
+      const parsed = { ...t, parsedStart: start, parsedEnd: end, sectionId: section.id || section.label };
+      parsedTasks.push(parsed);
+      parsedTaskMap.set(t.id, parsed);
     }
   }
 
@@ -85,7 +88,7 @@ export function layoutGanttChart(diagram: GanttChartType): LayoutResult {
     currentY += rowHeight;
 
     for (const t of section.tasks) {
-      const parsed = parsedTasks.find(pt => pt.id === t.id);
+      const parsed = parsedTaskMap.get(t.id);
       const startX = leftMargin + (parsed.parsedStart - minTime) * scale;
       const width = (parsed.parsedEnd - parsed.parsedStart) * scale;
 

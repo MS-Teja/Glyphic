@@ -83,10 +83,11 @@ function buildGanttChart(layout: LayoutResult, theme: ThemeColors, elements: Sce
 }
 
 function buildSankeyDiagram(layout: LayoutResult, theme: ThemeColors, elements: SceneElement[]) {
+  const nodeById = new Map(layout.nodes.map((n) => [n.id, n] as const));
   // Edges first
   for (const edge of layout.edges) {
-    const srcNode = layout.nodes.find(n => n.id === edge.source);
-    const tgtNode = layout.nodes.find(n => n.id === edge.target);
+    const srcNode = nodeById.get(edge.source);
+    const tgtNode = nodeById.get(edge.target);
     if (!srcNode || !tgtNode) continue;
 
     const startX = srcNode.x + srcNode.width;
@@ -112,10 +113,11 @@ function buildSankeyDiagram(layout: LayoutResult, theme: ThemeColors, elements: 
 
 function buildGitGraph(layout: LayoutResult, theme: ThemeColors, elements: SceneElement[]) {
   const branchColors = ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899"];
+  const nodeById = new Map(layout.nodes.map((n) => [n.id, n] as const));
 
   for (const edge of layout.edges) {
-    const srcNode = layout.nodes.find(n => n.id === edge.source);
-    const tgtNode = layout.nodes.find(n => n.id === edge.target);
+    const srcNode = nodeById.get(edge.source);
+    const tgtNode = nodeById.get(edge.target);
     if (!srcNode || !tgtNode) continue;
 
     const srcX = srcNode.x;

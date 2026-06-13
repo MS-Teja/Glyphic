@@ -426,22 +426,31 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
 
 // --- Edge Routing ---
 
+// Flattened id->node index, memoized per node array so edge routing is O(1)
+// per lookup instead of a recursive O(N) scan per edge (was O(E*N) overall).
+const nodeIndexCache = new WeakMap<LayoutNode[], Map<string, LayoutNode>>();
+function getNodeIndex(nodes: LayoutNode[]): Map<string, LayoutNode> {
+  let idx = nodeIndexCache.get(nodes);
+  if (!idx) {
+    idx = new Map<string, LayoutNode>();
+    const walk = (list: LayoutNode[]) => {
+      for (const n of list) {
+        idx!.set(n.id, n);
+        if (n.children) walk(n.children);
+      }
+    };
+    walk(nodes);
+    nodeIndexCache.set(nodes, idx);
+  }
+  return idx;
+}
+
 function buildEdgePath(edge: LayoutEdge, nodes: LayoutNode[]): string {
   if (!edge.sections || edge.sections.length === 0) return "";
-  
-  const findNode = (id: string, nList: LayoutNode[]): LayoutNode | undefined => {
-    for (const n of nList) {
-      if (n.id === id) return n;
-      if (n.children) {
-        const found = findNode(id, n.children);
-        if (found) return found;
-      }
-    }
-    return undefined;
-  };
-  
-  const sourceNode = findNode(edge.source, nodes);
-  const targetNode = findNode(edge.target, nodes);
+
+  const nodeIndex = getNodeIndex(nodes);
+  const sourceNode = nodeIndex.get(edge.source);
+  const targetNode = nodeIndex.get(edge.target);
   
   const parts: string[] = [];
   for (const sec of edge.sections) {
@@ -803,16 +812,21 @@ export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<Theme
   return { width, height, elements, defs };
 }
 
-export function getMarkerDefs(theme: ThemeColors = DEFAULT_THEME, customColors: string[] = []): string {
-  let defs = "";
+const markerDefsCache = new Map<string, string>();
 
+export function getMarkerDefs(theme: ThemeColors = DEFAULT_THEME, customColors: string[] = []): string {
+  const cacheKey = `${theme.edgeColor}|${theme.background}|${[...customColors].sort().join(",")}`;
+  const cached = markerDefsCache.get(cacheKey);
+  if (cached !== undefined) return cached;
+
+  const parts: string[] = [];
   const styles = ["solid", "dashed", "dotted"];
   const colors = [theme.edgeColor, ...customColors];
 
   for (const color of colors) {
     const colorId = color === theme.edgeColor ? "" : `-${color.replace('#', '')}`;
     for (const style of styles) {
-      defs += `
+      parts.push(`
         <marker id="arrow-${style}${colorId}" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
           <path d="M 0 0 L 12 6 L 0 12 z" fill="${color}" />
         </marker>
@@ -847,8 +861,12 @@ export function getMarkerDefs(theme: ThemeColors = DEFAULT_THEME, customColors: 
         <marker id="arrow-one-one-${style}${colorId}" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
           <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </marker>
-      `;
+      `);
     }
   }
+
+  const defs = parts.join("");
+  if (markerDefsCache.size > 100) markerDefsCache.clear();
+  markerDefsCache.set(cacheKey, defs);
   return defs;
 }

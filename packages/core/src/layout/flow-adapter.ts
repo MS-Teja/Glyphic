@@ -60,6 +60,7 @@ export function layoutGitGraph(diagram: GitGraphType): LayoutResult {
 
   // Track branches to assign them specific Y lanes
   const branches = Array.from(new Set(diagram.commits.map(c => c.branch)));
+  const lastCommitByBranch = new Map<string, string>();
   
   const width = Math.max(800, diagram.commits.length * colWidth + 100);
   const height = Math.max(400, branches.length * rowHeight + 100);
@@ -96,13 +97,13 @@ export function layoutGitGraph(diagram: GitGraphType): LayoutResult {
           sections: [] // Handled by git renderer
         });
       });
-    } else if (idx > 0) {
-      // Implicit parent is the last commit on the same branch
-      const prev = diagram.commits.slice(0, idx).reverse().find(prevC => prevC.branch === c.branch);
-      if (prev) {
+    } else {
+      // Implicit parent is the last commit seen on the same branch (O(1)).
+      const prevId = lastCommitByBranch.get(c.branch);
+      if (prevId) {
         edges.push({
-          id: `git_${prev.id}_${c.id}`,
-          source: prev.id,
+          id: `git_${prevId}_${c.id}`,
+          source: prevId,
           target: c.id,
           style: "solid",
           arrow: "forward",
@@ -110,6 +111,8 @@ export function layoutGitGraph(diagram: GitGraphType): LayoutResult {
         });
       }
     }
+
+    lastCommitByBranch.set(c.branch, c.id);
   });
 
   return { width, height, nodes, edges };

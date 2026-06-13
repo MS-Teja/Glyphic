@@ -1,6 +1,7 @@
 import { LayoutResult } from "../../layout/types.js";
 import { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
 import { ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
+import { resolveFontFamily } from "../theme.js";
 
 export function buildFlowSceneGraph(layout: LayoutResult, diagramType: string, theme: ThemeColors = DEFAULT_THEME): SceneGraph {
   const width = layout.width + PADDING * 2;
@@ -33,7 +34,7 @@ function buildGanttChart(layout: LayoutResult, theme: ThemeColors, elements: Sce
   if (!config) return;
 
   if (config.title) {
-    elements.push({ type: 'text', x: layout.width / 2, y: 40, content: config.title, textAnchor: 'middle', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 24, fontWeight: 700, fill: theme.nodeText });
+    elements.push({ type: 'text', x: layout.width / 2, y: 40, content: config.title, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 24, fontWeight: 700, fill: theme.nodeText });
   }
 
   const gridSteps = 10;
@@ -49,14 +50,14 @@ function buildGanttChart(layout: LayoutResult, theme: ThemeColors, elements: Sce
     if (config.dateFormat !== "generic") {
       labelText = new Date(timeVal).toLocaleDateString();
     }
-    elements.push({ type: 'text', x, y: 70, content: labelText, textAnchor: 'middle', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 12, fill: theme.edgeLabelColor });
+    elements.push({ type: 'text', x, y: 70, content: labelText, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 12, fill: theme.edgeLabelColor });
   }
 
   for (const node of layout.nodes) {
     if (node.shape === "gantt_section") {
-      elements.push({ type: 'text', x: node.x, y: node.y + node.height / 2, content: node.label, dominantBaseline: 'central', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 16, fontWeight: 700, fill: theme.nodeText });
+      elements.push({ type: 'text', x: node.x, y: node.y + node.height / 2, content: node.label, dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 16, fontWeight: 700, fill: theme.nodeText });
     } else if (node.shape === "gantt_task_label") {
-      elements.push({ type: 'text', x: node.x, y: node.y + node.height / 2, content: node.label, dominantBaseline: 'central', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 14, fill: theme.nodeText });
+      elements.push({ type: 'text', x: node.x, y: node.y + node.height / 2, content: node.label, dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fill: theme.nodeText });
     } else if (node.shape === "gantt_task") {
       elements.push({ type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, rx: 6, ry: 6, fill: theme.nodeBackground, stroke: theme.nodeBorder, strokeWidth: 2 });
     }
@@ -107,7 +108,7 @@ function buildSankeyDiagram(layout: LayoutResult, theme: ThemeColors, elements: 
   for (const node of layout.nodes) {
     const color = node.metadata?.color || theme.nodeBorder;
     elements.push({ type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, fill: color, rx: 4, ry: 4 });
-    elements.push({ type: 'text', x: node.x + node.width / 2, y: node.y - 10, content: node.label, textAnchor: 'middle', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 600, fill: theme.nodeText });
+    elements.push({ type: 'text', x: node.x + node.width / 2, y: node.y - 10, content: node.label, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: theme.nodeText });
   }
 }
 
@@ -142,12 +143,12 @@ function buildGitGraph(layout: LayoutResult, theme: ThemeColors, elements: Scene
     elements.push({ type: 'circle', cx: node.x, cy: node.y, r: 8, fill: theme.background, stroke: color, strokeWidth: 4 });
     
     const yOffset = node.metadata?.alternateLabel ? -24 : 24;
-    elements.push({ type: 'text', x: node.x, y: node.y + yOffset, content: node.label, textAnchor: 'middle', dominantBaseline: 'central', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 12, fill: theme.nodeText });
+    elements.push({ type: 'text', x: node.x, y: node.y + yOffset, content: node.label, textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 12, fill: theme.nodeText });
     
     if (node.metadata?.tag) {
       const tagY = node.y + (node.metadata?.alternateLabel ? -45 : 45);
       elements.push({ type: 'rect', x: node.x - 30, y: tagY - 10, width: 60, height: 20, rx: 4, ry: 4, fill: theme.nodeBackground, stroke: theme.nodeBorder, strokeWidth: 1 });
-      elements.push({ type: 'text', x: node.x, y: tagY, content: node.metadata.tag, textAnchor: 'middle', dominantBaseline: 'central', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 10, fontWeight: 600, fill: theme.nodeText });
+      elements.push({ type: 'text', x: node.x, y: tagY, content: node.metadata.tag, textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 10, fontWeight: 600, fill: theme.nodeText });
     }
   }
 }

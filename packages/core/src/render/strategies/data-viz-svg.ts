@@ -1,6 +1,7 @@
 import { LayoutResult } from "../../layout/types.js";
 import { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
 import { ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
+import { resolveFontFamily } from "../theme.js";
 
 function getColorsForSlices(count: number): string[] {
   const palette = [
@@ -28,7 +29,7 @@ export function buildDataVizSceneGraph(layout: LayoutResult, diagramType: string
   if (titleNode) {
     rootGroup.children.push({
       type: 'text', x: titleNode.x, y: titleNode.y, content: titleNode.label,
-      textAnchor: 'middle', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 24, fontWeight: 700, fill: theme.nodeText
+      textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 24, fontWeight: 700, fill: theme.nodeText
     });
   }
 
@@ -192,7 +193,7 @@ function buildPieChart(layout: LayoutResult, theme: ThemeColors, elements: Scene
     const displayVal = Number(info.rawValue.toFixed(1));
     elements.push({
       type: 'text', x: info.labelX, y: info.labelY, content: `${info.slice.label} (${displayVal}%)`,
-      textAnchor: info.textAnchor, dominantBaseline: 'central', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 12, fontWeight: 600, fill: theme.nodeText
+      textAnchor: info.textAnchor, dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 12, fontWeight: 600, fill: theme.nodeText
     });
   }
 }
@@ -211,19 +212,19 @@ function buildQuadrantChart(layout: LayoutResult, theme: ThemeColors, elements: 
   const axesNode = layout.nodes.find(n => n.shape === "axes");
   if (axesNode && axesNode.metadata) {
     const { xAxis, yAxis } = axesNode.metadata;
-    elements.push({ type: 'text', x: xOffset + boxSize / 4, y: yOffset + boxSize + 24, content: xAxis.left, textAnchor: 'middle', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 600, fill: theme.nodeText });
-    elements.push({ type: 'text', x: xOffset + boxSize * 0.75, y: yOffset + boxSize + 24, content: xAxis.right, textAnchor: 'middle', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 600, fill: theme.nodeText });
+    elements.push({ type: 'text', x: xOffset + boxSize / 4, y: yOffset + boxSize + 24, content: xAxis.left, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: theme.nodeText });
+    elements.push({ type: 'text', x: xOffset + boxSize * 0.75, y: yOffset + boxSize + 24, content: xAxis.right, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: theme.nodeText });
     
     // Using group for transform
     elements.push({
       type: 'group',
       transform: `rotate(-90 ${xOffset - 20} ${yOffset + boxSize * 0.75})`,
-      children: [{ type: 'text', x: xOffset - 20, y: yOffset + boxSize * 0.75, content: yAxis.bottom, textAnchor: 'middle', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 600, fill: theme.nodeText }]
+      children: [{ type: 'text', x: xOffset - 20, y: yOffset + boxSize * 0.75, content: yAxis.bottom, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: theme.nodeText }]
     });
     elements.push({
       type: 'group',
       transform: `rotate(-90 ${xOffset - 20} ${yOffset + boxSize * 0.25})`,
-      children: [{ type: 'text', x: xOffset - 20, y: yOffset + boxSize * 0.25, content: yAxis.top, textAnchor: 'middle', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 600, fill: theme.nodeText }]
+      children: [{ type: 'text', x: xOffset - 20, y: yOffset + boxSize * 0.25, content: yAxis.top, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: theme.nodeText }]
     });
   }
 
@@ -261,6 +262,6 @@ function buildQuadrantChart(layout: LayoutResult, theme: ThemeColors, elements: 
     if (Math.abs(ly - (py + 16)) > 2) {
       elements.push({ type: 'line', x1: px, y1: py, x2: lx, y2: ly - 8, stroke: theme.edgeColor, strokeDasharray: "2 2", strokeWidth: 1 });
     }
-    elements.push({ type: 'text', x: lx, y: ly, content: pt.label, textAnchor: 'middle', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 12, fontWeight: 500, fill: theme.nodeText });
+    elements.push({ type: 'text', x: lx, y: ly, content: pt.label, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 12, fontWeight: 500, fill: theme.nodeText });
   }
 }

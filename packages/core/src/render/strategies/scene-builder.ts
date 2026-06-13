@@ -3,6 +3,7 @@ import { SceneGraph, SceneElement, SceneRect, ScenePath, SceneText, SceneCircle,
 import { getPerimeterIntersection, BoundingBox } from "../../math/geometry.js";
 import { getIconSVG } from "../icon-adapter.js";
 import { escapeXml, escapeCssString, sanitizeSvg, isHttpsUrl } from "../sanitize.js";
+import { resolveFontFamily } from "../theme.js";
 
 // Padding around the entire diagram
 export const PADDING = 40;
@@ -286,7 +287,7 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
       elements.push({
         type: 'text', x: cx, y: textY, content: line,
         textAnchor: 'middle', dominantBaseline: 'central',
-        fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 700, fill: c.text
+        fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 700, fill: c.text
       });
       textY += 18; // lineHeight
     });
@@ -321,7 +322,7 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
         if (iconSvg) elements.push({ type: 'raw-svg', svg: iconSvg, x: cx - (iconSize / 2), y: iconY });
         elements.push({
           type: 'text', x: cx, y: textY, content: node.label,
-          textAnchor: 'middle', dominantBaseline: 'central', fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 700, fill: c.text
+          textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 700, fill: c.text
         });
       } else {
         // When no content, stack them with a gap like regular shapes
@@ -331,13 +332,13 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
         if (iconSvg) elements.push({ type: 'raw-svg', svg: iconSvg, x: cx - (iconSize / 2), y: startY });
         elements.push({
           type: 'text', x: cx, y: startY + iconSize + gap + 7, content: node.label,
-          textAnchor: 'middle', dominantBaseline: 'central', fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 700, fill: c.text
+          textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 700, fill: c.text
         });
       }
     } else {
       elements.push({
         type: 'text', x: cx, y: titleCenterY, content: node.label,
-        textAnchor: 'middle', dominantBaseline: 'central', fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 700, fill: c.text
+        textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 700, fill: c.text
       });
     }
     
@@ -345,14 +346,14 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
       let currentY = node.y + classTitleHeight + 4;
       const attributes = Array.isArray(node.metadata?.attributes) ? node.metadata!.attributes! : [];
       for (const attr of attributes) {
-        elements.push({ type: 'text', x: node.x + 10, y: currentY + 12, content: String(attr), textAnchor: 'start', dominantBaseline: 'central', fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 12, fill: c.text });
+        elements.push({ type: 'text', x: node.x + 10, y: currentY + 12, content: String(attr), textAnchor: 'start', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 12, fill: c.text });
         currentY += 24;
       }
       const sepY = node.y + classTitleHeight + attributes.length * 24 + 8;
       let methodY = sepY + 4;
       const methods = Array.isArray(node.metadata?.methods) ? node.metadata!.methods! : [];
       for (const method of methods) {
-        elements.push({ type: 'text', x: node.x + 10, y: methodY + 12, content: String(method), textAnchor: 'start', dominantBaseline: 'central', fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 12, fill: theme.nodeText });
+        elements.push({ type: 'text', x: node.x + 10, y: methodY + 12, content: String(method), textAnchor: 'start', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 12, fill: theme.nodeText });
         methodY += 24;
       }
 
@@ -360,7 +361,7 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
       const columns = Array.isArray(node.metadata?.columns) ? node.metadata!.columns! : [];
       let columnY = node.y + classTitleHeight + 4;
       for (const col of columns) {
-        elements.push({ type: 'text', x: node.x + 10, y: columnY + 12, content: String(col), textAnchor: 'start', dominantBaseline: 'central', fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 12, fill: c.text });
+        elements.push({ type: 'text', x: node.x + 10, y: columnY + 12, content: String(col), textAnchor: 'start', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 12, fill: c.text });
         columnY += 24;
       }
     }
@@ -415,7 +416,7 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
     lines.forEach((line) => {
       elements.push({
         type: 'text', x: cx, y: textY, content: line,
-        textAnchor: 'middle', dominantBaseline: 'central', fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 14, fontWeight: 600, fill: c.text
+        textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: c.text
       });
       textY += lineHeight;
     });
@@ -688,7 +689,7 @@ export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: L
         fontWeight: 500,
         textAnchor: textAnchor,
         dominantBaseline: 'central',
-        fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif'
+        fontFamily: resolveFontFamily(theme.fontFamily)
       });
     });
   }

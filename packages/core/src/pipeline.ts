@@ -1,5 +1,6 @@
 import { DiagramInput, DiagramInputType } from "@glyphic/schema";
 import { layoutDiagram } from "./layout/index.js";
+import { DIAGRAM_REGISTRY } from "./registry.js";
 import { rasterizeSVG } from "./render/rasterizer.js";
 
 import { buildSceneGraph, getMarkerDefs } from "./render/strategies/scene-builder.js";
@@ -24,6 +25,7 @@ export interface RenderResult {
 export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): Promise<RenderResult> {
   // 1. Validate JSON strictly using Zod
   const validatedDiagram: DiagramInputType = DiagramInput.parse(input);
+  const handler = DIAGRAM_REGISTRY[validatedDiagram.type];
 
   let svg = "";
   let scene: SceneGraph;
@@ -32,27 +34,24 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
 
   let layout;
 
-  if (validatedDiagram.type === "canvas") {
+  if (handler.render === "canvas") {
     // Canvas bypasses the layout engine entirely
     scene = buildCanvasSceneGraph(validatedDiagram as any);
     layoutWidth = scene.width;
     layoutHeight = scene.height;
   } else {
-    // 2. Route to layout engine
+    // 2. Route to layout engine, then to the registered rendering strategy
     layout = await layoutDiagram(validatedDiagram);
     layoutWidth = layout.width;
     layoutHeight = layout.height;
-    
+
     const diagType = validatedDiagram.type as string;
-    // 3. Route to rendering strategy
-    if (diagType === "pie" || diagType === "quadrant") {
+    if (handler.render === "data-viz") {
       scene = buildDataVizSceneGraph(layout, diagType);
-    } else if (diagType === "gantt" || diagType === "sankey" || diagType === "git") {
+    } else if (handler.render === "flow") {
       scene = buildFlowSceneGraph(layout, diagType);
     } else {
-      // gantt is handled by buildFlowSceneGraph above; only sequence masks labels here.
-      const maskLabels = diagType === "sequence";
-      scene = buildSceneGraph(layout, (validatedDiagram as any).theme, maskLabels);
+      scene = buildSceneGraph(layout, (validatedDiagram as any).theme, handler.maskLabels ?? false);
     }
   }
 
@@ -63,7 +62,8 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
   const png = rasterizeSVG(svg, { dpi: 2, fontBuffer }); // 2x resolution for crispness
 
   let reactFlowConfig: ReactFlowConfig | undefined;
-  if (layout && validatedDiagram.type !== "canvas" && validatedDiagram.type !== "pie" && validatedDiagram.type !== "quadrant") {
+  // react-flow export applies to graph layouts (scene/flow), not data-viz or canvas.
+  if (layout && handler.render !== "data-viz") {
     reactFlowConfig = exportToReactFlow(layout);
   }
 

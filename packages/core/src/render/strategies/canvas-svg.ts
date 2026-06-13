@@ -1,6 +1,7 @@
 import { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
 import { CanvasDiagramType, CanvasElement } from "@glyphic/schema";
 import { ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
+import { resolveFontFamily } from "../theme.js";
 
 function applyThemeToCanvasElement(element: any, theme: ThemeColors): SceneElement {
   const themedElement = { ...element };
@@ -22,7 +23,7 @@ function applyThemeToCanvasElement(element: any, theme: ThemeColors): SceneEleme
       break;
     case "text":
       if (!themedElement.fill) themedElement.fill = theme.nodeText;
-      if (!themedElement.fontFamily) themedElement.fontFamily = "Inter, system-ui, sans-serif";
+      if (!themedElement.fontFamily) themedElement.fontFamily = resolveFontFamily(theme.fontFamily);
       break;
     case "group":
       themedElement.children = (themedElement.children || []).map((child: any) => applyThemeToCanvasElement(child, theme));

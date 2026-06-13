@@ -1,65 +1,83 @@
 # @glyphic/core
 
-The heart of the Glyphic diagramming infrastructure. This package houses the mathematical layout adapters and the pure SVG rendering pipeline.
-
-It takes declarative JSON structures validated by `@glyphic/schema` and outputs precisely calculated coordinates, native SVG strings, high-resolution PNG buffers, and React Flow representations.
-
-## How it works under the hood
-
-When you call `processDiagram(payload)`, the engine performs a massive amount of invisible labor:
-
-1. **Adapter Selection:** It looks at `payload.type` (e.g. `architecture`, `sequence`, `gantt`) and selects the appropriate mathematical adapter.
-2. **Topological Layout:** 
-   - For `flowchart` and `architecture`, it uses a custom `elkjs` adapter to calculate the lowest common ancestors for nested VPCs/groups, route edges orthogonally around shapes, and prevent edge/label intersections.
-   - For `sankey`, it uses `d3-sankey` to assign proportional link weights.
-   - For `sequence`, it plots a grid matrix of messages against lifelines.
-3. **Scene Building:** It maps the raw X/Y coordinates into a `SceneGraph` object, calculating precise arrowhead geometry perimeters so arrows cleanly dock onto circles, diamonds, or database shapes without bleeding into them.
-4. **Rasterization:** It transforms the SceneGraph into an inline XML SVG string and passes it into the Rust-powered `@resvg/resvg-js` to instantly drop a crisp PNG buffer.
-
-## Installation
+The rendering engine for [Glyphic](../../README.md). Takes a validated diagram (JSON) and returns **SVG**, a high-resolution **PNG**, and **React Flow** JSON — with no headless browser.
 
 ```bash
-npm install @glyphic/core
+npm install @glyphic/core @glyphic/schema
 ```
 
-## Basic Usage
+## Quick start
 
 ```typescript
 import { processDiagram } from "@glyphic/core";
+import { writeFileSync } from "node:fs";
 
-const payload = {
-  type: "mindmap",
+const result = await processDiagram({
+  type: "flowchart",
+  title: "Login flow",
+  direction: "TB",
   nodes: [
-    { id: "core", label: "Central Idea" },
-    { id: "sub", label: "Subtopic" }
+    { id: "start", label: "Visit /login", shape: "rounded" },
+    { id: "auth", label: "Valid credentials?", shape: "diamond" },
+    { id: "ok", label: "Dashboard", shape: "rectangle" },
+    { id: "err", label: "Show error", shape: "rectangle", metadata: { color: "#ef4444" } }
   ],
   edges: [
-    { source: "core", target: "sub" }
+    { source: "start", target: "auth" },
+    { source: "auth", target: "ok", label: "yes" },
+    { source: "auth", target: "err", label: "no" }
   ]
-};
+});
 
-// Generates layout and graphics
-const result = await processDiagram(payload);
-
-// You have access to:
-console.log(result.svg);        // Raw SVG string
-console.log(result.png);        // Buffer (can be saved directly to a file)
-console.log(result.reactFlow);  // Raw coordinates ready for React Flow
+writeFileSync("login.png", result.png);
+writeFileSync("login.svg", result.svg);
 ```
 
-## Supported Shape Identifiers
+## API
 
-The engine natively knows how to draw the following mathematical paths perfectly (even when resized):
-- `rectangle`
-- `rounded`
-- `cylinder`
-- `database`
-- `cloud`
-- `diamond`
-- `hexagon`
-- `person` (actor)
-- `browser`
-- `table`
-- `class`
+### `processDiagram(input, fontBuffer?)`
 
-If you supply an `icon: "fas-server"`, it will automatically inject the corresponding FontAwesome SVG vector data directly into the shape!
+```typescript
+function processDiagram(
+  input: unknown,
+  fontBuffer?: ArrayBuffer
+): Promise<RenderResult>;
+```
+
+- **`input`** — any value; it is validated with `@glyphic/schema`'s `DiagramInput` and **throws a `ZodError`** if invalid. (You can pass an already-parsed object or raw JSON.)
+- **`fontBuffer`** *(optional)* — a `.ttf`/`.otf` buffer embedded into the PNG so a custom font appears in the raster (resvg cannot fetch remote font URLs at rasterization time).
+
+```typescript
+interface RenderResult {
+  svg: string;                 // scalable vector markup (role="img" + <title>)
+  png: Buffer;                 // high-resolution PNG (2× by default)
+  metadata: { width: number; height: number };
+  reactFlow?: ReactFlowConfig; // node/edge & flow diagrams only
+}
+```
+
+> `svg` and `png` are always produced. `reactFlow` is included for graph/flow diagrams (not for `pie`, `quadrant`, or `canvas`).
+
+## How it works
+
+```
+input ──▶ validate (@glyphic/schema)
+      ──▶ layout      (registry → elkjs / d3 / custom adapter)
+      ──▶ scene graph (shapes, labels, edges, markers)
+      ──▶ SVG         (escaped + sanitized output)
+      ──▶ PNG         (@resvg/resvg-js, native)
+```
+
+Each diagram type is wired in [`src/registry.ts`](./src/registry.ts), which maps a `type` to its layout adapter and render strategy — the single place to extend. See [CONTRIBUTING](../../CONTRIBUTING.md).
+
+## Theming, fonts &amp; icons
+
+Pass a `theme` (preset string or object), a `fontFamily` / `customFontUrl`, and FontAwesome icons or `customIcons` directly in the diagram JSON. See the [theming guide](../../docs/theming.md).
+
+## Dependencies
+
+`elkjs` (graph layout), `d3-hierarchy` / `d3-sankey` / `d3-shape` (data layouts), `@resvg/resvg-js` (rasterization), and `@fortawesome/*` (icons).
+
+## License
+
+MIT

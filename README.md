@@ -1,97 +1,55 @@
 <div align="center">
   <h1>Glyphic</h1>
   <p><b>Machine-first diagramming infrastructure.</b></p>
+  <p>Turn pure, semantic JSON into beautiful native SVG &amp; PNG diagrams — built for LLMs and autonomous agents, with no headless browser.</p>
 </div>
 
 <p align="center">
-  Generate beautiful, native SVG and PNG diagrams directly from pure, semantic JSON. Built explicitly for Large Language Models (LLMs) and autonomous agents to create complex visualizations without hallucinating absolute coordinates.
+  <a href="#quick-start">Quick Start</a> ·
+  <a href="./docs/examples/README.md">Examples Gallery</a> ·
+  <a href="./docs/README.md">Documentation</a> ·
+  <a href="#supported-diagrams">18 Diagram Types</a>
+</p>
+
+<p align="center">
+  <img src="./docs/examples/01_cloud_architecture.png" alt="Cloud architecture diagram" width="320" />
+  <img src="./docs/examples/31_dark_cicd_pipeline.png" alt="Dark-mode CI/CD pipeline" width="430" />
 </p>
 
 ---
 
-## The Problem with LLM Diagramming
+## What
 
-Historically, if an LLM needed to generate a diagram, it had two bad options:
-1. **Try to draw it manually (Canvas/SVG):** LLMs lack a visual cortex. If you ask an LLM to draw a flowchart using raw SVG coordinates, the nodes will overlap, the text will overflow, and the connecting lines will pass straight through other elements.
-2. **Use a DSL like Mermaid.js:** Mermaid uses a highly finicky domain-specific language (e.g. `-->|label|`). A single syntax error crashes the entire render. Furthermore, Mermaid relies on headless browsers (Puppeteer) to execute its layout logic, making it extremely slow, resource-heavy to run server-side, and aesthetically limited.
+**Glyphic is infrastructure for generating diagrams from structured data.** You give it a strict, semantic JSON document — arrays of `nodes` and `edges`, or `entities`, or `commits` — and it returns a polished diagram as:
 
-## The Glyphic Solution
+- **SVG** — pure, scalable vector markup (accessible: `role="img"` + `<title>`).
+- **PNG** — high-resolution raster, rendered natively via Rust (`@resvg/resvg-js`).
+- **React Flow JSON** — nodes/edges mapped for an interactive React Flow canvas.
 
-**Glyphic bypasses headless browsers entirely.** It separates *semantics* (what the diagram means) from *visuals* (where things are drawn).
+It supports **18 diagram types** (architecture, sequence, ERD, UML class, state machines, flowcharts, Gantt, timelines, Sankey, Git trees, mindmaps, pie, quadrant, user journeys, Kanban, C4, treemaps, and a freeform canvas) behind a single validated schema.
 
-1. **Machine-First JSON**: The API surface is a strict Zod schema. LLMs output standard JSON arrays of `nodes` and `edges`. This completely eliminates syntax errors.
-2. **Native Math Engines**: Glyphic uses powerful underlying directed-graph mathematical engines (`elkjs` and custom topologic adapters) to calculate perfectly routed paths, intersections, and dimensions without a DOM.
-3. **Rust-Powered Rasterization**: The layout coordinates are instantly compiled into pure SVG and rasterized into high-resolution PNGs via `@resvg/resvg-js` natively in Node.js, yielding blistering fast performance.
+You can use it three ways: as a **library** (`@glyphic/core`), as an **MCP server** (so Claude Desktop / Cursor can draw diagrams as a native tool), or as a **self-hosted HTTP API**.
 
----
+## Why
 
-## 🔥 Cool Features
+If an LLM needs to produce a diagram today, it has two bad options:
 
-- **Native FontAwesome Integration**: Simply provide an icon identifier (e.g., `"icon": "fas-database"` or `"icon": "fab-aws"`) and Glyphic will automatically inject the crisp vector directly into the node. No plugins or CSS required.
-- **Custom Theming**: Pick a built-in preset (`"theme": "dark"` — also `light`, `pastel`, `mono`) or override the palette, node/text/edge colors directly in the JSON. You can also specify Google Fonts (`"fontFamily": "Outfit"`) or provide a direct `.ttf` URL!
-- **Accessible Output**: Every rendered SVG includes `role="img"` and a `<title>` derived from the diagram title, so it works with screen readers out of the box.
-- **Multiple Export Formats**: Out of the box, Glyphic doesn't just output static images. You can request:
-  - `png` (High-res raster for chat interfaces)
-  - `svg` (Pure scalable vector strings)
-  - `react-flow` (Fully mapped nodes and edges ready to be dropped into a React Flow interactive frontend)
+1. **Draw raw SVG/Canvas.** LLMs have no visual cortex — ask one to place nodes by absolute coordinate and they overlap, text overflows, and connectors cut straight through other shapes.
+2. **Emit a DSL like Mermaid.** Mermaid's syntax is finicky (`-->|label|`) and a single typo crashes the whole render. It also relies on a **headless browser (Puppeteer)** to run its layout, which is slow, heavy, and awkward to run server-side.
 
----
+**Glyphic separates _semantics_ (what the diagram means) from _visuals_ (where things are drawn):**
 
-## Supported Diagrams
-Glyphic handles the mathematical routing for 18 complex diagram types seamlessly:
-- Architecture (Nested VPCs, Clusters) & C4 Context
-- Entity-Relationship (ERD) & UML Class
-- Sequence & State machines
-- Flowcharts, Gantt & Timelines
-- Sankeys, Git Trees & Treemaps
-- User Journeys & Kanban Boards
-- Mindmaps, Pies & Quadrant Charts
+- **Machine-first JSON, not a DSL.** The API surface is a strict [Zod](https://zod.dev) schema. Models emit ordinary JSON arrays — no fragile grammar to get wrong, and validation errors come back as precise, fixable messages instead of a crash.
+- **Real layout engines, no DOM.** Routing, intersections, and sizing are computed by mathematical graph engines ([`elkjs`](https://github.com/kieler/elkjs) for graphs, [`d3-hierarchy`](https://github.com/d3/d3-hierarchy)/`d3-sankey` for data) — never a browser.
+- **Native rasterization.** SVG is compiled to PNG by Rust (`@resvg/resvg-js`) directly in Node. Fast, light, and deployable anywhere — no Chromium.
 
-Check out the [Examples Gallery](./docs/examples/README.md) to see the JSON schemas side-by-side with their rendered outputs.
+The result: agents produce **correct, good-looking diagrams on the first try**, and you run it as a normal Node dependency.
 
----
+## How
 
-## Monorepo Architecture
+Pick the integration that fits you.
 
-This repository is powered by `pnpm` workspaces and Turborepo. It is divided into three core open-source libraries and an optional SaaS application.
-
-### The Libraries (NPM Packages)
-- **`@glyphic/schema`**: The pure Zod validation layer. Install this if you want to validate LLM outputs before rendering them.
-- **`@glyphic/core`**: The heavy-lifting engine. Takes valid JSON schemas and returns the SVG/PNG buffers.
-- **`@glyphic/mcp-server`**: An official Model Context Protocol (MCP) wrapper that allows Claude Desktop and Cursor to use Glyphic natively as a tool!
-
-### The Hosted API
-- **`apps/api`**: A production-ready Fastify + BullMQ server. If you don't want to run the heavy math engine inside your own client apps, you can deploy this to Railway or AWS. It provides a highly available REST API (`POST /v1/render`) protected by an API Key.
-
----
-
-## Quick Start: Using in Claude Desktop
-
-You can use Glyphic right now inside Claude Desktop as a native tool.
-
-1. Open your `claude_desktop_config.json` file.
-2. Add the Glyphic MCP Server:
-
-```json
-{
-  "mcpServers": {
-    "glyphic": {
-      "command": "npx",
-      "args": ["-y", "@glyphic/mcp-server"]
-    }
-  }
-}
-```
-
-3. Restart Claude Desktop.
-4. Ask Claude: *"Draw a colorful architecture diagram of a React app talking to an AWS Load Balancer which connects to 3 Node.js EC2 instances and a Postgres database."*
-5. Watch Claude output perfect JSON, execute the tool, and instantly display a high-resolution PNG right in the chat!
-
----
-
-## Developer Guide: Using the Core Engine
-
-If you want to build Glyphic directly into your own Node application (Next.js, Express, etc):
+### 1. As a library
 
 ```bash
 npm install @glyphic/core @glyphic/schema
@@ -99,44 +57,109 @@ npm install @glyphic/core @glyphic/schema
 
 ```typescript
 import { processDiagram } from "@glyphic/core";
-import { DiagramInputType } from "@glyphic/schema";
+import { writeFileSync } from "node:fs";
 
-// 1. Create a pure JSON semantic definition
-const payload: DiagramInputType = {
+const result = await processDiagram({
   type: "architecture",
+  title: "Web App",
   nodes: [
-    { id: "frontend", label: "Web App", icon: "fab-react", shape: "browser" },
-    { id: "db", label: "PostgreSQL", icon: "fas-database", shape: "database" }
+    { id: "web", label: "Web App", shape: "rounded", icon: "fab-react" },
+    { id: "api", label: "API", shape: "hexagon", icon: "fas-bolt" },
+    { id: "db", label: "PostgreSQL", shape: "database", icon: "fas-database" }
   ],
   edges: [
-    { source: "frontend", target: "db", label: "SQL Queries" }
+    { source: "web", target: "api", label: "REST" },
+    { source: "api", target: "db", label: "SQL" }
   ]
-};
+});
 
-// 2. Render instantly
-const result = await processDiagram(payload);
-
-// 3. Do what you want with the outputs!
-fs.writeFileSync("output.png", result.png);
-console.log(result.svg);
-console.log(result.reactFlow); // Native React Flow JSON
+writeFileSync("diagram.png", result.png);   // Buffer (high-res PNG)
+writeFileSync("diagram.svg", result.svg);   // string (scalable SVG)
+console.log(result.reactFlow);              // interactive React Flow JSON
 ```
 
+See the [Core API reference](./docs/api.md).
+
+### 2. As an MCP server (Claude Desktop / Cursor)
+
+Add it to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "glyphic": { "command": "npx", "args": ["-y", "@glyphic/mcp-server"] }
+  }
+}
+```
+
+Restart Claude Desktop and ask: *"Draw an architecture diagram of a React app behind an AWS load balancer talking to 3 Node services and a Postgres database."* Claude emits the JSON, calls the tool, and the rendered PNG appears inline. See the [MCP guide](./docs/mcp.md).
+
+### 3. As a self-hosted HTTP API
+
+```bash
+docker run -p 6379:6379 redis          # Glyphic's API queues jobs in Redis
+REDIS_URL=redis://localhost:6379 API_KEY=secret pnpm --filter @glyphic/api start
+```
+
+```bash
+curl -X POST http://localhost:3000/v1/render \
+  -H "Authorization: Bearer secret" -H "Content-Type: application/json" \
+  -d '{ "type": "flowchart", "nodes": [{ "id": "a", "label": "Start" }], "edges": [] }'
+```
+
+See the [HTTP API guide](./docs/http-api.md).
+
 ---
 
-## Self-Hosting the API Server
+## Features
 
-If you prefer to hit an HTTP endpoint, you can easily self-host the `@glyphic/api` package. It uses BullMQ backed by Redis to ensure complex diagram math doesn't block the Node event loop under heavy load.
+- 🧩 **18 diagram types** behind one validated schema — [see them all](#supported-diagrams).
+- 🎨 **Theming** — built-in presets (`"theme": "dark"`, plus `light` / `pastel` / `mono`) or a full custom palette. [Theming guide](./docs/theming.md).
+- 🔤 **Fonts** — any Google Font (`"fontFamily": "Outfit"`) or your own `.ttf`.
+- 🖼️ **Native icons** — drop in any FontAwesome icon (`"icon": "fas-database"`, `"icon": "fab-aws"`) or your own SVG via `customIcons`.
+- 📐 **Real layout** — `elkjs` + `d3` compute routing, nesting (VPCs/clusters), and crow's-foot/UML markers with no overlaps.
+- ⚡ **Native PNG** — Rust rasterization, no headless browser.
+- ♿ **Accessible output** — every SVG ships with `role="img"` and a `<title>`.
+- 🔒 **Safe by construction** — strict input validation, SVG output escaping/sanitization, and size limits to resist malicious input.
+- 🧪 **Multiple outputs** — SVG, high-res PNG, and React Flow JSON from one call.
 
-1. Clone this repository.
-2. Install dependencies: `pnpm install`
-3. Make sure you have a Redis instance running locally (`docker run -p 6379:6379 redis`).
-4. Set environment variables: `REDIS_URL=redis://localhost:6379` and `API_KEY=your_secret`.
-5. Start the server: `pnpm --filter @glyphic/api run start`.
+## Supported Diagrams
 
-You can now hit `POST http://localhost:3000/v1/render` with your JSON!
+18 first-class types — explore them in the **[Examples Gallery](./docs/examples/README.md)** and the **[Diagram Types reference](./docs/diagram-types.md)**.
 
----
+| | | |
+|---|---|---|
+| **Architecture** (nested VPCs/clusters) | **C4** context | **Flowchart** |
+| **Sequence** | **State** machine | **ERD** (crow's-foot) |
+| **UML Class** | **Mindmap** | **Gantt** |
+| **Timeline** | **User Journey** | **Kanban** |
+| **Pie** | **Quadrant** | **Sankey** |
+| **Git** graph | **Treemap** | **Canvas** (freeform SVG) |
+
+## Monorepo architecture
+
+A `pnpm` + Turborepo monorepo: three open-source libraries plus an optional hosted API.
+
+| Package | What it is |
+|---|---|
+| [`@glyphic/schema`](./packages/schema) | The pure Zod validation layer — the LLM-facing contract. Validate model output before rendering. |
+| [`@glyphic/core`](./packages/core) | The engine: layout adapters, scene graph, SVG rendering, and rasterization. |
+| [`@glyphic/mcp-server`](./packages/mcp-server) | Official Model Context Protocol server — exposes Glyphic as a native tool to Claude Desktop / Cursor. |
+| [`apps/api`](./apps/api) | Optional self-hostable Fastify + BullMQ HTTP API (`POST /v1/render`). Not published. |
+
+Adding a new diagram type is one entry in [`packages/core/src/registry.ts`](./packages/core/src/registry.ts) plus a schema and a layout adapter — see [CONTRIBUTING](./CONTRIBUTING.md).
+
+## Documentation
+
+- 📚 [Documentation home](./docs/README.md)
+- 🖼️ [Examples gallery](./docs/examples/README.md) — every type, rendered
+- 🧩 [Diagram types reference](./docs/diagram-types.md) — schema for all 18 types
+- 🎨 [Theming, fonts &amp; icons](./docs/theming.md)
+- 🛠️ [Core API](./docs/api.md)
+- 🔌 [MCP server](./docs/mcp.md)
+- 🌐 [HTTP API](./docs/http-api.md)
+- 🤝 [Contributing](./CONTRIBUTING.md)
 
 ## License
-MIT License. Build incredible things.
+
+[MIT](./LICENSE). Build incredible things.

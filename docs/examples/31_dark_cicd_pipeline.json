@@ -1,0 +1,19 @@
+{
+  "type": "flowchart",
+  "title": "CI/CD Pipeline",
+  "theme": "dark",
+  "direction": "LR",
+  "nodes": [
+    { "id": "push", "label": "Git Push", "shape": "rounded", "icon": "fab-github" },
+    { "id": "build", "label": "Build & Test", "shape": "rectangle", "icon": "fas-gears" },
+    { "id": "gate", "label": "Quality Gate", "shape": "diamond" },
+    { "id": "deploy", "label": "Deploy to Prod", "shape": "rectangle", "icon": "fas-rocket", "metadata": { "color": "#22c55e" } },
+    { "id": "rollback", "label": "Rollback", "shape": "rounded", "icon": "fas-clock-rotate-left", "metadata": { "color": "#ef4444" } }
+  ],
+  "edges": [
+    { "source": "push", "target": "build", "label": "trigger" },
+    { "source": "build", "target": "gate" },
+    { "source": "gate", "target": "deploy", "label": "pass" },
+    { "source": "gate", "target": "rollback", "label": "fail" }
+  ]
+}

@@ -1,71 +1,68 @@
 # @glyphic/schema
 
-The `@glyphic/schema` package contains the strict Zod specifications and TypeScript definitions for Glyphic's Machine-First Diagramming Infrastructure.
+The **Zod validation layer** for [Glyphic](../../README.md) — the strict, machine-first contract that LLMs target. Install this if you want to validate model output (or any untrusted input) *before* handing it to the renderer, or to generate a JSON Schema for tool definitions.
 
-Glyphic is designed to take declarative, semantic JSON structures and perfectly render complex SVG or PNG diagrams, completely bypassing headless browsers and manual positioning.
-
-## Supported Diagram Types
-
-Glyphic currently supports 11+ different diagram types:
-- `flowchart`
-- `architecture`
-- `sequence`
-- `erd`
-- `class`
-- `state`
-- `gantt`
-- `sankey`
-- `mindmap`
-- `pie`
-- `quadrant`
-- `git`
-- `canvas` (Absolute positioning override)
-
-## Example Usage
-
-```ts
-import { DiagramInput, DiagramInputType } from "@glyphic/schema";
-
-const rawInput = {
-  type: "flowchart",
-  nodes: [
-    { id: "a", label: "Start" },
-    { id: "b", label: "End" }
-  ],
-  edges: [
-    { source: "a", target: "b", label: "Proceed" }
-  ]
-};
-
-// Validates the input against strict Zod rules
-const payload: DiagramInputType = DiagramInput.parse(rawInput);
+```bash
+npm install @glyphic/schema
 ```
 
-## Advanced Theming & Icons
+## Why a schema package?
 
-Glyphic schemas allow deep customization without breaking the layout engines:
+Glyphic's whole premise is that models emit **JSON, not a DSL**. `@glyphic/schema` is that JSON contract, expressed once as a Zod schema and reused everywhere — `@glyphic/core` validates with it, the MCP server exposes it as a tool's `inputSchema`, and the HTTP API rejects bad payloads with it. Every field carries a `.describe()` so the generated JSON Schema is self-documenting for the model.
 
-```json
-{
-  "type": "architecture",
-  "theme": {
-    "background": "#0f172a",
-    "text": "#f8fafc",
-    "primary": "#3b82f6",
-    "fontFamily": "Inter"
-  },
-  "nodes": [
-    {
-      "id": "db",
-      "label": "Users Database",
-      "shape": "database",
-      "icon": "fas-database",
-      "metadata": {
-        "color": "#10b981"
-      }
-    }
-  ]
+## Usage
+
+### Validate input
+
+```typescript
+import { DiagramInput } from "@glyphic/schema";
+
+// Throws a ZodError with precise, fixable messages on invalid input.
+const diagram = DiagramInput.parse(untrustedJson);
+
+// Or handle errors yourself:
+const result = DiagramInput.safeParse(untrustedJson);
+if (!result.success) {
+  console.error(result.error.issues);
 }
 ```
 
-The schema fully supports dynamic FontAwesome icons (`fas-*` or `fab-*`) natively!
+`DiagramInput` is a **discriminated union** on the `type` field, so validation routes to the right shape automatically:
+
+```jsonc
+{ "type": "flowchart", "nodes": [/* ... */], "edges": [/* ... */] }
+{ "type": "erd",       "entities": [/* ... */], "relationships": [/* ... */] }
+{ "type": "pie",       "data": [/* ... */] }
+```
+
+### Generate a JSON Schema (for tool/function definitions)
+
+```typescript
+import { DiagramInput } from "@glyphic/schema";
+import { zodToJsonSchema } from "zod-to-json-schema";
+
+const jsonSchema = zodToJsonSchema(DiagramInput);
+// → feed to an LLM tool definition so the model knows the exact shape.
+```
+
+## What's exported
+
+- **`DiagramInput`** — the discriminated union of all 18 types.
+- **Per-type schemas** — `NodeEdgeDiagram` (flowchart/architecture), `SequenceDiagram`, `PieChart`, `QuadrantChart`, `Mindmap`, `GanttChart`, `SankeyDiagram`, `GitGraph`, `CanvasDiagram`, `StateDiagram`, `ErdDiagram`, `ClassDiagram`, `TimelineDiagram`, `JourneyDiagram`, `KanbanDiagram`, `C4Diagram`, `TreemapDiagram`, plus `ThemeConfig`.
+- **Inferred types** — `DiagramInputType`, `NodeEdgeDiagramType`, `ErdDiagramType`, … (one per schema).
+- **`z` and `ZodError`** — re-exported so downstream packages share a single Zod instance (keeps `instanceof ZodError` reliable across the workspace).
+
+## Safety built in
+
+The schema is also the first line of defense:
+
+- `.max()` caps on every array (nodes, edges, entities, elements, …) to bound layout/render cost.
+- `customFontUrl` must be a valid **HTTPS** URL; `fontFamily` is restricted to safe characters.
+- Recursive `canvas`/`treemap` inputs are bounded by depth and total node count.
+- Domain rules (e.g. Gantt tasks need an `end` or `duration`, pie values ≥ 0, journey scores 1–5).
+
+See the full field reference in the [Diagram Types documentation](../../docs/diagram-types.md).
+
+## License
+
+MIT

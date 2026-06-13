@@ -1,0 +1,24 @@
+{
+  "type": "canvas",
+  "title": "System Health Card",
+  "theme": "dark",
+  "width": 600,
+  "height": 320,
+  "elements": [
+    { "type": "rect", "x": 30, "y": 30, "width": 540, "height": 260, "rx": 16, "ry": 16, "fill": "#1e293b", "stroke": "#334155", "strokeWidth": 2 },
+    { "type": "circle", "cx": 120, "cy": 120, "r": 48, "fill": "#22c55e" },
+    { "type": "text", "x": 120, "y": 120, "content": "98%", "textAnchor": "middle", "dominantBaseline": "central", "fill": "#ffffff", "fontSize": 26, "fontWeight": 700 },
+    { "type": "text", "x": 200, "y": 100, "content": "System Health", "fill": "#f8fafc", "fontSize": 24, "fontWeight": 700 },
+    { "type": "text", "x": 200, "y": 134, "content": "All services operational", "fill": "#94a3b8", "fontSize": 15 },
+    { "type": "line", "x1": 60, "y1": 180, "x2": 540, "y2": 180, "stroke": "#334155", "strokeWidth": 2 },
+    { "type": "rect", "x": 60, "y": 205, "width": 150, "height": 60, "rx": 8, "fill": "#0f172a" },
+    { "type": "text", "x": 135, "y": 226, "content": "CPU", "textAnchor": "middle", "fill": "#94a3b8", "fontSize": 13 },
+    { "type": "text", "x": 135, "y": 250, "content": "42%", "textAnchor": "middle", "fill": "#38bdf8", "fontSize": 20, "fontWeight": 700 },
+    { "type": "rect", "x": 225, "y": 205, "width": 150, "height": 60, "rx": 8, "fill": "#0f172a" },
+    { "type": "text", "x": 300, "y": 226, "content": "MEMORY", "textAnchor": "middle", "fill": "#94a3b8", "fontSize": 13 },
+    { "type": "text", "x": 300, "y": 250, "content": "61%", "textAnchor": "middle", "fill": "#a78bfa", "fontSize": 20, "fontWeight": 700 },
+    { "type": "rect", "x": 390, "y": 205, "width": 150, "height": 60, "rx": 8, "fill": "#0f172a" },
+    { "type": "text", "x": 465, "y": 226, "content": "DISK", "textAnchor": "middle", "fill": "#94a3b8", "fontSize": 13 },
+    { "type": "text", "x": 465, "y": 250, "content": "78%", "textAnchor": "middle", "fill": "#fbbf24", "fontSize": 20, "fontWeight": 700 }
+  ]
+}

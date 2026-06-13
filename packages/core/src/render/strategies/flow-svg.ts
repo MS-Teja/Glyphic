@@ -26,6 +26,8 @@ export function buildFlowSceneGraph(layout: LayoutResult, diagramType: string, t
     buildTimeline(layout, theme, rootGroup.children);
   } else if (diagramType === "journey") {
     buildJourney(layout, theme, rootGroup.children);
+  } else if (diagramType === "kanban") {
+    buildKanban(layout, theme, rootGroup.children);
   }
 
   elements.push(rootGroup);
@@ -232,6 +234,36 @@ function buildJourney(layout: LayoutResult, theme: ThemeColors, elements: SceneE
       const actors = (node.metadata?.actors ?? []) as string[];
       if (actors.length) {
         elements.push({ type: 'text', x: node.x + 18, y: node.y + node.height - 18, content: actors.join(", "), textAnchor: 'start', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 11, fill: theme.edgeLabelColor });
+      }
+    }
+  }
+}
+
+const PRIORITY_COLORS: Record<string, string> = { high: "#ef4444", medium: "#f59e0b", low: "#10b981" };
+
+function buildKanban(layout: LayoutResult, theme: ThemeColors, elements: SceneElement[]) {
+  buildChronoTitle(layout, theme, elements);
+  for (const node of layout.nodes) {
+    if (node.shape === "kanban_column") {
+      const color = CHRONO_PALETTE[(node.metadata?.idx ?? 0) % CHRONO_PALETTE.length];
+      buildColumnHeader(node, color, theme, elements);
+    } else if (node.shape === "kanban_card") {
+      const pr = node.metadata?.priority as string | undefined;
+      const accent = (pr && PRIORITY_COLORS[pr]) || theme.nodeBorder;
+      elements.push({ type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, rx: 8, ry: 8, fill: theme.nodeBackground, stroke: theme.nodeBorder, strokeWidth: 1 });
+      elements.push({ type: 'rect', x: node.x, y: node.y, width: node.width, height: 5, rx: 2, ry: 2, fill: accent });
+      wrapLabel(node.label, 28).slice(0, 2).forEach((line, k) => {
+        elements.push({ type: 'text', x: node.x + 14, y: node.y + 28 + k * 17, content: line, textAnchor: 'start', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: theme.nodeText });
+      });
+      const assignee = node.metadata?.assignee as string | undefined;
+      if (assignee) {
+        elements.push({ type: 'text', x: node.x + 14, y: node.y + node.height - 16, content: assignee, textAnchor: 'start', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 11, fill: theme.edgeLabelColor });
+      }
+      const tag = node.metadata?.tag as string | undefined;
+      if (tag) {
+        const tagW = Math.max(36, tag.length * 7 + 16);
+        elements.push({ type: 'rect', x: node.x + node.width - tagW - 12, y: node.y + node.height - 27, width: tagW, height: 19, rx: 9, ry: 9, fill: accent, opacity: 0.2 });
+        elements.push({ type: 'text', x: node.x + node.width - tagW / 2 - 12, y: node.y + node.height - 17, content: tag, textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 10, fontWeight: 600, fill: accent });
       }
     }
   }

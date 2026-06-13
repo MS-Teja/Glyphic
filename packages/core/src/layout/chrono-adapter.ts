@@ -1,4 +1,4 @@
-import { TimelineDiagramType, JourneyDiagramType } from "@glyphic/schema";
+import { TimelineDiagramType, JourneyDiagramType, KanbanDiagramType } from "@glyphic/schema";
 import { LayoutResult, LayoutNode } from "./types.js";
 
 const COL_W = 260;
@@ -57,6 +57,38 @@ export function layoutJourney(diagram: JourneyDiagramType): LayoutResult {
 
   const width = LEFT * 2 + diagram.sections.length * (COL_W + COL_GAP) - COL_GAP;
   const height = top + HEADER_H + 24 + maxTasks * (cardH + cardGap) + 30;
+  nodes.unshift({ id: "chrono_config", x: 0, y: 0, width: 0, height: 0, label: diagram.title ?? "", shape: "chrono_config", metadata: { title: diagram.title } });
+  return { width, height, nodes, edges: [] };
+}
+
+// Kanban: each column is a stack of cards, tinted by priority.
+export function layoutKanban(diagram: KanbanDiagramType): LayoutResult {
+  const cardH = 82;
+  const cardGap = 12;
+  const top = diagram.title ? 90 : 40;
+  const nodes: LayoutNode[] = [];
+  let maxCards = 0;
+
+  diagram.columns.forEach((col, i) => {
+    const x = LEFT + i * (COL_W + COL_GAP);
+    nodes.push({ id: `col_${i}`, x, y: top, width: COL_W, height: HEADER_H, label: col.label, shape: "kanban_column", metadata: { idx: i } });
+    col.cards.forEach((c, j) => {
+      nodes.push({
+        id: `card_${i}_${j}`,
+        x,
+        y: top + HEADER_H + 24 + j * (cardH + cardGap),
+        width: COL_W,
+        height: cardH,
+        label: c.label,
+        shape: "kanban_card",
+        metadata: { idx: i, assignee: c.assignee, tag: c.tag, priority: c.priority }
+      });
+    });
+    maxCards = Math.max(maxCards, col.cards.length);
+  });
+
+  const width = LEFT * 2 + diagram.columns.length * (COL_W + COL_GAP) - COL_GAP;
+  const height = top + HEADER_H + 24 + maxCards * (cardH + cardGap) + 30;
   nodes.unshift({ id: "chrono_config", x: 0, y: 0, width: 0, height: 0, label: diagram.title ?? "", shape: "chrono_config", metadata: { title: diagram.title } });
   return { width, height, nodes, edges: [] };
 }

@@ -6093,3 +6093,313 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 27_browser_share
 </g>
 </svg>"
 `;
+
+exports[`docs/examples SVG snapshots (refactor guard) > renders 28_sprint_kanban.json to a stable SVG 1`] = `
+"<svg xmlns="http://www.w3.org/2000/svg" width="1290" height="462" viewBox="0 0 1290 462" role="img" aria-label="Sprint Board">
+<title>Sprint Board</title>
+<defs>
+
+        <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b" />
+        </marker>
+        <marker id="arrow-open-solid" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-solid" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-solid" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-solid" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#64748b" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-solid" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+        <marker id="arrow-dashed" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b" />
+        </marker>
+        <marker id="arrow-open-dashed" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-dashed" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-dashed" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-dashed" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#64748b" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-dashed" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+        <marker id="arrow-dotted" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b" />
+        </marker>
+        <marker id="arrow-open-dotted" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-dotted" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-dotted" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-dotted" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#64748b" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-dotted" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+</defs>
+<rect x="0" y="0" width="1290" height="462" fill="#ffffff"/>
+<g transform="translate(40, 40)">
+<text x="605" y="52" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#1e293b">Sprint Board</text>
+<rect x="40" y="90" width="260" height="50" rx="10" ry="10" fill="#4f46e5"/>
+<text x="170" y="115" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Backlog</text>
+<rect x="40" y="164" width="260" height="82" rx="8" ry="8" fill="#f0f4ff" stroke="#3b82f6" stroke-width="1"/>
+<rect x="40" y="164" width="260" height="5" rx="2" ry="2" fill="#10b981"/>
+<text x="54" y="192" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Add dark mode toggle</text>
+<text x="54" y="230" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#475569">Ada</text>
+<rect x="223" y="219" width="65" height="19" rx="9" ry="9" fill="#10b981" opacity="0.2"/>
+<text x="255.5" y="229" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" fill="#10b981">feature</text>
+<rect x="40" y="258" width="260" height="82" rx="8" ry="8" fill="#f0f4ff" stroke="#3b82f6" stroke-width="1"/>
+<rect x="40" y="258" width="260" height="5" rx="2" ry="2" fill="#f59e0b"/>
+<text x="54" y="286" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Investigate flaky test</text>
+<text x="54" y="324" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#475569">Lin</text>
+<rect x="251" y="313" width="37" height="19" rx="9" ry="9" fill="#f59e0b" opacity="0.2"/>
+<text x="269.5" y="323" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" fill="#f59e0b">bug</text>
+<rect x="330" y="90" width="260" height="50" rx="10" ry="10" fill="#ec4899"/>
+<text x="460" y="115" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#ffffff">In Progress</text>
+<rect x="330" y="164" width="260" height="82" rx="8" ry="8" fill="#f0f4ff" stroke="#3b82f6" stroke-width="1"/>
+<rect x="330" y="164" width="260" height="5" rx="2" ry="2" fill="#ef4444"/>
+<text x="344" y="192" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Fix login redirect loop</text>
+<text x="344" y="230" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#475569">Sam</text>
+<rect x="541" y="219" width="37" height="19" rx="9" ry="9" fill="#ef4444" opacity="0.2"/>
+<text x="559.5" y="229" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" fill="#ef4444">bug</text>
+<rect x="620" y="90" width="260" height="50" rx="10" ry="10" fill="#f59e0b"/>
+<text x="750" y="115" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Review</text>
+<rect x="620" y="164" width="260" height="82" rx="8" ry="8" fill="#f0f4ff" stroke="#3b82f6" stroke-width="1"/>
+<rect x="620" y="164" width="260" height="5" rx="2" ry="2" fill="#f59e0b"/>
+<text x="634" y="192" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Refactor auth middleware</text>
+<text x="634" y="230" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#475569">Ada</text>
+<rect x="910" y="90" width="260" height="50" rx="10" ry="10" fill="#10b981"/>
+<text x="1040" y="115" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Done</text>
+<rect x="910" y="164" width="260" height="82" rx="8" ry="8" fill="#f0f4ff" stroke="#3b82f6" stroke-width="1"/>
+<rect x="910" y="164" width="260" height="5" rx="2" ry="2" fill="#10b981"/>
+<text x="924" y="192" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Set up CI pipeline</text>
+<text x="924" y="230" text-anchor="start" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#475569">Lin</text>
+<rect x="1107" y="219" width="51" height="19" rx="9" ry="9" fill="#10b981" opacity="0.2"/>
+<text x="1132.5" y="229" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" fill="#10b981">infra</text>
+</g>
+</svg>"
+`;
+
+exports[`docs/examples SVG snapshots (refactor guard) > renders 29_banking_c4_context.json to a stable SVG 1`] = `
+"<svg xmlns="http://www.w3.org/2000/svg" width="859.9717333333333" height="772" viewBox="0 0 859.9717333333333 772" role="img" aria-label="Internet Banking — System Context">
+<title>Internet Banking — System Context</title>
+<defs>
+
+        <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b" />
+        </marker>
+        <marker id="arrow-open-solid" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-solid" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-solid" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-solid" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#64748b" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-solid" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+        <marker id="arrow-dashed" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b" />
+        </marker>
+        <marker id="arrow-open-dashed" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-dashed" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-dashed" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-dashed" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#64748b" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-dashed" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+        <marker id="arrow-dotted" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b" />
+        </marker>
+        <marker id="arrow-open-dotted" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-dotted" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-dotted" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-dotted" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#64748b" stroke="#64748b" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-dotted" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+</defs>
+<rect x="0" y="0" width="859.9717333333333" height="772" fill="#ffffff"/>
+<g transform="translate(40, 40)">
+<path d="M 209.8096 154 L 209.8096 172 L 422.1904 172 L 422.1904 330" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 466.3568 404 L 466.3568 422 L 566.9717333333333 422 L 566.9717333333333 608" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 378.024 404 L 378.024 540 L 201.75306666666665 540 L 201.75306666666665 608" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<path d="M 144.1904 608 L 144.1904 154" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-solid)"/>
+<g>
+<rect x="78.5712" y="12" width="196.8576" height="140" rx="6" ry="6" fill="#08427b" stroke="#063462" stroke-width="2"/>
+<circle cx="177" cy="32.6" r="12.6" fill="#063462" opacity="0.3"/>
+<line x1="177" y1="45.2" x2="177" y2="77" stroke="#063462" stroke-width="2" opacity="0.3"/>
+<line x1="127.7856" y1="61.2" x2="226.2144" y2="61.2" stroke="#063462" stroke-width="2" opacity="0.3"/>
+<line x1="177" y1="77" x2="144.1904" y2="92" stroke="#063462" stroke-width="2" opacity="0.3"/>
+<line x1="177" y1="77" x2="209.8096" y2="92" stroke="#063462" stroke-width="2" opacity="0.3"/>
+</g>
+<rect x="289.69120000000004" y="332" width="264.99839999999995" height="70" rx="20" ry="20" fill="#1168bd" stroke="#0d5397" stroke-width="2"/>
+<rect x="455.00213333333335" y="610" width="223.93919999999994" height="70" rx="20" ry="20" fill="#8b8b8b" stroke="#6f6f6f" stroke-width="2"/>
+<rect x="86.62773333333334" y="610" width="172.68799999999996" height="70" rx="20" ry="20" fill="#8b8b8b" stroke="#6f6f6f" stroke-width="2"/>
+<g>
+<text x="177" y="115" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Personal Customer</text>
+<text x="177" y="133" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">A customer of the bank</text>
+</g>
+<g>
+<text x="422.1904" y="358" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Internet Banking System</text>
+<text x="422.1904" y="376" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#ffffff">View accounts &amp; make payments</text>
+</g>
+<g>
+<text x="566.9717333333333" y="636" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Mainframe Banking System</text>
+<text x="566.9717333333333" y="654" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Stores core banking data</text>
+</g>
+<g>
+<text x="172.9717333333333" y="636" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">E-mail System</text>
+<text x="172.9717333333333" y="654" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f172a">Microsoft Exchange</text>
+</g>
+<text x="465.1904" y="239" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Uses [HTTPS]</text>
+<text x="514.9717333333333" y="489" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Reads from /</text>
+<text x="514.9717333333333" y="503" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">writes to</text>
+<text x="514.9717333333333" y="517" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">[XML/HTTPS]</text>
+<text x="326.024" y="496" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Sends e-mail</text>
+<text x="326.024" y="510" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">using [SMTP]</text>
+<text x="92.19040000000001" y="357" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">Sends e-mail</text>
+<text x="92.19040000000001" y="371" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#475569">to</text>
+</g>
+</svg>"
+`;

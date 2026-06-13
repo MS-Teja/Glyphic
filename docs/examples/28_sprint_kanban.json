@@ -1,0 +1,31 @@
+{
+  "type": "kanban",
+  "title": "Sprint Board",
+  "columns": [
+    {
+      "label": "Backlog",
+      "cards": [
+        { "label": "Add dark mode toggle", "tag": "feature", "priority": "low", "assignee": "Ada" },
+        { "label": "Investigate flaky test", "tag": "bug", "priority": "medium", "assignee": "Lin" }
+      ]
+    },
+    {
+      "label": "In Progress",
+      "cards": [
+        { "label": "Fix login redirect loop", "tag": "bug", "priority": "high", "assignee": "Sam" }
+      ]
+    },
+    {
+      "label": "Review",
+      "cards": [
+        { "label": "Refactor auth middleware", "priority": "medium", "assignee": "Ada" }
+      ]
+    },
+    {
+      "label": "Done",
+      "cards": [
+        { "label": "Set up CI pipeline", "tag": "infra", "priority": "low", "assignee": "Lin" }
+      ]
+    }
+  ]
+}

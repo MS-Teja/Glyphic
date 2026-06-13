@@ -349,7 +349,38 @@ export const JourneyDiagram = BaseDiagram.extend({
   })).min(1).max(MAX_SECTIONS)
 });
 
-export const DiagramInput = z.discriminatedUnion("type", [NodeEdgeDiagram, SequenceDiagram, PieChart, QuadrantChart, Mindmap, GanttChart, SankeyDiagram, GitGraph, CanvasDiagram, StateDiagram, ErdDiagram, ClassDiagram, TimelineDiagram, JourneyDiagram]);
+export const KanbanDiagram = BaseDiagram.extend({
+  type: z.literal("kanban"),
+  columns: z.array(z.object({
+    label: z.string().describe("Column title, e.g. 'In Progress'"),
+    cards: z.array(z.object({
+      label: z.string().describe("Card title"),
+      assignee: z.string().optional(),
+      tag: z.string().optional().describe("Short label, e.g. 'bug'"),
+      priority: z.enum(["low", "medium", "high"]).optional()
+    })).max(MAX_TASKS).default([])
+  })).min(1).max(MAX_SECTIONS)
+});
+
+export const C4Diagram = BaseDiagram.extend({
+  type: z.literal("c4"),
+  direction: z.enum(["TB", "BT", "LR", "RL"]).default("TB").describe("Layout direction"),
+  elements: z.array(z.object({
+    id: z.string().regex(/^[a-zA-Z0-9_-]+$/),
+    label: z.string(),
+    kind: z.enum(["person", "system", "external", "container", "database", "boundary"]).default("system").describe("C4 element type"),
+    description: z.string().optional().describe("Short description shown under the label"),
+    parent: z.string().optional().describe("id of the boundary/system this nests inside")
+  })).min(1).max(MAX_NODES),
+  relationships: z.array(z.object({
+    from: z.string(),
+    to: z.string(),
+    label: z.string().optional(),
+    technology: z.string().optional().describe("e.g. 'HTTPS/JSON'")
+  })).max(MAX_EDGES).default([])
+});
+
+export const DiagramInput = z.discriminatedUnion("type", [NodeEdgeDiagram, SequenceDiagram, PieChart, QuadrantChart, Mindmap, GanttChart, SankeyDiagram, GitGraph, CanvasDiagram, StateDiagram, ErdDiagram, ClassDiagram, TimelineDiagram, JourneyDiagram, KanbanDiagram, C4Diagram]);
 
 export type DiagramInputType = z.infer<typeof DiagramInput>;
 export type NodeEdgeDiagramType = z.infer<typeof NodeEdgeDiagram>;
@@ -366,3 +397,5 @@ export type ErdDiagramType = z.infer<typeof ErdDiagram>;
 export type ClassDiagramType = z.infer<typeof ClassDiagram>;
 export type TimelineDiagramType = z.infer<typeof TimelineDiagram>;
 export type JourneyDiagramType = z.infer<typeof JourneyDiagram>;
+export type KanbanDiagramType = z.infer<typeof KanbanDiagram>;
+export type C4DiagramType = z.infer<typeof C4Diagram>;

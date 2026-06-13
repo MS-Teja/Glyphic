@@ -1,0 +1,17 @@
+{
+  "type": "c4",
+  "title": "Internet Banking — System Context",
+  "direction": "TB",
+  "elements": [
+    { "id": "customer", "label": "Personal Customer", "kind": "person", "description": "A customer of the bank" },
+    { "id": "banking", "label": "Internet Banking System", "kind": "system", "description": "View accounts & make payments" },
+    { "id": "mainframe", "label": "Mainframe Banking System", "kind": "external", "description": "Stores core banking data" },
+    { "id": "email", "label": "E-mail System", "kind": "external", "description": "Microsoft Exchange" }
+  ],
+  "relationships": [
+    { "from": "customer", "to": "banking", "label": "Uses", "technology": "HTTPS" },
+    { "from": "banking", "to": "mainframe", "label": "Reads from / writes to", "technology": "XML/HTTPS" },
+    { "from": "banking", "to": "email", "label": "Sends e-mail using", "technology": "SMTP" },
+    { "from": "email", "to": "customer", "label": "Sends e-mail to" }
+  ]
+}

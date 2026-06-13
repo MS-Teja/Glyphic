@@ -98,4 +98,20 @@ describe("new first-class diagram types", () => {
       DiagramInput.parse({ type: "journey", sections: [{ label: "S", tasks: [{ label: "t", score: 9 }] }] })
     ).toThrow();
   });
+
+  it("accepts a valid kanban board and rejects an unknown priority", () => {
+    expect(() =>
+      DiagramInput.parse({ type: "kanban", columns: [{ label: "To Do", cards: [{ label: "task", priority: "high" }] }] })
+    ).not.toThrow();
+    expect(() =>
+      DiagramInput.parse({ type: "kanban", columns: [{ label: "To Do", cards: [{ label: "task", priority: "urgent" }] }] })
+    ).toThrow();
+  });
+
+  it("accepts a valid C4 diagram and rejects an unknown kind", () => {
+    expect(() =>
+      DiagramInput.parse({ type: "c4", elements: [{ id: "p", label: "User", kind: "person" }], relationships: [] })
+    ).not.toThrow();
+    expect(() => DiagramInput.parse({ type: "c4", elements: [{ id: "p", label: "User", kind: "alien" }] })).toThrow();
+  });
 });

@@ -6,10 +6,15 @@
       "outputs": ["dist/**"]
     },
     "test": {
-      "dependsOn": ["build"]
+      "dependsOn": ["^build"],
+      "cache": false
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "cache": false
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "cache": false
     },
     "dev": {
       "cache": false,

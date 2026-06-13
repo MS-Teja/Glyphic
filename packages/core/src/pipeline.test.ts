@@ -1,14 +1,16 @@
 import { describe, it, expect, vi } from "vitest";
 import { processDiagram } from "./pipeline.js";
 
-// Mock resvg to avoid native module issues in unit tests
+// Mock resvg to avoid native module issues in unit tests.
+// Must be a real (constructable) class — vitest 4 invokes mocked
+// constructors with `new`, which arrow functions cannot satisfy.
 vi.mock("@resvg/resvg-js", () => {
   return {
-    Resvg: vi.fn().mockImplementation(() => ({
-      render: () => ({
-        asPng: () => Buffer.from("mockpng")
-      })
-    }))
+    Resvg: class {
+      render() {
+        return { asPng: () => Buffer.from("mockpng") };
+      }
+    }
   };
 });
 

@@ -1,17 +1,25 @@
 {
   "name": "@glyphic/core",
   "version": "1.0.0",
+  "license": "MIT",
   "description": "Layout and rendering engine for Glyphic",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test": "vitest run"
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
@@ -26,8 +34,8 @@
   "devDependencies": {
     "@types/d3-sankey": "^0.12.5",
     "@types/d3-shape": "^3.1.8",
-    "@types/node": "^20.0.0",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "@types/node": "^25.9.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
   }
 }

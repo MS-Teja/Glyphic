@@ -7,28 +7,17 @@
   "engines": {
     "node": ">=20"
   },
-  "pnpm": {
-    "builtDependencies": [
-      "msgpackr-extract"
-    ]
-  },
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
     "test": "turbo test",
-    "release": "turbo build && pnpm --filter @glyphic/schema --filter @glyphic/core --filter @glyphic/mcp-server publish --access public",
-    "lint": "turbo lint"
+    "typecheck": "turbo typecheck",
+    "lint": "turbo lint",
+    "release": "turbo build && pnpm --filter @glyphic/schema --filter @glyphic/core --filter @glyphic/mcp-server publish --access public"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.5.2",
-      "onFail": "download"
-    }
-  },
+  "license": "MIT",
   "type": "module",
   "devDependencies": {
     "@types/node": "^25.9.1",

@@ -2,10 +2,10 @@
 node = true
 
 [phases.setup]
-nixPkgs = ["pnpm", "nodejs_20"]
+nixPkgs = ["nodejs_20"]
 
 [phases.install]
-cmds = ["pnpm install"]
+cmds = ["corepack enable", "pnpm install --frozen-lockfile"]
 
 [phases.build]
 cmds = ["pnpm turbo build --filter @glyphic/api"]

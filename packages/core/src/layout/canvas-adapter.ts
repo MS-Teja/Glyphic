@@ -40,16 +40,18 @@ export async function layoutCanvasDiagram(diagram: NodeEdgeDiagramType): Promise
     nodeMap.set(node.id, layoutNode);
   }
 
-  // Create edges with straight-line routing
-  const edges: LayoutEdge[] = diagram.edges.map((e, idx) => {
-    const sourceNode = nodeMap.get(e.source);
-    const targetNode = nodeMap.get(e.target);
+  // Create edges with straight-line routing. Skip edges referencing missing
+  // nodes rather than drawing degenerate (0,0) lines.
+  const edges: LayoutEdge[] = diagram.edges
+    .filter((e) => nodeMap.has(e.source) && nodeMap.has(e.target))
+    .map((e, idx) => {
+    const sourceNode = nodeMap.get(e.source)!;
+    const targetNode = nodeMap.get(e.target)!;
 
-    // Default to 0 if node is missing (should be caught by validation)
-    const sx = sourceNode ? sourceNode.x + sourceNode.width / 2 : 0;
-    const sy = sourceNode ? sourceNode.y + sourceNode.height / 2 : 0;
-    const tx = targetNode ? targetNode.x + targetNode.width / 2 : 0;
-    const ty = targetNode ? targetNode.y + targetNode.height / 2 : 0;
+    const sx = sourceNode.x + sourceNode.width / 2;
+    const sy = sourceNode.y + sourceNode.height / 2;
+    const tx = targetNode.x + targetNode.width / 2;
+    const ty = targetNode.y + targetNode.height / 2;
 
     const segment: LayoutEdgeSegment = {
       startPoint: { x: sx, y: sy },

@@ -27,9 +27,9 @@ export async function layoutDiagram(diagram: DiagramInputType): Promise<LayoutRe
   } else if (diagram.type === "git") {
     return layoutGitGraph(diagram as any);
   } else if (diagram.type === "mindmap") {
-    // Treat mindmap as an architecture diagram but force radial algorithm
-    const mindmap = diagram as any;
-    mindmap.algorithm = "radial"; 
+    // Treat mindmap as an architecture diagram but force radial algorithm.
+    // Spread into a new object so we never mutate the caller's validated input.
+    const mindmap = { ...(diagram as any), algorithm: "radial" };
     return layoutNodeEdgeDiagram(mindmap);
   } else {
     const nodeEdgeDiagram = diagram as NodeEdgeDiagramType;

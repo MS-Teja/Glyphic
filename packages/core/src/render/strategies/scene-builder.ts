@@ -190,8 +190,9 @@ function buildClassNode(node: LayoutNode, theme: ThemeColors): SceneGroup {
 
   const hasAttributes = Array.isArray(node.metadata?.attributes) && node.metadata!.attributes!.length > 0;
   const hasMethods = Array.isArray(node.metadata?.methods) && node.metadata!.methods!.length > 0;
+  const hasColumns = Array.isArray(node.metadata?.columns) && node.metadata!.columns!.length > 0;
 
-  if (hasAttributes || hasMethods) {
+  if (hasAttributes || hasMethods || hasColumns) {
     children.push({
       type: 'line', x1: node.x, y1: node.y + titleHeight, x2: node.x + node.width, y2: node.y + titleHeight,
       stroke: c.border, strokeWidth: 2
@@ -234,7 +235,7 @@ function buildStateEnd(node: LayoutNode, theme: ThemeColors): SceneGroup {
       },
       {
         type: 'rect', x: node.x + 4, y: node.y + 4, width: node.width - 8, height: node.height - 8,
-        rx: rx - 4, ry: rx - 4, fill: 'none', stroke: c.border, strokeWidth: 1.5
+        rx: Math.max(0, rx - 4), ry: Math.max(0, rx - 4), fill: 'none', stroke: c.border, strokeWidth: 1.5
       }
     ]
   };
@@ -251,10 +252,10 @@ function buildNodeShape(node: LayoutNode, theme: ThemeColors): SceneElement {
     case "person":
     case "actor": return buildPerson(node, theme);
     case "cloud": return buildCloud(node, theme);
-    case "class": return buildClassNode(node, theme);
+    case "class":
+    case "table": return buildClassNode(node, theme);
     case "state_start": return buildStateStart(node, theme);
     case "state_end": return buildStateEnd(node, theme);
-    // TODO: implement table correctly
     default: return buildRectangle(node, theme);
   }
 }
@@ -299,10 +300,11 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
   const words = node.label ? node.label.split(" ") : [];
   if (words.length === 0 && !node.icon) return elements.length > 0 ? { type: 'group', children: elements } : null;
 
-  if (node.shape === "class") {
+  if (node.shape === "class" || node.shape === "table") {
     const hasAttributes = Array.isArray(node.metadata?.attributes) && node.metadata!.attributes!.length > 0;
     const hasMethods = Array.isArray(node.metadata?.methods) && node.metadata!.methods!.length > 0;
-    const hasContent = hasAttributes || hasMethods;
+    const hasColumns = Array.isArray(node.metadata?.columns) && node.metadata!.columns!.length > 0;
+    const hasContent = hasAttributes || hasMethods || hasColumns;
     const classTitleHeight = node.icon ? 44 : 30;
     
     // If it has content, title is top-aligned in the title bar. If not, it's vertically centered.
@@ -352,6 +354,14 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
       for (const method of methods) {
         elements.push({ type: 'text', x: node.x + 10, y: methodY + 12, content: String(method), textAnchor: 'start', dominantBaseline: 'central', fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 12, fill: theme.nodeText });
         methodY += 24;
+      }
+
+      // Table columns render as rows beneath the title bar.
+      const columns = Array.isArray(node.metadata?.columns) ? node.metadata!.columns! : [];
+      let columnY = node.y + classTitleHeight + 4;
+      for (const col of columns) {
+        elements.push({ type: 'text', x: node.x + 10, y: columnY + 12, content: String(col), textAnchor: 'start', dominantBaseline: 'central', fontFamily: theme.fontFamily ? `'${theme.fontFamily}', system-ui, sans-serif` : 'Inter, system-ui, sans-serif', fontSize: 12, fill: c.text });
+        columnY += 24;
       }
     }
     return { type: 'group', children: elements };
@@ -437,57 +447,55 @@ function buildEdgePath(edge: LayoutEdge, nodes: LayoutNode[]): string {
   for (const sec of edge.sections) {
     let startPt = sec.startPoint;
     let endPt = sec.endPoint;
+    // Work on copies so we never mutate the shared LayoutResult bend points.
+    const bendPoints = (sec.bendPoints || []).map((bp) => ({ ...bp }));
 
     if (sourceNode) {
-      const nextPt = sec.bendPoints && sec.bendPoints.length > 0 ? sec.bendPoints[0] : endPt;
+      const nextPt = bendPoints.length > 0 ? bendPoints[0] : endPt;
       startPt = getPerimeterIntersection({ ...sourceNode }, startPt, nextPt);
       // Ensure a straight runway for the start arrowhead
-      if (sec.bendPoints && sec.bendPoints.length > 0) {
-        const bp = sec.bendPoints[0];
+      if (bendPoints.length > 0) {
+        const bp = bendPoints[0];
         const dx = bp.x - startPt.x;
         const dy = bp.y - startPt.y;
         const MIN_RUNWAY = 18;
         if (Math.abs(dy) < 1 && Math.abs(dx) < MIN_RUNWAY && Math.abs(dx) > 0) {
           const shift = (MIN_RUNWAY - Math.abs(dx)) * Math.sign(bp.x - startPt.x);
           bp.x += shift;
-          if (sec.bendPoints.length > 1) sec.bendPoints[1].x += shift;
+          if (bendPoints.length > 1) bendPoints[1].x += shift;
         } else if (Math.abs(dx) < 1 && Math.abs(dy) < MIN_RUNWAY && Math.abs(dy) > 0) {
           const shift = (MIN_RUNWAY - Math.abs(dy)) * Math.sign(bp.y - startPt.y);
           bp.y += shift;
-          if (sec.bendPoints.length > 1) sec.bendPoints[1].y += shift;
+          if (bendPoints.length > 1) bendPoints[1].y += shift;
         }
       }
     }
     if (targetNode) {
-      const prevPt = sec.bendPoints && sec.bendPoints.length > 0 ? sec.bendPoints[sec.bendPoints.length - 1] : startPt;
+      const prevPt = bendPoints.length > 0 ? bendPoints[bendPoints.length - 1] : startPt;
       endPt = getPerimeterIntersection({ ...targetNode }, endPt, prevPt);
-      
-
 
       // Ensure a straight runway for the target arrowhead
-      if (sec.bendPoints && sec.bendPoints.length > 0) {
-        const lastIdx = sec.bendPoints.length - 1;
-        const bp = sec.bendPoints[lastIdx];
+      if (bendPoints.length > 0) {
+        const lastIdx = bendPoints.length - 1;
+        const bp = bendPoints[lastIdx];
         const dx = endPt.x - bp.x;
         const dy = endPt.y - bp.y;
         const MIN_RUNWAY = 18;
         if (Math.abs(dy) < 1 && Math.abs(dx) < MIN_RUNWAY && Math.abs(dx) > 0) {
           const shift = (MIN_RUNWAY - Math.abs(dx)) * Math.sign(bp.x - endPt.x);
           bp.x += shift;
-          if (lastIdx > 0) sec.bendPoints[lastIdx - 1].x += shift;
+          if (lastIdx > 0) bendPoints[lastIdx - 1].x += shift;
         } else if (Math.abs(dx) < 1 && Math.abs(dy) < MIN_RUNWAY && Math.abs(dy) > 0) {
           const shift = (MIN_RUNWAY - Math.abs(dy)) * Math.sign(bp.y - endPt.y);
           bp.y += shift;
-          if (lastIdx > 0) sec.bendPoints[lastIdx - 1].y += shift;
+          if (lastIdx > 0) bendPoints[lastIdx - 1].y += shift;
         }
       }
     }
 
     parts.push(`M ${startPt.x} ${startPt.y}`);
-    if (sec.bendPoints && sec.bendPoints.length > 0) {
-      for (const bp of sec.bendPoints) {
-        parts.push(`L ${bp.x} ${bp.y}`);
-      }
+    for (const bp of bendPoints) {
+      parts.push(`L ${bp.x} ${bp.y}`);
     }
     parts.push(`L ${endPt.x} ${endPt.y}`);
   }

@@ -20,6 +20,13 @@ export function layoutSequenceDiagram(diagram: SequenceDiagramType): LayoutResul
   const pIndexMap = new Map<string, number>();
   diagram.participants.forEach((p, idx) => pIndexMap.set(p.id, idx));
 
+  // Fail fast if a message references a participant that doesn't exist,
+  // rather than silently drawing the message from the origin (0,0).
+  diagram.messages.forEach((m, idx) => {
+    if (!pIndexMap.has(m.source)) throw new Error(`Sequence message #${idx} references unknown source participant "${m.source}"`);
+    if (!pIndexMap.has(m.target)) throw new Error(`Sequence message #${idx} references unknown target participant "${m.target}"`);
+  });
+
   diagram.messages.forEach(m => {
     const sIdx = pIndexMap.get(m.source);
     const tIdx = pIndexMap.get(m.target);

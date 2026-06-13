@@ -50,7 +50,8 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
     } else if (diagType === "gantt" || diagType === "sankey" || diagType === "git") {
       scene = buildFlowSceneGraph(layout, diagType);
     } else {
-      const maskLabels = diagType === "sequence" || diagType === "gantt";
+      // gantt is handled by buildFlowSceneGraph above; only sequence masks labels here.
+      const maskLabels = diagType === "sequence";
       scene = buildSceneGraph(layout, (validatedDiagram as any).theme, maskLabels);
     }
   }
@@ -59,7 +60,7 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
   svg = renderSceneGraphToSVG(scene, defs);
 
   // 4. Rasterize to PNG
-  const png = rasterizeSVG(svg, { dpi: 2 }); // 2x resolution for crispness
+  const png = rasterizeSVG(svg, { dpi: 2, fontBuffer }); // 2x resolution for crispness
 
   let reactFlowConfig: ReactFlowConfig | undefined;
   if (layout && validatedDiagram.type !== "canvas" && validatedDiagram.type !== "pie" && validatedDiagram.type !== "quadrant") {

@@ -40,9 +40,13 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promi
       if (node.metadata) {
          let rowCount = 0;
          if (node.shape === "class" || node.shape === "table") {
-           if (Array.isArray(node.metadata.attributes)) rowCount += node.metadata.attributes.length;
-           if (Array.isArray(node.metadata.methods)) rowCount += node.metadata.methods.length;
-           if (Array.isArray(node.metadata.columns)) rowCount += node.metadata.columns.length;
+           for (const key of ["attributes", "methods", "columns"]) {
+             const arr = (node.metadata as any)[key];
+             if (Array.isArray(arr)) {
+               rowCount += arr.length;
+               for (const item of arr) maxChars = Math.max(maxChars, String(item).length);
+             }
+           }
          } else {
            for (const [key, val] of Object.entries(node.metadata)) {
              if (Array.isArray(val)) {
@@ -198,16 +202,12 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promi
   // Removed TEMP DEBUG file write to prevent EROFS errors in MCP environments
 
   // 1. Build parentMap and directed adjacency list
-  const parentMap = new Map<string, string>(); // childId -> parentId
   const adj = new Map<string, string[]>();
   const inDegree = new Map<string, number>();
 
   for (const node of diagram.nodes) {
     adj.set(node.id, []);
     inDegree.set(node.id, 0);
-    if (node.groupId) {
-      parentMap.set(node.id, node.groupId);
-    }
   }
   for (const edge of diagram.edges) {
     const s = edge.source;
@@ -250,29 +250,11 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promi
     }
   });
 
-  // LCA helper functions for edge offset lookup
-  const getAncestors = (id: string): string[] => {
-    const chain: string[] = [];
-    let curr: string | undefined = id;
-    while (curr) {
-      chain.push(curr);
-      curr = parentMap.get(curr);
-    }
-    return chain;
-  };
-
-  const getLCA = (id1: string, id2: string): string | null => {
-    const chain1 = getAncestors(id1);
-    const chain2 = getAncestors(id2);
-    for (const ancestor of chain1) {
-      if (chain2.includes(ancestor)) {
-        return ancestor;
-      }
-    }
-    return null;
-  };
-
   const nodeCoords = new Map<string, { x: number, y: number }>();
+
+  // O(1) lookups back to the original input (avoids O(n^2) find() per node/edge).
+  const originalNodeMap = new Map(diagram.nodes.map((n) => [n.id, n] as const));
+  const edgeIdMap = new Map(diagram.edges.map((e, idx) => ["e" + idx, e] as const));
 
   // 6 distinct colors for mindmap branches
   const mindmapColors = ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899"];
@@ -307,7 +289,7 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promi
     };
 
     // Keep existing metadata if we have a match
-    const originalNode = diagram.nodes.find(orig => orig.id === n.id);
+    const originalNode = originalNodeMap.get(n.id);
     if (originalNode && originalNode.metadata) {
       node.metadata = { ...originalNode.metadata };
     }
@@ -326,7 +308,7 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promi
     return node;
   };
 
-  const mappedNodes = layout.children ? layout.children.map((n: any, idx: number) => mapElkNode(n, 0, 0, 0, -1)) : [];
+  const mappedNodes = layout.children ? layout.children.map((n: any) => mapElkNode(n, 0, 0, 0, -1)) : [];
   
   const mappedEdges: LayoutEdge[] = [];
   
@@ -356,10 +338,10 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promi
           };
         }
 
-        // Find matching original edge
-        const originalEdge = diagram.edges.find(orig => orig.source === e.sources[0] && orig.target === e.targets[0]);
-        console.error("MAPPING EDGE:", e.sources[0], "->", e.targets[0], "FOUND:", !!originalEdge, "META:", originalEdge?.metadata);
-        
+        // Recover the exact original edge by its id (handles parallel edges
+        // that share the same source/target).
+        const originalEdge = edgeIdMap.get(e.id);
+
         mappedEdges.push({
           id: e.id,
           source: e.sources[0],
@@ -384,8 +366,8 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promi
   extractEdges(layout);
 
   return {
-    width: layout.width || 800,
-    height: layout.height || 600,
+    width: layout.width ?? 800,
+    height: layout.height ?? 600,
     nodes: mappedNodes,
     edges: mappedEdges
   };

@@ -121,8 +121,12 @@ export function layoutSequenceDiagram(diagram: SequenceDiagramType): LayoutResul
     });
   });
 
-  // Calculate total bounding box
-  const width = LEFT_MARGIN + (diagram.participants.length * (PARTICIPANT_WIDTH + PARTICIPANT_SPACING)) + LEFT_MARGIN;
+  // Calculate total bounding box. The right margin mirrors LEFT_MARGIN so the
+  // participants are centered (the previous formula left a full column of extra
+  // space on the right, making diagrams lean left).
+  const lastParticipantRight =
+    LEFT_MARGIN + (diagram.participants.length - 1) * (PARTICIPANT_WIDTH + PARTICIPANT_SPACING) + PARTICIPANT_WIDTH;
+  const width = lastParticipantRight + LEFT_MARGIN;
   const height = currentY + 40;
 
   return {

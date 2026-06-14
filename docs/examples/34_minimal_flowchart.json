@@ -1,0 +1,25 @@
+{
+  "type": "flowchart",
+  "title": "Pull Request Review (minimal style)",
+  "style": "minimal",
+  "direction": "TB",
+  "nodes": [
+    { "id": "open", "label": "PR opened", "shape": "rounded" },
+    { "id": "ci", "label": "CI checks", "shape": "rectangle" },
+    { "id": "pass", "label": "Passing?", "shape": "diamond" },
+    { "id": "review", "label": "Request review", "shape": "rectangle" },
+    { "id": "fix", "label": "Push fixes", "shape": "rectangle" },
+    { "id": "approve", "label": "Approved?", "shape": "diamond" },
+    { "id": "merge", "label": "Merge", "shape": "rounded", "metadata": { "color": "#10b981" } }
+  ],
+  "edges": [
+    { "source": "open", "target": "ci" },
+    { "source": "ci", "target": "pass" },
+    { "source": "pass", "target": "review", "label": "yes" },
+    { "source": "pass", "target": "fix", "label": "no" },
+    { "source": "fix", "target": "ci", "label": "re-run" },
+    { "source": "review", "target": "approve" },
+    { "source": "approve", "target": "merge", "label": "yes" },
+    { "source": "approve", "target": "fix", "label": "changes" }
+  ]
+}

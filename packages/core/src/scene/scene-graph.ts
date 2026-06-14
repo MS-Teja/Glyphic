@@ -1,5 +1,6 @@
 export interface SceneRect {
   type: 'rect';
+  filter?: string;
   x: number;
   y: number;
   width: number;
@@ -25,6 +26,7 @@ export interface SceneCircle {
 
 export interface SceneEllipse {
   type: 'ellipse';
+  filter?: string;
   cx: number;
   cy: number;
   rx: number;
@@ -37,6 +39,7 @@ export interface SceneEllipse {
 
 export interface ScenePath {
   type: 'path';
+  filter?: string;
   d: string;
   fill?: string;
   stroke?: string;
@@ -48,6 +51,7 @@ export interface ScenePath {
 
 export interface ScenePolygon {
   type: 'polygon';
+  filter?: string;
   points: string;
   fill?: string;
   stroke?: string;
@@ -85,6 +89,7 @@ export interface SceneGroup {
   type: 'group';
   children: SceneElement[];
   transform?: string;
+  filter?: string;
 }
 
 export interface SceneRawSvg {

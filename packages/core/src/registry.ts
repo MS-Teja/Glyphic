@@ -12,22 +12,26 @@ import { layoutClassDiagram } from "./layout/class-adapter.js";
 import { layoutTimeline, layoutJourney, layoutKanban } from "./layout/chrono-adapter.js";
 import { layoutC4Diagram } from "./layout/c4-adapter.js";
 import { layoutTreemap } from "./layout/treemap-adapter.js";
+import { StyleTokens } from "./render/style.js";
 
 /** Which scene-builder a diagram type renders through. */
 export type RenderStrategy = "scene" | "data-viz" | "flow" | "canvas";
 
 export interface DiagramHandler {
-  /** Layout adapter. Omitted for `canvas`, which bypasses the layout engine. */
-  layout?: (diagram: any) => LayoutResult | Promise<LayoutResult>;
+  /**
+   * Layout adapter. Omitted for `canvas`, which bypasses the layout engine.
+   * `style` lets adapters honor spacing tokens; most ignore it.
+   */
+  layout?: (diagram: any, style?: StyleTokens) => LayoutResult | Promise<LayoutResult>;
   render: RenderStrategy;
   /** Whether edge labels get a background mask (sequence diagrams). */
   maskLabels?: boolean;
 }
 
 // Flowchart & architecture honor explicit node coordinates by bypassing ELK.
-async function layoutNodeEdge(diagram: NodeEdgeDiagramType): Promise<LayoutResult> {
+async function layoutNodeEdge(diagram: NodeEdgeDiagramType, style?: StyleTokens): Promise<LayoutResult> {
   const hasCoordinates = diagram.nodes.some((n) => n.x !== undefined || n.y !== undefined);
-  return hasCoordinates ? layoutCanvasDiagram(diagram) : layoutNodeEdgeDiagram(diagram);
+  return hasCoordinates ? layoutCanvasDiagram(diagram) : layoutNodeEdgeDiagram(diagram, style);
 }
 
 // Single source of truth mapping each diagram type to its layout adapter and
@@ -39,7 +43,7 @@ export const DIAGRAM_REGISTRY: Record<DiagramInputType["type"], DiagramHandler> 
   pie: { layout: (d) => layoutPieChart(d), render: "data-viz" },
   quadrant: { layout: (d) => layoutQuadrantChart(d), render: "data-viz" },
   // Mindmaps are node/edge diagrams forced to a radial algorithm (no mutation).
-  mindmap: { layout: (d) => layoutNodeEdgeDiagram({ ...d, algorithm: "radial" }), render: "scene" },
+  mindmap: { layout: (d, style) => layoutNodeEdgeDiagram({ ...d, algorithm: "radial" }, style), render: "scene" },
   gantt: { layout: (d) => layoutGanttChart(d), render: "flow" },
   sankey: { layout: (d) => layoutSankeyDiagram(d), render: "flow" },
   git: { layout: (d) => layoutGitGraph(d), render: "flow" },

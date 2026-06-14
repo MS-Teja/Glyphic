@@ -48,6 +48,13 @@ describe("schema validation hardening", () => {
     ).not.toThrow();
   });
 
+  it("accepts valid style and aspectRatio, rejects unknown values", () => {
+    expect(() => DiagramInput.parse({ ...baseFlow, style: "compact", aspectRatio: "16:9" })).not.toThrow();
+    expect(() => DiagramInput.parse({ ...baseFlow, style: "sketch", aspectRatio: "none" })).not.toThrow();
+    expect(() => DiagramInput.parse({ ...baseFlow, style: "bogus" })).toThrow();
+    expect(() => DiagramInput.parse({ ...baseFlow, aspectRatio: "21:9" })).toThrow();
+  });
+
   it("still accepts a normal valid diagram", () => {
     expect(() => DiagramInput.parse(baseFlow)).not.toThrow();
   });

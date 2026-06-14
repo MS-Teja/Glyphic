@@ -2,6 +2,8 @@ import { DiagramInput, DiagramInputType } from "@glyphic/schema";
 import { layoutDiagram } from "./layout/index.js";
 import { DIAGRAM_REGISTRY } from "./registry.js";
 import { resolveThemePartial, DEFAULT_THEME } from "./render/theme.js";
+import { resolveStyle } from "./render/style.js";
+import { targetRatioFor, frameScene, AspectRatioInput } from "./render/frame.js";
 import { rasterizeSVG } from "./render/rasterizer.js";
 
 import { buildSceneGraph, getMarkerDefs } from "./render/strategies/scene-builder.js";
@@ -32,6 +34,9 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
   const themePartial = resolveThemePartial((validatedDiagram as any).theme);
   const fullTheme = { ...DEFAULT_THEME, ...themePartial };
 
+  // Resolve the render style (geometry/spacing/stroke), default `compact`.
+  const style = resolveStyle((validatedDiagram as any).style);
+
   let svg = "";
   let scene: SceneGraph;
   let layoutWidth = 0;
@@ -41,25 +46,35 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
 
   if (handler.render === "canvas") {
     // Canvas bypasses the layout engine entirely
-    scene = buildCanvasSceneGraph(validatedDiagram as any, fullTheme);
-    layoutWidth = scene.width;
-    layoutHeight = scene.height;
+    scene = buildCanvasSceneGraph(validatedDiagram as any, fullTheme, style);
   } else {
     // 2. Route to layout engine, then to the registered rendering strategy
-    layout = await layoutDiagram(validatedDiagram);
-    layoutWidth = layout.width;
-    layoutHeight = layout.height;
+    layout = await layoutDiagram(validatedDiagram, style);
 
     const diagType = validatedDiagram.type as string;
     if (handler.render === "data-viz") {
-      scene = buildDataVizSceneGraph(layout, diagType, fullTheme);
+      scene = buildDataVizSceneGraph(layout, diagType, fullTheme, style);
     } else if (handler.render === "flow") {
-      scene = buildFlowSceneGraph(layout, diagType, fullTheme);
+      scene = buildFlowSceneGraph(layout, diagType, fullTheme, style);
     } else {
       // buildSceneGraph merges DEFAULT_THEME and auto-contrasts edge labels,
       // so pass the partial (not the merged theme) to preserve that behavior.
-      scene = buildSceneGraph(layout, themePartial, handler.maskLabels ?? false);
+      scene = buildSceneGraph(layout, themePartial, handler.maskLabels ?? false, style);
     }
+  }
+
+  // metadata reflects the actual rendered scene (including layout padding).
+  layoutWidth = scene.width;
+  layoutHeight = scene.height;
+
+  // Frame to a target aspect ratio (pad-only letterbox) before rasterizing.
+  const aspectRatio = (validatedDiagram as any).aspectRatio as AspectRatioInput | undefined;
+  const ratio = targetRatioFor(validatedDiagram.type, (validatedDiagram as any).direction, aspectRatio);
+  if (ratio) {
+    const isExplicit = aspectRatio !== undefined && aspectRatio !== "auto";
+    scene = frameScene(scene, ratio, fullTheme.background, isExplicit);
+    layoutWidth = scene.width;
+    layoutHeight = scene.height;
   }
 
   const defs = scene.defs || getMarkerDefs();

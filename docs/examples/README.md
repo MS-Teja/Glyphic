@@ -2,7 +2,19 @@
 
 Every diagram below was produced by [`@glyphic/core`](../../packages/core) from pure JSON — no headless browser, no Mermaid. Click any `.json` link to see the exact input, or browse all source fixtures in this folder. For the field-by-field schema of each type, see the [Diagram Types reference](../diagram-types.md).
 
-> All 18 first-class diagram types are represented.
+> All 18 first-class diagram types are represented. Diagrams render in the **compact** style and are auto-framed to 16:9 / 9:16 by default — see [Styles & Aspect-Ratio Framing](../styles.md).
+
+---
+
+## Render styles
+
+The same diagram in different `style` presets (default is **compact**). See the [styles guide](../styles.md).
+
+<img src="./33_sketch_architecture.png" alt="Sketch style architecture" width="520" />
+
+<img src="./34_minimal_flowchart.png" alt="Minimal style flowchart" width="300" />
+
+[`33_sketch_architecture.json`](./33_sketch_architecture.json) (sketch) · [`34_minimal_flowchart.json`](./34_minimal_flowchart.json) (minimal)
 
 ---
 

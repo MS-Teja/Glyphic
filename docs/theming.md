@@ -2,6 +2,8 @@
 
 Every diagram accepts an optional `theme`, and most node-based types accept per-element styling. All of it lives in the same JSON.
 
+> **`theme` vs `style`:** `theme` controls **colors and fonts** (this page). `style` controls **shape geometry, spacing, and stroke** — corner radius, fill treatment, density, hand-drawn mode. See [Styles & Aspect-Ratio Framing](./styles.md). The two compose: e.g. `style: "compact"` + `theme: "dark"`.
+
 ## Theme presets
 
 The quickest option — set `theme` to a preset name:

@@ -115,6 +115,8 @@ See the [HTTP API guide](./docs/http-api.md).
 
 - 🧩 **18 diagram types** behind one validated schema — [see them all](#supported-diagrams).
 - 🎨 **Theming** — built-in presets (`"theme": "dark"`, plus `light` / `pastel` / `mono`) or a full custom palette. [Theming guide](./docs/theming.md).
+- 🖌️ **Styles** — visual personality presets: `"style": "compact"` (default), `clean`, `minimal`, or hand-drawn `sketch`. [Styles guide](./docs/styles.md).
+- 📺 **Aspect-ratio framing** — auto-fits diagrams to clean 16:9 / 9:16 frames (or set `"aspectRatio"`), by padding — never cropping.
 - 🔤 **Fonts** — any Google Font (`"fontFamily": "Outfit"`) or your own `.ttf`.
 - 🖼️ **Native icons** — drop in any FontAwesome icon (`"icon": "fas-database"`, `"icon": "fab-aws"`) or your own SVG via `customIcons`.
 - 📐 **Real layout** — `elkjs` + `d3` compute routing, nesting (VPCs/clusters), and crow's-foot/UML markers with no overlaps.
@@ -154,6 +156,7 @@ Adding a new diagram type is one entry in [`packages/core/src/registry.ts`](./pa
 - 📚 [Documentation home](./docs/README.md)
 - 🖼️ [Examples gallery](./docs/examples/README.md) — every type, rendered
 - 🧩 [Diagram types reference](./docs/diagram-types.md) — schema for all 18 types
+- 🖌️ [Styles &amp; aspect-ratio framing](./docs/styles.md)
 - 🎨 [Theming, fonts &amp; icons](./docs/theming.md)
 - 🛠️ [Core API](./docs/api.md)
 - 🔌 [MCP server](./docs/mcp.md)

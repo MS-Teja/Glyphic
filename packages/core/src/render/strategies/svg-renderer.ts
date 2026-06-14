@@ -11,6 +11,7 @@ function renderElement(el: SceneElement): string {
       if (el.stroke) attrs += ` stroke="${escapeXml(el.stroke)}"`;
       if (el.strokeWidth) attrs += ` stroke-width="${el.strokeWidth}"`;
       if (el.opacity !== undefined) attrs += ` opacity="${el.opacity}"`;
+      if (el.filter) attrs += ` filter="${escapeXml(el.filter)}"`;
       return `<rect ${attrs}/>`;
     }
     case 'circle': {
@@ -27,6 +28,7 @@ function renderElement(el: SceneElement): string {
       if (el.stroke) attrs += ` stroke="${escapeXml(el.stroke)}"`;
       if (el.strokeWidth) attrs += ` stroke-width="${el.strokeWidth}"`;
       if (el.opacity !== undefined) attrs += ` opacity="${el.opacity}"`;
+      if (el.filter) attrs += ` filter="${escapeXml(el.filter)}"`;
       return `<ellipse ${attrs}/>`;
     }
     case 'path': {
@@ -37,6 +39,7 @@ function renderElement(el: SceneElement): string {
       if (el.strokeDasharray) attrs += ` stroke-dasharray="${escapeXml(el.strokeDasharray)}"`;
       if (el.markerEnd) attrs += ` marker-end="${escapeXml(el.markerEnd)}"`;
       if (el.opacity !== undefined) attrs += ` opacity="${el.opacity}"`;
+      if (el.filter) attrs += ` filter="${escapeXml(el.filter)}"`;
       return `<path ${attrs}/>`;
     }
     case 'polygon': {
@@ -45,6 +48,7 @@ function renderElement(el: SceneElement): string {
       if (el.stroke) attrs += ` stroke="${escapeXml(el.stroke)}"`;
       if (el.strokeWidth) attrs += ` stroke-width="${el.strokeWidth}"`;
       if (el.opacity !== undefined) attrs += ` opacity="${el.opacity}"`;
+      if (el.filter) attrs += ` filter="${escapeXml(el.filter)}"`;
       return `<polygon ${attrs}/>`;
     }
     case 'line': {
@@ -69,7 +73,8 @@ function renderElement(el: SceneElement): string {
     case 'group': {
       const childrenHtml = el.children.map(renderElement).join("\n");
       const transform = el.transform ? ` transform="${escapeXml(el.transform)}"` : '';
-      return `<g${transform}>\n${childrenHtml}\n</g>`;
+      const filter = el.filter ? ` filter="${escapeXml(el.filter)}"` : '';
+      return `<g${transform}${filter}>\n${childrenHtml}\n</g>`;
     }
     case 'raw-svg': {
       // Caller-supplied markup (canvas raw-svg / custom icons) — sanitize it.

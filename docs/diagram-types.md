@@ -9,7 +9,9 @@ Every type accepts these (all optional):
 | Field | Type | Notes |
 |---|---|---|
 | `title` | `string` | Diagram title; also becomes the SVG `<title>` for accessibility. |
-| `theme` | preset name or object | `"light"` / `"dark"` / `"pastel"` / `"mono"`, or a [custom theme](./theming.md). |
+| `theme` | preset name or object | `"light"` / `"dark"` / `"pastel"` / `"mono"`, or a [custom theme](./theming.md). Controls **colors**. |
+| `style` | preset name | `"compact"` (default) / `"clean"` / `"minimal"` / `"sketch"`. Controls **shape geometry, spacing, and stroke** — see [styles](./styles.md). |
+| `aspectRatio` | preset name | `"auto"` (default) / `"16:9"` / `"9:16"` / `"1:1"` / `"4:3"` / `"3:4"` / `"none"`. Frames the output by padding — see [styles](./styles.md#aspect-ratio-framing). |
 | `exportFormat` | `string[]` | Hint for consumers (MCP/API): any of `"png"`, `"svg"`, `"react-flow"`. Default `["png"]`. The core library always returns SVG + PNG regardless. |
 
 All arrays are capped (e.g. ≤1000 nodes) to bound render cost.

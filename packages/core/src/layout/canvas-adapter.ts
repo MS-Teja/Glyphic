@@ -33,7 +33,11 @@ export async function layoutCanvasDiagram(diagram: NodeEdgeDiagramType): Promise
       width,
       height,
       label: node.label,
-      shape: node.shape || "rectangle"
+      shape: node.shape || "rectangle",
+      // Preserve icon and metadata so explicitly-positioned nodes render icons
+      // and per-node colors just like auto-laid-out ones.
+      icon: node.icon,
+      metadata: node.metadata ? { ...node.metadata } : undefined
     };
 
     nodes.push(layoutNode);

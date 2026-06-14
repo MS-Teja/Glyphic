@@ -2,6 +2,7 @@ import { LayoutResult } from "../../layout/types.js";
 import { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
 import { ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
 import { resolveFontFamily } from "../theme.js";
+import { StyleTokens, DEFAULT_STYLE } from "../style.js";
 
 function getColorsForSlices(count: number): string[] {
   const palette = [
@@ -12,7 +13,7 @@ function getColorsForSlices(count: number): string[] {
   return Array.from({ length: count }, (_, i) => palette[i % palette.length]);
 }
 
-export function buildDataVizSceneGraph(layout: LayoutResult, diagramType: string, theme: ThemeColors = DEFAULT_THEME): SceneGraph {
+export function buildDataVizSceneGraph(layout: LayoutResult, diagramType: string, theme: ThemeColors = DEFAULT_THEME, _style: StyleTokens = DEFAULT_STYLE): SceneGraph {
   const width = layout.width + PADDING * 2;
   const height = layout.height + PADDING * 2;
   

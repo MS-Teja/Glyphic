@@ -2,6 +2,7 @@ import ELK from "elkjs/lib/elk.bundled.js";
 import { NodeEdgeDiagramType } from "@glyphic/schema";
 import { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
 import { measureTextWidth, wrapTextToWidth } from "../text-metrics.js";
+import { StyleTokens, DEFAULT_STYLE } from "../render/style.js";
 
 const elk = new ELK();
 
@@ -22,7 +23,7 @@ const getDimensions = (shape: string) => {
   }
 };
 
-export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promise<LayoutResult> {
+export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType, style: StyleTokens = DEFAULT_STYLE): Promise<LayoutResult> {
   const direction = diagram.direction === "TB" ? "DOWN" :
                     diagram.direction === "BT" ? "UP" :
                     diagram.direction === "LR" ? "RIGHT" : "LEFT";
@@ -169,8 +170,8 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType): Promi
     layoutOptions: {
       "elk.algorithm": algorithm,
       "elk.direction": direction,
-      "elk.spacing.nodeNode": "60",
-      "elk.layered.spacing.nodeNodeBetweenLayers": "80",
+      "elk.spacing.nodeNode": String(style.nodeSpacing),
+      "elk.layered.spacing.nodeNodeBetweenLayers": String(style.layerSpacing),
       "elk.spacing.edgeNode": "30",
       "elk.spacing.edgeEdge": "30",
       "elk.layered.spacing.edgeEdgeBetweenLayers": "30",

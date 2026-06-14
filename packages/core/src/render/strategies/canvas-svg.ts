@@ -2,6 +2,7 @@ import { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js
 import { CanvasDiagramType, CanvasElement } from "@glyphic/schema";
 import { ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
 import { resolveFontFamily } from "../theme.js";
+import { StyleTokens, DEFAULT_STYLE } from "../style.js";
 
 function applyThemeToCanvasElement(element: any, theme: ThemeColors): SceneElement {
   const themedElement = { ...element };
@@ -32,7 +33,7 @@ function applyThemeToCanvasElement(element: any, theme: ThemeColors): SceneEleme
   return themedElement as SceneElement;
 }
 
-export function buildCanvasSceneGraph(diagram: CanvasDiagramType, theme: ThemeColors = DEFAULT_THEME): SceneGraph {
+export function buildCanvasSceneGraph(diagram: CanvasDiagramType, theme: ThemeColors = DEFAULT_THEME, _style: StyleTokens = DEFAULT_STYLE): SceneGraph {
   const width = diagram.width + PADDING * 2;
   const height = diagram.height + PADDING * 2;
 

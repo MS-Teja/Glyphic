@@ -1,0 +1,28 @@
+{
+  "type": "architecture",
+  "title": "Realtime Analytics (sketch style)",
+  "style": "sketch",
+  "direction": "LR",
+  "nodes": [
+    { "id": "web", "label": "Web App", "shape": "service", "icon": "fas-window-maximize" },
+    { "id": "mobile", "label": "Mobile App", "shape": "service", "icon": "fas-mobile-screen" },
+    { "id": "gateway", "label": "API Gateway", "shape": "service", "icon": "fas-bolt", "metadata": { "color": "#6366f1" } },
+    { "id": "stream", "label": "Event Stream", "shape": "hexagon", "icon": "fas-wave-square", "metadata": { "color": "#f59e0b" } },
+    { "id": "worker", "label": "Stream Worker", "shape": "service", "icon": "fas-gears" },
+    { "id": "cache", "label": "Hot Cache", "shape": "cylinder", "icon": "fas-bolt", "metadata": { "color": "#ef4444" } },
+    { "id": "warehouse", "label": "Warehouse", "shape": "database", "icon": "fas-database", "metadata": { "color": "#10b981" } },
+    { "id": "dash", "label": "Dashboards", "shape": "service", "icon": "fas-chart-line", "metadata": { "color": "#ec4899" } },
+    { "id": "alerts", "label": "Alerting", "shape": "service", "icon": "fas-bell", "metadata": { "color": "#f97316" } }
+  ],
+  "edges": [
+    { "source": "web", "target": "gateway", "label": "events" },
+    { "source": "mobile", "target": "gateway", "label": "events" },
+    { "source": "gateway", "target": "stream", "label": "publish" },
+    { "source": "stream", "target": "worker", "label": "consume" },
+    { "source": "worker", "target": "cache", "label": "write" },
+    { "source": "worker", "target": "warehouse", "label": "load" },
+    { "source": "warehouse", "target": "dash", "label": "query" },
+    { "source": "cache", "target": "dash", "label": "live" },
+    { "source": "warehouse", "target": "alerts", "label": "thresholds" }
+  ]
+}

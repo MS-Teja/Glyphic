@@ -5,6 +5,7 @@ Glyphic turns semantic JSON into native SVG/PNG/React-Flow diagrams — for LLMs
 ## Guides
 
 - **[Diagram Types](./diagram-types.md)** — the schema and a minimal example for all 18 types.
+- **[Styles & Aspect-Ratio Framing](./styles.md)** — the `style` presets (compact/clean/minimal/sketch) and `aspectRatio` framing.
 - **[Theming, Fonts & Icons](./theming.md)** — presets, custom palettes, Google Fonts, custom `.ttf`, FontAwesome, and custom SVG icons.
 - **[Examples Gallery](./examples/README.md)** — every type, rendered, with source JSON.
 
@@ -26,7 +27,7 @@ validate (Zod)  →  layout (elkjs / d3 / custom)  →  scene graph  →  SVG  �
 - **Layout** is chosen per type in [`registry.ts`](../packages/core/src/registry.ts).
 - **Output** is always SVG + PNG; React Flow JSON is included for graph/flow types.
 
-All diagrams accept a shared base: `title`, `theme`, and `exportFormat`.
+All diagrams accept a shared base: `title`, `theme`, `style`, `aspectRatio`, and `exportFormat`.
 
 ## Contributing
 

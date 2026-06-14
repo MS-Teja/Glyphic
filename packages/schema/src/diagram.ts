@@ -50,6 +50,14 @@ export const ThemeConfig = z
 const BaseDiagram = z.object({
   title: z.string().max(500).optional().describe("A descriptive title for the diagram"),
   theme: ThemeConfig,
+  style: z
+    .enum(["clean", "compact", "minimal", "sketch"])
+    .optional()
+    .describe("Visual style preset controlling shape geometry, spacing, and stroke weight (separate from theme colors). 'compact' (default) is dense with soft fills; 'clean' is the classic look; 'minimal' is outline-only; 'sketch' is hand-drawn."),
+  aspectRatio: z
+    .enum(["auto", "16:9", "9:16", "1:1", "4:3", "3:4", "none"])
+    .optional()
+    .describe("Frame the output to a target aspect ratio by padding (never cropping or scaling). 'auto' (default) picks a sensible ratio from the diagram type and direction; 'none' disables framing."),
   exportFormat: z.array(z.enum(["png", "svg", "react-flow"])).default(["png"]).describe("Requested export formats (png, svg, react-flow)"),
 });
 

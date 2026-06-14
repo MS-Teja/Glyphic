@@ -4,6 +4,8 @@ import { getPerimeterIntersection, BoundingBox } from "../../math/geometry.js";
 import { getIconSVG } from "../icon-adapter.js";
 import { escapeXml, escapeCssString, sanitizeSvg, isHttpsUrl } from "../sanitize.js";
 import { ThemeColors, DEFAULT_THEME, resolveFontFamily } from "../theme.js";
+import { StyleTokens, DEFAULT_STYLE } from "../style.js";
+import { roughPath, rectCorners } from "../roughen.js";
 import { wrapTextToWidth } from "../../text-metrics.js";
 
 // Re-exported so the strategy modules can keep importing them from here.
@@ -12,6 +14,10 @@ export { DEFAULT_THEME } from "../theme.js";
 
 // Padding around the entire diagram
 export const PADDING = 40;
+
+// Drop-shadow filter id used by node shapes when style.shadow is on.
+export const SHADOW_FILTER_ID = "glyphic-shadow";
+const shadowFilterDef = `\n<filter id="${SHADOW_FILTER_ID}" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.12"/></filter>`;
 
 function darkenHex(hex: string, amount: number = 0.2): string {
   if (!hex.startsWith("#")) return hex;
@@ -35,15 +41,42 @@ function getContrastYIQ(hex: string): string {
   return (yiq >= 128) ? "#0f172a" : "#ffffff";
 }
 
-function getNodeColors(node: LayoutNode, theme: ThemeColors) {
+// Mix a hex color toward white by `amount` (0..1) to produce a soft tint fill.
+function tintHex(hex: string, amount: number): string {
+  if (!hex.startsWith("#")) return hex;
+  if (hex.length === 4) hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
+  let r = parseInt(hex.slice(1, 3), 16);
+  let g = parseInt(hex.slice(3, 5), 16);
+  let b = parseInt(hex.slice(5, 7), 16);
+  r = Math.round(r + (255 - r) * amount);
+  g = Math.round(g + (255 - g) * amount);
+  b = Math.round(b + (255 - b) * amount);
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
+
+function getNodeColors(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE) {
+  const fillMode = style.fillMode;
   if (node.metadata?.color) {
-    const isHex = String(node.metadata.color).startsWith("#");
+    const color = String(node.metadata.color);
+    const isHex = color.startsWith("#");
+    if (fillMode === "none") {
+      return { bg: "none", border: color, text: isHex ? theme.nodeText : color };
+    }
+    if (fillMode === "tint" && isHex) {
+      const bg = tintHex(color, 0.85);
+      return { bg, border: color, text: getContrastYIQ(bg) };
+    }
+    // solid, or a non-hex named color
     return {
-      bg: node.metadata.color,
-      border: isHex ? darkenHex(String(node.metadata.color), 0.2) : node.metadata.color,
-      text: isHex ? getContrastYIQ(String(node.metadata.color)) : "#ffffff"
+      bg: color,
+      border: isHex ? darkenHex(color, 0.2) : color,
+      text: isHex ? getContrastYIQ(color) : "#ffffff"
     };
   }
+  if (fillMode === "none") {
+    return { bg: "none", border: theme.nodeBorder, text: theme.nodeText };
+  }
+  // tint/solid with no explicit color: theme.nodeBackground is already a soft fill.
   return {
     bg: theme.nodeBackground,
     border: theme.nodeBorder,
@@ -51,45 +84,71 @@ function getNodeColors(node: LayoutNode, theme: ThemeColors) {
   };
 }
 
+// Shadow filter string for node shapes, when the style enables it.
+function shadowFilter(style: StyleTokens): string | undefined {
+  return style.shadow ? `url(#${SHADOW_FILTER_ID})` : undefined;
+}
+
 // --- Node shape to SceneGraph element mapping ---
 
-function buildRectangle(node: LayoutNode, theme: ThemeColors): SceneRect {
-  const c = getNodeColors(node, theme);
+// A roughened closed-path version of a shape, used when style.sketch is on.
+function sketchShape(points: { x: number; y: number }[], c: { bg: string; border: string }, style: StyleTokens): ScenePath {
   return {
-    type: 'rect',
-    x: node.x, y: node.y, width: node.width, height: node.height,
-    rx: 6, ry: 6,
-    fill: c.bg, stroke: c.border, strokeWidth: 2
+    type: 'path',
+    d: roughPath(points, true, 1.8),
+    fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth,
   };
 }
 
-function buildRounded(node: LayoutNode, theme: ThemeColors): SceneRect {
-  const c = getNodeColors(node, theme);
+function buildRectangle(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneRect | ScenePath {
+  const c = getNodeColors(node, theme, style);
+  if (style.sketch) return sketchShape(rectCorners(node.x, node.y, node.width, node.height, style.rectRadius), c, style);
   return {
     type: 'rect',
     x: node.x, y: node.y, width: node.width, height: node.height,
-    rx: 20, ry: 20,
-    fill: c.bg, stroke: c.border, strokeWidth: 2
+    rx: style.rectRadius, ry: style.rectRadius,
+    fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth,
+    filter: shadowFilter(style),
   };
 }
 
-function buildDiamond(node: LayoutNode, theme: ThemeColors): ScenePolygon {
-  const c = getNodeColors(node, theme);
+function buildRounded(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneRect | ScenePath {
+  const c = getNodeColors(node, theme, style);
+  if (style.sketch) return sketchShape(rectCorners(node.x, node.y, node.width, node.height, style.roundedRadius), c, style);
+  return {
+    type: 'rect',
+    x: node.x, y: node.y, width: node.width, height: node.height,
+    rx: style.roundedRadius, ry: style.roundedRadius,
+    fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth,
+    filter: shadowFilter(style),
+  };
+}
+
+function buildDiamond(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): ScenePolygon | ScenePath {
+  const c = getNodeColors(node, theme, style);
   const cx = node.x + node.width / 2;
   const cy = node.y + node.height / 2;
+  const pts = [
+    { x: cx, y: node.y },
+    { x: node.x + node.width, y: cy },
+    { x: cx, y: node.y + node.height },
+    { x: node.x, y: cy },
+  ];
+  if (style.sketch) return sketchShape(pts, c, style);
   return {
     type: 'polygon',
-    points: `${cx},${node.y} ${node.x + node.width},${cy} ${cx},${node.y + node.height} ${node.x},${cy}`,
-    fill: c.bg, stroke: c.border, strokeWidth: 2
+    points: pts.map((p) => `${p.x},${p.y}`).join(" "),
+    fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth,
+    filter: shadowFilter(style),
   };
 }
 
-function buildCylinder(node: LayoutNode, theme: ThemeColors): SceneGroup {
-  const c = getNodeColors(node, theme);
+function buildCylinder(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneGroup {
+  const c = getNodeColors(node, theme, style);
   const rx = node.width / 2;
   const ry = node.height * 0.15;
   const { x, y, width: w, height: h } = node;
-  
+
   const pathD = [
     `M ${x},${y + ry}`,
     `A ${rx},${ry} 0 0,0 ${x + w},${y + ry}`,
@@ -100,36 +159,39 @@ function buildCylinder(node: LayoutNode, theme: ThemeColors): SceneGroup {
 
   return {
     type: 'group',
+    filter: shadowFilter(style),
     children: [
-      { type: 'path', d: pathD, fill: c.bg, stroke: c.border, strokeWidth: 2 },
-      { type: 'ellipse', cx: x + rx, cy: y + ry, rx, ry, fill: c.bg, stroke: c.border, strokeWidth: 2 }
+      { type: 'path', d: pathD, fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth },
+      { type: 'ellipse', cx: x + rx, cy: y + ry, rx, ry, fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth }
     ]
   };
 }
 
-function buildHexagon(node: LayoutNode, theme: ThemeColors): ScenePolygon {
-  const c = getNodeColors(node, theme);
+function buildHexagon(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): ScenePolygon | ScenePath {
+  const c = getNodeColors(node, theme, style);
   const inset = Math.min(node.width * 0.15, 20);
   const { x, y, width: w, height: h } = node;
-  const points = [
-    `${x + inset},${y}`,
-    `${x + w - inset},${y}`,
-    `${x + w},${y + h / 2}`,
-    `${x + w - inset},${y + h}`,
-    `${x + inset},${y + h}`,
-    `${x},${y + h / 2}`,
-  ].join(" ");
+  const pts = [
+    { x: x + inset, y },
+    { x: x + w - inset, y },
+    { x: x + w, y: y + h / 2 },
+    { x: x + w - inset, y: y + h },
+    { x: x + inset, y: y + h },
+    { x, y: y + h / 2 },
+  ];
+  if (style.sketch) return sketchShape(pts, c, style);
   return {
     type: 'polygon',
-    points,
-    fill: c.bg, stroke: c.border, strokeWidth: 2
+    points: pts.map((p) => `${p.x},${p.y}`).join(" "),
+    fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth,
+    filter: shadowFilter(style),
   };
 }
 
-function buildPerson(node: LayoutNode, theme: ThemeColors): SceneGroup {
-  const c = getNodeColors(node, theme);
+function buildPerson(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneGroup {
+  const c = getNodeColors(node, theme, style);
   const elements: SceneElement[] = [
-    { type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, rx: 6, ry: 6, fill: c.bg, stroke: c.border, strokeWidth: 2 }
+    { type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, rx: style.rectRadius, ry: style.rectRadius, fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth, filter: shadowFilter(style) }
   ];
 
   if (!node.icon) {
@@ -153,24 +215,29 @@ function buildPerson(node: LayoutNode, theme: ThemeColors): SceneGroup {
   return { type: 'group', children: elements };
 }
 
-function buildCloud(node: LayoutNode, theme: ThemeColors): SceneRect {
-  const c = getNodeColors(node, theme);
+function buildCloud(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneRect {
+  const c = getNodeColors(node, theme, style);
   return {
     type: 'rect',
     x: node.x, y: node.y, width: node.width, height: node.height,
     rx: 30, ry: 30,
-    fill: c.bg, stroke: c.border, strokeWidth: 2
+    fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth,
+    filter: shadowFilter(style),
   };
 }
 
-function buildClassNode(node: LayoutNode, theme: ThemeColors): SceneGroup {
-  const c = getNodeColors(node, theme);
+function buildClassNode(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneGroup {
+  const c = getNodeColors(node, theme, style);
+  // Tables/classes need an opaque title/body even in outline (none) mode so the
+  // dividing lines and rows read clearly.
+  const fill = c.bg === "none" ? theme.background : c.bg;
   const titleHeight = node.icon ? 44 : 30;
   const children: SceneElement[] = [];
 
   children.push({
     type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height,
-    rx: 4, ry: 4, fill: c.bg, stroke: c.border, strokeWidth: 2
+    rx: 4, ry: 4, fill, stroke: c.border, strokeWidth: style.strokeWidth,
+    filter: shadowFilter(style),
   });
 
   const hasAttributes = Array.isArray(node.metadata?.attributes) && node.metadata!.attributes!.length > 0;
@@ -180,18 +247,18 @@ function buildClassNode(node: LayoutNode, theme: ThemeColors): SceneGroup {
   if (hasAttributes || hasMethods || hasColumns) {
     children.push({
       type: 'line', x1: node.x, y1: node.y + titleHeight, x2: node.x + node.width, y2: node.y + titleHeight,
-      stroke: c.border, strokeWidth: 2
+      stroke: c.border, strokeWidth: style.strokeWidth
     });
   }
 
   if (node.metadata && node.metadata.attributes && node.metadata.methods) {
     const attrRows = Array.isArray(node.metadata.attributes) ? node.metadata.attributes.length : 1;
-    const attrHeight = attrRows * 24 + 8; 
+    const attrHeight = attrRows * 24 + 8;
     const sepY = node.y + titleHeight + attrHeight;
     if (sepY < node.y + node.height) {
       children.push({
         type: 'line', x1: node.x, y1: sepY, x2: node.x + node.width, y2: sepY,
-        stroke: c.border, strokeWidth: 2
+        stroke: c.border, strokeWidth: style.strokeWidth
       });
     }
   }
@@ -199,24 +266,24 @@ function buildClassNode(node: LayoutNode, theme: ThemeColors): SceneGroup {
   return { type: 'group', children };
 }
 
-function buildStateStart(node: LayoutNode, theme: ThemeColors): SceneRect {
-  const c = getNodeColors(node, theme);
+function buildStateStart(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneRect {
+  const c = getNodeColors(node, theme, style);
   const rx = Math.min(node.width, node.height) / 2;
   return {
     type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height,
-    rx, ry: rx, fill: c.bg, stroke: c.border, strokeWidth: 3
+    rx, ry: rx, fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth + 1
   };
 }
 
-function buildStateEnd(node: LayoutNode, theme: ThemeColors): SceneGroup {
-  const c = getNodeColors(node, theme);
+function buildStateEnd(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneGroup {
+  const c = getNodeColors(node, theme, style);
   const rx = Math.min(node.width, node.height) / 2;
   return {
     type: 'group',
     children: [
       {
         type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height,
-        rx, ry: rx, fill: c.bg, stroke: c.border, strokeWidth: 2
+        rx, ry: rx, fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth
       },
       {
         type: 'rect', x: node.x + 4, y: node.y + 4, width: node.width - 8, height: node.height - 8,
@@ -226,31 +293,34 @@ function buildStateEnd(node: LayoutNode, theme: ThemeColors): SceneGroup {
   };
 }
 
-function buildNodeShape(node: LayoutNode, theme: ThemeColors): SceneElement {
+function buildNodeShape(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneElement {
   switch (node.shape) {
     case "rounded":
-    case "service": return buildRounded(node, theme);
-    case "diamond": return buildDiamond(node, theme);
+    case "service": return buildRounded(node, theme, style);
+    case "diamond": return buildDiamond(node, theme, style);
     case "cylinder":
-    case "database": return buildCylinder(node, theme);
-    case "hexagon": return buildHexagon(node, theme);
+    case "database": return buildCylinder(node, theme, style);
+    case "hexagon": return buildHexagon(node, theme, style);
     case "person":
-    case "actor": return buildPerson(node, theme);
-    case "cloud": return buildCloud(node, theme);
+    case "actor": return buildPerson(node, theme, style);
+    case "cloud": return buildCloud(node, theme, style);
     case "class":
-    case "table": return buildClassNode(node, theme);
-    case "state_start": return buildStateStart(node, theme);
-    case "state_end": return buildStateEnd(node, theme);
-    default: return buildRectangle(node, theme);
+    case "table": return buildClassNode(node, theme, style);
+    case "state_start": return buildStateStart(node, theme, style);
+    case "state_end": return buildStateEnd(node, theme, style);
+    default: return buildRectangle(node, theme, style);
   }
 }
 
 // --- Node Labels ---
 
-function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null {
+function buildNodeLabel(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneGroup | null {
   if (!node.label && !node.icon) return null;
   const elements: SceneElement[] = [];
-  const c = getNodeColors(node, theme);
+  const c = getNodeColors(node, theme, style);
+  // In outline (none) fill mode, label backing rects should use the canvas
+  // background so text stays legible where it overlaps edges/borders.
+  const labelBg = c.bg === "none" ? theme.background : c.bg;
   const cx = node.x + node.width / 2;
 
   if (node.children && node.children.length > 0) {
@@ -259,17 +329,31 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
       const explicitLines = node.label.split('\n');
       for (const el of explicitLines) lines.push(el);
     }
-    
+
     let textY = node.y + 20;
-    lines.forEach((line) => {
-      // Calculate text width approximation (Inter font is roughly 8.5px per char for size 14, 600 weight)
+    lines.forEach((line, lineIdx) => {
+      // Calculate text width approximation (roughly 8.5px per char for size 14, 700 weight)
       const textWidth = line.length * 8.5;
+      // Render the group's icon (if any) inline to the left of the first title
+      // line. Group/boundary nodes previously dropped their icon entirely (an
+      // earlier version drew it floating in the group's center, which looked
+      // like a stray duplicate of a child node's icon).
+      const iconSize = 16;
+      const gap = 6;
+      const iconSvg = lineIdx === 0 && node.icon ? getIconSVG(node.icon, c.text, iconSize, iconSize) : "";
+      const blockWidth = iconSvg ? iconSize + gap + textWidth : textWidth;
+      const blockLeft = cx - blockWidth / 2;
+      const textCx = iconSvg ? blockLeft + iconSize + gap + textWidth / 2 : cx;
+
       elements.push({
-        type: 'rect', x: cx - textWidth / 2 - 4, y: textY - 10, width: textWidth + 8, height: 20,
-        fill: c.bg, stroke: 'none'
+        type: 'rect', x: blockLeft - 4, y: textY - 10, width: blockWidth + 8, height: 20,
+        fill: labelBg, stroke: 'none'
       });
+      if (iconSvg) {
+        elements.push({ type: 'raw-svg', svg: iconSvg, x: blockLeft, y: textY - iconSize / 2 });
+      }
       elements.push({
-        type: 'text', x: cx, y: textY, content: line,
+        type: 'text', x: textCx, y: textY, content: line,
         textAnchor: 'middle', dominantBaseline: 'central',
         fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 700, fill: c.text
       });
@@ -389,7 +473,7 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors): SceneGroup | null
     lines.forEach((line) => {
       elements.push({
         type: 'text', x: cx, y: textY, content: line,
-        textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: c.text
+        textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: style.fontWeight, fill: c.text
       });
       textY += lineHeight;
     });
@@ -419,13 +503,13 @@ function getNodeIndex(nodes: LayoutNode[]): Map<string, LayoutNode> {
   return idx;
 }
 
-function buildEdgePath(edge: LayoutEdge, nodes: LayoutNode[]): string {
+function buildEdgePath(edge: LayoutEdge, nodes: LayoutNode[], style: StyleTokens = DEFAULT_STYLE): string {
   if (!edge.sections || edge.sections.length === 0) return "";
 
   const nodeIndex = getNodeIndex(nodes);
   const sourceNode = nodeIndex.get(edge.source);
   const targetNode = nodeIndex.get(edge.target);
-  
+
   const parts: string[] = [];
   for (const sec of edge.sections) {
     let startPt = sec.startPoint;
@@ -476,18 +560,24 @@ function buildEdgePath(edge: LayoutEdge, nodes: LayoutNode[]): string {
       }
     }
 
-    parts.push(`M ${startPt.x} ${startPt.y}`);
-    for (const bp of bendPoints) {
-      parts.push(`L ${bp.x} ${bp.y}`);
+    if (style.sketch) {
+      // Hand-drawn: roughen the whole polyline for this section.
+      parts.push(roughPath([startPt, ...bendPoints, endPt], false, 1.2));
+    } else {
+      parts.push(`M ${startPt.x} ${startPt.y}`);
+      for (const bp of bendPoints) {
+        parts.push(`L ${bp.x} ${bp.y}`);
+      }
+      parts.push(`L ${endPt.x} ${endPt.y}`);
     }
-    parts.push(`L ${endPt.x} ${endPt.y}`);
   }
   return parts.join(" ");
 }
 
-export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: LayoutNode[], maskLabels: boolean = false): { paths: SceneElement[], texts: SceneElement[] } | null {
-  const d = buildEdgePath(edge, allNodes);
+export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: LayoutNode[], maskLabels: boolean = false, style: StyleTokens = DEFAULT_STYLE): { paths: SceneElement[], texts: SceneElement[] } | null {
+  const d = buildEdgePath(edge, allNodes, style);
   if (!d) return null;
+  const edgeStroke = style.strokeWidth;
 
   let dash = undefined;
   if (edge.style === 'dashed') dash = "8,5";
@@ -514,17 +604,17 @@ export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: L
   if (dash && markerEnd) {
     // Draw the dashed line without the marker
     paths.push({
-      type: 'path', d, fill: 'none', stroke: edgeColor, strokeWidth: 2,
+      type: 'path', d, fill: 'none', stroke: edgeColor, strokeWidth: edgeStroke,
       strokeDasharray: dash
     });
     // Draw an invisible line with the marker to prevent renderer bugs dropping it
     paths.push({
-      type: 'path', d, fill: 'none', stroke: 'transparent', strokeWidth: 2,
+      type: 'path', d, fill: 'none', stroke: 'transparent', strokeWidth: edgeStroke,
       markerEnd
     });
   } else {
     paths.push({
-      type: 'path', d, fill: 'none', stroke: edgeColor, strokeWidth: 2,
+      type: 'path', d, fill: 'none', stroke: edgeColor, strokeWidth: edgeStroke,
       strokeDasharray: dash, markerEnd
     });
   }
@@ -672,7 +762,7 @@ export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: L
 
 // --- Main Builder ---
 
-export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<ThemeColors> = {}, maskLabels: boolean = false): SceneGraph {
+export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<ThemeColors> = {}, maskLabels: boolean = false, style: StyleTokens = DEFAULT_STYLE): SceneGraph {
   const theme: ThemeColors = { ...DEFAULT_THEME, ...passedTheme };
   if (!passedTheme.edgeLabelColor) {
     const isDarkBg = getContrastYIQ(theme.background) === "#ffffff";
@@ -690,6 +780,8 @@ export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<Theme
     if (e.metadata?.color) uniqueColors.add(e.metadata.color);
   });
   let defs = getMarkerDefs(theme, Array.from(uniqueColors));
+
+  if (style.shadow) defs += shadowFilterDef;
 
   if (theme.customIcons) {
     for (const [iconName, svgContent] of Object.entries(theme.customIcons)) {
@@ -718,7 +810,7 @@ export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<Theme
   }
 
   for (const edge of layout.edges) {
-    const res = buildSceneEdge(edge, theme, layout.nodes, maskLabels);
+    const res = buildSceneEdge(edge, theme, layout.nodes, maskLabels, style);
     if (res) {
       allEdgePaths.push(...res.paths);
       allEdgeLabels.push(...res.texts);
@@ -756,8 +848,8 @@ export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<Theme
   const addGroups = (nodes: LayoutNode[]) => {
     for (const node of nodes) {
       if (node.children && node.children.length > 0) {
-        rootGroup.children.push(buildNodeShape(node, theme));
-        const label = buildNodeLabel(node, theme);
+        rootGroup.children.push(buildNodeShape(node, theme, style));
+        const label = buildNodeLabel(node, theme, style);
         if (label) allNodeLabels.push(label);
         addGroups(node.children);
       }
@@ -768,8 +860,8 @@ export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<Theme
   const addLeafNodes = (nodes: LayoutNode[]) => {
     for (const node of nodes) {
       if (!node.children || node.children.length === 0) {
-        rootGroup.children.push(buildNodeShape(node, theme));
-        const label = buildNodeLabel(node, theme);
+        rootGroup.children.push(buildNodeShape(node, theme, style));
+        const label = buildNodeLabel(node, theme, style);
         if (label) allNodeLabels.push(label);
       } else {
         addLeafNodes(node.children);

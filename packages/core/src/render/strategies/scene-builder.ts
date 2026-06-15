@@ -194,22 +194,22 @@ function buildPerson(node: LayoutNode, theme: ThemeColors, style: StyleTokens = 
     { type: 'rect', x: node.x, y: node.y, width: node.width, height: node.height, rx: style.rectRadius, ry: style.rectRadius, fill: c.bg, stroke: c.border, strokeWidth: style.strokeWidth, filter: shadowFilter(style) }
   ];
 
+  // Represent an actor/person with a clean user icon rather than a hand-drawn
+  // stick figure. A node-supplied icon is rendered by the label builder, so we
+  // only inject the default avatar when the node didn't specify one.
   if (!node.icon) {
     const cx = node.x + node.width / 2;
     const availableHeight = node.height * 0.6;
-    const headR = Math.min(node.width, availableHeight) * 0.15;
-    const headY = node.y + headR + 8;
-    const bodyTop = headY + headR + 6;
-    const bodyBottom = node.y + availableHeight - 4;
-    const bodyW = node.width * 0.5;
-    
-    elements.push(
-      { type: 'circle', cx, cy: headY, r: headR, fill: c.border, opacity: 0.3 },
-      { type: 'line', x1: cx, y1: headY + headR, x2: cx, y2: bodyBottom - 15, stroke: c.border, strokeWidth: 2, opacity: 0.3 },
-      { type: 'line', x1: cx - bodyW / 2, y1: bodyTop + 10, x2: cx + bodyW / 2, y2: bodyTop + 10, stroke: c.border, strokeWidth: 2, opacity: 0.3 },
-      { type: 'line', x1: cx, y1: bodyBottom - 15, x2: cx - bodyW / 3, y2: bodyBottom, stroke: c.border, strokeWidth: 2, opacity: 0.3 },
-      { type: 'line', x1: cx, y1: bodyBottom - 15, x2: cx + bodyW / 3, y2: bodyBottom, stroke: c.border, strokeWidth: 2, opacity: 0.3 }
-    );
+    const iconSize = Math.max(18, Math.min(node.width * 0.42, availableHeight * 0.72));
+    const iconSvg = getIconSVG("fas-user", c.border, iconSize, iconSize);
+    if (iconSvg) {
+      elements.push({
+        type: 'raw-svg',
+        svg: iconSvg,
+        x: cx - iconSize / 2,
+        y: node.y + (availableHeight - iconSize) / 2 + 4,
+      });
+    }
   }
 
   return { type: 'group', children: elements };
@@ -312,6 +312,25 @@ function buildNodeShape(node: LayoutNode, theme: ThemeColors, style: StyleTokens
   }
 }
 
+// Resolve a node's icon to a sized SVG string: FontAwesome first, then a
+// caller-supplied brand icon from theme.customIcons. (Custom icons used to be
+// registered in <defs> but never referenced — dead code; now they render.)
+// Returns "" for an unknown icon, which callers treat as "no icon".
+function resolveNodeIcon(iconName: string | undefined, theme: ThemeColors, color: string, size: number): string {
+  if (!iconName) return "";
+  const fa = getIconSVG(iconName, color, size, size);
+  if (fa) return fa;
+  const custom = theme.customIcons?.[iconName];
+  if (!custom) return "";
+  // Normalize the sanitized brand SVG into a size×size box: strip any intrinsic
+  // width/height on its root so its own viewBox scales to fill our box.
+  const inner = sanitizeSvg(String(custom)).replace(
+    /<svg\b([^>]*)>/i,
+    (_m, attrs) => `<svg${attrs.replace(/\s(?:width|height)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "")} width="100%" height="100%">`,
+  );
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" preserveAspectRatio="xMidYMid meet">${inner}</svg>`;
+}
+
 // --- Node Labels ---
 
 function buildNodeLabel(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneGroup | null {
@@ -340,7 +359,7 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors, style: StyleTokens
       // like a stray duplicate of a child node's icon).
       const iconSize = 16;
       const gap = 6;
-      const iconSvg = lineIdx === 0 && node.icon ? getIconSVG(node.icon, c.text, iconSize, iconSize) : "";
+      const iconSvg = lineIdx === 0 && node.icon ? resolveNodeIcon(node.icon, theme, c.text, iconSize) : "";
       const blockWidth = iconSvg ? iconSize + gap + textWidth : textWidth;
       const blockLeft = cx - blockWidth / 2;
       const textCx = iconSvg ? blockLeft + iconSize + gap + textWidth / 2 : cx;
@@ -381,7 +400,7 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors, style: StyleTokens
 
     if (node.icon) {
       const iconSize = 16;
-      const iconSvg = getIconSVG(node.icon, c.text, iconSize, iconSize);
+      const iconSvg = resolveNodeIcon(node.icon, theme, c.text, iconSize);
       
       if (hasContent) {
         // Stack icon above text within the 44px title bar
@@ -460,7 +479,7 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors, style: StyleTokens
 
   if (node.icon) {
     const iconX = cx - (iconSize / 2);
-    const iconSvg = getIconSVG(node.icon, c.text, iconSize, iconSize);
+    const iconSvg = resolveNodeIcon(node.icon, theme, c.text, iconSize);
     if (iconSvg) {
       elements.push({ type: 'raw-svg', svg: iconSvg, x: iconX, y: currentY });
     }
@@ -782,13 +801,6 @@ export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<Theme
   let defs = getMarkerDefs(theme, Array.from(uniqueColors));
 
   if (style.shadow) defs += shadowFilterDef;
-
-  if (theme.customIcons) {
-    for (const [iconName, svgContent] of Object.entries(theme.customIcons)) {
-      // iconName goes into an attribute; svgContent is caller-supplied markup.
-      defs += `\n<g id="icon-${escapeXml(iconName)}">${sanitizeSvg(String(svgContent))}</g>`;
-    }
-  }
 
   // CSS is wrapped in CDATA so characters like '&' in the font URL are not
   // parsed as XML entities (SVG is XML; a bare '&' is a malformed entity and

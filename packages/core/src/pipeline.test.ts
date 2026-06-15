@@ -57,9 +57,9 @@ describe("Rendering Pipeline Orchestrator", () => {
 
     // Strategy 3 bypasses Satori, so it generates real SVG
     expect(result.svg).toContain("<svg");
-    expect(result.svg).toContain("<circle");
-    expect(result.svg).toContain("<polygon");
-    expect(result.svg).toContain("<ellipse");
+    expect(result.svg).toContain("<polygon"); // hexagon
+    expect(result.svg).toContain("<ellipse"); // cylinder
+    expect(result.svg).toContain("<path"); // person/actor renders a user icon
   });
 
   it("should successfully process a sequence diagram using Pure SVG Strategy", async () => {
@@ -90,5 +90,22 @@ describe("Rendering Pipeline Orchestrator", () => {
     };
 
     await expect(processDiagram(badInput)).rejects.toThrow();
+  });
+
+  it("renders a custom theme icon referenced by a node (fallback past FontAwesome)", async () => {
+    const star = '<svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" fill="#e11d48"/></svg>';
+    const result = await processDiagram({
+      type: "flowchart",
+      direction: "LR",
+      theme: { customIcons: { mybrand: star } },
+      nodes: [
+        { id: "a", label: "Brand", icon: "mybrand" },
+        { id: "b", label: "Plain" },
+      ],
+      edges: [{ source: "a", target: "b" }],
+    });
+    // The brand icon's path is inlined at the node — previously dead code
+    // (custom icons were registered in <defs> but never referenced).
+    expect(result.svg).toContain("M12 2l3 7");
   });
 });

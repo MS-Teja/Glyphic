@@ -1,7 +1,7 @@
 {
   "name": "@glyphic/core",
   "version": "1.0.0",
-  "license": "MIT",
+  "license": "FSL-1.1-ALv2",
   "description": "Layout and rendering engine for Glyphic",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

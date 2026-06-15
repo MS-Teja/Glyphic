@@ -33,3 +33,6 @@ test-outputs/
 .idea/
 .vscode/
 *.swp
+
+# Apps
+apps/

@@ -148,4 +148,4 @@ Adding a new diagram type is one entry in [`packages/core/src/registry.ts`](./pa
 
 ## License
 
-[MIT](./LICENSE). Build incredible things.
+[LICENSE](./LICENSE). Build incredible things.

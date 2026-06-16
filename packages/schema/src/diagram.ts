@@ -169,7 +169,7 @@ export const GanttChart = BaseDiagram.extend({
       start: z.union([z.string(), z.number()]).describe("Start date or generic numeric value"),
       end: z.union([z.string(), z.number()]).optional().describe("End date or generic numeric value"),
       duration: z.number().optional().describe("Duration if end is not provided"),
-      dependencies: z.array(z.string()).optional().describe("Array of task IDs that must finish before this starts")
+      dependencies: z.array(z.string()).max(MAX_TASKS).optional().describe("Array of task IDs that must finish before this starts")
     }).refine((t) => t.end !== undefined || t.duration !== undefined, {
       message: "Each task must have either 'end' or 'duration'",
       path: ["end"],
@@ -197,7 +197,7 @@ export const GitGraph = BaseDiagram.extend({
     id: z.string().regex(/^[a-zA-Z0-9_-]+$/),
     message: z.string().optional(),
     branch: z.string().describe("Name of the branch this commit belongs to"),
-    parents: z.array(z.string()).optional().describe("Array of parent commit IDs. 2 parents indicate a merge."),
+    parents: z.array(z.string()).max(MAX_COMMITS).optional().describe("Array of parent commit IDs. 2 parents indicate a merge."),
     tag: z.string().optional()
   })).min(1).max(MAX_COMMITS)
 });

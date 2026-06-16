@@ -51,8 +51,13 @@ export function sanitizeSvg(svg: string): string {
     )
     // Remove dangerous self-closing / unclosed tags.
     .replace(/<\s*(script|foreignObject|iframe|style|set|animate[a-zA-Z]*)\b[^>]*\/?>/gi, "")
-    // Strip inline event handlers (onload=, onclick=, ...).
-    .replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "")
-    // Neutralize javascript:/data: URIs in (xlink:)href.
-    .replace(/((?:xlink:)?href)\s*=\s*("|')\s*(?:javascript|data):[^"']*\2/gi, '$1="#"');
+    // Strip inline event handlers (onload=, onclick=, ...). The separator can be
+    // whitespace OR a slash — `<svg/onload=alert(1)>` is valid markup, so a
+    // whitespace-only match would miss it.
+    .replace(/[\s/]on[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "")
+    // Neutralize any (xlink:)href that isn't a local fragment ref (#id). This
+    // blocks javascript:/data: AND external http(s)/protocol-relative refs in
+    // <a>/<use>/<image> — icons are self-contained, so external loads aren't
+    // needed and would leak/track when the SVG is shown as live DOM.
+    .replace(/((?:xlink:)?href)\s*=\s*("|')\s*(?!#)[^"']*\2/gi, '$1="#"');
 }

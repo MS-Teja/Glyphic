@@ -36,6 +36,21 @@ describe("sanitize helpers", () => {
     expect(clean.toLowerCase()).not.toContain("onload");
     expect(clean).not.toContain("javascript:");
   });
+
+  it("sanitizeSvg strips slash-separated event handlers", () => {
+    const clean = sanitizeSvg(`<svg/onload=alert(1)><circle/onclick='x()'/></svg>`).toLowerCase();
+    expect(clean).not.toContain("onload");
+    expect(clean).not.toContain("onclick");
+  });
+
+  it("sanitizeSvg neutralizes external and data href, keeps local fragment refs", () => {
+    const clean = sanitizeSvg(
+      `<use href="https://evil.example/x"/><image xlink:href="data:image/svg+xml,foo"/><use href="#icon-a"/>`,
+    );
+    expect(clean).not.toContain("evil.example");
+    expect(clean).not.toContain("data:image");
+    expect(clean).toContain('href="#icon-a"'); // legitimate internal ref preserved
+  });
 });
 
 describe("processDiagram output is injection-safe", () => {

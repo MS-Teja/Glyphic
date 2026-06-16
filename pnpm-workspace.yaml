@@ -1,8 +1,9 @@
 packages:
   - 'packages/*'
-# pnpm 11 blocks dependency build scripts unless explicitly allowed. Without
-# this, `pnpm install` in CI fails with ERR_PNPM_IGNORED_BUILDS.
-onlyBuiltDependencies:
-  - '@biomejs/biome'
-  - esbuild
-  - msgpackr-extract
+# pnpm 11 blocks dependency build scripts unless explicitly approved. Without
+# this, `pnpm install --frozen-lockfile` fails with ERR_PNPM_IGNORED_BUILDS in
+# CI. pnpm 11 reads the `allowBuilds` map (true = allow the package to build).
+allowBuilds:
+  '@biomejs/biome': true
+  esbuild: true
+  msgpackr-extract: true

@@ -13,7 +13,6 @@ Glyphic turns semantic JSON into native SVG/PNG/React-Flow diagrams — for LLMs
 
 - **[Core API](./api.md)** — use `@glyphic/core` as a library (`processDiagram`).
 - **[MCP Server](./mcp.md)** — wire Glyphic into Claude Desktop / Cursor.
-- **[HTTP API](./http-api.md)** — self-host the Fastify + BullMQ service.
 
 ## Concepts
 

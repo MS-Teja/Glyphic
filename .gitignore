@@ -35,4 +35,4 @@ test-outputs/
 *.swp
 
 # Apps
-apps/
+apps/ 

@@ -6,7 +6,6 @@ Thanks for your interest in improving Glyphic!
 
 - **Node.js** >= 20
 - **pnpm** 11 (the repo pins a version via `packageManager`; run `corepack enable` to use it automatically)
-- A **Redis** instance only if you want to run `apps/api` locally (`docker run -p 6379:6379 redis`)
 
 ## Setup
 
@@ -39,7 +38,6 @@ This is a pnpm + Turborepo monorepo:
 - **`packages/schema`** — the Zod contract (`@glyphic/schema`). The first line of input validation.
 - **`packages/core`** — the engine (`@glyphic/core`): layout adapters, scene graph, SVG rendering, rasterization. Diagram types are wired in `src/registry.ts`.
 - **`packages/mcp-server`** — the Model Context Protocol server.
-- **`apps/api`** — the Fastify + BullMQ HTTP API (not published).
 
 ### Adding a new diagram type
 
@@ -52,7 +50,7 @@ This is a pnpm + Turborepo monorepo:
 
 - `examples.smoke.test.ts` renders every fixture and asserts valid output.
 - `examples.snapshot.test.ts` holds exact-SVG golden snapshots; intentional output changes are reviewed via `vitest -u`.
-- Security/validation behavior is covered in `render/sanitize.test.ts`, `schema/validation.test.ts`, and `apps/api/server.test.ts`.
+- Security/validation behavior is covered in `render/sanitize.test.ts` and `schema/validation.test.ts`.
 
 Please keep the build, typecheck, lint, and tests green before opening a PR.
 

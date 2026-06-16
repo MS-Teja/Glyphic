@@ -94,21 +94,6 @@ Add it to `claude_desktop_config.json`:
 
 Restart Claude Desktop and ask: *"Draw an architecture diagram of a React app behind an AWS load balancer talking to 3 Node services and a Postgres database."* Claude emits the JSON, calls the tool, and the rendered PNG appears inline. See the [MCP guide](./docs/mcp.md).
 
-### 3. As a self-hosted HTTP API
-
-```bash
-docker run -p 6379:6379 redis          # Glyphic's API queues jobs in Redis
-REDIS_URL=redis://localhost:6379 API_KEY=secret pnpm --filter @glyphic/api start
-```
-
-```bash
-curl -X POST http://localhost:3000/v1/render \
-  -H "Authorization: Bearer secret" -H "Content-Type: application/json" \
-  -d '{ "type": "flowchart", "nodes": [{ "id": "a", "label": "Start" }], "edges": [] }'
-```
-
-See the [HTTP API guide](./docs/http-api.md).
-
 ---
 
 ## Features
@@ -140,14 +125,13 @@ See the [HTTP API guide](./docs/http-api.md).
 
 ## Monorepo architecture
 
-A `pnpm` + Turborepo monorepo: three open-source libraries plus an optional hosted API.
+A `pnpm` + Turborepo monorepo of three open-source libraries.
 
 | Package | What it is |
 |---|---|
 | [`@glyphic/schema`](./packages/schema) | The pure Zod validation layer — the LLM-facing contract. Validate model output before rendering. |
 | [`@glyphic/core`](./packages/core) | The engine: layout adapters, scene graph, SVG rendering, and rasterization. |
 | [`@glyphic/mcp-server`](./packages/mcp-server) | Official Model Context Protocol server — exposes Glyphic as a native tool to Claude Desktop / Cursor. |
-| [`apps/api`](./apps/api) | Optional self-hostable Fastify + BullMQ HTTP API (`POST /v1/render`). Not published. |
 
 Adding a new diagram type is one entry in [`packages/core/src/registry.ts`](./packages/core/src/registry.ts) plus a schema and a layout adapter — see [CONTRIBUTING](./CONTRIBUTING.md).
 
@@ -160,7 +144,6 @@ Adding a new diagram type is one entry in [`packages/core/src/registry.ts`](./pa
 - 🎨 [Theming, fonts &amp; icons](./docs/theming.md)
 - 🛠️ [Core API](./docs/api.md)
 - 🔌 [MCP server](./docs/mcp.md)
-- 🌐 [HTTP API](./docs/http-api.md)
 - 🤝 [Contributing](./CONTRIBUTING.md)
 
 ## License

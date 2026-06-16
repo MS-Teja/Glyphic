@@ -1,5 +1,8 @@
 packages:
   - 'packages/*'
-allowBuilds:
-  esbuild: true
-  msgpackr-extract: true
+# pnpm 11 blocks dependency build scripts unless explicitly allowed. Without
+# this, `pnpm install` in CI fails with ERR_PNPM_IGNORED_BUILDS.
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - esbuild
+  - msgpackr-extract

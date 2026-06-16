@@ -1,4 +1,4 @@
-import { TimelineDiagramType, JourneyDiagramType, KanbanDiagramType } from "@glyphic/schema";
+import { TimelineDiagramType, JourneyDiagramType, KanbanDiagramType } from "@glyphicjs/schema";
 import { LayoutResult, LayoutNode } from "./types.js";
 
 const COL_W = 260;

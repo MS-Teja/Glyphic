@@ -1,4 +1,4 @@
-import { PieChartType, QuadrantChartType } from "@glyphic/schema";
+import { PieChartType, QuadrantChartType } from "@glyphicjs/schema";
 import { LayoutResult, LayoutNode } from "./types.js";
 
 export function layoutPieChart(diagram: PieChartType): LayoutResult {

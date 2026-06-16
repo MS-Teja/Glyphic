@@ -28,15 +28,15 @@ pnpm format      # biome format --write
 Run a single package, e.g.:
 
 ```bash
-pnpm --filter @glyphic/core test
+pnpm --filter @glyphicjs/core test
 ```
 
 ## Architecture
 
 This is a pnpm + Turborepo monorepo:
 
-- **`packages/schema`** — the Zod contract (`@glyphic/schema`). The first line of input validation.
-- **`packages/core`** — the engine (`@glyphic/core`): layout adapters, scene graph, SVG rendering, rasterization. Diagram types are wired in `src/registry.ts`.
+- **`packages/schema`** — the Zod contract (`@glyphicjs/schema`). The first line of input validation.
+- **`packages/core`** — the engine (`@glyphicjs/core`): layout adapters, scene graph, SVG rendering, rasterization. Diagram types are wired in `src/registry.ts`.
 - **`packages/mcp-server`** — the Model Context Protocol server.
 
 ### Adding a new diagram type

@@ -1,4 +1,4 @@
-import { SequenceDiagramType } from "@glyphic/schema";
+import { SequenceDiagramType } from "@glyphicjs/schema";
 import { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
 import { measureTextWidth } from "../text-metrics.js";
 

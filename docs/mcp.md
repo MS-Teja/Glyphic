@@ -1,4 +1,4 @@
-# MCP Server (`@glyphic/mcp-server`)
+# MCP Server (`@glyphicjs/mcp-server`)
 
 Expose Glyphic as a native tool to any [Model Context Protocol](https://modelcontextprotocol.io) client — Claude Desktop, Cursor, and others — so the model can draw diagrams directly in chat.
 
@@ -13,7 +13,7 @@ The server runs over stdio via `npx`; no global install needed.
   "mcpServers": {
     "glyphic": {
       "command": "npx",
-      "args": ["-y", "@glyphic/mcp-server"]
+      "args": ["-y", "@glyphicjs/mcp-server"]
     }
   }
 }
@@ -49,8 +49,8 @@ No arguments. Returns the full JSON Schema for a diagram input, so the model kno
 
 Behavior:
 
-- Validates with `@glyphic/schema` first — malformed output returns a clean, fixable error (no stack traces leaked).
-- Renders via `@glyphic/core`.
+- Validates with `@glyphicjs/schema` first — malformed output returns a clean, fixable error (no stack traces leaked).
+- Renders via `@glyphicjs/core`.
 - Returns the PNG as an inline image; includes React Flow JSON in the text response when `exportFormat` requests `"react-flow"`.
 - Saves files to **`~/Desktop/Glyphic Diagrams/`** as `<title>_<timestamp>.png` / `.svg` / `_react_flow.json`.
 

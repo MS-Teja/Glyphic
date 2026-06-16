@@ -1,5 +1,5 @@
 import { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
-import { CanvasDiagramType, CanvasElement } from "@glyphic/schema";
+import { CanvasDiagramType, CanvasElement } from "@glyphicjs/schema";
 import { ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
 import { resolveFontFamily } from "../theme.js";
 import { StyleTokens, DEFAULT_STYLE } from "../style.js";

@@ -1,15 +1,15 @@
-# Core API (`@glyphic/core`)
+# Core API (`@glyphicjs/core`)
 
 The library entry point for rendering diagrams in your own Node application.
 
 ```bash
-npm install @glyphic/core @glyphic/schema
+npm install @glyphicjs/core @glyphicjs/schema
 ```
 
 ## `processDiagram(input, fontBuffer?)`
 
 ```typescript
-import { processDiagram } from "@glyphic/core";
+import { processDiagram } from "@glyphicjs/core";
 
 function processDiagram(
   input: unknown,
@@ -43,7 +43,7 @@ interface RenderResult {
 ### Render to files
 
 ```typescript
-import { processDiagram } from "@glyphic/core";
+import { processDiagram } from "@glyphicjs/core";
 import { writeFileSync } from "node:fs";
 
 const result = await processDiagram({
@@ -63,8 +63,8 @@ writeFileSync("erd.png", result.png);
 ### Validate first (handle errors yourself)
 
 ```typescript
-import { DiagramInput } from "@glyphic/schema";
-import { processDiagram } from "@glyphic/core";
+import { DiagramInput } from "@glyphicjs/schema";
+import { processDiagram } from "@glyphicjs/core";
 
 const parsed = DiagramInput.safeParse(modelOutput);
 if (!parsed.success) {
@@ -89,11 +89,11 @@ const result = await processDiagram(
 ## Error handling
 
 - **Invalid input** → `ZodError` (from `processDiagram`'s internal `DiagramInput.parse`). Inspect `err.issues`.
-- **Rasterization failure** → `RasterizationError` (exported from `@glyphic/core`) wrapping the underlying resvg error.
+- **Rasterization failure** → `RasterizationError` (exported from `@glyphicjs/core`) wrapping the underlying resvg error.
 
 ```typescript
-import { processDiagram, RasterizationError } from "@glyphic/core";
-import { ZodError } from "@glyphic/schema";
+import { processDiagram, RasterizationError } from "@glyphicjs/core";
+import { ZodError } from "@glyphicjs/schema";
 
 try {
   await processDiagram(input);

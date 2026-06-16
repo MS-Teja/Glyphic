@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { DiagramInput } from "@glyphic/schema";
+import { DiagramInput } from "@glyphicjs/schema";
 import { layoutDiagram } from "./index.js";
 
 describe("layout correctness regressions", () => {

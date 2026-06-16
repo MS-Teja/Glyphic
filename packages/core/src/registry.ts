@@ -1,4 +1,4 @@
-import { DiagramInputType, NodeEdgeDiagramType } from "@glyphic/schema";
+import { DiagramInputType, NodeEdgeDiagramType } from "@glyphicjs/schema";
 import { LayoutResult } from "./layout/types.js";
 import { layoutNodeEdgeDiagram } from "./layout/elk-adapter.js";
 import { layoutSequenceDiagram } from "./layout/sequence-adapter.js";

@@ -1,4 +1,4 @@
-import { ErdDiagramType } from "@glyphic/schema";
+import { ErdDiagramType } from "@glyphicjs/schema";
 import { LayoutResult } from "./types.js";
 import { layoutNodeEdgeDiagram } from "./elk-adapter.js";
 

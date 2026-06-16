@@ -1,4 +1,4 @@
-import { ClassDiagramType } from "@glyphic/schema";
+import { ClassDiagramType } from "@glyphicjs/schema";
 import { LayoutResult } from "./types.js";
 import { layoutNodeEdgeDiagram } from "./elk-adapter.js";
 

@@ -1,5 +1,5 @@
 {
-  "name": "@glyphic/mcp-server",
+  "name": "@glyphicjs/mcp-server",
   "version": "1.0.0",
   "license": "MIT",
   "description": "Model Context Protocol server for Glyphic",
@@ -22,8 +22,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@glyphic/core": "workspace:*",
-    "@glyphic/schema": "workspace:*",
+    "@glyphicjs/core": "workspace:*",
+    "@glyphicjs/schema": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.0.1",
     "zod": "^3.23.8",
     "zod-to-json-schema": "^3.23.5"

@@ -1,4 +1,4 @@
-import { NodeEdgeDiagramType } from "@glyphic/schema";
+import { NodeEdgeDiagramType } from "@glyphicjs/schema";
 import { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
 
 // A direct canvas layout adapter that bypasses ELK auto-layout.

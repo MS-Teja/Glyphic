@@ -5,9 +5,9 @@ import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
-import { DiagramInput } from "@glyphic/schema";
+import { DiagramInput } from "@glyphicjs/schema";
 import { z } from "zod";
-import { processDiagram } from "@glyphic/core";
+import { processDiagram } from "@glyphicjs/core";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import * as os from "node:os";
 import * as path from "node:path";

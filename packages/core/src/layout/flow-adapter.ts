@@ -1,4 +1,4 @@
-import { SankeyDiagramType, GitGraphType } from "@glyphic/schema";
+import { SankeyDiagramType, GitGraphType } from "@glyphicjs/schema";
 import { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
 
 import { sankey, sankeyCenter } from "d3-sankey";

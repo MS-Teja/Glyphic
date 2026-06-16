@@ -1,15 +1,15 @@
-# @glyphic/core
+# @glyphicjs/core
 
 The rendering engine for [Glyphic](../../README.md). Takes a validated diagram (JSON) and returns **SVG**, a high-resolution **PNG**, and **React Flow** JSON — with no headless browser.
 
 ```bash
-npm install @glyphic/core @glyphic/schema
+npm install @glyphicjs/core @glyphicjs/schema
 ```
 
 ## Quick start
 
 ```typescript
-import { processDiagram } from "@glyphic/core";
+import { processDiagram } from "@glyphicjs/core";
 import { writeFileSync } from "node:fs";
 
 const result = await processDiagram({
@@ -44,7 +44,7 @@ function processDiagram(
 ): Promise<RenderResult>;
 ```
 
-- **`input`** — any value; it is validated with `@glyphic/schema`'s `DiagramInput` and **throws a `ZodError`** if invalid. (You can pass an already-parsed object or raw JSON.)
+- **`input`** — any value; it is validated with `@glyphicjs/schema`'s `DiagramInput` and **throws a `ZodError`** if invalid. (You can pass an already-parsed object or raw JSON.)
 - **`fontBuffer`** *(optional)* — a `.ttf`/`.otf` buffer embedded into the PNG so a custom font appears in the raster (resvg cannot fetch remote font URLs at rasterization time).
 
 ```typescript
@@ -61,7 +61,7 @@ interface RenderResult {
 ## How it works
 
 ```
-input ──▶ validate (@glyphic/schema)
+input ──▶ validate (@glyphicjs/schema)
       ──▶ layout      (registry → elkjs / d3 / custom adapter)
       ──▶ scene graph (shapes, labels, edges, markers)
       ──▶ SVG         (escaped + sanitized output)

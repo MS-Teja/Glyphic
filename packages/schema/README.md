@@ -1,21 +1,21 @@
-# @glyphic/schema
+# @glyphicjs/schema
 
 The **Zod validation layer** for [Glyphic](../../README.md) — the strict, machine-first contract that LLMs target. Install this if you want to validate model output (or any untrusted input) *before* handing it to the renderer, or to generate a JSON Schema for tool definitions.
 
 ```bash
-npm install @glyphic/schema
+npm install @glyphicjs/schema
 ```
 
 ## Why a schema package?
 
-Glyphic's whole premise is that models emit **JSON, not a DSL**. `@glyphic/schema` is that JSON contract, expressed once as a Zod schema and reused everywhere — `@glyphic/core` validates with it, the MCP server exposes it as a tool's `inputSchema`, and the HTTP API rejects bad payloads with it. Every field carries a `.describe()` so the generated JSON Schema is self-documenting for the model.
+Glyphic's whole premise is that models emit **JSON, not a DSL**. `@glyphicjs/schema` is that JSON contract, expressed once as a Zod schema and reused everywhere — `@glyphicjs/core` validates with it, the MCP server exposes it as a tool's `inputSchema`, and the HTTP API rejects bad payloads with it. Every field carries a `.describe()` so the generated JSON Schema is self-documenting for the model.
 
 ## Usage
 
 ### Validate input
 
 ```typescript
-import { DiagramInput } from "@glyphic/schema";
+import { DiagramInput } from "@glyphicjs/schema";
 
 // Throws a ZodError with precise, fixable messages on invalid input.
 const diagram = DiagramInput.parse(untrustedJson);
@@ -38,7 +38,7 @@ if (!result.success) {
 ### Generate a JSON Schema (for tool/function definitions)
 
 ```typescript
-import { DiagramInput } from "@glyphic/schema";
+import { DiagramInput } from "@glyphicjs/schema";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
 const jsonSchema = zodToJsonSchema(DiagramInput);

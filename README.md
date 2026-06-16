@@ -28,7 +28,7 @@
 
 It supports **18 diagram types** (architecture, sequence, ERD, UML class, state machines, flowcharts, Gantt, timelines, Sankey, Git trees, mindmaps, pie, quadrant, user journeys, Kanban, C4, treemaps, and a freeform canvas) behind a single validated schema.
 
-You can use it three ways: as a **library** (`@glyphic/core`), as an **MCP server** (so Claude Desktop / Cursor can draw diagrams as a native tool), or as a **self-hosted HTTP API**.
+You can use it three ways: as a **library** (`@glyphicjs/core`), as an **MCP server** (so Claude Desktop / Cursor can draw diagrams as a native tool), or as a **self-hosted HTTP API**.
 
 ## Why
 
@@ -52,11 +52,11 @@ Pick the integration that fits you.
 ### 1. As a library
 
 ```bash
-npm install @glyphic/core @glyphic/schema
+npm install @glyphicjs/core @glyphicjs/schema
 ```
 
 ```typescript
-import { processDiagram } from "@glyphic/core";
+import { processDiagram } from "@glyphicjs/core";
 import { writeFileSync } from "node:fs";
 
 const result = await processDiagram({
@@ -87,7 +87,7 @@ Add it to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "glyphic": { "command": "npx", "args": ["-y", "@glyphic/mcp-server"] }
+    "glyphic": { "command": "npx", "args": ["-y", "@glyphicjs/mcp-server"] }
   }
 }
 ```
@@ -129,9 +129,9 @@ A `pnpm` + Turborepo monorepo of three open-source libraries.
 
 | Package | What it is |
 |---|---|
-| [`@glyphic/schema`](./packages/schema) | The pure Zod validation layer — the LLM-facing contract. Validate model output before rendering. |
-| [`@glyphic/core`](./packages/core) | The engine: layout adapters, scene graph, SVG rendering, and rasterization. |
-| [`@glyphic/mcp-server`](./packages/mcp-server) | Official Model Context Protocol server — exposes Glyphic as a native tool to Claude Desktop / Cursor. |
+| [`@glyphicjs/schema`](./packages/schema) | The pure Zod validation layer — the LLM-facing contract. Validate model output before rendering. |
+| [`@glyphicjs/core`](./packages/core) | The engine: layout adapters, scene graph, SVG rendering, and rasterization. |
+| [`@glyphicjs/mcp-server`](./packages/mcp-server) | Official Model Context Protocol server — exposes Glyphic as a native tool to Claude Desktop / Cursor. |
 
 Adding a new diagram type is one entry in [`packages/core/src/registry.ts`](./packages/core/src/registry.ts) plus a schema and a layout adapter — see [CONTRIBUTING](./CONTRIBUTING.md).
 

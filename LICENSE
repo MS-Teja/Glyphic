@@ -7,15 +7,15 @@ the LICENSE file inside each package for its governing terms.
   packages/core         FSL-1.1-ALv2         (packages/core/LICENSE)
   packages/mcp-server   MIT                 (packages/mcp-server/LICENSE)
 
-@glyphic/core is licensed under the Functional Source License (FSL-1.1-ALv2):
+@glyphicjs/core is licensed under the Functional Source License (FSL-1.1-ALv2):
 you may freely use, modify, self-host, and redistribute it for any purpose
 except offering it as a commercial product or service that competes with
 Glyphic. Two years after each version's release, that version additionally
 becomes available under the Apache License, Version 2.0. See
 packages/core/LICENSE for the full terms.
 
-@glyphic/schema and @glyphic/mcp-server are MIT licensed. The mcp-server is a
-thin transport adapter over @glyphic/core; the FSL terms of @glyphic/core
+@glyphicjs/schema and @glyphicjs/mcp-server are MIT licensed. The mcp-server is a
+thin transport adapter over @glyphicjs/core; the FSL terms of @glyphicjs/core
 continue to govern its use when consumed through these packages.
 
 Copyright 2026 Glyphic

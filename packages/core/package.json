@@ -1,5 +1,5 @@
 {
-  "name": "@glyphic/core",
+  "name": "@glyphicjs/core",
   "version": "1.0.0",
   "license": "FSL-1.1-ALv2",
   "description": "Layout and rendering engine for Glyphic",
@@ -28,7 +28,7 @@
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
-    "@glyphic/schema": "workspace:*",
+    "@glyphicjs/schema": "workspace:*",
     "@resvg/resvg-js": "^2.6.2",
     "d3-hierarchy": "^3.1.2",
     "d3-sankey": "^0.12.3",

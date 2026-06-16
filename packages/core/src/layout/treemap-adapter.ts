@@ -1,4 +1,4 @@
-import { TreemapDiagramType } from "@glyphic/schema";
+import { TreemapDiagramType } from "@glyphicjs/schema";
 import { LayoutResult, LayoutNode } from "./types.js";
 import { hierarchy, treemap } from "d3-hierarchy";
 

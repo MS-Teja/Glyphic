@@ -14,7 +14,7 @@
     "typecheck": "turbo typecheck",
     "lint": "biome lint .",
     "format": "biome format --write .",
-    "release": "turbo build && pnpm --filter @glyphic/schema --filter @glyphic/core --filter @glyphic/mcp-server publish --access public"
+    "release": "turbo build && pnpm --filter @glyphicjs/schema --filter @glyphicjs/core --filter @glyphicjs/mcp-server publish --access public"
   },
   "keywords": [],
   "author": "",

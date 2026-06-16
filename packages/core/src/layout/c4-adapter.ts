@@ -1,4 +1,4 @@
-import { C4DiagramType } from "@glyphic/schema";
+import { C4DiagramType } from "@glyphicjs/schema";
 import { LayoutResult } from "./types.js";
 import { layoutNodeEdgeDiagram } from "./elk-adapter.js";
 

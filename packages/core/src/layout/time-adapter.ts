@@ -1,4 +1,4 @@
-import { GanttChartType } from "@glyphic/schema";
+import { GanttChartType } from "@glyphicjs/schema";
 import { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
 
 function parseUnit(val: string | number): number {

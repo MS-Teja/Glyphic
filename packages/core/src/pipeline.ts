@@ -1,4 +1,4 @@
-import { DiagramInput, DiagramInputType } from "@glyphic/schema";
+import { DiagramInput, DiagramInputType } from "@glyphicjs/schema";
 import { layoutDiagram } from "./layout/index.js";
 import { DIAGRAM_REGISTRY } from "./registry.js";
 import { resolveThemePartial, DEFAULT_THEME } from "./render/theme.js";

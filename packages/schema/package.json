@@ -1,5 +1,5 @@
 {
-  "name": "@glyphic/schema",
+  "name": "@glyphicjs/schema",
   "version": "1.0.0",
   "license": "MIT",
   "description": "Zod schema for Glyphic diagram inputs",

@@ -234,7 +234,7 @@ importers:
       '@fortawesome/free-solid-svg-icons':
         specifier: ^7.2.0
         version: 7.2.0
-      '@glyphic/schema':
+      '@glyphicjs/schema':
         specifier: workspace:*
         version: link:../schema
       '@resvg/resvg-js':
@@ -274,10 +274,10 @@ importers:
 
   packages/mcp-server:
     dependencies:
-      '@glyphic/core':
+      '@glyphicjs/core':
         specifier: workspace:*
         version: link:../core
-      '@glyphic/schema':
+      '@glyphicjs/schema':
         specifier: workspace:*
         version: link:../schema
       '@modelcontextprotocol/sdk':

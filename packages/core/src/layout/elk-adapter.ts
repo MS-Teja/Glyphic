@@ -1,5 +1,5 @@
 import ELK from "elkjs/lib/elk.bundled.js";
-import { NodeEdgeDiagramType } from "@glyphic/schema";
+import { NodeEdgeDiagramType } from "@glyphicjs/schema";
 import { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
 import { measureTextWidth, wrapTextToWidth } from "../text-metrics.js";
 import { StyleTokens, DEFAULT_STYLE } from "../render/style.js";

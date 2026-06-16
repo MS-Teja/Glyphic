@@ -1,4 +1,4 @@
-import { StateDiagramType } from "@glyphic/schema";
+import { StateDiagramType } from "@glyphicjs/schema";
 import { LayoutResult } from "./types.js";
 import { layoutNodeEdgeDiagram } from "./elk-adapter.js";
 

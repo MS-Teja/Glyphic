@@ -1,6 +1,6 @@
 # Examples Gallery
 
-Every diagram below was produced by [`@glyphic/core`](../../packages/core) from pure JSON — no headless browser, no Mermaid. Click any `.json` link to see the exact input, or browse all source fixtures in this folder. For the field-by-field schema of each type, see the [Diagram Types reference](../diagram-types.md).
+Every diagram below was produced by [`@glyphicjs/core`](../../packages/core) from pure JSON — no headless browser, no Mermaid. Click any `.json` link to see the exact input, or browse all source fixtures in this folder. For the field-by-field schema of each type, see the [Diagram Types reference](../diagram-types.md).
 
 > All 18 first-class diagram types are represented. Diagrams render in the **compact** style and are auto-framed to 16:9 / 9:16 by default — see [Styles & Aspect-Ratio Framing](../styles.md).
 

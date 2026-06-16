@@ -11,7 +11,7 @@ Glyphic turns semantic JSON into native SVG/PNG/React-Flow diagrams — for LLMs
 
 ## Integrations
 
-- **[Core API](./api.md)** — use `@glyphic/core` as a library (`processDiagram`).
+- **[Core API](./api.md)** — use `@glyphicjs/core` as a library (`processDiagram`).
 - **[MCP Server](./mcp.md)** — wire Glyphic into Claude Desktop / Cursor.
 
 ## Concepts
@@ -22,7 +22,7 @@ Every diagram is a single JSON object with a `type` discriminator. The pipeline 
 validate (Zod)  →  layout (elkjs / d3 / custom)  →  scene graph  →  SVG  →  PNG (resvg)
 ```
 
-- **Validation** is handled by [`@glyphic/schema`](../packages/schema); invalid input throws a precise `ZodError`.
+- **Validation** is handled by [`@glyphicjs/schema`](../packages/schema); invalid input throws a precise `ZodError`.
 - **Layout** is chosen per type in [`registry.ts`](../packages/core/src/registry.ts).
 - **Output** is always SVG + PNG; React Flow JSON is included for graph/flow types.
 

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
-import { DiagramInput } from "@glyphic/schema";
+import { DiagramInput } from "@glyphicjs/schema";
 import { processDiagram } from "./pipeline.js";
 
 // Intentionally does NOT mock @resvg/resvg-js: this drives the real rasterizer

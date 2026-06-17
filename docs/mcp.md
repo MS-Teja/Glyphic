@@ -4,24 +4,94 @@ Expose Glyphic as a native tool to any [Model Context Protocol](https://modelcon
 
 ## Install / configure
 
-The server runs over stdio via `npx`; no global install needed.
+The server runs over **stdio** via `npx` — no global install, no process to keep
+running. Add Glyphic to your client's MCP config, then restart the client.
 
-**Claude Desktop** — edit `claude_desktop_config.json`:
+Most clients share the same `command` / `args` under a top-level `mcpServers`
+key; what differs is *where* the config lives and a couple of key names. Pick
+your client below.
+
+### Claude Desktop
+
+`claude_desktop_config.json` (Settings → Developer → Edit Config):
 
 ```json
 {
   "mcpServers": {
-    "glyphic": {
-      "command": "npx",
-      "args": ["-y", "@glyphicjs/mcp-server"]
-    }
+    "glyphic": { "command": "npx", "args": ["-y", "@glyphicjs/mcp-server"] }
   }
 }
 ```
 
-**Cursor** — add the same server entry under your MCP settings.
+Fully quit Claude (⌘Q) and reopen — it only reloads MCP servers on a cold start.
 
-Restart the client to pick up the new tool.
+### Claude Code
+
+One command in your terminal:
+
+```bash
+claude mcp add glyphic -- npx -y @glyphicjs/mcp-server
+```
+
+Add `--scope user` to make it available in every project (default is the current
+project only). The `--` separates Claude Code's own flags from the server command.
+
+### Cursor
+
+`.cursor/mcp.json` in your project, or `~/.cursor/mcp.json` for all projects:
+
+```json
+{
+  "mcpServers": {
+    "glyphic": { "command": "npx", "args": ["-y", "@glyphicjs/mcp-server"] }
+  }
+}
+```
+
+Then enable it under **Settings → MCP**.
+
+### VS Code (Copilot agent mode)
+
+`.vscode/mcp.json` — note the top-level key is `servers` (not `mcpServers`), and
+`type` is required:
+
+```json
+{
+  "servers": {
+    "glyphic": { "type": "stdio", "command": "npx", "args": ["-y", "@glyphicjs/mcp-server"] }
+  }
+}
+```
+
+### Windsurf
+
+`~/.codeium/windsurf/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "glyphic": { "command": "npx", "args": ["-y", "@glyphicjs/mcp-server"] }
+  }
+}
+```
+
+Reload the MCP servers from Cascade after saving.
+
+### Antigravity
+
+`~/.gemini/config/mcp_config.json` (or open **Manage MCP Servers → View raw
+config** in the agent panel):
+
+```json
+{
+  "mcpServers": {
+    "glyphic": { "command": "npx", "args": ["-y", "@glyphicjs/mcp-server"] }
+  }
+}
+```
+
+> Glyphic needs Node and `npx` on your `PATH`; the first run downloads the package.
+> Restart — or fully quit and reopen — the client after editing its config.
 
 ## Using it
 

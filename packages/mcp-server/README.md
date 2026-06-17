@@ -4,7 +4,8 @@ The official [Model Context Protocol](https://modelcontextprotocol.io) server fo
 
 ## Setup
 
-Add Glyphic to your client's MCP config. For **Claude Desktop** (`claude_desktop_config.json`):
+The server runs over **stdio** via `npx` — no global install. Add this entry to
+your client's MCP config:
 
 ```json
 {
@@ -17,7 +18,20 @@ Add Glyphic to your client's MCP config. For **Claude Desktop** (`claude_desktop
 }
 ```
 
-Restart the client. Then just ask:
+Most clients use exactly that; the difference is *where* the config lives and a
+couple of key names:
+
+| Client | Config location | Notes |
+|---|---|---|
+| **Claude Desktop** | `claude_desktop_config.json` | Fully quit (⌘Q) and reopen. |
+| **Claude Code** | — | `claude mcp add glyphic -- npx -y @glyphicjs/mcp-server` |
+| **Cursor** | `.cursor/mcp.json` (or `~/.cursor/mcp.json`) | Enable under Settings → MCP. |
+| **VS Code** | `.vscode/mcp.json` | Top-level key is `servers`; add `"type": "stdio"`. |
+| **Windsurf** | `~/.codeium/windsurf/mcp_config.json` | Reload servers from Cascade. |
+| **Antigravity** | `~/.gemini/config/mcp_config.json` | Or Manage MCP Servers → View raw config. |
+
+See the [full MCP guide](../../docs/mcp.md) for the exact per-client JSON. Restart
+the client, then just ask:
 
 > *"Draw an ERD for a blog: users, posts, and comments with the right relationships."*
 

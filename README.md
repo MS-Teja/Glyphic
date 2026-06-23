@@ -1,15 +1,32 @@
 <div align="center">
   <h1>Glyphic</h1>
-  <p><b>Machine-first diagramming infrastructure.</b></p>
-  <p>Turn pure, semantic JSON into beautiful native SVG &amp; PNG diagrams — built for LLMs and autonomous agents, with no headless browser.</p>
+  <p><b>AI agents can generate diagrams from structured JSON — without touching SVG.</b></p>
+  <p>Typed JSON in, beautiful native SVG &amp; PNG out, across 18 diagram types. Built for LLMs and autonomous agents — no fragile DSL, no headless browser.</p>
 </div>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/@glyphicjs/core"><img src="https://img.shields.io/npm/v/@glyphicjs/core?label=%40glyphicjs%2Fcore&color=e2502f" alt="npm version" /></a>
+  <a href="https://www.npmjs.com/package/@glyphicjs/mcp-server"><img src="https://img.shields.io/npm/v/@glyphicjs/mcp-server?label=mcp-server&color=e2502f" alt="mcp-server npm version" /></a>
+  <a href="https://www.npmjs.com/package/@glyphicjs/core"><img src="https://img.shields.io/npm/dm/@glyphicjs/core?label=downloads&color=222" alt="npm downloads" /></a>
+  <img src="https://img.shields.io/badge/license-FSL%20%2F%20MIT-222" alt="License: FSL / MIT" />
+</p>
+
+<p align="center">
+  <a href="https://glyphic.web.app/generate">Live playground</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="./docs/examples/README.md">Examples Gallery</a> ·
   <a href="./docs/README.md">Documentation</a> ·
   <a href="#supported-diagrams">18 Diagram Types</a>
 </p>
+
+> **Add it to your AI agent in 30 seconds** — it runs over stdio via `npx`, no install:
+>
+> ```bash
+> # Claude Code
+> claude mcp add glyphic -- npx -y @glyphicjs/mcp-server
+> ```
+>
+> For Cursor, Claude Desktop, VS Code, Windsurf, and Antigravity, see the [MCP setup guide](./docs/mcp.md). Then just ask: *“Draw an ERD for a blog with users, posts, and comments.”*
 
 <p align="center">
   <img src="./docs/examples/01_cloud_architecture.png" alt="Cloud architecture diagram" width="320" />

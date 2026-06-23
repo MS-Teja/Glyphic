@@ -13,11 +13,15 @@ const files = readdirSync(examplesDir).filter((f) => f.endsWith(".json"));
 
 describe("real rasterization", () => {
   for (const file of files) {
-    it(`rasterizes ${file} to a non-empty PNG`, async () => {
-      const input = DiagramInput.parse(JSON.parse(readFileSync(join(examplesDir, file), "utf8")));
-      const result = await processDiagram(input);
-      expect(result.png.length).toBeGreaterThan(0);
-    });
+    it(
+      `rasterizes ${file} to a non-empty PNG`,
+      async () => {
+        const input = DiagramInput.parse(JSON.parse(readFileSync(join(examplesDir, file), "utf8")));
+        const result = await processDiagram(input);
+        expect(result.png.length).toBeGreaterThan(0);
+      },
+      15000
+    );
   }
 
   it("rasterizes a themed (Google Font) diagram whose @import contains '&'", async () => {

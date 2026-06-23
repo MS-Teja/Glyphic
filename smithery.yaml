@@ -1,0 +1,7 @@
+startCommand:
+  type: stdio
+  configSchema: {}
+  command: npx
+  args:
+    - -y
+    - "@glyphicjs/mcp-server@latest"

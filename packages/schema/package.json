@@ -2,7 +2,17 @@
   "name": "@glyphicjs/schema",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "Zod schema for Glyphic diagram inputs",
+  "description": "Zod schema for Glyphic diagram inputs — the typed, machine-first contract LLMs emit instead of fragile DSLs or raw SVG.",
+  "keywords": [
+    "diagrams",
+    "zod",
+    "json-schema",
+    "llm",
+    "ai-agents",
+    "diagram-generator",
+    "mermaid-alternative",
+    "validation"
+  ],
   "repository": { "type": "git", "url": "git+https://github.com/MS-Teja/Glyphic.git", "directory": "packages/schema" },
   "homepage": "https://github.com/MS-Teja/Glyphic#readme",
   "publishConfig": { "access": "public" },

@@ -1,11 +1,30 @@
 {
   "name": "@glyphicjs/mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
-  "description": "Model Context Protocol server for Glyphic",
-  "repository": { "type": "git", "url": "git+https://github.com/MS-Teja/Glyphic.git", "directory": "packages/mcp-server" },
+  "description": "Model Context Protocol server for Glyphic — generate diagrams from structured JSON, no SVG, no headless browser. 18 diagram types for LLMs and agents.",
+  "mcpName": "io.github.MS-Teja/glyphic",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "llm",
+    "ai-agents",
+    "diagrams",
+    "diagram-generator",
+    "text-to-diagram",
+    "mermaid-alternative",
+    "claude"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MS-Teja/Glyphic.git",
+    "directory": "packages/mcp-server"
+  },
   "homepage": "https://github.com/MS-Teja/Glyphic#readme",
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.js",
   "bin": {
     "glyphic-mcp": "dist/index.js"

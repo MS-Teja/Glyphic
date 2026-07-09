@@ -1,5 +1,6 @@
 packages:
   - 'packages/*'
+  - 'internal/benchmark'
 # pnpm 11 blocks dependency build scripts unless explicitly approved. Without
 # this, `pnpm install --frozen-lockfile` fails with ERR_PNPM_IGNORED_BUILDS in
 # CI. pnpm 11 reads the `allowBuilds` map (true = allow the package to build).

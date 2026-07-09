@@ -29,8 +29,8 @@
 > For Cursor, Claude Desktop, VS Code, Windsurf, and Antigravity, see the [MCP setup guide](./docs/mcp.md). Then just ask: *“Draw an ERD for a blog with users, posts, and comments.”*
 
 <p align="center">
-  <img src="./docs/examples/01_cloud_architecture.png" alt="Cloud architecture diagram" width="320" />
-  <img src="./docs/examples/31_dark_cicd_pipeline.png" alt="Dark-mode CI/CD pipeline" width="430" />
+  <img src="./docs/examples/00_sketch_architecture.png" alt="Sketch architecture diagram" width="480" />
+  <img src="./docs/examples/00_freeform_canvas.png" alt="Freeform canvas dashboard" width="360" />
 </p>
 
 ---
@@ -49,10 +49,11 @@ You can use it three ways: as a **library** (`@glyphicjs/core`), as an **MCP ser
 
 ## Why
 
-If an LLM needs to produce a diagram today, it has two bad options:
+If an LLM needs to produce a diagram today, it has three bad options:
 
 1. **Draw raw SVG/Canvas.** LLMs have no visual cortex — ask one to place nodes by absolute coordinate and they overlap, text overflows, and connectors cut straight through other shapes.
 2. **Emit a DSL like Mermaid.** Mermaid's syntax is finicky (`-->|label|`) and a single typo crashes the whole render. It also relies on a **headless browser (Puppeteer)** to run its layout, which is slow, heavy, and awkward to run server-side.
+3. **Use a closed SaaS feature like Claude Artifacts or Eraser.** They draw beautiful diagrams, but they are completely vendor-locked. You can't `npm install` them, run them in a CI pipeline, embed them in your own product, or use them with local open-source LLMs.
 
 **Glyphic separates _semantics_ (what the diagram means) from _visuals_ (where things are drawn):**
 
@@ -157,11 +158,18 @@ Adding a new diagram type is one entry in [`packages/core/src/registry.ts`](./pa
 - 📚 [Documentation home](./docs/README.md)
 - 🖼️ [Examples gallery](./docs/examples/README.md) — every type, rendered
 - 🧩 [Diagram types reference](./docs/diagram-types.md) — schema for all 18 types
-- 🖌️ [Styles &amp; aspect-ratio framing](./docs/styles.md)
-- 🎨 [Theming, fonts &amp; icons](./docs/theming.md)
+- 🖌️ [Styles & aspect-ratio framing](./docs/styles.md)
+- 🎨 [Theming, fonts & icons](./docs/theming.md)
 - 🛠️ [Core API](./docs/api.md)
 - 🔌 [MCP server](./docs/mcp.md)
 - 🤝 [Contributing](./CONTRIBUTING.md)
+
+## Blog
+
+- 🏗️ **[Why Glyphic is infrastructure, not an app](./docs/blog/why-glyphic-is-infrastructure.md)**
+- 🎨 **[Everything Glyphic can do](./docs/blog/everything-glyphic-can-do.md)**
+- ⚖️ **[Glyphic vs. the alternatives](./docs/blog/comparison.md)**
+- 🤖 **[Why AI agents can't draw SVG](./docs/blog/why-llms-cant-draw-svg.md)**
 
 ## License
 

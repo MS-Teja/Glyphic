@@ -10,11 +10,11 @@ Every diagram below was produced by [`@glyphicjs/core`](../../packages/core) fro
 
 The same diagram in different `style` presets (default is **compact**). See the [styles guide](../styles.md).
 
-<img src="./33_sketch_architecture.png" alt="Sketch style architecture" width="520" />
+<img src="./00_sketch_architecture.png" alt="Sketch style architecture" width="520" />
 
-<img src="./34_minimal_flowchart.png" alt="Minimal style flowchart" width="300" />
+<img src="./00_minimal_flowchart.png" alt="Minimal style flowchart" width="300" />
 
-[`33_sketch_architecture.json`](./33_sketch_architecture.json) (sketch) · [`34_minimal_flowchart.json`](./34_minimal_flowchart.json) (minimal)
+[`00_sketch_architecture.json`](./00_sketch_architecture.json) (sketch) · [`00_minimal_flowchart.json`](./00_minimal_flowchart.json) (minimal)
 
 ---
 
@@ -158,6 +158,6 @@ Hierarchical value rectangles (squarified, via `d3-hierarchy`), colored by top-l
 
 Absolute-positioned SVG primitives (rect / circle / text / path / group / raw-svg) for fully custom visuals.
 
-<img src="./32_freeform_canvas.png" alt="Freeform canvas" width="460" />
+<img src="./00_freeform_canvas.png" alt="Freeform canvas" width="460" />
 
-[`32_freeform_canvas.json`](./32_freeform_canvas.json)
+[`00_freeform_canvas.json`](./00_freeform_canvas.json)

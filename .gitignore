@@ -11,6 +11,7 @@ build/
 # Internal / Private (kept locally for reference, not pushed)
 .internal/
 internal/
+docs/launch/
 massive_arch_elk_raw.json
 .env
 .env.*

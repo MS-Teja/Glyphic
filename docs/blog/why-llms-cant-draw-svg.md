@@ -13,7 +13,7 @@ predicts tokens, not pixels. Asking it to place a node at `x=412, y=088` and rou
 around three other nodes is asking it to do collision detection and graph layout in its head,
 blind, one token at a time. It will confidently get it wrong.
 
-## The two bad options agents have today
+## The three bad options agents have today
 
 **Option 1 — emit raw SVG/Canvas.** This is the blind-pixel-placement problem above. It fails
 the moment a diagram has more than a handful of nodes, and it fails *silently* — you get a
@@ -26,8 +26,12 @@ parse error that takes the whole diagram down. And Mermaid runs its layout in a 
 browser** (Puppeteer/Chromium), which is heavy, slow, and miserable to run server-side or
 inside an agent loop.
 
-Both options ask the model to do the one thing it's worst at (spatial reasoning) or to be
-flawless at the one thing it's unreliable at (rigid syntax).
+**Option 3 — use a closed SaaS feature like Claude Artifacts or Eraser.** They draw beautiful
+diagrams, but they are completely vendor-locked. You can't `npm install` them, run them in a CI
+pipeline, embed them in your own product, or use them with local open-source LLMs.
+
+All three options ask the model to do the one thing it's worst at (spatial reasoning), be
+flawless at the one thing it's unreliable at (rigid syntax), or force you into vendor lock-in.
 
 ## The fix: separate *meaning* from *layout*
 

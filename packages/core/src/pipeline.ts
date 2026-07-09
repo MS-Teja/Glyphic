@@ -99,3 +99,42 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
     reactFlow: reactFlowConfig
   };
 }
+
+export async function processSVG(input: unknown): Promise<{ svg: string }> {
+  // 1. Validate JSON strictly using Zod
+  const validatedDiagram: DiagramInputType = DiagramInput.parse(input);
+  const handler = DIAGRAM_REGISTRY[validatedDiagram.type];
+
+  const themePartial = resolveThemePartial((validatedDiagram as any).theme);
+  const fullTheme = { ...DEFAULT_THEME, ...themePartial };
+  const style = resolveStyle((validatedDiagram as any).style);
+
+  let svg = "";
+  let scene: SceneGraph;
+
+  if (handler.render === "canvas") {
+    scene = buildCanvasSceneGraph(validatedDiagram as any, fullTheme, style);
+  } else {
+    const layout = await layoutDiagram(validatedDiagram, style);
+    const diagType = validatedDiagram.type as string;
+    if (handler.render === "data-viz") {
+      scene = buildDataVizSceneGraph(layout, diagType, fullTheme, style);
+    } else if (handler.render === "flow") {
+      scene = buildFlowSceneGraph(layout, diagType, fullTheme, style);
+    } else {
+      scene = buildSceneGraph(layout, themePartial, handler.maskLabels ?? false, style);
+    }
+  }
+
+  const aspectRatio = (validatedDiagram as any).aspectRatio as AspectRatioInput | undefined;
+  const ratio = targetRatioFor(validatedDiagram.type, (validatedDiagram as any).direction, aspectRatio);
+  if (ratio) {
+    const isExplicit = aspectRatio !== undefined && aspectRatio !== "auto";
+    scene = frameScene(scene, ratio, fullTheme.background, isExplicit);
+  }
+
+  const defs = scene.defs || getMarkerDefs();
+  svg = renderSceneGraphToSVG(scene, defs, (validatedDiagram as any).title);
+
+  return { svg };
+}

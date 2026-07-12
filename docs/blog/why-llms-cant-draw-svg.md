@@ -1,23 +1,32 @@
-# Why AI agents can't draw SVG (and what to do instead)
+# Why AI-drawn diagrams don't scale (and what to do instead)
 
 > Canonical post for the Glyphic launch. Doubles as the dev.to / Hashnode cross-post body.
 > Suggested tags: `ai`, `llm`, `mcp`, `diagrams`, `webdev`.
 
-Ask any frontier model to "draw an architecture diagram as SVG" and you'll get something
-that *looks* like markup and renders like a ransom note: boxes overlapping, labels spilling
-past their borders, arrows cutting straight through other shapes. The model wrote valid SVG.
-It just can't *see*.
+Let's start honest, because the old version of this argument is out of date. Ask a current
+frontier model to "draw a small architecture diagram as SVG" and you'll get something
+reasonable — aligned boxes, sensible arrows, readable labels. The "models produce overlapping
+garbage" complaint is basically dead. If you need one throwaway diagram, just ask the model.
 
-That's the whole problem in one sentence: **a language model has no visual cortex.** It
-predicts tokens, not pixels. Asking it to place a node at `x=412, y=088` and route an edge
-around three other nodes is asking it to do collision detection and graph layout in its head,
-blind, one token at a time. It will confidently get it wrong.
+The problem shows up the moment the diagram is *real*. I gave a frontier model a 44-node
+architecture — four nested tiers, 38 edges — and asked for raw SVG. The boxes were fine. The
+**edges** were a disaster: with nowhere to route them, it drew long diagonal lines straight
+through unrelated boxes, piled labels on top of each other, and produced a picture no one could
+follow. Then I changed one node, and the entire hand-placed coordinate layout had to be
+regenerated from scratch — and came back different.
+
+That points at the real issue. It was never "the model can't see." It's that **a drawing is the
+wrong output type.** A drawn SVG is a dead picture: non-reproducible, un-editable, and it breaks
+structurally at scale on the one part that isn't a language problem — routing edges around
+obstacles over a nested graph is global constraint optimization, not next-token prediction. A
+better model doesn't fix that; it's the wrong tool for the job.
 
 ## The three bad options agents have today
 
-**Option 1 — emit raw SVG/Canvas.** This is the blind-pixel-placement problem above. It fails
-the moment a diagram has more than a handful of nodes, and it fails *silently* — you get a
-picture, it's just a bad one.
+**Option 1 — emit raw SVG/Canvas.** The model can place boxes, but it's drawing a one-off picture:
+different every generation, no validation, and edge routing collapses into diagonals-through-boxes
+as soon as the graph is non-trivial. And you can't edit the result — change one node and you
+regenerate everything.
 
 **Option 2 — emit a DSL like Mermaid.** Better, because you've handed layout to a real engine.
 But now the model has to produce a fragile grammar perfectly: `A -->|yes| B`. One stray pipe,
@@ -30,8 +39,8 @@ inside an agent loop.
 diagrams, but they are completely vendor-locked. You can't `npm install` them, run them in a CI
 pipeline, embed them in your own product, or use them with local open-source LLMs.
 
-All three options ask the model to do the one thing it's worst at (spatial reasoning), be
-flawless at the one thing it's unreliable at (rigid syntax), or force you into vendor lock-in.
+None of these give you a diagram as *data you own* — reproducible, validated, editable, and
+renderable anywhere.
 
 ## The fix: separate *meaning* from *layout*
 
@@ -98,10 +107,11 @@ generations) if you want to throw JSON at it right now.
 
 ## The takeaway
 
-Stop asking models to draw. Ask them to *describe*, and let an engine draw. LLMs are
-extraordinary at producing structured descriptions of things and unreliable at spatial
-placement — so build the boundary along that line. That's the whole design of Glyphic, and
-it's why agents using it get a clean diagram on the first attempt instead of an abstract-art
-generator.
+This isn't "models can't draw" — they can, for something small. It's that a *drawing* is the
+wrong output type. You want the diagram as **data**: reproducible, validated, editable, and
+renderable anywhere. So build the boundary there — let the model do what it's great at
+(describing what the diagram means as structured JSON) and let a real engine own the layout. That
+line holds no matter how good the models get: it's why a diagram past a couple dozen nodes stays
+clean and stays editable, instead of a one-shot picture you can't change.
 
 *If this resonates, the project is open source — [a star helps](https://github.com/MS-Teja/Glyphic), and feedback/issues are very welcome.*

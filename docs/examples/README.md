@@ -23,8 +23,11 @@ The same diagram in different `style` presets (default is **compact**). See the 
 Nested VPCs / clusters (`groupId`), FontAwesome icons, colored nodes, labeled edges.
 
 <img src="./01_cloud_architecture.png" alt="Cloud architecture" width="380" />
+<img src="./32_production_platform_architecture.png" alt="44-node production platform architecture" width="300" />
 
-[`01_cloud_architecture.json`](./01_cloud_architecture.json) · [`14_microservices_k8s.json`](./14_microservices_k8s.json) · [`13_star_wars_battle.json`](./13_star_wars_battle.json)
+[`01_cloud_architecture.json`](./01_cloud_architecture.json) · [`14_microservices_k8s.json`](./14_microservices_k8s.json) · [`13_star_wars_battle.json`](./13_star_wars_battle.json) · [`32_production_platform_architecture.json`](./32_production_platform_architecture.json)
+
+The last one is deliberately large — **44 nodes across four nested tiers with 38 edges**. This is the range where hand-drawing SVG breaks down: a model can place the boxes, but edge routing turns into diagonal lines cutting through other shapes, and the result can't be edited without regenerating it. A real layout engine nests the clusters and routes around obstacles, and the JSON stays an editable source of truth.
 
 ## C4 Context
 

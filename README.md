@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Glyphic</h1>
-  <p><b>The rendering engine for AI-generated diagrams.</b></p>
-  <p>Typed JSON in, deterministic SVG &amp; PNG out — across 18 diagram types. Infrastructure for LLMs and agents, not another diagram package. No fragile DSL, no headless browser.</p>
+  <p><b>A diagram is data, not a drawing.</b></p>
+  <p>Your model describes the diagram as typed JSON; Glyphic renders it — deterministic SVG &amp; PNG across 18 types, validated before it draws, with no DSL and no headless browser. Diagram infrastructure for LLMs and agents that you own and build on.</p>
 </div>
 
 <p align="center">
@@ -89,9 +89,9 @@ Need it behind your own endpoint? Glyphic can be self-hosted as an HTTP service 
 
 ## Who it's for
 
-- **Agent & LLM-app builders** — expose diagram generation as a single tool call and let the model draw.
+- **Agent & LLM-app builders** — expose diagram generation as a single tool call and let the model describe it, not draw it.
 - **Platform teams** — embed diagram generation directly in your product behind one validated schema.
-- **CI & docs pipelines** — deterministic, byte-identical output with no Chromium to install or babysit.
+- **CI & docs pipelines** — deterministic, byte-identical, versionable output with no Chromium to install or babysit.
 - **React developers** — get interactive React Flow JSON out of the box, not just static images.
 
 ## What
@@ -106,19 +106,23 @@ It supports **18 diagram types** (architecture, sequence, ERD, UML class, state 
 
 ## Why
 
-If an LLM needs to produce a diagram today, it has three bad options:
+Yes — a modern LLM can draw a clean six-box flowchart as raw SVG. Go ask one; for a single throwaway diagram, that's the right tool. This isn't a bet that models "can't draw."
 
-1. **Draw raw SVG/Canvas.** LLMs have no visual cortex — ask one to place nodes by absolute coordinate and they overlap, text overflows, and connectors cut straight through other shapes.
-2. **Emit a DSL like Mermaid.** Mermaid's syntax is finicky (`-->|label|`) and a single typo crashes the whole render. It also relies on a **headless browser (Puppeteer)** to run its layout, which is slow, heavy, and awkward to run server-side.
-3. **Use a closed SaaS feature like Claude Artifacts or Eraser.** They draw beautiful diagrams, but they are completely vendor-locked. You can't `npm install` them, run them in a CI pipeline, embed them in your own product, or use them with local open-source LLMs.
+The problem is that a **drawn SVG is a dead picture.** It comes out different every generation, it falls apart exactly where real diagrams live — many nodes and later edits — and to change one box you regenerate the whole thing and it drifts. Glyphic treats the diagram as **data**: your model describes what it *means* as typed JSON, and a real engine renders it. Three reasons that holds up no matter how good the model gets:
 
-**Glyphic separates _semantics_ (what the diagram means) from _visuals_ (where things are drawn):**
+1. **A machine-authoring contract, not a DSL.** The input is a strict [Zod](https://zod.dev) schema. Malformed model output comes back as a precise, fixable error *before* anything renders — so generate → validate → fix → render loops are trivial. DSLs like Mermaid parse-or-crash on a single typo (`-->|label|`).
+2. **Deployable as infrastructure.** Layout is computed by real graph engines ([`elkjs`](https://github.com/kieler/elkjs), [`d3-hierarchy`](https://github.com/d3/d3-hierarchy)/`d3-sankey`) and SVG is rasterized to PNG by Rust ([`@resvg/resvg-js`](https://github.com/yisibl/resvg-js)) — no DOM, no headless browser, no Chromium. It runs in a CI job, a Lambda, an agent loop, or a Docker container as a normal Node dependency. This stays true regardless of model capability.
+3. **Cheap and intact at scale.** Hand-drawing a large diagram means emitting thousands of coordinate tokens — slow, costly, and liable to blow the model's output limit and truncate into a broken render. Your model emits compact semantic JSON instead; the heavy geometry is generated deterministically.
 
-- **Machine-first JSON, not a DSL.** The API surface is a strict [Zod](https://zod.dev) schema. Models emit ordinary JSON arrays — no fragile grammar to get wrong, and validation errors come back as precise, fixable messages instead of a crash.
-- **Real layout engines, no DOM.** Routing, intersections, and sizing are computed by mathematical graph engines ([`elkjs`](https://github.com/kieler/elkjs) for graphs, [`d3-hierarchy`](https://github.com/d3/d3-hierarchy)/`d3-sankey` for data) — never a browser.
-- **Native rasterization.** SVG is compiled to PNG by Rust (`@resvg/resvg-js`) directly in Node. Fast, light, and deployable anywhere — no Chromium.
+And because a real engine owns the layout, the diagram **scales and stays editable**: it nests clusters and routes edges around obstacles where hand-placed SVG turns into diagonal lines cutting through boxes, its output is byte-identical (versionable, snapshot-testable), and the JSON stays a source of truth you can diff and re-render — not a house of cards of absolute coordinates.
 
-The result: agents produce **correct, good-looking diagrams on the first try**, and you run it as a normal Node dependency.
+<p align="center">
+  <img src="./docs/examples/00_raw_svg_vs_glyphic.png" alt="The same 44-node architecture: a frontier model's one-shot raw SVG (edges tangled diagonally through boxes) above Glyphic's rendering of the identical JSON (nested tiers, routed edges)" width="760" />
+  <br/>
+  <sub><b>The same 44-node spec.</b> Top: a current frontier model asked for raw SVG — the boxes are fine, but the edges cut diagonally through shapes and the result can't be edited without regenerating it. Bottom: Glyphic renders the identical JSON — nested tiers, edges routed around obstacles, still an editable source of truth.</sub>
+  <br/>
+  <sub><i>Method: both produced by the same model (Claude Opus 4.8) from one brief — the top by asking it to hand-write SVG in a single pass; the bottom by asking it to emit Glyphic's typed JSON, then rendering with <code>@glyphicjs/core</code> (ELK layout + resvg, no browser). Same author, same content — only the draw-vs-describe boundary differs.</i></sub>
+</p>
 
 ## How it compares
 
@@ -143,7 +147,7 @@ See the [full comparison + benchmarks](./docs/blog/comparison.md).
 - 📺 **Aspect-ratio framing** — auto-fits diagrams to clean 16:9 / 9:16 frames (or set `"aspectRatio"`), by padding — never cropping.
 - 🔤 **Fonts** — any Google Font (`"theme": { "fontFamily": "Outfit" }`) or your own `.ttf`.
 - 🖼️ **Native icons** — drop in any FontAwesome icon (`"icon": "fas-database"`, `"icon": "fab-aws"`) or your own SVG via `customIcons`.
-- 📐 **Real layout** — `elkjs` + `d3` compute routing, nesting (VPCs/clusters), and crow's-foot/UML markers with no overlaps.
+- 📐 **Real layout** — `elkjs` + `d3` compute nesting (VPCs/clusters), crow's-foot/UML markers, and edge routing *around* obstacles — staying clean at the node counts where hand-placed SVG tangles into diagonals through boxes.
 - ⚡ **Native PNG** — Rust rasterization, no headless browser.
 - ♿ **Accessible output** — every SVG ships with `role="img"` and a `<title>`.
 - 🔒 **Safe by construction** — strict input validation, SVG output escaping/sanitization, and size limits to resist malicious input.
@@ -187,10 +191,12 @@ Adding a new diagram type is one entry in [`packages/core/src/registry.ts`](./pa
 
 ## Blog
 
+- 📌 **[Introducing Glyphic: diagrams as data for LLMs and agents](./docs/blog/introducing-glyphic.md)** — start here
 - 🏗️ **[Why Glyphic is infrastructure, not an app](./docs/blog/why-glyphic-is-infrastructure.md)**
 - 🎨 **[Everything Glyphic can do](./docs/blog/everything-glyphic-can-do.md)**
 - ⚖️ **[Glyphic vs. the alternatives](./docs/blog/comparison.md)**
-- 🤖 **[Why AI agents can't draw SVG](./docs/blog/why-llms-cant-draw-svg.md)**
+- 🤖 **[Why AI-drawn diagrams don't scale](./docs/blog/why-llms-cant-draw-svg.md)**
+- 🔬 **[Is the AI-diagram comparison fair? A note on method](./docs/blog/is-the-comparison-fair.md)**
 
 ## Support
 

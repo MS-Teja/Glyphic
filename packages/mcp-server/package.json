@@ -1,6 +1,6 @@
 {
   "name": "@glyphicjs/mcp-server",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "license": "MIT",
   "description": "Model Context Protocol server for Glyphic — generate diagrams from structured JSON, no SVG, no headless browser. 18 diagram types for LLMs and agents.",
   "mcpName": "io.github.MS-Teja/glyphic",

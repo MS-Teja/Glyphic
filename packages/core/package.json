@@ -1,6 +1,6 @@
 {
   "name": "@glyphicjs/core",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "FSL-1.1-ALv2",
   "description": "Layout and rendering engine for Glyphic — typed JSON in, deterministic SVG & PNG out, no headless browser. Built for LLMs and agents.",
   "keywords": [

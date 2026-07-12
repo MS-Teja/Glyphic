@@ -57,7 +57,7 @@ describe("processDiagram output is injection-safe", () => {
   it("escapes malicious node labels", async () => {
     const result = await processDiagram({
       type: "flowchart",
-      nodes: [{ id: "a", label: `</text><script>alert(1)</script>` }],
+      nodes: [{ id: "a", label: "</text><script>alert(1)</script>" }],
       edges: []
     });
     expect(result.svg).not.toContain("<script>");
@@ -83,7 +83,7 @@ describe("processDiagram output is injection-safe", () => {
   it("sanitizes theme.customIcons markup", async () => {
     const result = await processDiagram({
       type: "flowchart",
-      theme: { customIcons: { evil: `<script>alert(1)</script>` } },
+      theme: { customIcons: { evil: "<script>alert(1)</script>" } },
       nodes: [{ id: "a", label: "A", icon: "evil" }],
       edges: []
     } as any);

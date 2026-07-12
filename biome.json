@@ -12,15 +12,15 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": false,
+      "recommended": true,
       "suspicious": {
-        "noDebugger": "error",
-        "noDuplicateObjectKeys": "error",
-        "noDoubleEquals": "error"
+        "noExplicitAny": "off"
       },
       "correctness": {
-        "noUnreachable": "error",
-        "noUnusedVariables": "off"
+        "noUnusedVariables": "error"
+      },
+      "style": {
+        "noNonNullAssertion": "off"
       }
     }
   }

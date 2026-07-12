@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { resolveStyle, STYLE_PRESETS, DEFAULT_STYLE } from "./style.js";
 import { buildSceneGraph } from "./strategies/scene-builder.js";
-import { LayoutResult } from "../layout/types.js";
+import type { LayoutResult } from "../layout/types.js";
 
 function oneNodeLayout(color?: string): LayoutResult {
   return {

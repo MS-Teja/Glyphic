@@ -1,5 +1,5 @@
-import { TreemapDiagramType } from "@glyphicjs/schema";
-import { LayoutResult, LayoutNode } from "./types.js";
+import type { TreemapDiagramType } from "@glyphicjs/schema";
+import type { LayoutResult, LayoutNode } from "./types.js";
 import { hierarchy, treemap } from "d3-hierarchy";
 
 // Squarified treemap via d3-hierarchy: leaves become positioned rectangles
@@ -18,7 +18,7 @@ export function layoutTreemap(diagram: TreemapDiagramType): LayoutResult {
   const tops = root.children ?? [];
   const topOf = (leaf: any) => {
     let n = leaf;
-    while (n.parent && n.parent.parent) n = n.parent;
+    while (n.parent?.parent) n = n.parent;
     return n;
   };
 

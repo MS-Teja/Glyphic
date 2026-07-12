@@ -1,12 +1,12 @@
-import { GanttChartType } from "@glyphicjs/schema";
-import { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
+import type { GanttChartType } from "@glyphicjs/schema";
+import type { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
 
 function parseUnit(val: string | number): number {
   if (typeof val === "number") return val;
   const num = Number(val);
-  if (!isNaN(num)) return num;
+  if (!Number.isNaN(num)) return num;
   const d = new Date(val).getTime();
-  if (!isNaN(d)) return d;
+  if (!Number.isNaN(d)) return d;
   return 0;
 }
 
@@ -19,8 +19,8 @@ export function layoutGanttChart(diagram: GanttChartType): LayoutResult {
   let currentY = 80; // Start below title and timeline axis
 
   // 1. Calculate min and max time bounds
-  let minTime = Infinity;
-  let maxTime = -Infinity;
+  let minTime = Number.POSITIVE_INFINITY;
+  let maxTime = Number.NEGATIVE_INFINITY;
 
   const parsedTasks: any[] = [];
   const parsedTaskMap = new Map<string, any>();
@@ -46,7 +46,7 @@ export function layoutGanttChart(diagram: GanttChartType): LayoutResult {
     }
   }
 
-  if (minTime === Infinity) {
+  if (minTime === Number.POSITIVE_INFINITY) {
     minTime = 0;
     maxTime = 100;
   }

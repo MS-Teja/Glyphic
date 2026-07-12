@@ -1,4 +1,4 @@
-import { LayoutResult, LayoutNode, LayoutEdge } from "../layout/types.js";
+import { type LayoutResult, type LayoutNode, LayoutEdge } from "../layout/types.js";
 
 export interface ReactFlowNode {
   id: string;

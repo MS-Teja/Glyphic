@@ -1,8 +1,8 @@
-import { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
-import { CanvasDiagramType, CanvasElement } from "@glyphicjs/schema";
-import { ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
+import type { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
+import { type CanvasDiagramType, CanvasElement } from "@glyphicjs/schema";
+import { type ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
 import { resolveFontFamily } from "../theme.js";
-import { StyleTokens, DEFAULT_STYLE } from "../style.js";
+import { type StyleTokens, DEFAULT_STYLE } from "../style.js";
 
 function applyThemeToCanvasElement(element: any, theme: ThemeColors): SceneElement {
   const themedElement = { ...element };

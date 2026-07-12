@@ -123,12 +123,12 @@ export function createGlyphicServer(): Server {
           const exportFormat = validated.exportFormat;
           const baseFilename = makeBaseFilename(validated.title);
 
-          let textContent = `Diagram generated successfully.`;
+          let textContent = "Diagram generated successfully.";
           const contentBlocks: ContentBlock[] = [];
           let savedAnyFile = false;
 
           if (outputDir === null) {
-            textContent += `\n\nFile saving is disabled (GLYPHIC_NO_SAVE).`;
+            textContent += "\n\nFile saving is disabled (GLYPHIC_NO_SAVE).";
           } else {
             try {
               await fs.mkdir(outputDir, { recursive: true });
@@ -177,7 +177,7 @@ export function createGlyphicServer(): Server {
           }
 
           if (savedAnyFile) {
-            textContent += `\n\nPlease tell the user that the diagram has been saved to the exact file paths above so they can find it. If they requested react-flow, provide them the json string.`;
+            textContent += "\n\nPlease tell the user that the diagram has been saved to the exact file paths above so they can find it. If they requested react-flow, provide them the json string.";
           }
 
           contentBlocks.unshift({ type: "text", text: textContent });

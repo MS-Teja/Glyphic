@@ -23,7 +23,7 @@ export function escapeXml(str: string): string {
  * surrounding rule (quotes, parens, angle brackets, backslash, newlines).
  */
 export function escapeCssString(str: string): string {
-  return String(str).replace(/[\\"'()<>\n\r\f]/g, (c) => "\\" + c.charCodeAt(0).toString(16) + " ");
+  return String(str).replace(/[\\"'()<>\n\r\f]/g, (c) => `\\${c.charCodeAt(0).toString(16)} `);
 }
 
 /** True only for well-formed https: URLs (blocks file:, javascript:, data:, http:, ...). */

@@ -1,5 +1,5 @@
-import { NodeEdgeDiagramType } from "@glyphicjs/schema";
-import { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
+import type { NodeEdgeDiagramType } from "@glyphicjs/schema";
+import type { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
 
 // A direct canvas layout adapter that bypasses ELK auto-layout.
 // It explicitly uses the x, y, width, and height provided by the LLM in the schema.
@@ -9,10 +9,10 @@ export async function layoutCanvasDiagram(diagram: NodeEdgeDiagramType): Promise
   const nodes: LayoutNode[] = [];
   const nodeMap = new Map<string, LayoutNode>();
 
-  let minX = Infinity;
-  let minY = Infinity;
-  let maxX = -Infinity;
-  let maxY = -Infinity;
+  let minX = Number.POSITIVE_INFINITY;
+  let minY = Number.POSITIVE_INFINITY;
+  let maxX = Number.NEGATIVE_INFINITY;
+  let maxY = Number.NEGATIVE_INFINITY;
 
   // Process nodes
   for (const node of diagram.nodes) {
@@ -80,8 +80,8 @@ export async function layoutCanvasDiagram(diagram: NodeEdgeDiagramType): Promise
   });
 
   return {
-    width: maxX === -Infinity ? 800 : maxX + 40,
-    height: maxY === -Infinity ? 600 : maxY + 40,
+    width: maxX === Number.NEGATIVE_INFINITY ? 800 : maxX + 40,
+    height: maxY === Number.NEGATIVE_INFINITY ? 600 : maxY + 40,
     nodes,
     edges
   };

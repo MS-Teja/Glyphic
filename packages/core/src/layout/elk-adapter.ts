@@ -1,8 +1,8 @@
 import ELK from "elkjs/lib/elk.bundled.js";
-import { NodeEdgeDiagramType } from "@glyphicjs/schema";
-import { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
+import type { NodeEdgeDiagramType } from "@glyphicjs/schema";
+import type { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
 import { measureTextWidth, wrapTextToWidth } from "../text-metrics.js";
-import { StyleTokens, DEFAULT_STYLE } from "../render/style.js";
+import { type StyleTokens, DEFAULT_STYLE } from "../render/style.js";
 
 const elk = new ELK();
 
@@ -61,7 +61,7 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
                for (const item of val) maxChars = Math.max(maxChars, String(item).length);
              } else {
                rowCount += 1;
-               maxChars = Math.max(maxChars, (String(key) + ": " + String(val)).length);
+               maxChars = Math.max(maxChars, (`${String(key)}: ${String(val)}`).length);
              }
            }
          }
@@ -131,7 +131,9 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
     if (node.groupId && nodeMap.has(node.groupId)) {
       const parent = nodeMap.get(node.groupId);
       parent.children.push(elkNode);
+      // biome-ignore lint/performance/noDelete: must remove the key (not set to undefined) so ELK auto-sizes this container from its children; `= undefined` leaves the key present and elkjs may treat that differently, changing layout output.
       delete parent.width;
+      // biome-ignore lint/performance/noDelete: see justification above.
       delete parent.height;
     } else {
       rootNodes.push(elkNode);
@@ -158,11 +160,11 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
       let curLine = "";
       let lines = 0;
       for (const w of edgeWords) {
-        if ((curLine + " " + w).trim().length > maxEdgeChars) {
+        if ((`${curLine} ${w}`).trim().length > maxEdgeChars) {
           if (curLine) { lines++; maxLen = Math.max(maxLen, curLine.length); }
           curLine = w;
         } else {
-          curLine = curLine ? curLine + " " + w : w;
+          curLine = curLine ? `${curLine} ${w}` : w;
         }
       }
       if (curLine) { lines++; maxLen = Math.max(maxLen, curLine.length); }
@@ -225,7 +227,7 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
   // Find root of the mindmap/diagram
   let rootId = "root";
   if (!adj.has(rootId) && diagram.nodes.length > 0) {
-    let minInDegree = Infinity;
+    let minInDegree = Number.POSITIVE_INFINITY;
     for (const [id, deg] of inDegree.entries()) {
       if (deg < minInDegree) {
         minInDegree = deg;
@@ -258,13 +260,13 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
 
   // O(1) lookups back to the original input (avoids O(n^2) find() per node/edge).
   const originalNodeMap = new Map(diagram.nodes.map((n) => [n.id, n] as const));
-  const edgeIdMap = new Map(diagram.edges.map((e, idx) => ["e" + idx, e] as const));
+  const edgeIdMap = new Map(diagram.edges.map((e, idx) => [`e${idx}`, e] as const));
 
   // 6 distinct colors for mindmap branches
   const mindmapColors = ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899"];
 
   // Transform ELK output back to our LayoutResult
-  const mapElkNode = (n: any, offsetX: number = 0, offsetY: number = 0, depth: number = 0, branchIndex: number = -1): LayoutNode => {
+  const mapElkNode = (n: any, offsetX = 0, offsetY = 0, depth = 0, branchIndex = -1): LayoutNode => {
     const absX = n.x + offsetX;
     const absY = n.y + offsetY;
     
@@ -294,12 +296,12 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
 
     // Keep existing metadata if we have a match
     const originalNode = originalNodeMap.get(n.id);
-    if (originalNode && originalNode.metadata) {
+    if (originalNode?.metadata) {
       node.metadata = { ...originalNode.metadata };
     }
     
     // Copy icon
-    if (originalNode && originalNode.icon) {
+    if (originalNode?.icon) {
       node.icon = originalNode.icon;
     }
 
@@ -318,13 +320,11 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
   
   const extractEdges = (n: any) => {
     if (n.edges) {
-      n.edges.forEach((e: any) => {
+      for (const e of n.edges) {
         // ELK may route the edge in a specific container, indicated by e.container.
         const containerId = e.container || n.id;
         const edgeOffsetX = containerId === "root" ? 0 : (nodeCoords.get(containerId)?.x || 0);
         const edgeOffsetY = containerId === "root" ? 0 : (nodeCoords.get(containerId)?.y || 0);
-        const src = e.sources?.[0];
-        const tgt = e.targets?.[0];
 
         const sections: LayoutEdgeSegment[] = (e.sections || []).map((sec: any) => ({
           startPoint: { x: sec.startPoint.x + edgeOffsetX, y: sec.startPoint.y + edgeOffsetY },
@@ -357,13 +357,13 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
           labelPosition,
           sections
         });
-      });
+      }
     }
-    
+
     if (n.children) {
-      n.children.forEach((child: any) => {
+      for (const child of n.children) {
         extractEdges(child);
-      });
+      }
     }
   };
 

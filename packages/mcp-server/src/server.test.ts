@@ -66,6 +66,7 @@ describe("glyphic mcp server", () => {
     async () => {
       const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "glyphic-test-"));
       process.env.GLYPHIC_OUTPUT_DIR = tmpDir;
+      // biome-ignore lint/performance/noDelete: `process.env.X = undefined` coerces to the string "undefined" in Node.js rather than unsetting the var, defeating this test's intent.
       delete process.env.GLYPHIC_NO_SAVE;
 
       const { client } = await connectedClient();
@@ -132,6 +133,7 @@ describe("glyphic mcp server", () => {
       await fs.writeFile(blockerFile, "not a directory");
       // mkdir(recursive) fails because "blocker" is a file, not a directory.
       process.env.GLYPHIC_OUTPUT_DIR = path.join(blockerFile, "sub");
+      // biome-ignore lint/performance/noDelete: `process.env.X = undefined` coerces to the string "undefined" in Node.js rather than unsetting the var, defeating this test's intent.
       delete process.env.GLYPHIC_NO_SAVE;
 
       const { client } = await connectedClient();

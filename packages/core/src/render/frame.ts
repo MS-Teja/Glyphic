@@ -1,4 +1,4 @@
-import { SceneGraph, SceneElement, SceneRect } from "../scene/scene-graph.js";
+import type { SceneGraph, SceneElement, SceneRect } from "../scene/scene-graph.js";
 
 // Aspect-ratio framing: pad a rendered scene out to a target width/height ratio
 // by adding whitespace and centering the content. We never scale (which would

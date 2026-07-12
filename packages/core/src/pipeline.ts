@@ -1,9 +1,9 @@
-import { DiagramInput, DiagramInputType } from "@glyphicjs/schema";
-import { layoutDiagram } from "./layout/index.js";
+import { DiagramInput, type DiagramInputType } from "@glyphicjs/schema";
+import { layoutDiagram, type LayoutResult } from "./layout/index.js";
 import { DIAGRAM_REGISTRY } from "./registry.js";
 import { resolveThemePartial, DEFAULT_THEME } from "./render/theme.js";
 import { resolveStyle } from "./render/style.js";
-import { targetRatioFor, frameScene, AspectRatioInput } from "./render/frame.js";
+import { targetRatioFor, frameScene, type AspectRatioInput } from "./render/frame.js";
 import { rasterizeSVG } from "./render/rasterizer.js";
 
 import { buildSceneGraph, getMarkerDefs } from "./render/strategies/scene-builder.js";
@@ -11,8 +11,8 @@ import { renderSceneGraphToSVG } from "./render/strategies/svg-renderer.js";
 import { buildDataVizSceneGraph } from "./render/strategies/data-viz-svg.js";
 import { buildFlowSceneGraph } from "./render/strategies/flow-svg.js";
 import { buildCanvasSceneGraph } from "./render/strategies/canvas-svg.js";
-import { SceneGraph } from "./scene/scene-graph.js";
-import { exportToReactFlow, ReactFlowConfig } from "./react-flow/adapter.js";
+import type { SceneGraph } from "./scene/scene-graph.js";
+import { exportToReactFlow, type ReactFlowConfig } from "./react-flow/adapter.js";
 
 export interface RenderResult {
   svg: string;
@@ -47,7 +47,7 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
   let layoutWidth = 0;
   let layoutHeight = 0;
 
-  let layout;
+  let layout: LayoutResult | undefined;
 
   // Branch on the discriminant so TypeScript narrows to the canvas variant. The
   // registry guarantees type "canvas" <-> the canvas ("canvas" render) handler.

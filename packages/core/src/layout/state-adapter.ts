@@ -1,5 +1,5 @@
-import { StateDiagramType } from "@glyphicjs/schema";
-import { LayoutResult } from "./types.js";
+import type { StateDiagramType } from "@glyphicjs/schema";
+import type { LayoutResult } from "./types.js";
 import { layoutNodeEdgeDiagram } from "./elk-adapter.js";
 
 const kindToShape = (kind?: string): string =>

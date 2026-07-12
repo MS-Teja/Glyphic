@@ -73,26 +73,19 @@ export function getPerimeterIntersection(node: BoundingBox, pt: Point, ext: Poin
         if (ext.y < cy) {
           const dx = Math.abs(pt.x - cx);
           const rx = node.width / 2;
-          const val = Math.max(0, 1 - Math.pow(dx / rx, 2));
+          const val = Math.max(0, 1 - (dx / rx) ** 2);
           const absY = ry * Math.sqrt(val);
           iy = node.y + ry - absY;
         } else {
           const dx = Math.abs(pt.x - cx);
           const rx = node.width / 2;
-          const val = Math.max(0, 1 - Math.pow(dx / rx, 2));
+          const val = Math.max(0, 1 - (dx / rx) ** 2);
           const absY = ry * Math.sqrt(val);
           iy = node.y + node.height - ry + absY;
         }
       }
       break;
     }
-
-    case 'person':
-    case 'actor': 
-    case 'rectangle':
-    case 'rounded':
-    case 'service':
-    case 'cloud':
     default: {
       // Rectangle bounding box is already handled perfectly by ELK
       break;

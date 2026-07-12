@@ -1,10 +1,10 @@
-import { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "../../layout/types.js";
-import { SceneGraph, SceneElement, SceneRect, ScenePath, SceneText, SceneCircle, SceneGroup, ScenePolygon, SceneEllipse } from "../../scene/scene-graph.js";
+import { type LayoutResult, type LayoutNode, type LayoutEdge, LayoutEdgeSegment } from "../../layout/types.js";
+import { type SceneGraph, type SceneElement, type SceneRect, type ScenePath, SceneText, SceneCircle, type SceneGroup, type ScenePolygon, SceneEllipse } from "../../scene/scene-graph.js";
 import { getPerimeterIntersection, BoundingBox } from "../../math/geometry.js";
 import { getIconSVG } from "../icon-adapter.js";
 import { escapeXml, escapeCssString, sanitizeSvg, isHttpsUrl } from "../sanitize.js";
-import { ThemeColors, DEFAULT_THEME, resolveFontFamily } from "../theme.js";
-import { StyleTokens, DEFAULT_STYLE } from "../style.js";
+import { type ThemeColors, DEFAULT_THEME, resolveFontFamily } from "../theme.js";
+import { type StyleTokens, DEFAULT_STYLE } from "../style.js";
 import { roughPath, rectCorners } from "../roughen.js";
 import { wrapTextToWidth } from "../../text-metrics.js";
 
@@ -19,12 +19,12 @@ export const PADDING = 40;
 export const SHADOW_FILTER_ID = "glyphic-shadow";
 const shadowFilterDef = `\n<filter id="${SHADOW_FILTER_ID}" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.12"/></filter>`;
 
-function darkenHex(hex: string, amount: number = 0.2): string {
+function darkenHex(hex: string, amount = 0.2): string {
   if (!hex.startsWith("#")) return hex;
-  if (hex.length === 4) hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
-  let r = parseInt(hex.slice(1, 3), 16);
-  let g = parseInt(hex.slice(3, 5), 16);
-  let b = parseInt(hex.slice(5, 7), 16);
+  const hex6 = hex.length === 4 ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
+  let r = Number.parseInt(hex6.slice(1, 3), 16);
+  let g = Number.parseInt(hex6.slice(3, 5), 16);
+  let b = Number.parseInt(hex6.slice(5, 7), 16);
   r = Math.max(0, Math.floor(r * (1 - amount)));
   g = Math.max(0, Math.floor(g * (1 - amount)));
   b = Math.max(0, Math.floor(b * (1 - amount)));
@@ -33,10 +33,10 @@ function darkenHex(hex: string, amount: number = 0.2): string {
 
 function getContrastYIQ(hex: string): string {
   if (!hex.startsWith("#")) return "#ffffff";
-  if (hex.length === 4) hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
+  const hex6 = hex.length === 4 ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
+  const r = Number.parseInt(hex6.slice(1, 3), 16);
+  const g = Number.parseInt(hex6.slice(3, 5), 16);
+  const b = Number.parseInt(hex6.slice(5, 7), 16);
   const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
   return (yiq >= 128) ? "#0f172a" : "#ffffff";
 }
@@ -44,10 +44,10 @@ function getContrastYIQ(hex: string): string {
 // Mix a hex color toward white by `amount` (0..1) to produce a soft tint fill.
 function tintHex(hex: string, amount: number): string {
   if (!hex.startsWith("#")) return hex;
-  if (hex.length === 4) hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
-  let r = parseInt(hex.slice(1, 3), 16);
-  let g = parseInt(hex.slice(3, 5), 16);
-  let b = parseInt(hex.slice(5, 7), 16);
+  const hex6 = hex.length === 4 ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
+  let r = Number.parseInt(hex6.slice(1, 3), 16);
+  let g = Number.parseInt(hex6.slice(3, 5), 16);
+  let b = Number.parseInt(hex6.slice(5, 7), 16);
   r = Math.round(r + (255 - r) * amount);
   g = Math.round(g + (255 - g) * amount);
   b = Math.round(b + (255 - b) * amount);
@@ -154,7 +154,7 @@ function buildCylinder(node: LayoutNode, theme: ThemeColors, style: StyleTokens 
     `A ${rx},${ry} 0 0,0 ${x + w},${y + ry}`,
     `L ${x + w},${y + h - ry}`,
     `A ${rx},${ry} 0 0,1 ${x},${y + h - ry}`,
-    `Z`
+    "Z"
   ].join(" ");
 
   return {
@@ -251,7 +251,7 @@ function buildClassNode(node: LayoutNode, theme: ThemeColors, style: StyleTokens
     });
   }
 
-  if (node.metadata && node.metadata.attributes && node.metadata.methods) {
+  if (node.metadata?.attributes && node.metadata.methods) {
     const attrRows = Array.isArray(node.metadata.attributes) ? node.metadata.attributes.length : 1;
     const attrHeight = attrRows * 24 + 8;
     const sepY = node.y + titleHeight + attrHeight;
@@ -489,13 +489,13 @@ function buildNodeLabel(node: LayoutNode, theme: ThemeColors, style: StyleTokens
   if (lines.length > 0) {
     // text elements are drawn with dominantBaseline: 'central', so add half lineHeight
     let textY = currentY + lineHeight / 2;
-    lines.forEach((line) => {
+    for (const line of lines) {
       elements.push({
         type: 'text', x: cx, y: textY, content: line,
         textAnchor: 'middle', dominantBaseline: 'central', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: style.fontWeight, fill: c.text
       });
       textY += lineHeight;
-    });
+    }
   }
 
   return { type: 'group', children: elements };
@@ -593,7 +593,7 @@ function buildEdgePath(edge: LayoutEdge, nodes: LayoutNode[], style: StyleTokens
   return parts.join(" ");
 }
 
-export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: LayoutNode[], maskLabels: boolean = false, style: StyleTokens = DEFAULT_STYLE): { paths: SceneElement[], texts: SceneElement[] } | null {
+export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: LayoutNode[], maskLabels = false, style: StyleTokens = DEFAULT_STYLE): { paths: SceneElement[], texts: SceneElement[] } | null {
   const d = buildEdgePath(edge, allNodes, style);
   if (!d) return null;
   const edgeStroke = style.strokeWidth;
@@ -640,7 +640,8 @@ export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: L
 
   if (edge.label && edge.sections && edge.sections.length > 0) {
     const sec = edge.sections[0];
-    let midX = 0, midY = 0;
+    let midX = 0;
+    let midY = 0;
     let isHorizontal = false;
     let segmentLength = 0;
     let textAnchor: 'start' | 'middle' | 'end' = 'middle';
@@ -706,11 +707,11 @@ export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: L
     const edgeLines: string[] = [];
     let curLine = "";
     for (const w of edgeWords) {
-      if ((curLine + " " + w).trim().length > maxEdgeChars) {
+      if ((`${curLine} ${w}`).trim().length > maxEdgeChars) {
         if (curLine) edgeLines.push(curLine);
         curLine = w;
       } else {
-        curLine = curLine ? curLine + " " + w : w;
+        curLine = curLine ? `${curLine} ${w}` : w;
       }
     }
     if (curLine) edgeLines.push(curLine);
@@ -728,7 +729,8 @@ export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: L
     
     const bgWidth = textWidth;
     const bgHeight = edgeLines.length * edgeLineHeight - 4;
-    let bgX = 0, bgY = 0;
+    let bgX = 0;
+    let bgY = 0;
 
     if (edge.labelPosition) {
       bgX = edge.labelPosition.x;
@@ -781,7 +783,7 @@ export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: L
 
 // --- Main Builder ---
 
-export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<ThemeColors> = {}, maskLabels: boolean = false, style: StyleTokens = DEFAULT_STYLE): SceneGraph {
+export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<ThemeColors> = {}, maskLabels = false, style: StyleTokens = DEFAULT_STYLE): SceneGraph {
   const theme: ThemeColors = { ...DEFAULT_THEME, ...passedTheme };
   if (!passedTheme.edgeLabelColor) {
     const isDarkBg = getContrastYIQ(theme.background) === "#ffffff";
@@ -789,15 +791,18 @@ export function buildSceneGraph(layout: LayoutResult, passedTheme: Partial<Theme
   }
   const elements: SceneElement[] = [];
   
-  let minX = 0, minY = 0, maxX = layout.width, maxY = layout.height;
+  let minX = 0;
+  let minY = 0;
+  let maxX = layout.width;
+  let maxY = layout.height;
   
   const allEdgePaths: SceneElement[] = [];
   const allEdgeLabels: SceneElement[] = [];
   
   const uniqueColors = new Set<string>();
-  layout.edges.forEach(e => {
+  for (const e of layout.edges) {
     if (e.metadata?.color) uniqueColors.add(e.metadata.color);
-  });
+  }
   let defs = getMarkerDefs(theme, Array.from(uniqueColors));
 
   if (style.shadow) defs += shadowFilterDef;

@@ -1,5 +1,5 @@
-import { ErdDiagramType } from "@glyphicjs/schema";
-import { LayoutResult } from "./types.js";
+import type { ErdDiagramType } from "@glyphicjs/schema";
+import type { LayoutResult } from "./types.js";
 import { layoutNodeEdgeDiagram } from "./elk-adapter.js";
 
 // Map ERD cardinality to an existing crow's-foot marker (drawn at the target end).
@@ -29,7 +29,7 @@ export function layoutErdDiagram(diagram: ErdDiagramType): Promise<LayoutResult>
     metadata: {
       color: e.color,
       columns: (e.attributes ?? []).map(
-        (a) => `${a.key ? a.key + " " : ""}${a.name}${a.type ? ": " + a.type : ""}`
+        (a) => `${a.key ? `${a.key} ` : ""}${a.name}${a.type ? `: ${a.type}` : ""}`
       )
     }
   }));

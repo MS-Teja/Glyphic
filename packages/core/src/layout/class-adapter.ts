@@ -1,5 +1,5 @@
-import { ClassDiagramType } from "@glyphicjs/schema";
-import { LayoutResult } from "./types.js";
+import type { ClassDiagramType } from "@glyphicjs/schema";
+import type { LayoutResult } from "./types.js";
 import { layoutNodeEdgeDiagram } from "./elk-adapter.js";
 
 // Map a UML relationship to an existing marker; dashed for implements/dependency.

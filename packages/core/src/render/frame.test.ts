@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { targetRatioFor, frameScene } from "./frame.js";
-import { SceneGraph } from "../scene/scene-graph.js";
+import type { SceneGraph } from "../scene/scene-graph.js";
 
 function makeScene(width: number, height: number, withBg = true): SceneGraph {
   return {

@@ -1,5 +1,5 @@
-import { PieChartType, QuadrantChartType } from "@glyphicjs/schema";
-import { LayoutResult, LayoutNode } from "./types.js";
+import type { PieChartType, QuadrantChartType } from "@glyphicjs/schema";
+import type { LayoutResult, LayoutNode } from "./types.js";
 
 export function layoutPieChart(diagram: PieChartType): LayoutResult {
   // Respect LLM provided dimensions or default to 800x600

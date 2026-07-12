@@ -1,8 +1,8 @@
-import { LayoutResult } from "../../layout/types.js";
-import { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
-import { ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
+import type { LayoutResult } from "../../layout/types.js";
+import type { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
+import { type ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
 import { resolveFontFamily } from "../theme.js";
-import { StyleTokens, DEFAULT_STYLE } from "../style.js";
+import { type StyleTokens, DEFAULT_STYLE } from "../style.js";
 
 export function buildFlowSceneGraph(layout: LayoutResult, diagramType: string, theme: ThemeColors = DEFAULT_THEME, _style: StyleTokens = DEFAULT_STYLE): SceneGraph {
   const width = layout.width + PADDING * 2;
@@ -167,11 +167,11 @@ function wrapLabel(text: string, maxChars: number): string[] {
   const lines: string[] = [];
   let cur = "";
   for (const w of words) {
-    if ((cur + " " + w).trim().length > maxChars) {
+    if ((`${cur} ${w}`).trim().length > maxChars) {
       if (cur) lines.push(cur);
       cur = w;
     } else {
-      cur = cur ? cur + " " + w : w;
+      cur = cur ? `${cur} ${w}` : w;
     }
   }
   if (cur) lines.push(cur);

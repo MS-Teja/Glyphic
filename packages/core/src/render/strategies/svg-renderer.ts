@@ -1,4 +1,4 @@
-import { SceneGraph, SceneElement } from "../../scene/scene-graph.js";
+import type { SceneGraph, SceneElement } from "../../scene/scene-graph.js";
 import { escapeXml, sanitizeSvg } from "../sanitize.js";
 
 function renderElement(el: SceneElement): string {
@@ -90,7 +90,7 @@ function renderElement(el: SceneElement): string {
   }
 }
 
-export function renderSceneGraphToSVG(scene: SceneGraph, extraDefs: string = '', title?: string): string {
+export function renderSceneGraphToSVG(scene: SceneGraph, extraDefs = '', title?: string): string {
   // role="img" + <title> make the diagram accessible to screen readers.
   const ariaLabel = title ? ` aria-label="${escapeXml(title)}"` : '';
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${scene.width}" height="${scene.height}" viewBox="0 0 ${scene.width} ${scene.height}" role="img"${ariaLabel}>\n`;
@@ -101,8 +101,8 @@ export function renderSceneGraphToSVG(scene: SceneGraph, extraDefs: string = '',
     svg += `<defs>\n${extraDefs}\n</defs>\n`;
   }
   for (const el of scene.elements) {
-    svg += renderElement(el) + '\n';
+    svg += `${renderElement(el)}\n`;
   }
-  svg += `</svg>`;
+  svg += "</svg>";
   return svg;
 }

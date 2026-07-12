@@ -1,9 +1,9 @@
-import { SequenceDiagramType } from "@glyphicjs/schema";
-import { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
+import type { SequenceDiagramType } from "@glyphicjs/schema";
+import type { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
 import { measureTextWidth } from "../text-metrics.js";
 
 // Proportional font-width estimate (Inter).
-function estimateTextWidth(text: string, fontSize: number = 12): number {
+function estimateTextWidth(text: string, fontSize = 12): number {
   return measureTextWidth(text, fontSize);
 }
 
@@ -28,7 +28,7 @@ export function layoutSequenceDiagram(diagram: SequenceDiagramType): LayoutResul
     if (!pIndexMap.has(m.target)) throw new Error(`Sequence message #${idx} references unknown target participant "${m.target}"`);
   });
 
-  diagram.messages.forEach(m => {
+  for (const m of diagram.messages) {
     const sIdx = pIndexMap.get(m.source);
     const tIdx = pIndexMap.get(m.target);
     if (sIdx !== undefined && tIdx !== undefined && sIdx !== tIdx) {
@@ -39,7 +39,7 @@ export function layoutSequenceDiagram(diagram: SequenceDiagramType): LayoutResul
         requiredSpacing = spacingNeeded;
       }
     }
-  });
+  }
 
   const PARTICIPANT_SPACING = requiredSpacing;
 
@@ -105,7 +105,7 @@ export function layoutSequenceDiagram(diagram: SequenceDiagramType): LayoutResul
   });
 
   // 4. Create visual lifelines as vertical background edges
-  diagram.participants.forEach(p => {
+  for (const p of diagram.participants) {
     const pX = participantXMap.get(p.id) || 0;
     edges.unshift({
       id: `lifeline-${p.id}`,
@@ -119,7 +119,7 @@ export function layoutSequenceDiagram(diagram: SequenceDiagramType): LayoutResul
         endPoint: { x: pX, y: currentY }
       }]
     });
-  });
+  }
 
   // Calculate total bounding box. The right margin mirrors LEFT_MARGIN so the
   // participants are centered (the previous formula left a full column of extra

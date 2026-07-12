@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { layoutDiagram } from "./index.js";
-import { DiagramInputType } from "@glyphicjs/schema";
+import type { DiagramInputType } from "@glyphicjs/schema";
 
 describe("Layout Engine", () => {
   it("should layout a simple flowchart", async () => {

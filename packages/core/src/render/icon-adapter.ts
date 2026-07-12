@@ -1,10 +1,10 @@
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { escapeXml } from "./sanitize.js";
 
 // Ex: getIconSVG("fas-user", "#fff") or getIconSVG("fab-aws", "#000")
-export function getIconSVG(iconName: string, color: string, width: number = 24, height: number = 24): string {
+export function getIconSVG(iconName: string, color: string, width = 24, height = 24): string {
   let iconDef: IconDefinition | undefined;
 
   const parts = iconName.split("-");
@@ -12,7 +12,7 @@ export function getIconSVG(iconName: string, color: string, width: number = 24, 
   const name = parts.slice(1).join("-");
 
   // FontAwesome keys are camelCase (e.g. faUser, faAws)
-  const camelName = "fa" + name.charAt(0).toUpperCase() + name.slice(1).replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+  const camelName = `fa${name.charAt(0).toUpperCase()}${name.slice(1).replace(/-([a-z])/g, (g) => g[1].toUpperCase())}`;
 
   if (prefix === "fas" || prefix === "fa") {
     iconDef = (fas as any)[camelName];

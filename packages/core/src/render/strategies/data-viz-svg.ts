@@ -1,8 +1,8 @@
-import { LayoutResult } from "../../layout/types.js";
-import { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
-import { ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
+import type { LayoutResult } from "../../layout/types.js";
+import type { SceneGraph, SceneElement, SceneGroup } from "../../scene/scene-graph.js";
+import { type ThemeColors, DEFAULT_THEME, PADDING } from "./scene-builder.js";
 import { resolveFontFamily } from "../theme.js";
-import { StyleTokens, DEFAULT_STYLE } from "../style.js";
+import { type StyleTokens, DEFAULT_STYLE } from "../style.js";
 
 function getColorsForSlices(count: number): string[] {
   const palette = [
@@ -177,7 +177,7 @@ function buildPieChart(layout: LayoutResult, theme: ThemeColors, elements: Scene
         `M ${info.ex} ${info.ey}`,
         `L ${info.startX} ${info.startY}`,
         `A ${radius} ${radius} 0 ${info.largeArcFlag} 1 ${info.endX} ${info.endY}`,
-        `Z`
+        "Z"
       ].join(" ");
       elements.push({ type: 'path', d: pathD, fill: info.sliceColor, stroke: theme.background, strokeWidth: 2 });
     }
@@ -229,7 +229,7 @@ function buildQuadrantChart(layout: LayoutResult, theme: ThemeColors, elements: 
   elements.push({ type: 'line', x1: xOffset, y1: cy, x2: xOffset + boxSize, y2: cy, stroke: theme.edgeColor, strokeWidth: 2, strokeDasharray: "4 4" });
 
   const axesNode = layout.nodes.find(n => n.shape === "axes");
-  if (axesNode && axesNode.metadata) {
+  if (axesNode?.metadata) {
     const { xAxis, yAxis } = axesNode.metadata;
     elements.push({ type: 'text', x: xOffset + boxSize / 4, y: yOffset + boxSize + 24, content: xAxis.left, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: theme.nodeText });
     elements.push({ type: 'text', x: xOffset + boxSize * 0.75, y: yOffset + boxSize + 24, content: xAxis.right, textAnchor: 'middle', fontFamily: resolveFontFamily(theme.fontFamily), fontSize: 14, fontWeight: 600, fill: theme.nodeText });
@@ -288,9 +288,9 @@ function buildQuadrantChart(layout: LayoutResult, theme: ThemeColors, elements: 
 function relativeLuminance(hex: string): number {
   if (!hex.startsWith("#")) return 0.5;
   const h = hex.length === 4 ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
-  const r = parseInt(h.slice(1, 3), 16);
-  const g = parseInt(h.slice(3, 5), 16);
-  const b = parseInt(h.slice(5, 7), 16);
+  const r = Number.parseInt(h.slice(1, 3), 16);
+  const g = Number.parseInt(h.slice(3, 5), 16);
+  const b = Number.parseInt(h.slice(5, 7), 16);
   return (r * 0.299 + g * 0.587 + b * 0.114) / 255;
 }
 

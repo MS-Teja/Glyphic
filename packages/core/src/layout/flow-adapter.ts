@@ -1,5 +1,5 @@
-import { SankeyDiagramType, GitGraphType } from "@glyphicjs/schema";
-import { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
+import type { SankeyDiagramType, GitGraphType } from "@glyphicjs/schema";
+import type { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
 
 import { sankey, sankeyCenter } from "d3-sankey";
 
@@ -95,7 +95,7 @@ export function layoutGitGraph(diagram: GitGraphType): LayoutResult {
 
     // Draw edges from parents TO this commit
     if (c.parents) {
-      c.parents.forEach(p => {
+      for (const p of c.parents) {
         edges.push({
           id: `git_${p}_${c.id}`,
           source: p,
@@ -104,7 +104,7 @@ export function layoutGitGraph(diagram: GitGraphType): LayoutResult {
           arrow: "forward",
           sections: [] // Handled by git renderer
         });
-      });
+      }
     } else {
       // Implicit parent is the last commit seen on the same branch (O(1)).
       const prevId = lastCommitByBranch.get(c.branch);

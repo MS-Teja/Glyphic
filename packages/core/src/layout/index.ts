@@ -1,7 +1,7 @@
-import { DiagramInputType } from "@glyphicjs/schema";
-import { LayoutResult } from "./types.js";
+import type { DiagramInputType } from "@glyphicjs/schema";
+import type { LayoutResult } from "./types.js";
 import { DIAGRAM_REGISTRY } from "../registry.js";
-import { StyleTokens } from "../render/style.js";
+import type { StyleTokens } from "../render/style.js";
 
 export * from "./types.js";
 export * from "./elk-adapter.js";

@@ -1,5 +1,5 @@
-import { DiagramInputType, NodeEdgeDiagramType } from "@glyphicjs/schema";
-import { LayoutResult } from "./layout/types.js";
+import type { DiagramInputType, NodeEdgeDiagramType } from "@glyphicjs/schema";
+import type { LayoutResult } from "./layout/types.js";
 import { layoutNodeEdgeDiagram } from "./layout/elk-adapter.js";
 import { layoutSequenceDiagram } from "./layout/sequence-adapter.js";
 import { layoutCanvasDiagram } from "./layout/canvas-adapter.js";
@@ -12,7 +12,7 @@ import { layoutClassDiagram } from "./layout/class-adapter.js";
 import { layoutTimeline, layoutJourney, layoutKanban } from "./layout/chrono-adapter.js";
 import { layoutC4Diagram } from "./layout/c4-adapter.js";
 import { layoutTreemap } from "./layout/treemap-adapter.js";
-import { StyleTokens } from "./render/style.js";
+import type { StyleTokens } from "./render/style.js";
 
 /** Which scene-builder a diagram type renders through. */
 export type RenderStrategy = "scene" | "data-viz" | "flow" | "canvas";

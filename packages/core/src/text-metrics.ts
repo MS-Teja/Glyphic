@@ -16,7 +16,7 @@ const ADVANCE: Record<string, number> = {
 };
 
 /** Estimated rendered width of `text` at `fontSize`px (heavier weights are a touch wider). */
-export function measureTextWidth(text: string, fontSize: number, weight: number = 400): number {
+export function measureTextWidth(text: string, fontSize: number, weight = 400): number {
   let units = 0;
   for (const ch of String(text)) units += ADVANCE[ch] ?? DEFAULT_ADVANCE;
   const boldFactor = weight >= 600 ? 1.04 : 1;
@@ -24,12 +24,12 @@ export function measureTextWidth(text: string, fontSize: number, weight: number 
 }
 
 /** Greedily wrap `text` into lines that each fit within `maxWidth`px. */
-export function wrapTextToWidth(text: string, maxWidth: number, fontSize: number, weight: number = 400): string[] {
+export function wrapTextToWidth(text: string, maxWidth: number, fontSize: number, weight = 400): string[] {
   const words = String(text).split(" ");
   const lines: string[] = [];
   let current = "";
   for (const word of words) {
-    const candidate = current ? current + " " + word : word;
+    const candidate = current ? `${current} ${word}` : word;
     if (current && measureTextWidth(candidate, fontSize, weight) > maxWidth) {
       lines.push(current);
       current = word;

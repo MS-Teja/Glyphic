@@ -19,7 +19,7 @@ describe("schema validation hardening", () => {
   });
 
   it("caps the number of nodes (DoS guard)", () => {
-    const nodes = Array.from({ length: 1001 }, (_, i) => ({ id: "n" + i, label: "x" }));
+    const nodes = Array.from({ length: 1001 }, (_, i) => ({ id: `n${i}`, label: "x" }));
     expect(() => DiagramInput.parse({ type: "flowchart", nodes, edges: [] })).toThrow();
   });
 

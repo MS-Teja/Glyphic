@@ -10,7 +10,7 @@ import {
   type Tool,
   type ContentBlock,
 } from "@modelcontextprotocol/sdk/types.js";
-import { DiagramInput } from "@glyphicjs/schema";
+import { DiagramInput, formatValidationError } from "@glyphicjs/schema";
 import { z } from "zod";
 import { processDiagram } from "@glyphicjs/core";
 import { zodToJsonSchema } from "zod-to-json-schema";
@@ -186,7 +186,9 @@ export function createGlyphicServer(): Server {
           // Surface only the message (Zod issues formatted) — never the stack trace.
           const message =
             error instanceof z.ZodError
-              ? `Invalid diagram input:\n${error.issues.map((i) => `- ${i.path.join(".") || "(root)"}: ${i.message}`).join("\n")}`
+              ? formatValidationError(error, {
+                  tip: "Call the get_schema tool for the full DiagramInput contract.",
+                })
               : error instanceof Error
                 ? error.message
                 : "Unknown error occurred while rendering the diagram.";

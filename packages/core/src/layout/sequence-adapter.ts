@@ -1,5 +1,6 @@
 import type { SequenceDiagramType } from "@glyphicjs/schema";
 import type { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
+import { unknownIdError } from "./validation.js";
 import { measureTextWidth } from "../text-metrics.js";
 
 // Proportional font-width estimate (Inter).
@@ -24,8 +25,10 @@ export function layoutSequenceDiagram(diagram: SequenceDiagramType): LayoutResul
   // Fail fast if a message references a participant that doesn't exist,
   // rather than silently drawing the message from the origin (0,0).
   diagram.messages.forEach((m, idx) => {
-    if (!pIndexMap.has(m.source)) throw new Error(`Sequence message #${idx} references unknown source participant "${m.source}"`);
-    if (!pIndexMap.has(m.target)) throw new Error(`Sequence message #${idx} references unknown target participant "${m.target}"`);
+    if (!pIndexMap.has(m.source))
+      throw unknownIdError({ kind: "Sequence message", index: idx, field: "source", badId: m.source, knownIds: pIndexMap.keys(), noun: "participant" });
+    if (!pIndexMap.has(m.target))
+      throw unknownIdError({ kind: "Sequence message", index: idx, field: "target", badId: m.target, knownIds: pIndexMap.keys(), noun: "participant" });
   });
 
   for (const m of diagram.messages) {

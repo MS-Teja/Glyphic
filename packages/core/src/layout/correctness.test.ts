@@ -91,4 +91,19 @@ describe("layout correctness regressions", () => {
     // Not d3-sankey's cryptic "missing: <id>".
     await expect(layoutDiagram(input)).rejects.not.toThrow(/missing:/);
   });
+
+  it("suggests the closest id and lists the known ids on a typo'd edge", async () => {
+    const input = DiagramInput.parse({
+      type: "flowchart",
+      nodes: [
+        { id: "web", label: "Web" },
+        { id: "api", label: "API" },
+        { id: "db", label: "DB" }
+      ],
+      edges: [{ source: "webb", target: "api" }]
+    });
+    // Did-you-mean picks "web" (distance 1) and the valid ids are enumerated.
+    await expect(layoutDiagram(input)).rejects.toThrow(/Did you mean "web"\?/);
+    await expect(layoutDiagram(input)).rejects.toThrow(/Known node ids: "web", "api", "db"\./);
+  });
 });

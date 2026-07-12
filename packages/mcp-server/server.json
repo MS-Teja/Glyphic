@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.MS-Teja/glyphic",
   "description": "Generate 18 diagram types from structured JSON natively. Built for LLMs and agents.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "repository": {
     "url": "https://github.com/MS-Teja/Glyphic",
     "source": "github"
@@ -13,7 +13,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@glyphicjs/mcp-server",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"

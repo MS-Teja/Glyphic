@@ -1,5 +1,6 @@
 import type { NodeEdgeDiagramType } from "@glyphicjs/schema";
 import type { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
+import { unknownIdError } from "./validation.js";
 
 // A direct canvas layout adapter that bypasses ELK auto-layout.
 // It explicitly uses the x, y, width, and height provided by the LLM in the schema.
@@ -47,8 +48,10 @@ export async function layoutCanvasDiagram(diagram: NodeEdgeDiagramType): Promise
   // Fail fast on edges referencing missing nodes rather than silently dropping
   // them (which would draw nothing) or emitting degenerate (0,0) lines.
   diagram.edges.forEach((e, idx) => {
-    if (!nodeMap.has(e.source)) throw new Error(`Edge #${idx} references unknown source node "${e.source}"`);
-    if (!nodeMap.has(e.target)) throw new Error(`Edge #${idx} references unknown target node "${e.target}"`);
+    if (!nodeMap.has(e.source))
+      throw unknownIdError({ kind: "Edge", index: idx, field: "source", badId: e.source, knownIds: nodeMap.keys() });
+    if (!nodeMap.has(e.target))
+      throw unknownIdError({ kind: "Edge", index: idx, field: "target", badId: e.target, knownIds: nodeMap.keys() });
   });
 
   // Create edges with straight-line routing.

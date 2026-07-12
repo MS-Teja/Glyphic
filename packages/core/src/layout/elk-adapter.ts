@@ -1,6 +1,7 @@
 import ELK from "elkjs/lib/elk.bundled.js";
 import type { NodeEdgeDiagramType } from "@glyphicjs/schema";
 import type { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./types.js";
+import { unknownIdError } from "./validation.js";
 import { measureTextWidth, wrapTextToWidth } from "../text-metrics.js";
 import { type StyleTokens, DEFAULT_STYLE } from "../render/style.js";
 
@@ -146,8 +147,10 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
   // map from/to -> source/target) and mindmap/architecture.
   const nodeIdSet = new Set(diagram.nodes.map((n) => n.id));
   diagram.edges.forEach((e, idx) => {
-    if (!nodeIdSet.has(e.source)) throw new Error(`Edge #${idx} references unknown source node "${e.source}"`);
-    if (!nodeIdSet.has(e.target)) throw new Error(`Edge #${idx} references unknown target node "${e.target}"`);
+    if (!nodeIdSet.has(e.source))
+      throw unknownIdError({ kind: "Edge", index: idx, field: "source", badId: e.source, knownIds: nodeIdSet });
+    if (!nodeIdSet.has(e.target))
+      throw unknownIdError({ kind: "Edge", index: idx, field: "target", badId: e.target, knownIds: nodeIdSet });
   });
 
   const edges = diagram.edges.map((e, idx) => {

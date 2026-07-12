@@ -1,6 +1,6 @@
 {
   "name": "@glyphicjs/schema",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "description": "Zod schema for Glyphic diagram inputs — the typed, machine-first contract LLMs emit instead of fragile DSLs or raw SVG.",
   "keywords": [

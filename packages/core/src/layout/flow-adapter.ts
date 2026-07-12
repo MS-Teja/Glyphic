@@ -1,5 +1,6 @@
 import type { SankeyDiagramType, GitGraphType } from "@glyphicjs/schema";
 import type { LayoutResult, LayoutNode, LayoutEdge } from "./types.js";
+import { unknownIdError } from "./validation.js";
 
 import { sankey, sankeyCenter } from "d3-sankey";
 
@@ -19,8 +20,10 @@ export function layoutSankeyDiagram(diagram: SankeyDiagramType): LayoutResult {
   // cryptic `missing: <id>` from deep inside its graph builder.
   const nodeIdSet = new Set(diagram.nodes.map((n) => n.id));
   diagram.edges.forEach((e, idx) => {
-    if (!nodeIdSet.has(e.source)) throw new Error(`Link #${idx} references unknown source node "${e.source}"`);
-    if (!nodeIdSet.has(e.target)) throw new Error(`Link #${idx} references unknown target node "${e.target}"`);
+    if (!nodeIdSet.has(e.source))
+      throw unknownIdError({ kind: "Link", index: idx, field: "source", badId: e.source, knownIds: nodeIdSet });
+    if (!nodeIdSet.has(e.target))
+      throw unknownIdError({ kind: "Link", index: idx, field: "target", badId: e.target, knownIds: nodeIdSet });
   });
 
   const graph = {

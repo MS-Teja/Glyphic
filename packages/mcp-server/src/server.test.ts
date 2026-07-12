@@ -168,6 +168,8 @@ describe("glyphic mcp server", () => {
     expect(content[0].text).toContain("Invalid diagram input");
     expect(content[0].text).toContain("nodes");
     expect(content[0].text).not.toContain("  at ");
+    // The shared formatter appends the MCP-specific tip.
+    expect(content[0].text).toContain("Call the get_schema tool for the full DiagramInput contract.");
   });
 
   it("rejects calls to an unknown tool", async () => {

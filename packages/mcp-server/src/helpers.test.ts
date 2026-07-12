@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import * as os from "node:os";
 import * as path from "node:path";
-import { sanitizeTitle, makeBaseFilename, resolveOutputDir } from "./server.js";
+import { sanitizeTitle, makeBaseFilename, resolveOutputDir, printBanner, VERSION } from "./server.js";
 
 describe("sanitizeTitle", () => {
   it("lowercases and replaces non-alphanumeric characters with underscores", () => {
@@ -64,5 +64,46 @@ describe("resolveOutputDir", () => {
 
   it("GLYPHIC_NO_SAVE takes precedence over GLYPHIC_OUTPUT_DIR", () => {
     expect(resolveOutputDir({ GLYPHIC_NO_SAVE: "1", GLYPHIC_OUTPUT_DIR: "/x" })).toBeNull();
+  });
+});
+
+describe("printBanner", () => {
+  const savedNoSave = process.env.GLYPHIC_NO_SAVE;
+  const savedNoColor = process.env.NO_COLOR;
+
+  afterEach(() => {
+    // biome-ignore lint/performance/noDelete: assigning undefined to process.env coerces to the string "undefined"; delete is required to actually unset
+    if (savedNoSave === undefined) delete process.env.GLYPHIC_NO_SAVE;
+    else process.env.GLYPHIC_NO_SAVE = savedNoSave;
+    // biome-ignore lint/performance/noDelete: same — must truly unset the env var
+    if (savedNoColor === undefined) delete process.env.NO_COLOR;
+    else process.env.NO_COLOR = savedNoColor;
+    vi.restoreAllMocks();
+  });
+
+  function captureBanner(): string {
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    printBanner();
+    return spy.mock.calls.map((call) => call.join(" ")).join("\n");
+  }
+
+  it("includes the version, docs and issues links", () => {
+    const out = captureBanner();
+    expect(out).toContain(`v${VERSION}`);
+    expect(out).toContain("https://github.com/MS-Teja/Glyphic/blob/main/docs/mcp.md");
+    expect(out).toContain("https://github.com/MS-Teja/Glyphic/issues");
+  });
+
+  it("emits no ANSI escapes when NO_COLOR is set", () => {
+    process.env.NO_COLOR = "1";
+    const out = captureBanner();
+    expect(out).not.toContain("\u001b");
+  });
+
+  it("says saving is off when GLYPHIC_NO_SAVE=1", () => {
+    process.env.GLYPHIC_NO_SAVE = "1";
+    const out = captureBanner();
+    expect(out).toContain("File saving is off");
+    expect(out).not.toContain("Diagrams land in");
   });
 });

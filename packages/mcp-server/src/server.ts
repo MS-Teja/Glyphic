@@ -204,19 +204,63 @@ export function createGlyphicServer(): Server {
   return server;
 }
 
+const ANSI = {
+  reset: "\x1b[0m",
+  bold: "\x1b[1m",
+  dim: "\x1b[2m",
+  brand: "\x1b[38;2;226;80;47m", // Glyphic orange (#e2502f)
+};
+
 /**
- * Prints a short startup banner to STDERR (stdout is reserved for the MCP
- * stdio protocol channel).
+ * Prints the startup banner to STDERR (stdout is reserved for the MCP stdio
+ * protocol channel). Colors are used only when stderr is an interactive
+ * terminal and NO_COLOR is unset, so MCP client log files stay clean. When
+ * stdin is a TTY — a human ran us by hand instead of an MCP client — the
+ * banner explains why nothing appears to happen.
  */
 export function printBanner(): void {
+  const useColor = Boolean(process.stderr.isTTY) && process.env.NO_COLOR === undefined;
+  const style = (codes: string, text: string) => (useColor ? `${codes}${text}${ANSI.reset}` : text);
+
   const outputDir = resolveOutputDir();
-  const saveLine =
-    outputDir === null
-      ? "File saving disabled (GLYPHIC_NO_SAVE)."
-      : `Diagrams save to ${outputDir} — set GLYPHIC_OUTPUT_DIR to change, GLYPHIC_NO_SAVE=1 to disable.`;
-  console.error(`Glyphic MCP Server v${VERSION} (stdio)`);
-  console.error(
-    "Docs: https://github.com/MS-Teja/Glyphic/blob/main/docs/mcp.md · Issues: https://github.com/MS-Teja/Glyphic/issues"
+  const home = os.homedir();
+  const prettyDir = outputDir?.startsWith(home) ? `~${outputDir.slice(home.length)}` : outputDir;
+
+  const lines = [
+    "",
+    `  ${style(ANSI.brand + ANSI.bold, "◆ Glyphic")} ${style(ANSI.dim, "— the rendering engine for AI-generated diagrams")}`,
+    `  ${style(ANSI.dim, `v${VERSION} · speaking MCP over stdio`)}`,
+    "",
+  ];
+
+  if (outputDir === null) {
+    lines.push(`  ${style(ANSI.dim, "File saving is off (GLYPHIC_NO_SAVE) — diagrams return inline only.")}`);
+  } else {
+    lines.push(
+      `  Diagrams land in ${style(ANSI.bold, prettyDir ?? outputDir)}`,
+      `  ${style(ANSI.dim, "GLYPHIC_OUTPUT_DIR to relocate · GLYPHIC_NO_SAVE=1 to go file-free")}`
+    );
+  }
+
+  lines.push(
+    "",
+    `  ${style(ANSI.dim, "Docs")}  https://github.com/MS-Teja/Glyphic/blob/main/docs/mcp.md`,
+    `  ${style(ANSI.dim, "Bugs")}  https://github.com/MS-Teja/Glyphic/issues`
   );
-  console.error(saveLine);
+
+  if (process.stdin.isTTY) {
+    lines.push(
+      "",
+      `  ${style(ANSI.bold, "Running this by hand?")} It will look quiet from here — Glyphic is an`,
+      "  MCP server, patiently waiting for an AI client to speak first.",
+      "  Hook it up and start drawing:",
+      "",
+      `    ${style(ANSI.brand, "claude mcp add glyphic -- npx -y @glyphicjs/mcp-server")}`,
+      "",
+      `  ${style(ANSI.dim, "(Ctrl+C to exit)")}`
+    );
+  }
+
+  lines.push("");
+  console.error(lines.join("\n"));
 }

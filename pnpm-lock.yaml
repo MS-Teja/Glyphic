@@ -250,7 +250,7 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0
       '@glyphicjs/schema':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../schema
       '@resvg/resvg-js':
         specifier: ^2.6.2
@@ -290,10 +290,10 @@ importers:
   packages/mcp-server:
     dependencies:
       '@glyphicjs/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       '@glyphicjs/schema':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../schema
       '@modelcontextprotocol/sdk':
         specifier: ^1.0.1

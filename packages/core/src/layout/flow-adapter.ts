@@ -15,6 +15,14 @@ export function layoutSankeyDiagram(diagram: SankeyDiagramType): LayoutResult {
     .nodeAlign(sankeyCenter)
     .extent([[50, 50], [width - 50, height - 50]]);
 
+  // Fail fast on links referencing unknown nodes; d3-sankey otherwise throws a
+  // cryptic `missing: <id>` from deep inside its graph builder.
+  const nodeIdSet = new Set(diagram.nodes.map((n) => n.id));
+  diagram.edges.forEach((e, idx) => {
+    if (!nodeIdSet.has(e.source)) throw new Error(`Link #${idx} references unknown source node "${e.source}"`);
+    if (!nodeIdSet.has(e.target)) throw new Error(`Link #${idx} references unknown target node "${e.target}"`);
+  });
+
   const graph = {
     nodes: diagram.nodes.map(n => ({ id: n.id, label: n.label, color: n.color })),
     links: diagram.edges.map(e => ({ source: e.source, target: e.target, value: e.value }))

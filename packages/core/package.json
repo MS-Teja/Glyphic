@@ -17,6 +17,9 @@
   ],
   "repository": { "type": "git", "url": "git+https://github.com/MS-Teja/Glyphic.git", "directory": "packages/core" },
   "homepage": "https://github.com/MS-Teja/Glyphic#readme",
+  "bugs": { "url": "https://github.com/MS-Teja/Glyphic/issues" },
+  "funding": "https://github.com/sponsors/MS-Teja",
+  "engines": { "node": ">=22" },
   "publishConfig": { "access": "public" },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -33,6 +36,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
+    "prepublishOnly": "npm run build",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
@@ -40,7 +44,7 @@
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
-    "@glyphicjs/schema": "workspace:*",
+    "@glyphicjs/schema": "workspace:^",
     "@resvg/resvg-js": "^2.6.2",
     "d3-hierarchy": "^3.1.2",
     "d3-sankey": "^0.12.3",

@@ -44,10 +44,15 @@ export async function layoutCanvasDiagram(diagram: NodeEdgeDiagramType): Promise
     nodeMap.set(node.id, layoutNode);
   }
 
-  // Create edges with straight-line routing. Skip edges referencing missing
-  // nodes rather than drawing degenerate (0,0) lines.
+  // Fail fast on edges referencing missing nodes rather than silently dropping
+  // them (which would draw nothing) or emitting degenerate (0,0) lines.
+  diagram.edges.forEach((e, idx) => {
+    if (!nodeMap.has(e.source)) throw new Error(`Edge #${idx} references unknown source node "${e.source}"`);
+    if (!nodeMap.has(e.target)) throw new Error(`Edge #${idx} references unknown target node "${e.target}"`);
+  });
+
+  // Create edges with straight-line routing.
   const edges: LayoutEdge[] = diagram.edges
-    .filter((e) => nodeMap.has(e.source) && nodeMap.has(e.target))
     .map((e, idx) => {
     const sourceNode = nodeMap.get(e.source)!;
     const targetNode = nodeMap.get(e.target)!;

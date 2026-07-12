@@ -23,7 +23,12 @@ const getDimensions = (shape: string) => {
   }
 };
 
-export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType, style: StyleTokens = DEFAULT_STYLE): Promise<LayoutResult> {
+// `algorithm` is not schema-borne: registry.ts injects it post-parse to force
+// mindmaps onto ELK's radial layout. Model it as an optional extension rather
+// than reaching through `as any`.
+type NodeEdgeLayoutInput = NodeEdgeDiagramType & { algorithm?: string };
+
+export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style: StyleTokens = DEFAULT_STYLE): Promise<LayoutResult> {
   const direction = diagram.direction === "TB" ? "DOWN" :
                     diagram.direction === "BT" ? "UP" :
                     diagram.direction === "LR" ? "RIGHT" : "LEFT";
@@ -133,6 +138,16 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType, style:
     }
   }
 
+  // Fail fast on edges that reference nodes outside the input set, rather than
+  // letting elkjs throw an opaque error deep in its layout pass. This message is
+  // generic ("node") because this adapter also serves state/erd/class/c4 (which
+  // map from/to -> source/target) and mindmap/architecture.
+  const nodeIdSet = new Set(diagram.nodes.map((n) => n.id));
+  diagram.edges.forEach((e, idx) => {
+    if (!nodeIdSet.has(e.source)) throw new Error(`Edge #${idx} references unknown source node "${e.source}"`);
+    if (!nodeIdSet.has(e.target)) throw new Error(`Edge #${idx} references unknown target node "${e.target}"`);
+  });
+
   const edges = diagram.edges.map((e, idx) => {
     let textWidth = 0;
     let textHeight = 0;
@@ -163,7 +178,7 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeDiagramType, style:
     };
   });
 
-  const algorithm = (diagram as any).algorithm || "layered";
+  const algorithm = diagram.algorithm || "layered";
 
   const graph = {
     id: "root",

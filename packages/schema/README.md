@@ -1,6 +1,6 @@
 # @glyphicjs/schema
 
-The **Zod validation layer** for [Glyphic](../../README.md) — the strict, machine-first contract that LLMs target. Install this if you want to validate model output (or any untrusted input) *before* handing it to the renderer, or to generate a JSON Schema for tool definitions.
+The **Zod validation layer** for [Glyphic](https://github.com/MS-Teja/Glyphic) — the strict, machine-first contract that LLMs target. Install this if you want to validate model output (or any untrusted input) *before* handing it to the renderer, or to generate a JSON Schema for tool definitions.
 
 ```bash
 npm install @glyphicjs/schema
@@ -61,7 +61,13 @@ The schema is also the first line of defense:
 - Recursive `canvas`/`treemap` inputs are bounded by depth and total node count.
 - Domain rules (e.g. Gantt tasks need an `end` or `duration`, pie values ≥ 0, journey scores 1–5).
 
-See the full field reference in the [Diagram Types documentation](../../docs/diagram-types.md).
+See the full field reference in the [Diagram Types documentation](https://github.com/MS-Teja/Glyphic/blob/main/docs/diagram-types.md).
+
+## Support
+
+- Issues: [github.com/MS-Teja/Glyphic/issues](https://github.com/MS-Teja/Glyphic/issues)
+- Docs: [github.com/MS-Teja/Glyphic/tree/main/docs](https://github.com/MS-Teja/Glyphic/tree/main/docs)
+- Sponsor: [github.com/sponsors/MS-Teja](https://github.com/sponsors/MS-Teja)
 
 ## License
 

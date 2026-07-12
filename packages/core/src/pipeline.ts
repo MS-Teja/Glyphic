@@ -30,12 +30,17 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
   const validatedDiagram: DiagramInputType = DiagramInput.parse(input);
   const handler = DIAGRAM_REGISTRY[validatedDiagram.type];
 
+  // title/theme/style/aspectRatio live on BaseDiagram, so every variant of the
+  // discriminated union has them — plain property access, no cast needed.
+  // `direction` only exists on some variants.
+  const direction = "direction" in validatedDiagram ? validatedDiagram.direction : undefined;
+
   // Resolve theme once (preset name or object) and apply it to every strategy.
-  const themePartial = resolveThemePartial((validatedDiagram as any).theme);
+  const themePartial = resolveThemePartial(validatedDiagram.theme);
   const fullTheme = { ...DEFAULT_THEME, ...themePartial };
 
   // Resolve the render style (geometry/spacing/stroke), default `compact`.
-  const style = resolveStyle((validatedDiagram as any).style);
+  const style = resolveStyle(validatedDiagram.style);
 
   let svg = "";
   let scene: SceneGraph;
@@ -44,14 +49,16 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
 
   let layout;
 
-  if (handler.render === "canvas") {
+  // Branch on the discriminant so TypeScript narrows to the canvas variant. The
+  // registry guarantees type "canvas" <-> the canvas ("canvas" render) handler.
+  if (validatedDiagram.type === "canvas") {
     // Canvas bypasses the layout engine entirely
-    scene = buildCanvasSceneGraph(validatedDiagram as any, fullTheme, style);
+    scene = buildCanvasSceneGraph(validatedDiagram, fullTheme, style);
   } else {
     // 2. Route to layout engine, then to the registered rendering strategy
     layout = await layoutDiagram(validatedDiagram, style);
 
-    const diagType = validatedDiagram.type as string;
+    const diagType = validatedDiagram.type;
     if (handler.render === "data-viz") {
       scene = buildDataVizSceneGraph(layout, diagType, fullTheme, style);
     } else if (handler.render === "flow") {
@@ -68,8 +75,8 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
   layoutHeight = scene.height;
 
   // Frame to a target aspect ratio (pad-only letterbox) before rasterizing.
-  const aspectRatio = (validatedDiagram as any).aspectRatio as AspectRatioInput | undefined;
-  const ratio = targetRatioFor(validatedDiagram.type, (validatedDiagram as any).direction, aspectRatio);
+  const aspectRatio = validatedDiagram.aspectRatio as AspectRatioInput | undefined;
+  const ratio = targetRatioFor(validatedDiagram.type, direction, aspectRatio);
   if (ratio) {
     const isExplicit = aspectRatio !== undefined && aspectRatio !== "auto";
     scene = frameScene(scene, ratio, fullTheme.background, isExplicit);
@@ -78,7 +85,7 @@ export async function processDiagram(input: unknown, fontBuffer?: ArrayBuffer): 
   }
 
   const defs = scene.defs || getMarkerDefs();
-  svg = renderSceneGraphToSVG(scene, defs, (validatedDiagram as any).title);
+  svg = renderSceneGraphToSVG(scene, defs, validatedDiagram.title);
 
   // 4. Rasterize to PNG
   const png = rasterizeSVG(svg, { dpi: 2, fontBuffer }); // 2x resolution for crispness
@@ -105,18 +112,24 @@ export async function processSVG(input: unknown): Promise<{ svg: string }> {
   const validatedDiagram: DiagramInputType = DiagramInput.parse(input);
   const handler = DIAGRAM_REGISTRY[validatedDiagram.type];
 
-  const themePartial = resolveThemePartial((validatedDiagram as any).theme);
+  // title/theme/style/aspectRatio are BaseDiagram fields present on every
+  // variant; `direction` only on some.
+  const direction = "direction" in validatedDiagram ? validatedDiagram.direction : undefined;
+
+  const themePartial = resolveThemePartial(validatedDiagram.theme);
   const fullTheme = { ...DEFAULT_THEME, ...themePartial };
-  const style = resolveStyle((validatedDiagram as any).style);
+  const style = resolveStyle(validatedDiagram.style);
 
   let svg = "";
   let scene: SceneGraph;
 
-  if (handler.render === "canvas") {
-    scene = buildCanvasSceneGraph(validatedDiagram as any, fullTheme, style);
+  // Branch on the discriminant so TypeScript narrows to the canvas variant. The
+  // registry guarantees type "canvas" <-> the canvas ("canvas" render) handler.
+  if (validatedDiagram.type === "canvas") {
+    scene = buildCanvasSceneGraph(validatedDiagram, fullTheme, style);
   } else {
     const layout = await layoutDiagram(validatedDiagram, style);
-    const diagType = validatedDiagram.type as string;
+    const diagType = validatedDiagram.type;
     if (handler.render === "data-viz") {
       scene = buildDataVizSceneGraph(layout, diagType, fullTheme, style);
     } else if (handler.render === "flow") {
@@ -126,15 +139,15 @@ export async function processSVG(input: unknown): Promise<{ svg: string }> {
     }
   }
 
-  const aspectRatio = (validatedDiagram as any).aspectRatio as AspectRatioInput | undefined;
-  const ratio = targetRatioFor(validatedDiagram.type, (validatedDiagram as any).direction, aspectRatio);
+  const aspectRatio = validatedDiagram.aspectRatio as AspectRatioInput | undefined;
+  const ratio = targetRatioFor(validatedDiagram.type, direction, aspectRatio);
   if (ratio) {
     const isExplicit = aspectRatio !== undefined && aspectRatio !== "auto";
     scene = frameScene(scene, ratio, fullTheme.background, isExplicit);
   }
 
   const defs = scene.defs || getMarkerDefs();
-  svg = renderSceneGraphToSVG(scene, defs, (validatedDiagram as any).title);
+  svg = renderSceneGraphToSVG(scene, defs, validatedDiagram.title);
 
   return { svg };
 }

@@ -38,6 +38,17 @@ interface RenderResult {
 - `svg` and `png` are **always** produced.
 - `reactFlow` is present for graph/flow diagrams and omitted for `pie`, `quadrant`, and `canvas`.
 
+### Security note on `svg`
+
+The SVG markup is escaped, and any custom SVG passed in (`customIcons`, or a
+`canvas` node's raw-svg content) is run through a regex-based sanitizer that
+strips scripts, event-handler attributes, and `foreignObject`. That sanitizer
+is defense-in-depth, not a guarantee against every malformed-markup edge case.
+If you render `result.svg` as live DOM in a browser from untrusted input,
+sanitize it yourself with a proper sanitizer such as
+[DOMPurify](https://github.com/cure53/DOMPurify) before insertion. `png` is
+unaffected, since it's rasterized bytes rather than markup.
+
 ## Examples
 
 ### Render to files

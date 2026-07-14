@@ -29,6 +29,110 @@ const getDimensions = (shape: string) => {
 // than reaching through `as any`.
 type NodeEdgeLayoutInput = NodeEdgeDiagramType & { algorithm?: string };
 
+// ELK's hierarchical edge routing (edges crossing a compound/group node's
+// boundary, e.g. from a nested service out to a sibling of its container)
+// stitches per-level segments together in a pass that skips its own
+// edge-edge spacing solver — so two unrelated edges' orthogonal trunks can
+// land a few px apart regardless of elk.spacing.edgeEdge. This walks every
+// edge's raw point sequence, finds axis-aligned segments (from different
+// edges) that run too close over an overlapping range, and fans them out.
+// Shifting only the shared perpendicular coordinate keeps each edge's path
+// orthogonal for free: a horizontal run's neighbors are vertical, so they
+// only ever compare x — nudging y never breaks them, and vice versa.
+const OVERLAP_TOLERANCE = 0.5;
+const MIN_SEGMENT_GAP = 24;
+const SEGMENT_SPACING = 24;
+
+interface OrthoSegmentRef {
+  edgeIdx: number;
+  points: { x: number; y: number }[];
+  i: number;
+  orientation: "h" | "v";
+}
+
+function segmentsTooClose(a: OrthoSegmentRef, b: OrthoSegmentRef): boolean {
+  const ap0 = a.points[a.i], ap1 = a.points[a.i + 1];
+  const bp0 = b.points[b.i], bp1 = b.points[b.i + 1];
+  if (a.orientation === "h") {
+    if (Math.abs(ap0.y - bp0.y) > MIN_SEGMENT_GAP) return false;
+    const aMin = Math.min(ap0.x, ap1.x), aMax = Math.max(ap0.x, ap1.x);
+    const bMin = Math.min(bp0.x, bp1.x), bMax = Math.max(bp0.x, bp1.x);
+    return aMax > bMin && bMax > aMin;
+  }
+  if (Math.abs(ap0.x - bp0.x) > MIN_SEGMENT_GAP) return false;
+  const aMin = Math.min(ap0.y, ap1.y), aMax = Math.max(ap0.y, ap1.y);
+  const bMin = Math.min(bp0.y, bp1.y), bMax = Math.max(bp0.y, bp1.y);
+  return aMax > bMin && bMax > aMin;
+}
+
+function separateOverlappingOrthogonalSegments(edges: LayoutEdge[]): void {
+  const segments: OrthoSegmentRef[] = [];
+
+  edges.forEach((edge, edgeIdx) => {
+    for (const sec of edge.sections) {
+      // A plain array of references — mutating a point here mutates the
+      // real section object (startPoint/bendPoints/endPoint are shared, not
+      // copied), so every segment touching that point sees the shift.
+      const points = [sec.startPoint, ...(sec.bendPoints || []), sec.endPoint];
+      for (let i = 0; i < points.length - 1; i++) {
+        const p0 = points[i], p1 = points[i + 1];
+        const dx = Math.abs(p0.x - p1.x);
+        const dy = Math.abs(p0.y - p1.y);
+        if (dy <= OVERLAP_TOLERANCE && dx > OVERLAP_TOLERANCE) {
+          segments.push({ edgeIdx, points, i, orientation: "h" });
+        } else if (dx <= OVERLAP_TOLERANCE && dy > OVERLAP_TOLERANCE) {
+          segments.push({ edgeIdx, points, i, orientation: "v" });
+        }
+      }
+    }
+  });
+
+  const used = new Array(segments.length).fill(false);
+  for (let a = 0; a < segments.length; a++) {
+    if (used[a]) continue;
+    const cluster = [segments[a]];
+    used[a] = true;
+    let grew = true;
+    while (grew) {
+      grew = false;
+      for (let b = 0; b < segments.length; b++) {
+        if (used[b] || segments[b].orientation !== cluster[0].orientation) continue;
+        if (cluster.some((s) => segmentsTooClose(s, segments[b]))) {
+          cluster.push(segments[b]);
+          used[b] = true;
+          grew = true;
+        }
+      }
+    }
+
+    const perEdge = new Map<number, OrthoSegmentRef[]>();
+    for (const s of cluster) {
+      if (!perEdge.has(s.edgeIdx)) perEdge.set(s.edgeIdx, []);
+      perEdge.get(s.edgeIdx)!.push(s);
+    }
+    if (perEdge.size < 2) continue; // only the same edge crossing itself — leave it alone
+
+    const orientation = cluster[0].orientation;
+    const constantOf = (s: OrthoSegmentRef) => (orientation === "h" ? s.points[s.i].y : s.points[s.i].x);
+    const ordered = Array.from(perEdge.entries())
+      .map(([edgeIdx, segs]) => ({ edgeIdx, segs, constant: constantOf(segs[0]) }))
+      .sort((x, y) => x.constant - y.constant);
+
+    const n = ordered.length;
+    const center = (ordered[0].constant + ordered[n - 1].constant) / 2;
+    ordered.forEach((entry, idx) => {
+      const target = center + (idx - (n - 1) / 2) * SEGMENT_SPACING;
+      const delta = target - entry.constant;
+      if (Math.abs(delta) < OVERLAP_TOLERANCE) return;
+      for (const segRef of entry.segs) {
+        const p0 = segRef.points[segRef.i], p1 = segRef.points[segRef.i + 1];
+        if (orientation === "h") { p0.y += delta; p1.y += delta; }
+        else { p0.x += delta; p1.x += delta; }
+      }
+    });
+  }
+}
+
 export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style: StyleTokens = DEFAULT_STYLE): Promise<LayoutResult> {
   const direction = diagram.direction === "TB" ? "DOWN" :
                     diagram.direction === "BT" ? "UP" :
@@ -379,6 +483,7 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
   };
 
   extractEdges(layout);
+  separateOverlappingOrthogonalSegments(mappedEdges);
 
   return {
     width: layout.width ?? 800,

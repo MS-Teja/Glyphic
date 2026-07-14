@@ -70,6 +70,7 @@ export const NodeEdgeDiagram = BaseDiagram.extend({
     label: z.string().describe("Text displayed on the node (keep it concise)"),
     shape: z.enum(["rectangle", "rounded", "cylinder", "cloud", "diamond", "hexagon", "person", "database", "service", "table", "class", "state_start", "state_end"]).default("rectangle"),
     groupId: z.string().optional().describe("If this node is inside a boundary/group (like a VPC), put the parent group node's ID here"),
+    standalone: z.boolean().optional().describe("Set true when this node is intentionally not connected by any edge (e.g. an account-wide service like IAM, logging, or another supporting concern). Renders with a distinct muted/dashed style so it reads as deliberate rather than a missed connection."),
     icon: z.string().optional().describe("Optional identifier for a brand or tech icon (e.g., 'aws-lambda', 'react', or FontAwesome 'fas-user')"),
     x: z.number().optional().describe("Explicit X coordinate (bypasses auto-layout if provided)"),
     y: z.number().optional().describe("Explicit Y coordinate (bypasses auto-layout if provided)"),

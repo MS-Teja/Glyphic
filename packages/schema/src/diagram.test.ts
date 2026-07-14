@@ -18,6 +18,22 @@ describe("DiagramInput Schema", () => {
     expect(result.success).toBe(true);
   });
 
+  it("should accept a node marked standalone (intentionally unconnected)", () => {
+    const data = {
+      type: "architecture",
+      nodes: [
+        { id: "api", label: "API Service", shape: "service" },
+        { id: "iam", label: "IAM Role", shape: "rectangle", standalone: true },
+      ],
+      edges: [],
+    };
+    const result = DiagramInput.safeParse(data);
+    expect(result.success).toBe(true);
+    if (result.success && result.data.type === "architecture") {
+      expect(result.data.nodes.find((n) => n.id === "iam")?.standalone).toBe(true);
+    }
+  });
+
   it("should fail validation if node ID has spaces", () => {
     const data = {
       type: "architecture",

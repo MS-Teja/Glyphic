@@ -10,6 +10,7 @@ export interface SceneRect {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
   opacity?: number;
 }
 
@@ -21,6 +22,7 @@ export interface SceneCircle {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
   opacity?: number;
 }
 
@@ -34,6 +36,7 @@ export interface SceneEllipse {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
   opacity?: number;
 }
 
@@ -56,6 +59,7 @@ export interface ScenePolygon {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  strokeDasharray?: string;
   opacity?: number;
 }
 

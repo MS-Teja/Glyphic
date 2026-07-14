@@ -293,23 +293,40 @@ function buildStateEnd(node: LayoutNode, theme: ThemeColors, style: StyleTokens 
   };
 }
 
-function buildNodeShape(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneElement {
-  switch (node.shape) {
-    case "rounded":
-    case "service": return buildRounded(node, theme, style);
-    case "diamond": return buildDiamond(node, theme, style);
-    case "cylinder":
-    case "database": return buildCylinder(node, theme, style);
-    case "hexagon": return buildHexagon(node, theme, style);
-    case "person":
-    case "actor": return buildPerson(node, theme, style);
-    case "cloud": return buildCloud(node, theme, style);
-    case "class":
-    case "table": return buildClassNode(node, theme, style);
-    case "state_start": return buildStateStart(node, theme, style);
-    case "state_end": return buildStateEnd(node, theme, style);
-    default: return buildRectangle(node, theme, style);
+// Applied to nodes flagged metadata.standalone — a dashed outline signals
+// "intentionally unconnected" (e.g. an account-wide IAM/logging service),
+// reusing the same dashed-means-optional/async language edges already use,
+// rather than looking like an author simply forgot to draw an edge.
+const STANDALONE_DASH = "6,4";
+
+function applyStandaloneDash(el: SceneElement): SceneElement {
+  if (el.type === 'group') return { ...el, children: el.children.map(applyStandaloneDash) };
+  if (el.type === 'rect' || el.type === 'circle' || el.type === 'ellipse' || el.type === 'polygon' || el.type === 'path') {
+    return { ...el, strokeDasharray: STANDALONE_DASH };
   }
+  return el;
+}
+
+function buildNodeShape(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): SceneElement {
+  const shape = ((): SceneElement => {
+    switch (node.shape) {
+      case "rounded":
+      case "service": return buildRounded(node, theme, style);
+      case "diamond": return buildDiamond(node, theme, style);
+      case "cylinder":
+      case "database": return buildCylinder(node, theme, style);
+      case "hexagon": return buildHexagon(node, theme, style);
+      case "person":
+      case "actor": return buildPerson(node, theme, style);
+      case "cloud": return buildCloud(node, theme, style);
+      case "class":
+      case "table": return buildClassNode(node, theme, style);
+      case "state_start": return buildStateStart(node, theme, style);
+      case "state_end": return buildStateEnd(node, theme, style);
+      default: return buildRectangle(node, theme, style);
+    }
+  })();
+  return node.metadata?.standalone ? applyStandaloneDash(shape) : shape;
 }
 
 // Resolve a node's icon to a sized SVG string: FontAwesome first, then a

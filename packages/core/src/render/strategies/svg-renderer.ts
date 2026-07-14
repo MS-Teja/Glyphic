@@ -10,6 +10,7 @@ function renderElement(el: SceneElement): string {
       if (el.fill) attrs += ` fill="${escapeXml(el.fill)}"`;
       if (el.stroke) attrs += ` stroke="${escapeXml(el.stroke)}"`;
       if (el.strokeWidth) attrs += ` stroke-width="${el.strokeWidth}"`;
+      if (el.strokeDasharray) attrs += ` stroke-dasharray="${escapeXml(el.strokeDasharray)}"`;
       if (el.opacity !== undefined) attrs += ` opacity="${el.opacity}"`;
       if (el.filter) attrs += ` filter="${escapeXml(el.filter)}"`;
       return `<rect ${attrs}/>`;
@@ -19,6 +20,7 @@ function renderElement(el: SceneElement): string {
       if (el.fill) attrs += ` fill="${escapeXml(el.fill)}"`;
       if (el.stroke) attrs += ` stroke="${escapeXml(el.stroke)}"`;
       if (el.strokeWidth) attrs += ` stroke-width="${el.strokeWidth}"`;
+      if (el.strokeDasharray) attrs += ` stroke-dasharray="${escapeXml(el.strokeDasharray)}"`;
       if (el.opacity !== undefined) attrs += ` opacity="${el.opacity}"`;
       return `<circle ${attrs}/>`;
     }
@@ -27,6 +29,7 @@ function renderElement(el: SceneElement): string {
       if (el.fill) attrs += ` fill="${escapeXml(el.fill)}"`;
       if (el.stroke) attrs += ` stroke="${escapeXml(el.stroke)}"`;
       if (el.strokeWidth) attrs += ` stroke-width="${el.strokeWidth}"`;
+      if (el.strokeDasharray) attrs += ` stroke-dasharray="${escapeXml(el.strokeDasharray)}"`;
       if (el.opacity !== undefined) attrs += ` opacity="${el.opacity}"`;
       if (el.filter) attrs += ` filter="${escapeXml(el.filter)}"`;
       return `<ellipse ${attrs}/>`;
@@ -47,6 +50,7 @@ function renderElement(el: SceneElement): string {
       if (el.fill) attrs += ` fill="${escapeXml(el.fill)}"`;
       if (el.stroke) attrs += ` stroke="${escapeXml(el.stroke)}"`;
       if (el.strokeWidth) attrs += ` stroke-width="${el.strokeWidth}"`;
+      if (el.strokeDasharray) attrs += ` stroke-dasharray="${escapeXml(el.strokeDasharray)}"`;
       if (el.opacity !== undefined) attrs += ` opacity="${el.opacity}"`;
       if (el.filter) attrs += ` filter="${escapeXml(el.filter)}"`;
       return `<polygon ${attrs}/>`;

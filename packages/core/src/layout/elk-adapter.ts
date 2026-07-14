@@ -302,7 +302,15 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
     if (originalNode?.metadata) {
       node.metadata = { ...originalNode.metadata };
     }
-    
+
+    // "standalone" lives as its own schema field (not under metadata) since
+    // it's a first-class authoring concept, not free-form data — fold it into
+    // metadata here so the renderer's single existing metadata-based styling
+    // path (see scene-builder.ts's buildNodeShape) can pick it up.
+    if (originalNode?.standalone) {
+      node.metadata!.standalone = true;
+    }
+
     // Copy icon
     if (originalNode?.icon) {
       node.icon = originalNode.icon;

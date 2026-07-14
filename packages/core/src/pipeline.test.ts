@@ -62,6 +62,21 @@ describe("Rendering Pipeline Orchestrator", () => {
     expect(result.svg).toContain("<path"); // person/actor renders a user icon
   });
 
+  it("renders a standalone node with a dashed outline, and leaves connected nodes solid", async () => {
+    const input = {
+      type: "architecture",
+      nodes: [
+        { id: "api", label: "API Service", shape: "service" },
+        { id: "db", label: "Database", shape: "database" },
+        { id: "iam", label: "IAM Role", shape: "rectangle", standalone: true },
+      ],
+      edges: [{ source: "api", target: "db" }],
+    };
+
+    const result = await processDiagram(input);
+    expect(result.svg).toContain('stroke-dasharray="6,4"');
+  });
+
   it("should successfully process a sequence diagram using Pure SVG Strategy", async () => {
     const input = {
       type: "sequence",

@@ -51,17 +51,23 @@ interface OrthoSegmentRef {
 }
 
 function segmentsTooClose(a: OrthoSegmentRef, b: OrthoSegmentRef): boolean {
-  const ap0 = a.points[a.i], ap1 = a.points[a.i + 1];
-  const bp0 = b.points[b.i], bp1 = b.points[b.i + 1];
+  const ap0 = a.points[a.i];
+  const ap1 = a.points[a.i + 1];
+  const bp0 = b.points[b.i];
+  const bp1 = b.points[b.i + 1];
   if (a.orientation === "h") {
     if (Math.abs(ap0.y - bp0.y) > MIN_SEGMENT_GAP) return false;
-    const aMin = Math.min(ap0.x, ap1.x), aMax = Math.max(ap0.x, ap1.x);
-    const bMin = Math.min(bp0.x, bp1.x), bMax = Math.max(bp0.x, bp1.x);
+    const aMin = Math.min(ap0.x, ap1.x);
+    const aMax = Math.max(ap0.x, ap1.x);
+    const bMin = Math.min(bp0.x, bp1.x);
+    const bMax = Math.max(bp0.x, bp1.x);
     return aMax > bMin && bMax > aMin;
   }
   if (Math.abs(ap0.x - bp0.x) > MIN_SEGMENT_GAP) return false;
-  const aMin = Math.min(ap0.y, ap1.y), aMax = Math.max(ap0.y, ap1.y);
-  const bMin = Math.min(bp0.y, bp1.y), bMax = Math.max(bp0.y, bp1.y);
+  const aMin = Math.min(ap0.y, ap1.y);
+  const aMax = Math.max(ap0.y, ap1.y);
+  const bMin = Math.min(bp0.y, bp1.y);
+  const bMax = Math.max(bp0.y, bp1.y);
   return aMax > bMin && bMax > aMin;
 }
 
@@ -75,7 +81,8 @@ function separateOverlappingOrthogonalSegments(edges: LayoutEdge[]): void {
       // copied), so every segment touching that point sees the shift.
       const points = [sec.startPoint, ...(sec.bendPoints || []), sec.endPoint];
       for (let i = 0; i < points.length - 1; i++) {
-        const p0 = points[i], p1 = points[i + 1];
+        const p0 = points[i];
+        const p1 = points[i + 1];
         const dx = Math.abs(p0.x - p1.x);
         const dy = Math.abs(p0.y - p1.y);
         if (dy <= OVERLAP_TOLERANCE && dx > OVERLAP_TOLERANCE) {
@@ -125,7 +132,8 @@ function separateOverlappingOrthogonalSegments(edges: LayoutEdge[]): void {
       const delta = target - entry.constant;
       if (Math.abs(delta) < OVERLAP_TOLERANCE) return;
       for (const segRef of entry.segs) {
-        const p0 = segRef.points[segRef.i], p1 = segRef.points[segRef.i + 1];
+        const p0 = segRef.points[segRef.i];
+        const p1 = segRef.points[segRef.i + 1];
         if (orientation === "h") { p0.y += delta; p1.y += delta; }
         else { p0.x += delta; p1.x += delta; }
       }

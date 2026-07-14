@@ -16,7 +16,8 @@ function minGapBetweenOverlappingSegments(edges: LayoutEdge[]): number {
     for (const sec of edge.sections) {
       const points = [sec.startPoint, ...(sec.bendPoints || []), sec.endPoint];
       for (let i = 0; i < points.length - 1; i++) {
-        const p0 = points[i], p1 = points[i + 1];
+        const p0 = points[i];
+        const p1 = points[i + 1];
         const dx = Math.abs(p0.x - p1.x);
         const dy = Math.abs(p0.y - p1.y);
         if (dy <= 0.5 && dx > 0.5) {
@@ -28,10 +29,11 @@ function minGapBetweenOverlappingSegments(edges: LayoutEdge[]): number {
     }
   }
 
-  let minGap = Infinity;
+  let minGap = Number.POSITIVE_INFINITY;
   for (let a = 0; a < segments.length; a++) {
     for (let b = a + 1; b < segments.length; b++) {
-      const sa = segments[a], sb = segments[b];
+      const sa = segments[a];
+      const sb = segments[b];
       if (sa.orientation !== sb.orientation || sa.edgeId === sb.edgeId) continue;
       const overlaps = sa.max > sb.min && sb.max > sa.min;
       if (!overlaps) continue;

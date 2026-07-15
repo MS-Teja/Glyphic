@@ -15,7 +15,11 @@ function minGapBetweenOverlappingSegments(edges: LayoutEdge[]): number {
   for (const edge of edges) {
     for (const sec of edge.sections) {
       const points = [sec.startPoint, ...(sec.bendPoints || []), sec.endPoint];
-      for (let i = 0; i < points.length - 1; i++) {
+      // Skip terminal segments: stubs anchored at node ports legitimately sit
+      // close together (ELK spaces ports ~18px apart on the same node side),
+      // and the separation pass intentionally leaves them alone so edges stay
+      // attached to their nodes. Only free-floating trunks must keep the gap.
+      for (let i = 1; i < points.length - 2; i++) {
         const p0 = points[i];
         const p1 = points[i + 1];
         const dx = Math.abs(p0.x - p1.x);
@@ -74,5 +78,55 @@ describe("elk-adapter: parallel orthogonal edge separation", () => {
     const minGap = minGapBetweenOverlappingSegments(result.edges);
 
     expect(minGap).toBeGreaterThanOrEqual(20);
+  });
+
+  // Regression: the separation pass used to fan out terminal segments too,
+  // shifting edge start/end points 24-84px off their node borders — a wide
+  // fan-out rendered with its tails floating in empty space next to the
+  // source node. Terminal segments are anchored at ports and must stay put.
+  it("keeps edge endpoints attached to their nodes under a wide fan-out", async () => {
+    const targets = Array.from({ length: 8 }, (_, i) => ({
+      id: `t${i}`,
+      label: `Target ${i}`,
+      shape: "service",
+      groupId: "grp",
+    }));
+    const diagram = {
+      type: "architecture",
+      direction: "LR",
+      routing: "orthogonal",
+      nodes: [
+        { id: "src", label: "Source", shape: "service" },
+        { id: "grp", label: "Group", shape: "rectangle" },
+        ...targets,
+      ],
+      edges: targets.map((t) => ({ source: "src", target: t.id })),
+    } as any;
+
+    const result = await layoutNodeEdgeDiagram(diagram);
+
+    const boxes = new Map<string, { x: number; y: number; w: number; h: number }>();
+    const walk = (nodes: typeof result.nodes) => {
+      for (const n of nodes) {
+        boxes.set(n.id, { x: n.x, y: n.y, w: n.width, h: n.height });
+        if (n.children) walk(n.children);
+      }
+    };
+    walk(result.nodes);
+
+    const onBorder = (p: { x: number; y: number }, b: { x: number; y: number; w: number; h: number }) => {
+      const inX = p.x >= b.x - 1 && p.x <= b.x + b.w + 1;
+      const inY = p.y >= b.y - 1 && p.y <= b.y + b.h + 1;
+      return inX && inY;
+    };
+
+    for (const edge of result.edges) {
+      const src = boxes.get(edge.source);
+      const tgt = boxes.get(edge.target);
+      for (const sec of edge.sections) {
+        expect(src && onBorder(sec.startPoint, src), `${edge.source}->${edge.target} start detached`).toBe(true);
+        expect(tgt && onBorder(sec.endPoint, tgt), `${edge.source}->${edge.target} end detached`).toBe(true);
+      }
+    }
   });
 });

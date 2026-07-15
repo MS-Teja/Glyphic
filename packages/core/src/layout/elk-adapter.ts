@@ -80,7 +80,14 @@ function separateOverlappingOrthogonalSegments(edges: LayoutEdge[]): void {
       // real section object (startPoint/bendPoints/endPoint are shared, not
       // copied), so every segment touching that point sees the shift.
       const points = [sec.startPoint, ...(sec.bendPoints || []), sec.endPoint];
-      for (let i = 0; i < points.length - 1; i++) {
+      // Terminal segments (touching startPoint/endPoint) are anchored to a
+      // node port and must never be shifted perpendicular — that detaches
+      // the edge from its node, leaving tails floating in empty space (e.g.
+      // a wide fan-out's stubs all leave the same node a few px apart, which
+      // is legitimate, not an overlap). Shifting a terminal segment's
+      // neighboring trunk is safe: it only lengthens the anchored stub along
+      // its own axis.
+      for (let i = 1; i < points.length - 2; i++) {
         const p0 = points[i];
         const p1 = points[i + 1];
         const dx = Math.abs(p0.x - p1.x);

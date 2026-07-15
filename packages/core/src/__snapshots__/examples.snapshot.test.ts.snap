@@ -3378,10 +3378,10 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 13_star_wars_bat
 <path d="M 1885.144 295.3333333333333 L 2169.7552 295.3333333333333" fill="none" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrow-solid-ef4444)"/>
 <path d="M 2300.5328000000004 295.3333333333333 L 2510.1440000000002 295.3333333333333 L 2510.1440000000002 352 L 2554.1440000000002 352" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-solid-a855f7)"/>
 <path d="M 2300.5328000000004 232 L 2358.1440000000002 232 L 2358.1440000000002 220.33333333333331 L 2554.1440000000002 220.33333333333331" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-solid-a855f7)"/>
-<path d="M 244.53439999999998 374.66666666666663 L 266.144 374.66666666666663 L 266.144 324 L 1711.144 324" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 244.53439999999998 374.66666666666663 L 266.144 374.66666666666663 L 266.144 324 L 1711.144 324" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed-f59e0b)"/>
+<path d="M 244.53439999999998 374.66666666666663 L 266.144 374.66666666666663 L 266.144 317 L 1711.144 317" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 244.53439999999998 374.66666666666663 L 266.144 374.66666666666663 L 266.144 317 L 1711.144 317" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed-f59e0b)"/>
 <path d="M 244.53439999999998 418 L 472.1264 418" fill="none" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-solid-22c55e)"/>
-<path d="M 614.1615999999999 394.66666666666663 L 650.144 394.66666666666663 L 650.144 300 L 725.144 300 L 725.144 240.33333333333331 L 942.144 240.33333333333331" fill="none" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-solid-22c55e)"/>
+<path d="M 614.1615999999999 394.66666666666663 L 650.144 394.66666666666663 L 650.144 307 L 725.144 307 L 725.144 240.33333333333331 L 942.144 240.33333333333331" fill="none" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-solid-22c55e)"/>
 <path d="M 614.1615999999999 441.3333333333333 L 932.0608 441.3333333333333" fill="none" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-solid-22c55e)"/>
 <path d="M 1086.144 222 L 1300.4096 222" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="8,5"/>
 <path d="M 1086.144 222 L 1300.4096 222" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed-ef4444)"/>
@@ -4059,9 +4059,9 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices
 <path d="M 533 1703 L 533 1845.6862915010151" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
 <path d="M 185.33333333333331 1188 L 185.33333333333331 1251 L 243.66666666666666 1251 L 243.66666666666666 1395 L 237 1395 L 237 1801 L 486.33333333333337 1801 L 486.33333333333337 1845.6862915010151" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="8,5"/>
 <path d="M 185.33333333333331 1188 L 185.33333333333331 1251 L 243.66666666666666 1251 L 243.66666666666666 1395 L 237 1395 L 237 1801 L 486.33333333333337 1801 L 486.33333333333337 1845.6862915010151" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 131.66666666666666 1188 L 131.66666666666666 2433.0590979580807" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 155.66666666666666 2144 L 155.66666666666666 2167 L 375.28586666666666 2167 L 375.28586666666666 2367" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="3,3"/>
-<path d="M 155.66666666666666 2144 L 155.66666666666666 2167 L 375.28586666666666 2167 L 375.28586666666666 2367" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
+<path d="M 138.66666666666666 1188 L 138.66666666666666 2433" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 148.66666666666666 2144 L 148.66666666666666 2167 L 375.28586666666666 2167 L 375.28586666666666 2367" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="3,3"/>
+<path d="M 148.66666666666666 2144 L 148.66666666666666 2167 L 375.28586666666666 2167 L 375.28586666666666 2367" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
 <path d="M 375.28586666666666 2481 L 375.28586666666666 2609" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <rect x="277" y="12" width="170" height="130" rx="30" ry="30" fill="#dbf2fc" stroke="#0ea5e9" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
 <polygon points="296.3808,274 427.61920000000003,274 447.61920000000003,339 427.61920000000003,404 296.3808,404 276.3808,339" fill="#feeadc" stroke="#f97316" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
@@ -7360,16 +7360,16 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 32_production_pl
 <path d="M 933.3333333333333 1776 L 933.3333333333333 1794 L 542.6623999999999 1794 L 542.6623999999999 2072" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 1001.3333333333333 1776 L 1001.3333333333333 1834 L 935.3333333333333 1834 L 935.3333333333333 1852" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 967.3333333333333 1776 L 967.3333333333333 1814 L 700.2896 1814 L 700.2896 1852" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 959.3333333333333 1966 L 959.3333333333333 2054 L 872.6447999999999 2054 L 872.6447999999999 2072" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 958.6666666666666 1966 L 958.6666666666666 2054 L 872.6447999999999 2054 L 872.6447999999999 2072" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 899.0965333333332 2186 L 899.0965333333332 2249 L 933.2896 2249 L 933.2896 3162 L 747 3162 L 747 3569.5" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
 <path d="M 899.0965333333332 2186 L 899.0965333333332 2249 L 933.2896 2249 L 933.2896 3162 L 747 3162 L 747 3569.5" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 911.3333333333333 1966 L 911.3333333333333 2004 L 731.2896 2004 L 731.2896 2369 L 605.6229333333333 2369 L 605.6229333333333 2533.686291501015" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 911.9999999999999 1966 L 911.9999999999999 2004 L 731.2896 2004 L 731.2896 2369 L 605.6229333333333 2369 L 605.6229333333333 2533.686291501015" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 700.2896 1966 L 700.2896 2339 L 536.6229333333333 2339 L 536.6229333333333 2409 L 558.9562666666666 2409 L 558.9562666666666 2533.686291501015" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 542.6623999999999 2186 L 542.6623999999999 2309 L 402.28959999999995 2309 L 402.28959999999995 2533" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 582.2896 2717 L 582.2896 2845" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
 <path d="M 582.2896 2717 L 582.2896 2845" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
 <path d="M 935.3333333333333 1966 L 935.3333333333333 2034 L 762.2896 2034 L 762.2896 2533" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 887.3333333333333 1966 L 887.3333333333333 1984 L 410.66239999999993 1984 L 410.66239999999993 2249 L 230.28959999999984 2249 L 230.28959999999984 3132 L 152 3132 L 152 3509" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 888.6666666666666 1966 L 888.6666666666666 1984 L 410.66239999999993 1984 L 410.66239999999993 2249 L 230.28959999999984 2249 L 230.28959999999984 3132 L 152 3132 L 152 3509" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 152 3623 L 152 3675" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 152 3789 L 152 3945 L 12 3945 L 12 640 L 441.66239999999993 640 L 441.66239999999993 1652" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 441.66239999999993 1766 L 441.66239999999993 2279 L 261.28959999999984 2279 L 261.28959999999984 3132 L 332 3132 L 332 3509" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
@@ -7388,8 +7388,8 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 32_production_pl
 <path d="M 1139.3333333333333 1355 L 1139.3333333333333 3222 L 1342 3222 L 1342 3509" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
 <path d="M 1139.3333333333333 1355 L 1139.3333333333333 3222 L 1342 3222 L 1342 3509" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
 <path d="M 1342 3623 L 1342 3675" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 983.3333333333333 1966 L 983.3333333333333 3509" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
-<path d="M 983.3333333333333 1966 L 983.3333333333333 3509" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
+<path d="M 982 1966 L 982 3509" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+<path d="M 982 1966 L 982 3509" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
 <path d="M 675.6666666666666 189 L 675.6666666666666 317" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
 <path d="M 699 500.31370849898474 L 699 564 L 936.4325333333334 564 L 936.4325333333334 1117 L 1118.3333333333333 1117 L 1118.3333333333333 1241" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
 <path d="M 699 500.31370849898474 L 699 564 L 936.4325333333334 564 L 936.4325333333334 1117 L 1118.3333333333333 1117 L 1118.3333333333333 1241" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>

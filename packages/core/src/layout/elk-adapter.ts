@@ -348,7 +348,14 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
         "elk.layered.spacing.nodeNodeBetweenLayers": String(style.layerSpacing),
         "elk.spacing.edgeNode": "30",
         "elk.spacing.edgeEdge": "30",
-        "elk.layered.spacing.edgeEdgeBetweenLayers": "30"
+        "elk.layered.spacing.edgeEdgeBetweenLayers": "30",
+        // BALANCED node placement (vs the BK default's left/top bias) centers
+        // chains within their container, trimming the dead corner regions
+        // compound groups otherwise get. Measured across a 6-diagram corpus:
+        // ~23% higher content density on a VPC-style architecture, no
+        // stress-invariant regressions. (Post-compaction options would be the
+        // bigger lever but crash ELK under INCLUDE_CHILDREN.)
+        "elk.layered.nodePlacement.bk.fixedAlignment": "BALANCED"
       },
       children: []
     };
@@ -431,6 +438,8 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
       "elk.spacing.nodeSelfLoop": "40",
       "elk.edgeLabels.inline": "true",
       "elk.edgeLabels.placement": "CENTER",
+      // See the group-container options above for why BALANCED.
+      "elk.layered.nodePlacement.bk.fixedAlignment": "BALANCED",
       "elk.edgeRouting": algorithm === "radial" ? "SPLINES" : (diagram.routing ? diagram.routing.toUpperCase() : "ORTHOGONAL"),
       "elk.hierarchyHandling": "INCLUDE_CHILDREN"
     },

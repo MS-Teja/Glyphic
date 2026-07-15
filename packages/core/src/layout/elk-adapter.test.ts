@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { layoutNodeEdgeDiagram } from "./elk-adapter.js";
-import type { LayoutEdge } from "./types.js";
+import { layoutNodeEdgeDiagram, separateOverlappingOrthogonalSegments } from "./elk-adapter.js";
+import type { LayoutEdge, LayoutNode } from "./types.js";
 
 // Regression test for a real bug report: edges crossing a compound node's
 // boundary (e.g. a service inside a group reaching a sibling outside it)
@@ -128,5 +128,81 @@ describe("elk-adapter: parallel orthogonal edge separation", () => {
         expect(tgt && onBorder(sec.endPoint, tgt), `${edge.source}->${edge.target} end detached`).toBe(true);
       }
     }
+  });
+
+  // Direct unit tests for the fan-out pass on synthetic geometry, where we
+  // control exactly where trunks and obstacles sit.
+  describe("separateOverlappingOrthogonalSegments", () => {
+    // Two orthogonal edges whose middle trunks run 10px apart at y=60/70,
+    // both spanning x=20..120, with terminal stubs on each end.
+    const makeEdges = (): LayoutEdge[] => {
+      const mk = (id: string, y: number, labelPosition?: { x: number; y: number }): LayoutEdge => ({
+        id,
+        source: `${id}src`,
+        target: `${id}tgt`,
+        style: "solid",
+        arrow: "forward",
+        label: labelPosition ? `${id}label` : undefined,
+        labelPosition,
+        sections: [
+          {
+            startPoint: { x: 0, y: y + 40 },
+            bendPoints: [
+              { x: 20, y: y + 40 },
+              { x: 20, y },
+              { x: 120, y },
+              { x: 120, y: y + 40 },
+            ],
+            endPoint: { x: 140, y: y + 40 },
+          },
+        ],
+      });
+      return [mk("A", 60, { x: 70, y: 55 }), mk("B", 70, { x: 70, y: 65 })];
+    };
+
+    const node = (id: string, x: number, y: number, w: number, h: number): LayoutNode => ({
+      id, x, y, width: w, height: h, label: id, shape: "service",
+    });
+
+    it("fans overlapping trunks apart and carries their labels along", () => {
+      const edges = makeEdges();
+      separateOverlappingOrthogonalSegments(edges, []);
+
+      const trunkY = (e: LayoutEdge) => e.sections[0].bendPoints![1].y;
+      // center 65, fanned to 65 ± 12
+      expect(trunkY(edges[0])).toBeCloseTo(53);
+      expect(trunkY(edges[1])).toBeCloseTo(77);
+      // labels ride with their trunks (same delta: -7 and +7)
+      expect(edges[0].labelPosition!.y).toBeCloseTo(48);
+      expect(edges[1].labelPosition!.y).toBeCloseTo(72);
+      // endpoints stay anchored
+      expect(edges[0].sections[0].startPoint).toEqual({ x: 0, y: 100 });
+      expect(edges[0].sections[0].endPoint).toEqual({ x: 140, y: 100 });
+    });
+
+    it("clamps the fan so a trunk never enters a node box", () => {
+      const edges = makeEdges();
+      // Leaf box overlapping the trunks' span, bottom edge at y=50 — the
+      // unclamped fan would put edge A's trunk at y=53, only 3px below it.
+      const obstacle = node("obs", 40, 20, 40, 30);
+      separateOverlappingOrthogonalSegments(edges, [obstacle]);
+
+      const trunkA = edges[0].sections[0].bendPoints![1].y;
+      const trunkB = edges[1].sections[0].bendPoints![1].y;
+      // clamped to obstacle bottom (50) + NODE_CLEARANCE (8)
+      expect(trunkA).toBeCloseTo(58);
+      // the unobstructed edge still fans normally
+      expect(trunkB).toBeCloseTo(77);
+      // label followed the clamped delta (-2), not the desired one (-7)
+      expect(edges[0].labelPosition!.y).toBeCloseTo(53);
+    });
+
+    it("leaves a label alone when a different segment of its edge shifts", () => {
+      const edges = makeEdges();
+      // Park A's label on its start stub, far from the trunk.
+      edges[0].labelPosition = { x: 5, y: 95 };
+      separateOverlappingOrthogonalSegments(edges, []);
+      expect(edges[0].labelPosition).toEqual({ x: 5, y: 95 });
+    });
   });
 });

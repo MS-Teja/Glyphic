@@ -42,12 +42,42 @@ type NodeEdgeLayoutInput = NodeEdgeDiagramType & { algorithm?: string };
 const OVERLAP_TOLERANCE = 0.5;
 const MIN_SEGMENT_GAP = 24;
 const SEGMENT_SPACING = 24;
+// Shifted trunks must keep this much clearance from leaf-node boxes.
+const NODE_CLEARANCE = 8;
 
 interface OrthoSegmentRef {
   edgeIdx: number;
   points: { x: number; y: number }[];
   i: number;
   orientation: "h" | "v";
+}
+
+interface Rect {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+// Leaf nodes only: group containers legitimately have edges routed through
+// their interior, so they are not obstacles for the separation pass.
+function collectLeafRects(nodes: LayoutNode[], out: Rect[] = []): Rect[] {
+  for (const n of nodes) {
+    if (n.children && n.children.length > 0) {
+      collectLeafRects(n.children, out);
+    } else {
+      out.push({ x: n.x, y: n.y, w: n.width, h: n.height });
+    }
+  }
+  return out;
+}
+
+// Distance from a point to an axis-aligned segment (for deciding whether an
+// edge label belongs to a segment that is about to be shifted).
+function distToOrthoSegment(p: { x: number; y: number }, p0: { x: number; y: number }, p1: { x: number; y: number }): number {
+  const cx = Math.min(Math.max(p.x, Math.min(p0.x, p1.x)), Math.max(p0.x, p1.x));
+  const cy = Math.min(Math.max(p.y, Math.min(p0.y, p1.y)), Math.max(p0.y, p1.y));
+  return Math.hypot(p.x - cx, p.y - cy);
 }
 
 function segmentsTooClose(a: OrthoSegmentRef, b: OrthoSegmentRef): boolean {
@@ -71,7 +101,9 @@ function segmentsTooClose(a: OrthoSegmentRef, b: OrthoSegmentRef): boolean {
   return aMax > bMin && bMax > aMin;
 }
 
-function separateOverlappingOrthogonalSegments(edges: LayoutEdge[]): void {
+// Exported for unit tests only — layoutNodeEdgeDiagram is the real caller.
+export function separateOverlappingOrthogonalSegments(edges: LayoutEdge[], nodes: LayoutNode[]): void {
+  const leafRects = collectLeafRects(nodes);
   const segments: OrthoSegmentRef[] = [];
 
   edges.forEach((edge, edgeIdx) => {
@@ -132,17 +164,72 @@ function separateOverlappingOrthogonalSegments(edges: LayoutEdge[]): void {
       .map(([edgeIdx, segs]) => ({ edgeIdx, segs, constant: constantOf(segs[0]) }))
       .sort((x, y) => x.constant - y.constant);
 
+    // Free corridor for one entry's shifted constant: the original constant
+    // is collision-free (ELK routed there), so walk outward to the nearest
+    // leaf-node box whose span overlaps any of the entry's segments and stop
+    // NODE_CLEARANCE short of it. A clamped shift may leave residual overlap
+    // between edges, but a trunk through a node box is worse.
+    const corridorFor = (segs: OrthoSegmentRef[], orig: number): { lower: number; upper: number } => {
+      let lower = Number.NEGATIVE_INFINITY;
+      let upper = Number.POSITIVE_INFINITY;
+      for (const s of segs) {
+        const p0 = s.points[s.i];
+        const p1 = s.points[s.i + 1];
+        const lo = orientation === "h" ? Math.min(p0.x, p1.x) : Math.min(p0.y, p1.y);
+        const hi = orientation === "h" ? Math.max(p0.x, p1.x) : Math.max(p0.y, p1.y);
+        for (const r of leafRects) {
+          const rLo = orientation === "h" ? r.x : r.y;
+          const rHi = orientation === "h" ? r.x + r.w : r.y + r.h;
+          if (rHi <= lo || rLo >= hi) continue; // no span overlap — not an obstacle
+          const perpLo = orientation === "h" ? r.y : r.x;
+          const perpHi = orientation === "h" ? r.y + r.h : r.x + r.w;
+          if (perpLo >= orig) upper = Math.min(upper, perpLo - NODE_CLEARANCE);
+          else if (perpHi <= orig) lower = Math.max(lower, perpHi + NODE_CLEARANCE);
+          // else: original constant already runs through this box's band —
+          // ELK put it there (or it's the source/target box); don't constrain.
+        }
+      }
+      return { lower, upper };
+    };
+
     const n = ordered.length;
     const center = (ordered[0].constant + ordered[n - 1].constant) / 2;
     ordered.forEach((entry, idx) => {
-      const target = center + (idx - (n - 1) / 2) * SEGMENT_SPACING;
+      const desired = center + (idx - (n - 1) / 2) * SEGMENT_SPACING;
+      const { lower, upper } = corridorFor(entry.segs, entry.constant);
+      const target = lower > upper ? entry.constant : Math.min(Math.max(desired, lower), upper);
       const delta = target - entry.constant;
       if (Math.abs(delta) < OVERLAP_TOLERANCE) return;
+
+      // Decide before shifting whether this edge's label rides on one of the
+      // segments being moved (vs. some other segment of the same edge), so
+      // it can be shifted by the same delta and stay attached to its line.
+      const edge = edges[entry.edgeIdx];
+      let moveLabel = false;
+      if (edge.labelPosition) {
+        const movedPoints = new Set(entry.segs.map((s) => s.points[s.i]));
+        let minMoved = Number.POSITIVE_INFINITY;
+        let minOther = Number.POSITIVE_INFINITY;
+        for (const sec of edge.sections) {
+          const pts = [sec.startPoint, ...(sec.bendPoints || []), sec.endPoint];
+          for (let k = 0; k < pts.length - 1; k++) {
+            const dist = distToOrthoSegment(edge.labelPosition, pts[k], pts[k + 1]);
+            if (movedPoints.has(pts[k])) minMoved = Math.min(minMoved, dist);
+            else minOther = Math.min(minOther, dist);
+          }
+        }
+        moveLabel = minMoved <= minOther + 1;
+      }
+
       for (const segRef of entry.segs) {
         const p0 = segRef.points[segRef.i];
         const p1 = segRef.points[segRef.i + 1];
         if (orientation === "h") { p0.y += delta; p1.y += delta; }
         else { p0.x += delta; p1.x += delta; }
+      }
+      if (moveLabel && edge.labelPosition) {
+        if (orientation === "h") edge.labelPosition.y += delta;
+        else edge.labelPosition.x += delta;
       }
     });
   }
@@ -509,7 +596,7 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
   };
 
   extractEdges(layout);
-  separateOverlappingOrthogonalSegments(mappedEdges);
+  separateOverlappingOrthogonalSegments(mappedEdges, mappedNodes);
 
   return {
     width: layout.width ?? 800,

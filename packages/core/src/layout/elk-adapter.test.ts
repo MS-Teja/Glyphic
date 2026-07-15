@@ -130,6 +130,43 @@ describe("elk-adapter: parallel orthogonal edge separation", () => {
     }
   });
 
+  // Regression: an icon slug that doesn't resolve to a real Font Awesome
+  // icon used to still reserve 40px of icon height, rendering as a node with
+  // a blank gap and an off-center label. Unknown slugs (LLM authors
+  // hallucinate them regularly) must degrade to "no icon".
+  it("sizes a node with an unresolvable icon slug exactly like a node with no icon", async () => {
+    const diagram = {
+      type: "architecture",
+      direction: "LR",
+      routing: "orthogonal",
+      theme: { customIcons: { mybrand: '<svg viewBox="0 0 24 24"><path d="M0 0h24v24H0z"/></svg>' } },
+      nodes: [
+        { id: "real", label: "Real", shape: "service", icon: "fas-database" },
+        { id: "fake", label: "Fake", shape: "service", icon: "fas-kubernetes-cluster" },
+        { id: "brand", label: "Brand", shape: "service", icon: "mybrand" },
+        { id: "plain", label: "Plain", shape: "service" },
+      ],
+      edges: [
+        { source: "real", target: "fake" },
+        { source: "fake", target: "brand" },
+        { source: "brand", target: "plain" },
+      ],
+    } as any;
+
+    const result = await layoutNodeEdgeDiagram(diagram);
+    const byId = new Map(result.nodes.map((n) => [n.id, n]));
+
+    expect(byId.get("fake")!.height).toBe(byId.get("plain")!.height);
+    expect(byId.get("real")!.height).toBe(byId.get("plain")!.height + 40);
+    // The bogus slug must not survive into the layout output either, so the
+    // renderer never tries to draw (or leave room for) it.
+    expect(byId.get("fake")!.icon).toBeUndefined();
+    expect(byId.get("real")!.icon).toBe("fas-database");
+    // Custom theme icons resolve past FontAwesome and keep their space.
+    expect(byId.get("brand")!.icon).toBe("mybrand");
+    expect(byId.get("brand")!.height).toBe(byId.get("plain")!.height + 40);
+  });
+
   // Direct unit tests for the fan-out pass on synthetic geometry, where we
   // control exactly where trunks and obstacles sit.
   describe("separateOverlappingOrthogonalSegments", () => {

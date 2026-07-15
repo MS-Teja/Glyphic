@@ -4,6 +4,7 @@ import type { LayoutResult, LayoutNode, LayoutEdge, LayoutEdgeSegment } from "./
 import { unknownIdError } from "./validation.js";
 import { measureTextWidth, wrapTextToWidth } from "../text-metrics.js";
 import { type StyleTokens, DEFAULT_STYLE } from "../render/style.js";
+import { iconExists } from "../render/icon-adapter.js";
 
 const elk = new ELK();
 
@@ -240,6 +241,12 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
                     diagram.direction === "BT" ? "UP" :
                     diagram.direction === "LR" ? "RIGHT" : "LEFT";
 
+  // An icon slug resolves if it's a real Font Awesome icon OR a key in the
+  // diagram theme's customIcons map (the renderer falls back to those).
+  const customIcons =
+    typeof diagram.theme === "object" && diagram.theme !== null ? diagram.theme.customIcons : undefined;
+  const iconResolves = (slug: string) => iconExists(slug) || !!customIcons?.[slug];
+
   // Process nodes to support nesting (groupId)
   const nodeMap = new Map<string, any>();
   const rootNodes: any[] = [];
@@ -302,8 +309,15 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
       }
     }
     
+    // Drop icon slugs that don't resolve to a real Font Awesome icon:
+    // otherwise the node reserves blank icon space (here) and the renderer
+    // pushes the label off-center around an icon that never draws. LLM
+    // authors hallucinate slugs often enough that this must degrade to
+    // "no icon" instead.
+    const icon = node.icon && iconResolves(node.icon) ? node.icon : undefined;
+
     // Add extra padding if node has an icon
-    if (node.icon && node.shape !== "person" && node.shape !== "class") {
+    if (icon && node.shape !== "person" && node.shape !== "class") {
       dim.height += 40; // Space for icon
       dim.width = Math.max(dim.width, 140); // Ensure width is enough for icon + text
     }
@@ -316,6 +330,7 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
     const elkNode: any = {
       ...node,
       id: node.id,
+      icon,
       width: node.width || dim.width,
       height: node.height || dim.height,
       layoutOptions: {
@@ -528,8 +543,9 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
       node.metadata!.standalone = true;
     }
 
-    // Copy icon
-    if (originalNode?.icon) {
+    // Copy icon (same unknown-slug guard as the sizing pass above, since
+    // originalNode carries the raw authored value)
+    if (originalNode?.icon && iconResolves(originalNode.icon)) {
       node.icon = originalNode.icon;
     }
 

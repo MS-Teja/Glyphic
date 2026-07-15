@@ -1,8 +1,10 @@
 # Introducing Glyphic: diagrams as data for LLMs and agents
 
 > Canonical intro / launch post — the "what is Glyphic" explainer, and the best one to lead with on
-> dev.to / Hashnode. Add platform frontmatter there; suggested cover image:
-> `docs/examples/social-preview.png`. Suggested tags: `ai`, `llm`, `mcp`, `diagrams`, `opensource`.
+> dev.to / Hashnode. Add platform frontmatter there. Cover image:
+> `docs/examples/social-preview.png`, or `social-preview-devto.png` on dev.to (its cover box is
+> 1000×420, which crops the 2:1 card). Suggested tags: `ai`, `llm`, `mcp`, `diagrams`, `opensource`
+> — but dev.to caps you at 4.
 
 **Glyphic turns a typed JSON description of a diagram into a rendered SVG, PNG, and React Flow JSON —
 across 18 diagram types, with no headless browser.** You hand it `nodes` and `edges` (or `entities`,
@@ -135,5 +137,5 @@ OSI-approved from day one, and I'd rather say that than overclaim.
 - Curious whether the before/after above is a fair test? I wrote up the method:
   [Is the AI-diagram comparison fair?](https://glyphic.web.app/blog/is-the-comparison-fair)
 
-If you're building agents, pipelines, or a product that needs diagrams, I'd genuinely love your
+If you're building agents, pipelines, or a product that needs diagrams, I'd love your
 feedback — and a [star](https://github.com/MS-Teja/Glyphic) helps.

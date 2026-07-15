@@ -539,6 +539,26 @@ function getNodeIndex(nodes: LayoutNode[]): Map<string, LayoutNode> {
   return idx;
 }
 
+// Runway shifts move a bend (and its orthogonal partner) to lengthen the
+// segment an arrowhead sits on, but the segment just beyond the moved pair
+// shrinks by the same amount. If the desired shift exceeds that segment's
+// length, the bend gets pushed past the next fixed point and the path doubles
+// back — through a neighboring node when the route runs in a tight alley.
+// Clamp the shift so the sacrificed segment keeps a minimum length; a short
+// runway is a minor arrowhead artifact, a reversed segment is a broken path.
+function clampRunwayShift(desired: number, movedCoord: number, fixedCoord: number): number {
+  // Keep more than the ~2px perimeter-snap inset, so the surviving segment
+  // has visible length and the opposite runway fixup still sees a nonzero
+  // direction to extend.
+  const MIN_TAIL = 6;
+  const sign = Math.sign(desired);
+  if (sign === 0) return 0;
+  const room = (fixedCoord - movedCoord) * sign;
+  // Shifting away from the fixed point only lengthens the segment beyond.
+  if (room <= 0) return desired;
+  return sign * Math.min(Math.abs(desired), Math.max(0, room - MIN_TAIL));
+}
+
 function buildEdgePath(edge: LayoutEdge, nodes: LayoutNode[], style: StyleTokens = DEFAULT_STYLE): string {
   if (!edge.sections || edge.sections.length === 0) return "";
 
@@ -562,12 +582,16 @@ function buildEdgePath(edge: LayoutEdge, nodes: LayoutNode[], style: StyleTokens
         const dx = bp.x - startPt.x;
         const dy = bp.y - startPt.y;
         const MIN_RUNWAY = 18;
+        const lastMoved = bendPoints.length > 1 ? bendPoints[1] : bp;
+        const afterMoved = bendPoints.length > 2 ? bendPoints[2] : endPt;
         if (Math.abs(dy) < 1 && Math.abs(dx) < MIN_RUNWAY && Math.abs(dx) > 0) {
-          const shift = (MIN_RUNWAY - Math.abs(dx)) * Math.sign(bp.x - startPt.x);
+          const desired = (MIN_RUNWAY - Math.abs(dx)) * Math.sign(bp.x - startPt.x);
+          const shift = clampRunwayShift(desired, lastMoved.x, afterMoved.x);
           bp.x += shift;
           if (bendPoints.length > 1) bendPoints[1].x += shift;
         } else if (Math.abs(dx) < 1 && Math.abs(dy) < MIN_RUNWAY && Math.abs(dy) > 0) {
-          const shift = (MIN_RUNWAY - Math.abs(dy)) * Math.sign(bp.y - startPt.y);
+          const desired = (MIN_RUNWAY - Math.abs(dy)) * Math.sign(bp.y - startPt.y);
+          const shift = clampRunwayShift(desired, lastMoved.y, afterMoved.y);
           bp.y += shift;
           if (bendPoints.length > 1) bendPoints[1].y += shift;
         }
@@ -584,12 +608,16 @@ function buildEdgePath(edge: LayoutEdge, nodes: LayoutNode[], style: StyleTokens
         const dx = endPt.x - bp.x;
         const dy = endPt.y - bp.y;
         const MIN_RUNWAY = 18;
+        const firstMoved = lastIdx > 0 ? bendPoints[lastIdx - 1] : bp;
+        const beforeMoved = lastIdx > 1 ? bendPoints[lastIdx - 2] : startPt;
         if (Math.abs(dy) < 1 && Math.abs(dx) < MIN_RUNWAY && Math.abs(dx) > 0) {
-          const shift = (MIN_RUNWAY - Math.abs(dx)) * Math.sign(bp.x - endPt.x);
+          const desired = (MIN_RUNWAY - Math.abs(dx)) * Math.sign(bp.x - endPt.x);
+          const shift = clampRunwayShift(desired, firstMoved.x, beforeMoved.x);
           bp.x += shift;
           if (lastIdx > 0) bendPoints[lastIdx - 1].x += shift;
         } else if (Math.abs(dx) < 1 && Math.abs(dy) < MIN_RUNWAY && Math.abs(dy) > 0) {
-          const shift = (MIN_RUNWAY - Math.abs(dy)) * Math.sign(bp.y - endPt.y);
+          const desired = (MIN_RUNWAY - Math.abs(dy)) * Math.sign(bp.y - endPt.y);
+          const shift = clampRunwayShift(desired, firstMoved.y, beforeMoved.y);
           bp.y += shift;
           if (lastIdx > 0) bendPoints[lastIdx - 1].y += shift;
         }

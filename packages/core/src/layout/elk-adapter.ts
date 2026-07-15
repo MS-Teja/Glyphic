@@ -228,7 +228,18 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
         "elk.padding": "[top=40,left=40,bottom=40,right=40]", // Padding for groups
         "elk.direction": direction,
         "elk.alignment": "CENTER",
-        "elk.nodeLabels.placement": "INSIDE V_TOP H_CENTER"
+        "elk.nodeLabels.placement": "INSIDE V_TOP H_CENTER",
+        // Group containers don't inherit the root graph's spacing options, so
+        // without these their children fall back to ELK's 20px defaults. That
+        // leaves alleys between in-group nodes too narrow for edge routing:
+        // the renderer needs an 18px straight runway on each side of a bend
+        // for arrowheads, and boundary-crossing edges get shoved into (or
+        // through) the neighboring boxes.
+        "elk.spacing.nodeNode": String(style.nodeSpacing),
+        "elk.layered.spacing.nodeNodeBetweenLayers": String(style.layerSpacing),
+        "elk.spacing.edgeNode": "30",
+        "elk.spacing.edgeEdge": "30",
+        "elk.layered.spacing.edgeEdgeBetweenLayers": "30"
       },
       children: []
     };

@@ -1,0 +1,617 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='3000' height='3679' viewBox='0 0 3000 3679' font-family='Arial, Helvetica, sans-serif'>
+  <rect width='3000' height='3679' fill='#0a1020'/>
+  <text x='120' y='74' font-size='40' font-weight='700' fill='#ff6b57'>Frontier model — one-shot raw SVG <tspan fill='#8aa0c4' font-size='28' font-weight='400'>· boxes ok, but edges cut diagonally through shapes · not editable</tspan></text>
+  <svg x='120' y='104' width='2760' height='1898' viewBox='0 0 1600 1100' font-family='Arial, sans-serif'>
+  <rect width="1600" height="1100" fill="#0b1220"/>
+  <style>
+    .box{fill:#16233b;stroke:#4a9eff;stroke-width:1.5;rx:6}
+    .grp{fill:none;stroke:#33507d;stroke-width:1.5}
+    .t{fill:#e6eefc;font-size:13px;text-anchor:middle}
+    .gt{fill:#9db4d8;font-size:13px;text-anchor:middle}
+    .e{stroke:#5b7192;stroke-width:1.4;fill:none;marker-end:url(#a)}
+    .ed{stroke:#5b7192;stroke-width:1.4;fill:none;stroke-dasharray:5 4;marker-end:url(#a)}
+    .el{fill:#7f95b8;font-size:11px;text-anchor:middle}
+  </style>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#5b7192"/></marker></defs>
+
+  <!-- external -->
+  <rect class="box" x="40" y="40" width="120" height="46" rx="6"/><text class="t" x="100" y="68">End Users</text>
+
+  <!-- Edge/CDN group -->
+  <rect class="grp" x="220" y="30" width="180" height="230" rx="8"/><text class="gt" x="310" y="22">Edge / CDN</text>
+  <rect class="box" x="250" y="45" width="120" height="40" rx="6"/><text class="t" x="310" y="70">Route 53</text>
+  <rect class="box" x="250" y="105" width="120" height="40" rx="6"/><text class="t" x="310" y="130">CloudFront</text>
+  <rect class="box" x="250" y="165" width="120" height="40" rx="6"/><text class="t" x="310" y="190">WAF</text>
+
+  <!-- VPC -->
+  <rect class="grp" x="450" y="30" width="820" height="760" rx="8"/><text class="gt" x="860" y="22">Production VPC (10.0.0.0/16)</text>
+
+  <!-- public subnet -->
+  <rect class="grp" x="470" y="60" width="500" height="90" rx="6"/><text class="gt" x="720" y="52">Public Subnet</text>
+  <rect class="box" x="485" y="80" width="130" height="50" rx="6"/><text class="t" x="550" y="110">App Load Balancer</text>
+  <rect class="box" x="640" y="80" width="120" height="50" rx="6"/><text class="t" x="700" y="110">Bastion Host</text>
+  <rect class="box" x="790" y="80" width="120" height="50" rx="6"/><text class="t" x="850" y="110">NAT Gateway</text>
+
+  <!-- web tier -->
+  <rect class="grp" x="470" y="180" width="500" height="90" rx="6"/><text class="gt" x="720" y="172">Web Tier</text>
+  <rect class="box" x="490" y="200" width="130" height="50" rx="6"/><text class="t" x="555" y="230">Web ECS 1</text>
+  <rect class="box" x="650" y="200" width="130" height="50" rx="6"/><text class="t" x="715" y="230">Web ECS 2</text>
+  <rect class="box" x="810" y="200" width="130" height="50" rx="6"/><text class="t" x="875" y="230">Web ECS 3</text>
+
+  <!-- app tier -->
+  <rect class="grp" x="470" y="300" width="500" height="190" rx="6"/><text class="gt" x="720" y="292">App Tier</text>
+  <rect class="box" x="490" y="320" width="120" height="44" rx="6"/><text class="t" x="550" y="346">API Gateway</text>
+  <rect class="box" x="630" y="320" width="120" height="44" rx="6"/><text class="t" x="690" y="346">Auth Service</text>
+  <rect class="box" x="770" y="320" width="120" height="44" rx="6"/><text class="t" x="830" y="346">Orders Service</text>
+  <rect class="box" x="490" y="390" width="120" height="44" rx="6"/><text class="t" x="550" y="416">Payments</text>
+  <rect class="box" x="630" y="390" width="120" height="44" rx="6"/><text class="t" x="690" y="416">Inventory</text>
+  <rect class="box" x="770" y="390" width="120" height="44" rx="6"/><text class="t" x="830" y="416">Notifications</text>
+
+  <!-- data tier -->
+  <rect class="grp" x="470" y="520" width="500" height="90" rx="6"/><text class="gt" x="720" y="512">Data Tier</text>
+  <rect class="box" x="485" y="540" width="110" height="50" rx="6"/><text class="t" x="540" y="570">RDS Primary</text>
+  <rect class="box" x="610" y="540" width="110" height="50" rx="6"/><text class="t" x="665" y="570">RDS Replica</text>
+  <rect class="box" x="735" y="540" width="100" height="50" rx="6"/><text class="t" x="785" y="570">Redis</text>
+  <rect class="box" x="850" y="540" width="100" height="50" rx="6"/><text class="t" x="900" y="570">Elasticsearch</text>
+
+  <!-- async -->
+  <rect class="grp" x="1300" y="60" width="260" height="200" rx="8"/><text class="gt" x="1430" y="52">Async / Messaging</text>
+  <rect class="box" x="1320" y="80" width="100" height="40" rx="6"/><text class="t" x="1370" y="105">SQS</text>
+  <rect class="box" x="1440" y="80" width="100" height="40" rx="6"/><text class="t" x="1490" y="105">SNS</text>
+  <rect class="box" x="1320" y="140" width="100" height="40" rx="6"/><text class="t" x="1370" y="165">EventBridge</text>
+  <rect class="box" x="1440" y="140" width="100" height="40" rx="6"/><text class="t" x="1490" y="165">Kinesis</text>
+
+  <!-- storage -->
+  <rect class="grp" x="1300" y="300" width="260" height="120" rx="8"/><text class="gt" x="1430" y="292">Storage</text>
+  <rect class="box" x="1320" y="320" width="100" height="40" rx="6"/><text class="t" x="1370" y="345">S3 Buckets</text>
+  <rect class="box" x="1440" y="320" width="100" height="40" rx="6"/><text class="t" x="1490" y="345">EFS</text>
+
+  <!-- observability -->
+  <rect class="grp" x="1300" y="460" width="260" height="200" rx="8"/><text class="gt" x="1430" y="452">Observability</text>
+  <rect class="box" x="1320" y="480" width="100" height="40" rx="6"/><text class="t" x="1370" y="505">CloudWatch</text>
+  <rect class="box" x="1440" y="480" width="100" height="40" rx="6"/><text class="t" x="1490" y="505">Prometheus</text>
+  <rect class="box" x="1320" y="540" width="100" height="40" rx="6"/><text class="t" x="1370" y="565">Grafana</text>
+  <rect class="box" x="1440" y="540" width="100" height="40" rx="6"/><text class="t" x="1490" y="565">Jaeger</text>
+
+  <!-- cicd -->
+  <rect class="grp" x="470" y="660" width="300" height="110" rx="8"/><text class="gt" x="620" y="652">CI/CD</text>
+  <rect class="box" x="490" y="685" width="120" height="44" rx="6"/><text class="t" x="550" y="711">CodePipeline</text>
+  <rect class="box" x="630" y="685" width="120" height="44" rx="6"/><text class="t" x="690" y="711">ECR Registry</text>
+
+  <!-- external cloud -->
+  <rect class="box" x="1000" y="880" width="110" height="44" rx="6"/><text class="t" x="1055" y="906">Stripe</text>
+  <rect class="box" x="1150" y="880" width="110" height="44" rx="6"/><text class="t" x="1205" y="906">Email (SES)</text>
+
+  <!-- edges -->
+  <path class="e" d="M160,63 L250,65"/><text class="el" x="205" y="55">DNS</text>
+  <path class="e" d="M310,85 L310,105"/>
+  <path class="e" d="M310,145 L310,165"/>
+  <path class="e" d="M370,185 L485,105"/><text class="el" x="430" y="135">HTTPS</text>
+  <path class="e" d="M550,130 L555,200"/>
+  <path class="e" d="M560,130 L715,200"/>
+  <path class="e" d="M560,130 L875,200"/>
+  <path class="e" d="M555,250 L550,320"/><text class="el" x="540" y="290">REST</text>
+  <path class="e" d="M715,250 L560,320"/>
+  <path class="e" d="M875,250 L565,320"/>
+  <path class="e" d="M610,342 L630,342"/><text class="el" x="620" y="335">JWT</text>
+  <path class="e" d="M550,364 L550,390"/>
+  <path class="e" d="M690,364 L690,390"/>
+  <path class="e" d="M830,364 L770,390"/>
+  <path class="e" d="M550,434 L540,540"/><text class="el" x="530" y="500">SQL</text>
+  <path class="e" d="M550,434 L1000,895"/><text class="el" x="770" y="700">charge</text>
+  <path class="e" d="M770,412 L590,555"/>
+  <path class="ed" d="M595,565 L610,565"/><text class="el" x="600" y="558">replicate</text>
+  <path class="e" d="M830,364 L890,540"/><text class="el" x="880" y="470">index</text>
+  <path class="e" d="M830,342 L1320,150"/><text class="el" x="1100" y="230">publish</text>
+  <path class="e" d="M1370,180 L1370,140"/>
+  <path class="e" d="M1420,160 L1440,160"/>
+  <path class="ed" d="M1490,120 L1490,140"/>
+  <path class="ed" d="M1490,100 L1205,880"/><text class="el" x="1350" y="500">send</text>
+  <path class="e" d="M550,412 L1490,160"/><text class="el" x="1000" y="300">stream</text>
+  <path class="e" d="M1490,180 L1370,320"/><text class="el" x="1440" y="260">archive</text>
+  <path class="e" d="M620,250 L1320,340"/><text class="el" x="980" y="310">assets</text>
+  <path class="ed" d="M700,130 L555,200"/><text class="el" x="640" y="175">ssh</text>
+  <path class="ed" d="M550,342 L1320,500"/><text class="el" x="960" y="430">metrics</text>
+  <path class="ed" d="M555,250 L1440,500"/>
+  <path class="e" d="M1490,500 L1370,540"/>
+  <path class="ed" d="M830,364 L1490,540"/><text class="el" x="1200" y="470">spans</text>
+  <path class="e" d="M610,707 L630,707"/><text class="el" x="620" y="700">push</text>
+  <path class="ed" d="M690,685 L555,250"/><text class="el" x="640" y="620">deploy</text>
+</svg>
+  <text x='120' y='2056' font-size='40' font-weight='700' fill='#5fd08a'>Glyphic — same 44-node spec <tspan fill='#8aa0c4' font-size='28' font-weight='400'>· nested tiers, edges routed around obstacles · editable JSON</tspan></text>
+  <svg x='120' y='2086' width='2760' height='1553' viewBox='0 0 4671.4992 2627.7183000000005'>
+<title>Production Platform — AWS Reference Architecture</title>
+<defs>
+
+        <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#94a3b8" />
+        </marker>
+        <marker id="arrow-open-solid" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-solid" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-solid" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#0f172a" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-solid" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#94a3b8" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-solid" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#0f172a" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-solid" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+        <marker id="arrow-dashed" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#94a3b8" />
+        </marker>
+        <marker id="arrow-open-dashed" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-dashed" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-dashed" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#0f172a" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-dashed" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#94a3b8" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-dashed" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#0f172a" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-dashed" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+        <marker id="arrow-dotted" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#94a3b8" />
+        </marker>
+        <marker id="arrow-open-dotted" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        <marker id="arrow-dependency-dotted" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 1 L 11 6 L 0 11" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="0" />
+        </marker>
+        <marker id="arrow-inheritance-dotted" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+          <path d="M 0 1 L 14 7 L 0 13 z" fill="#0f172a" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        <marker id="arrow-composition-dotted" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#94a3b8" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        <marker id="arrow-aggregation-dotted" viewBox="0 0 18 14" refX="14" refY="7" markerWidth="12" markerHeight="10" orient="auto">
+          <path d="M 0 7 L 8 1 L 16 7 L 8 13 z" fill="#0f172a" stroke="#94a3b8" stroke-width="2" />
+        </marker>
+        
+        <marker id="arrow-crow-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 12 2 L 12 18" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-crow-zero-many-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 4 10 M 12 10 L 22 10 M 12 10 L 22 0 M 12 10 L 22 20 M 4 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-zero-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 8 10 M 16 10 L 22 10 M 8 10 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0 M 18 2 L 18 18" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+        <marker id="arrow-one-one-dotted" viewBox="0 0 24 20" refX="20" refY="10" markerWidth="14" markerHeight="14" orient="auto">
+          <path d="M 0 10 L 22 10 M 12 2 L 12 18 M 18 2 L 18 18" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </marker>
+      
+<filter id="glyphic-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+</defs>
+<rect x="0" y="0" width="4671.4992" height="2627.7183000000005" fill="#0f172a"/>
+<g transform="translate(0, 269.1091500000002)">
+<g transform="translate(40, 40)">
+<rect x="3515.4992" y="1675.5" width="642" height="268" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="722" y="52" width="2507.4992" height="1366.8333333333333" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="777" y="843.8333333333333" width="274.53439999999995" height="535" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="1229.5344" y="505.0833333333333" width="220" height="515" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="1657.5344" y="199.08333333333337" width="701.9648" height="695.1666666666666" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="2645.4992" y="179" width="544" height="725" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3628.4992" y="42" width="416" height="515" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="4359.4992" y="1206.5" width="220" height="505" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3628.4992" y="816.5" width="416" height="515" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="12" y="488.45833333333326" width="514" height="285" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<path d="M 2029.5864000000001 1848.5 L 3553.4992 1848.5" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 3697.4992 1848.5 L 3715.4992 1848.5 L 3715.4992 1823.8333333333333 L 3749.4992 1823.8333333333333" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 3893.4992 1805.5 L 3945.4992 1805.5" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 4119.4992 1805.5 L 4182.4992 1805.5000000000002 L 4182.4992 1973.5000000000002 L 661 1973.5000000000002 L 661 973.8333333333335 L 815 973.8333333333333" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 994.08096 1006.3333333333333 L 1168.5344 1006.3333333333333 L 1168.5344 925.0833333333333 L 1267.5344 925.0833333333333" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1013.5344 973.8333333333333 L 1106.5344 973.8333333333333 L 1106.5344 781.8333333333333 L 1168.5344 781.8333333333333 L 1168.5344 775.0833333333333 L 1267.5344 775.0833333333333" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 994.08096 941.3333333333333 L 1076.5344 941.3333333333333 L 1076.5344 710.5 L 1168.5344 710.5 L 1168.5344 625.0833333333333 L 1267.5344 625.0833333333333" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1411.5344 892.0833333333333 L 1504.5344 892.0833333333333 L 1504.5344 782.3333333333333 L 1626.5344 782.3333333333333 L 1626.5344 615.25 L 1715.9343999999999 615.2499999999997" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1411.5344 775.0833333333333 L 1474.5344 775.0833333333333 L 1474.5344 669.0833333333333 L 1596.5344 669.0833333333333 L 1596.5344 589.25 L 1702.3343999999997 589.2499999999997" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1411.5344 625.0833333333333 L 1474.5344 625.0833333333333 L 1474.5344 565.75 L 1596.5344 565.75 L 1596.5344 563.25 L 1702.3344000000002 563.2499999999997" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1849.1344 537.25 L 1877.5344 537.25 L 1877.5344 405.08333333333337 L 2168.1440000000002 405.08333333333337" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1862.7344 589.25 L 1907.5344 589.25 L 1907.5344 691.5833333333334 L 1930.1616 691.5833333333334" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1862.7344 563.25 L 1903.5344 563.25 L 1903.5344 524.0833333333334 L 1921.5344 524.0833333333334" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 2074.1616 709.9166666666667 L 2120.7888 709.9166666666667 L 2120.7888 737.25 L 2158.7888 737.25" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 2321.4992 755.5833333333335 L 2444.4992 755.5833333333333 L 2444.4992 961.0416666666667 L 3284.4992 961.041666666667 L 3284.4992 711.5000000000002 L 3749.4992 711.5000000000002" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 2321.4992 755.5833333333335 L 2444.4992 755.5833333333333 L 2444.4992 961.0416666666667 L 3284.4992 961.041666666667 L 3284.4992 711.5000000000002 L 3749.4992 711.5000000000002" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 2074.1616 673.25 L 2120.7888000000003 673.25 L 2120.7888000000003 620.25 L 2384.4992 620.2499999999998 L 2384.4992 583.9999999999998 L 2683.4992 584.0000000000001" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 2082.7888000000003 524.0833333333334 L 2384.4992 524.0833333333333 L 2384.4992 523.9999999999998 L 2683.4992 524.0000000000001" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 2312.1440000000002 405.08333333333337 L 2444.4992 405.0833333333332 L 2444.4992 328.49999999999983 L 2584.4992 328.49999999999983 L 2584.4992 333.99999999999983 L 2683.4992 334.0000000000001" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 2827.4992 554 L 3007.4992 554" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 2827.4992 554 L 3007.4992 554" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 2074.1616 691.5833333333334 L 2150.7888000000003 691.5833333333334 L 2150.7888000000003 651.25 L 2504.4992 651.2499999999998 L 2504.4992 735.9999999999998 L 2584.4992 735.9999999999998 L 2584.4992 773.9999999999998 L 2683.4992 774.0000000000001" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 2074.1616 654.9166666666669 L 2092.1616 654.9166666666669 L 2092.1616 288.0833333333335 L 2384.4992 288.0833333333333 L 2384.4992 117 L 3284.4992 117.00000000000023 L 3284.4992 162.00000000000023 L 3666.4992 162.00000000000023" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 3810.4992 162 L 3862.4992 162" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 4006.4992 162 L 4182.4992 162 L 4182.4992 12 L 661 12 L 661 319.0833333333335 L 1710.5344 319.08333333333326" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1854.5344 319.0833333333335 L 2414.4992 319.0833333333333 L 2414.4992 148 L 3254.4992 148.00000000000023 L 3254.4992 312.0000000000002 L 3666.4992 312.0000000000002" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 3810.4992 312 L 4374.9992 312" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 3810.4992 312 L 4374.9992 312" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 2321.4992 718.9166666666667 L 2474.4992 718.9166666666665 L 2474.4992 934 L 3254.4992 934.0000000000002 L 3254.4992 531.5833333333337 L 3454.4992 531.5833333333337 L 3454.4992 462.0000000000002 L 3666.4992 462.0000000000002" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 3810.4992 462 L 4182.4992 462 L 4182.4992 1551.5 L 4397.4992 1551.5" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1411.5344 958.0833333333333 L 1474.5344 958.0833333333333 L 1474.5344 1120 L 3284.4992 1120.0000000000002 L 3284.4992 1611.5000000000002 L 4397.4992 1611.5000000000002" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1411.5344 936.0833333333333 L 1504.5344 936.0833333333333 L 1504.5344 1089 L 3314.4992 1089.0000000000002 L 3314.4992 1361.5000000000002 L 4397.4992 1361.5000000000002" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 986.2672 1283.8333333333333 L 1076.5344 1283.8333333333333 L 1076.5344 1291.5 L 3254.4992 1291.5000000000002 L 3254.4992 1762.5000000000002 L 3705.4992 1762.5 L 3705.4992 1787.1666666666665 L 3749.4992 1787.1666666666665" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+<path d="M 986.2672 1283.8333333333333 L 1076.5344 1283.8333333333333 L 1076.5344 1291.5 L 3254.4992 1291.5000000000002 L 3254.4992 1762.5000000000002 L 3705.4992 1762.5 L 3705.4992 1787.1666666666665 L 3749.4992 1787.1666666666665" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
+<path d="M 986.2672 1133.8333333333333 L 1198.5344 1133.8333333333333 L 1198.5344 952.5833333333333 L 1267.5344 952.5833333333333" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+<path d="M 986.2672 1133.8333333333333 L 1198.5344 1133.8333333333333 L 1198.5344 952.5833333333333 L 1267.5344 952.5833333333333" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
+<path d="M 1849.1344 615.2500000000001 L 1877.5344 615.2500000000001 L 1877.5344 853.2500000000001 L 2384.4992 853.25 L 2384.4992 1027 L 3374.4992 1027.0000000000002 L 3374.4992 1086.5000000000002 L 3666.4992 1086.5000000000002" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+<path d="M 1849.1344 615.2500000000001 L 1877.5344 615.2500000000001 L 1877.5344 853.2500000000001 L 2384.4992 853.25 L 2384.4992 1027 L 3374.4992 1027.0000000000002 L 3374.4992 1086.5000000000002 L 3666.4992 1086.5000000000002" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
+<path d="M 1411.5344 914.0833333333333 L 1534.5344 914.0833333333333 L 1534.5344 1058 L 3344.4992 1058.0000000000002 L 3344.4992 1280.0833333333335 L 3454.4992 1280.0833333333335 L 3454.4992 1236.5000000000002 L 3666.4992 1236.4999999999998" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+<path d="M 1411.5344 914.0833333333333 L 1534.5344 914.0833333333333 L 1534.5344 1058 L 3344.4992 1058.0000000000002 L 3344.4992 1280.0833333333335 L 3454.4992 1280.0833333333335 L 3454.4992 1236.5000000000002 L 3666.4992 1236.4999999999998" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
+<path d="M 3810.4992 1236.5 L 3862.4992 1236.5" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 2074.1616 728.2500000000002 L 2092.1616 728.2500000000002 L 2092.1616 822.2500000000001 L 2414.4992 822.25 L 2414.4992 996 L 3254.4992 996.0000000000002 L 3254.4992 985.0416666666667 L 3454.4992 985.0416666666667 L 3454.4992 936.5000000000002 L 3666.4992 936.5000000000002" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+<path d="M 2074.1616 728.2500000000002 L 2092.1616 728.2500000000002 L 2092.1616 822.2500000000001 L 2414.4992 822.25 L 2414.4992 996 L 3254.4992 996.0000000000002 L 3254.4992 985.0416666666667 L 3454.4992 985.0416666666667 L 3454.4992 936.5000000000002 L 3666.4992 936.5000000000002" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dotted)"/>
+<path d="M 194 643.4583333333333 L 344 643.4583333333333" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 488 673.4583333333333 L 551 673.4583333333335 L 551 812.8333333333335 L 1168.5344 812.8333333333333 L 1168.5344 897.5833333333333 L 1267.5344 897.5833333333333" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 488 673.4583333333333 L 551 673.4583333333335 L 551 812.8333333333335 L 1168.5344 812.8333333333333 L 1168.5344 897.5833333333333 L 1267.5344 897.5833333333333" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 488 613.4583333333333 L 551 613.4583333333335 L 551 474.0833333333335 L 1596.5344 474.08333333333326 L 1596.5344 537.25 L 1715.9344 537.2499999999997" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 488 613.4583333333333 L 551 613.4583333333335 L 551 474.0833333333335 L 1596.5344 474.08333333333326 L 1596.5344 537.25 L 1715.9344 537.2499999999997" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<g>
+<rect x="1923.9128" y="1778.5" width="103.6736" height="140" rx="10" ry="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+</g>
+<rect x="3751.4992" y="646.5" width="170" height="130" rx="30" ry="30" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="4376.9992" y="247" width="170" height="130" rx="30" ry="30" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3555.4992" y="1793.5" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3751.4992" y="1750.5" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<polygon points="3967.4992,1740.5 4097.4992,1740.5 4117.4992,1805.5 4097.4992,1870.5 3967.4992,1870.5 3947.4992,1805.5" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<polygon points="837,908.8333333333333 991.5344,908.8333333333333 1011.5344,973.8333333333333 991.5344,1038.8333333333333 837,1038.8333333333333 817,973.8333333333333" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="844.2672" y="1228.8333333333333" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="844.2672" y="1078.8333333333333" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="1269.5344" y="870.0833333333333" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="1269.5344" y="720.0833333333333" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="1269.5344" y="570.0833333333333" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<polygon points="1717.5344,511.25 1847.5344,511.25 1867.5344,576.25 1847.5344,641.25 1717.5344,641.25 1697.5344,576.25" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="2170.1440000000002" y="350.08333333333337" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="1932.1616" y="636.5833333333334" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="2160.7888" y="682.25" width="158.7104" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="1923.5344" y="469.08333333333337" width="157.25439999999998" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="1712.5344" y="264.08333333333337" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<g filter="url(#glyphic-shadow)">
+<path d="M 2685.4992,491 A 70,27 0 0,0 2825.4992,491 L 2825.4992,617 A 70,27 0 0,1 2685.4992,617 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+<ellipse cx="2755.4992" cy="491" rx="70" ry="27" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+</g>
+<g filter="url(#glyphic-shadow)">
+<path d="M 3009.4992,491 A 70,27 0 0,0 3149.4992,491 L 3149.4992,617 A 70,27 0 0,1 3009.4992,617 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+<ellipse cx="3079.4992" cy="491" rx="70" ry="27" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+</g>
+<g filter="url(#glyphic-shadow)">
+<path d="M 2685.4992,271 A 70,27 0 0,0 2825.4992,271 L 2825.4992,397 A 70,27 0 0,1 2685.4992,397 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+<ellipse cx="2755.4992" cy="271" rx="70" ry="27" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+</g>
+<g filter="url(#glyphic-shadow)">
+<path d="M 2685.4992,711 A 70,27 0 0,0 2825.4992,711 L 2825.4992,837 A 70,27 0 0,1 2685.4992,837 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+<ellipse cx="2755.4992" cy="711" rx="70" ry="27" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+</g>
+<rect x="3864.4992" y="107" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3668.4992" y="257" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3668.4992" y="107" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3668.4992" y="407" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<g filter="url(#glyphic-shadow)">
+<path d="M 4399.4992,1518.5 A 70,27 0 0,0 4539.4992,1518.5 L 4539.4992,1644.5 A 70,27 0 0,1 4399.4992,1644.5 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+<ellipse cx="4469.4992" cy="1518.5" rx="70" ry="27" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+</g>
+<g filter="url(#glyphic-shadow)">
+<path d="M 4399.4992,1298.5 A 70,27 0 0,0 4539.4992,1298.5 L 4539.4992,1424.5 A 70,27 0 0,1 4399.4992,1424.5 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+<ellipse cx="4469.4992" cy="1298.5" rx="70" ry="27" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+</g>
+<rect x="3668.4992" y="1031.5" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3668.4992" y="1181.5" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3864.4992" y="1181.5" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="3668.4992" y="881.5" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<rect x="52" y="588.4583333333333" width="140" height="110" rx="14" ry="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
+<g filter="url(#glyphic-shadow)">
+<path d="M 346,580.4583333333333 A 70,27 0 0,0 486,580.4583333333333 L 486,706.4583333333333 A 70,27 0 0,1 346,706.4583333333333 Z" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+<ellipse cx="416" cy="580.4583333333333" rx="70" ry="27" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+</g>
+<g>
+<rect x="3789.9992" y="1685.5" width="93" height="20" fill="#1e293b" stroke="none"/>
+<text x="3836.4992" y="1695.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Edge / CDN</text>
+</g>
+<g>
+<rect x="1852.7496" y="62" width="246" height="20" fill="#1e293b" stroke="none"/>
+<text x="1975.7496" y="72" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Production VPC (10.0.0.0/16)</text>
+</g>
+<g>
+<rect x="855.0172" y="853.8333333333333" width="118.5" height="20" fill="#1e293b" stroke="none"/>
+<text x="914.2672" y="863.8333333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Public Subnet</text>
+</g>
+<g>
+<rect x="1259.0344" y="515.0833333333333" width="161" height="20" fill="#1e293b" stroke="none"/>
+<text x="1339.5344" y="525.0833333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Web Tier (Private)</text>
+</g>
+<g>
+<rect x="1928.0167999999999" y="209.08333333333337" width="161" height="20" fill="#1e293b" stroke="none"/>
+<text x="2008.5167999999999" y="219.08333333333337" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">App Tier (Private)</text>
+</g>
+<g>
+<rect x="2832.7492" y="189" width="169.5" height="20" fill="#1e293b" stroke="none"/>
+<text x="2917.4992" y="199" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Data Tier (Private)</text>
+</g>
+<g>
+<rect x="3760.2492" y="52" width="152.5" height="20" fill="#1e293b" stroke="none"/>
+<text x="3836.4992" y="62" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Async / Messaging</text>
+</g>
+<g>
+<rect x="4435.7492" y="1216.5" width="67.5" height="20" fill="#1e293b" stroke="none"/>
+<text x="4469.4992" y="1226.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Storage</text>
+</g>
+<g>
+<rect x="3777.2492" y="826.5" width="118.5" height="20" fill="#1e293b" stroke="none"/>
+<text x="3836.4992" y="836.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Observability</text>
+</g>
+<g>
+<rect x="243.75" y="498.45833333333326" width="50.5" height="20" fill="#1e293b" stroke="none"/>
+<text x="269" y="508.45833333333326" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">CI/CD</text>
+</g>
+<g>
+<g transform="translate(1963.7496, 1823.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M320 16a104 104 0 1 1 0 208 104 104 0 1 1 0-208zM96 88a72 72 0 1 1 0 144 72 72 0 1 1 0-144zM0 416c0-70.7 57.3-128 128-128 12.8 0 25.2 1.9 36.9 5.4-32.9 36.8-52.9 85.4-52.9 138.6l0 16c0 11.4 2.4 22.2 6.7 32L32 480c-17.7 0-32-14.3-32-32l0-32zm521.3 64c4.3-9.8 6.7-20.6 6.7-32l0-16c0-53.2-20-101.8-52.9-138.6 11.7-3.5 24.1-5.4 36.9-5.4 70.7 0 128 57.3 128 128l0 32c0 17.7-14.3 32-32 32l-86.7 0zM472 160a72 72 0 1 1 144 0 72 72 0 1 1 -144 0zM160 432c0-88.4 71.6-160 160-160s160 71.6 160 160l0 16c0 17.7-14.3 32-32 32l-256 0c-17.7 0-32-14.3-32-32l0-16z" />
+  </svg></g>
+<text x="1975.7496" y="1864.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">End Users</text>
+</g>
+<g>
+<g transform="translate(3824.4992, 686.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M165 144.7l-43.3 9.2-.2 142.4c0 26.3 19.8 43.3 46.1 43.3 14.6 0 25.3-2.7 31.2-5.9l0-33.8c-5.7 2.3-33.7 10.5-33.7-15.7l0-63.2 33.7 0 0-37.8-33.7 0-.1-38.5zm89.1 51.6l-2.7-13.1-38.4 0 0 153.2 44.3 0 0-103.1c10.5-13.8 28.2-11.1 33.9-9.3l0-40.8c-6-2.1-26.7-6-37.1 13.1zM346.4 124l-44.6 9.5 0 36.2 44.6-9.5 0-36.2zM44.9 228.3c0-6.9 5.8-9.6 15.1-9.7 13.5 0 30.7 4.1 44.2 11.4l0-41.8c-14.7-5.8-29.4-8.1-44.1-8.1-36 0-60 18.8-60 50.2 0 49.2 67.5 41.2 67.5 62.4 0 8.2-7.1 10.9-17 10.9-14.7 0-33.7-6.1-48.6-14.2l0 40c16.5 7.1 33.2 10.1 48.5 10.1 36.9 0 62.3-15.8 62.3-47.8 0-52.9-67.9-43.4-67.9-63.4zM640 261.6c0-45.5-22-81.4-64.2-81.4s-67.9 35.9-67.9 81.1c0 53.5 30.3 78.2 73.5 78.2 21.2 0 37.1-4.8 49.2-11.5l0-33.4c-12.1 6.1-26 9.8-43.6 9.8-17.3 0-32.5-6.1-34.5-26.9l86.9 0c.2-2.3 .6-11.6 .6-15.9zm-87.9-16.8c0-20 12.3-28.4 23.4-28.4 10.9 0 22.5 8.4 22.5 28.4l-45.9 0zM439.2 180.2c-17.4 0-28.6 8.2-34.8 13.9l-2.3-11-39.1 0 0 204.8 44.4-9.4 .1-50.2c6.4 4.7 15.9 11.2 31.4 11.2 31.8 0 60.8-23.2 60.8-79.6 .1-51.6-29.3-79.7-60.5-79.7zM428.6 302.7c-10.4 0-16.6-3.8-20.9-8.4l-.3-66c4.6-5.1 11-8.8 21.2-8.8 16.2 0 27.4 18.2 27.4 41.4 .1 23.9-10.9 41.8-27.4 41.8zM301.9 336.4l44.6 0 0-153.2-44.6 0 0 153.2z" />
+  </svg></g>
+<text x="3836.4992" y="727.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Stripe</text>
+</g>
+<g>
+<g transform="translate(4449.9992, 287)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M48 64c-26.5 0-48 21.5-48 48 0 15.1 7.1 29.3 19.2 38.4l208 156c17.1 12.8 40.5 12.8 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48L48 64zM0 196L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-188-198.4 148.8c-34.1 25.6-81.1 25.6-115.2 0L0 196z" />
+  </svg></g>
+<text x="4461.9992" y="328" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Email (SES)</text>
+</g>
+<g>
+<g transform="translate(3613.4992, 1823.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M351.9 280l-190.9 0c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zM160.9 232l190.9 0C349 167.5 334.7 108.1 314.4 64.6 303 40.2 290.7 22.8 279.3 12.2 268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4zm-48 0C116.4 146.4 138.5 66.9 170.8 14.7 78.7 47.3 10.9 131.2 1.5 232l111.4 0zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3L1.5 280zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3l-111.4 0zm111.4-48C501.9 131.2 434.1 47.3 342 14.7 374.3 66.9 396.4 146.4 399.9 232l111.4 0z" />
+  </svg></g>
+<text x="3625.4992" y="1864.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Route 53</text>
+</g>
+<g>
+<g transform="translate(3809.4992, 1780.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M248 88l80 0 0 48-80 0 0-48zm-8-56c-26.5 0-48 21.5-48 48l0 64c0 26.5 21.5 48 48 48l16 0 0 32-224 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0 0 32-16 0c-26.5 0-48 21.5-48 48l0 64c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-64c0-26.5-21.5-48-48-48l-16 0 0-32 192 0 0 32-16 0c-26.5 0-48 21.5-48 48l0 64c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-64c0-26.5-21.5-48-48-48l-16 0 0-32 96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-224 0 0-32 16 0c26.5 0 48-21.5 48-48l0-64c0-26.5-21.5-48-48-48l-96 0zM448 376l8 0 0 48-80 0 0-48 72 0zm-256 0l8 0 0 48-80 0 0-48 72 0z" />
+  </svg></g>
+<text x="3821.4992" y="1821.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">CloudFront</text>
+</g>
+<g>
+<g transform="translate(4020.4992, 1780.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z" />
+  </svg></g>
+<text x="4032.4992" y="1821.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">WAF</text>
+</g>
+<g>
+<g transform="translate(902.2672, 948.8333333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M384 32l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L398.4 96c-5.2 25.8-22.9 47.1-46.4 57.3l0 294.7 160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-384 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l160 0 0-294.7c-23.5-10.3-41.2-31.6-46.4-57.3L128 96c-17.7 0-32-14.3-32-32s14.3-32 32-32l128 0c14.6-19.4 37.8-32 64-32s49.4 12.6 64 32zm55.6 288L584.4 320 512 195.8 439.6 320zM512 416c-62.9 0-115.2-34-126-78.9-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1-10.8 44.8-63.1 78.9-126 78.9zM126.8 195.8L54.4 320 199.3 320 126.8 195.8zM.9 337.1c-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1-10.8 44.8-63.1 78.9-126 78.9S11.7 382 .9 337.1z" />
+  </svg></g>
+<text x="914.2672" y="989.8333333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">App Load Balancer</text>
+</g>
+<g>
+<g transform="translate(902.2672, 1258.8333333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M502.6 150.6l-96 96c-9.2 9.2-22.9 11.9-34.9 6.9S352 236.9 352 224l0-64-320 0c-17.7 0-32-14.3-32-32S14.3 96 32 96l320 0 0-64c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l96 96c12.5 12.5 12.5 32.8 0 45.3zm-397.3 352l-96-96c-12.5-12.5-12.5-32.8 0-45.3l96-96c9.2-9.2 22.9-11.9 34.9-6.9S160 275.1 160 288l0 64 320 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-320 0 0 64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9z" />
+  </svg></g>
+<text x="914.2672" y="1299.8333333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">NAT Gateway</text>
+</g>
+<g>
+<g transform="translate(902.2672, 1108.8333333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M9.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L146.7 256 9.4 118.6zM224 384l256 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-256 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z" />
+  </svg></g>
+<text x="914.2672" y="1149.8333333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Bastion Host</text>
+</g>
+<g>
+<g transform="translate(1327.5344, 900.0833333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M418.2 177.2c-5.4-1.8-10.8-3.5-16.2-5.1 .9-3.7 1.7-7.4 2.5-11.1 12.3-59.6 4.2-107.5-23.1-123.3-26.3-15.1-69.2 .6-112.6 38.4-4.3 3.7-8.5 7.6-12.5 11.5-2.7-2.6-5.5-5.2-8.3-7.7-45.5-40.4-91.1-57.4-118.4-41.5-26.2 15.2-34 60.3-23 116.7 1.1 5.6 2.3 11.1 3.7 16.7-6.4 1.8-12.7 3.8-18.6 5.9-53.4 18.5-91.7 47.7-91.7 77.9 0 31.2 40.8 62.5 96.3 81.5 4.5 1.5 9 3 13.6 4.3-1.5 6-2.8 11.9-4 18-10.5 55.5-2.3 99.5 23.9 114.6 27 15.6 72.4-.4 116.6-39.1 3.5-3.1 7-6.3 10.5-9.7 4.4 4.3 9 8.4 13.6 12.4 42.8 36.8 85.1 51.7 111.2 36.6 27-15.6 35.8-62.9 24.4-120.5-.9-4.4-1.9-8.9-3-13.5 3.2-.9 6.3-1.9 9.4-2.9 57.7-19.1 99.5-50 99.5-81.7 0-30.3-39.4-59.7-93.8-78.4zM282.9 92.3c37.2-32.4 71.9-45.1 87.7-36 16.9 9.7 23.4 48.9 12.8 100.4-.7 3.4-1.4 6.7-2.3 10-22.2-5-44.7-8.6-67.3-10.6-13-18.6-27.2-36.4-42.6-53.1 3.9-3.7 7.7-7.2 11.7-10.7zM167.2 307.5c5.1 8.7 10.3 17.4 15.8 25.9-15.6-1.7-31.1-4.2-46.4-7.5 4.4-14.4 9.9-29.3 16.3-44.5 4.6 8.8 9.3 17.5 14.3 26.1zM136.9 187.2c14.4-3.2 29.7-5.8 45.6-7.8-5.3 8.3-10.5 16.8-15.4 25.4-4.9 8.5-9.7 17.2-14.2 26-6.3-14.9-11.6-29.5-16-43.6zm27.4 68.9c6.6-13.8 13.8-27.3 21.4-40.6s15.8-26.2 24.4-38.9c15-1.1 30.3-1.7 45.9-1.7s31 .6 45.9 1.7c8.5 12.6 16.6 25.5 24.3 38.7s14.9 26.7 21.7 40.4c-6.7 13.8-13.9 27.4-21.6 40.8-7.6 13.3-15.7 26.2-24.2 39-14.9 1.1-30.4 1.6-46.1 1.6s-30.9-.5-45.6-1.4c-8.7-12.7-16.9-25.7-24.6-39s-14.8-26.8-21.5-40.6zm180.6 51.2c5.1-8.8 9.9-17.7 14.6-26.7 6.4 14.5 12 29.2 16.9 44.3-15.5 3.5-31.2 6.2-47 8 5.4-8.4 10.5-17 15.5-25.6zm14.4-76.5c-4.7-8.8-9.5-17.6-14.5-26.2-4.9-8.5-10-16.9-15.3-25.2 16.1 2 31.5 4.7 45.9 8-4.6 14.8-10 29.2-16.1 43.4zM256.2 118.3c10.5 11.4 20.4 23.4 29.6 35.8-19.8-.9-39.7-.9-59.5 0 9.8-12.9 19.9-24.9 29.9-35.8zM140.2 57c16.8-9.8 54.1 4.2 93.4 39 2.5 2.2 5 4.6 7.6 7-15.5 16.7-29.8 34.5-42.9 53.1-22.6 2-45 5.5-67.2 10.4-1.3-5.1-2.4-10.3-3.5-15.5-9.4-48.4-3.2-84.9 12.6-94zM115.7 320.6c-4.2-1.2-8.3-2.5-12.4-3.9-21.3-6.7-45.5-17.3-63-31.2-10.1-7-16.9-17.8-18.8-29.9 0-18.3 31.6-41.7 77.2-57.6 5.7-2 11.5-3.8 17.3-5.5 6.8 21.7 15 43 24.5 63.6-9.6 20.9-17.9 42.5-24.8 64.5zm116.6 98c-16.5 15.1-35.6 27.1-56.4 35.3-11.1 5.3-23.9 5.8-35.3 1.3-15.9-9.2-22.5-44.5-13.5-92 1.1-5.6 2.3-11.2 3.7-16.7 22.4 4.8 45 8.1 67.9 9.8 13.2 18.7 27.7 36.6 43.2 53.4-3.2 3.1-6.4 6.1-9.6 8.9zm24.5-24.3c-10.2-11-20.4-23.2-30.3-36.3 9.6 .4 19.5 .6 29.5 .6 10.3 0 20.4-.2 30.4-.7-9.2 12.7-19.1 24.8-29.6 36.4zm130.7 30c-.9 12.2-6.9 23.6-16.5 31.3-15.9 9.2-49.8-2.8-86.4-34.2-4.2-3.6-8.4-7.5-12.7-11.5 15.3-16.9 29.4-34.8 42.2-53.6 22.9-1.9 45.7-5.4 68.2-10.5 1 4.1 1.9 8.2 2.7 12.2 4.9 21.6 5.7 44.1 2.5 66.3zm18.2-107.5c-2.8 .9-5.6 1.8-8.5 2.6-7-21.8-15.6-43.1-25.5-63.8 9.6-20.4 17.7-41.4 24.5-62.9 5.2 1.5 10.2 3.1 15 4.7 46.6 16 79.3 39.8 79.3 58 0 19.6-34.9 44.9-84.8 61.4zM256 301.8a45.8 45.8 0 1 0 0-91.6 45.8 45.8 0 1 0 0 91.6z" />
+  </svg></g>
+<text x="1339.5344" y="941.0833333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Web ECS 1</text>
+</g>
+<g>
+<g transform="translate(1327.5344, 750.0833333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M418.2 177.2c-5.4-1.8-10.8-3.5-16.2-5.1 .9-3.7 1.7-7.4 2.5-11.1 12.3-59.6 4.2-107.5-23.1-123.3-26.3-15.1-69.2 .6-112.6 38.4-4.3 3.7-8.5 7.6-12.5 11.5-2.7-2.6-5.5-5.2-8.3-7.7-45.5-40.4-91.1-57.4-118.4-41.5-26.2 15.2-34 60.3-23 116.7 1.1 5.6 2.3 11.1 3.7 16.7-6.4 1.8-12.7 3.8-18.6 5.9-53.4 18.5-91.7 47.7-91.7 77.9 0 31.2 40.8 62.5 96.3 81.5 4.5 1.5 9 3 13.6 4.3-1.5 6-2.8 11.9-4 18-10.5 55.5-2.3 99.5 23.9 114.6 27 15.6 72.4-.4 116.6-39.1 3.5-3.1 7-6.3 10.5-9.7 4.4 4.3 9 8.4 13.6 12.4 42.8 36.8 85.1 51.7 111.2 36.6 27-15.6 35.8-62.9 24.4-120.5-.9-4.4-1.9-8.9-3-13.5 3.2-.9 6.3-1.9 9.4-2.9 57.7-19.1 99.5-50 99.5-81.7 0-30.3-39.4-59.7-93.8-78.4zM282.9 92.3c37.2-32.4 71.9-45.1 87.7-36 16.9 9.7 23.4 48.9 12.8 100.4-.7 3.4-1.4 6.7-2.3 10-22.2-5-44.7-8.6-67.3-10.6-13-18.6-27.2-36.4-42.6-53.1 3.9-3.7 7.7-7.2 11.7-10.7zM167.2 307.5c5.1 8.7 10.3 17.4 15.8 25.9-15.6-1.7-31.1-4.2-46.4-7.5 4.4-14.4 9.9-29.3 16.3-44.5 4.6 8.8 9.3 17.5 14.3 26.1zM136.9 187.2c14.4-3.2 29.7-5.8 45.6-7.8-5.3 8.3-10.5 16.8-15.4 25.4-4.9 8.5-9.7 17.2-14.2 26-6.3-14.9-11.6-29.5-16-43.6zm27.4 68.9c6.6-13.8 13.8-27.3 21.4-40.6s15.8-26.2 24.4-38.9c15-1.1 30.3-1.7 45.9-1.7s31 .6 45.9 1.7c8.5 12.6 16.6 25.5 24.3 38.7s14.9 26.7 21.7 40.4c-6.7 13.8-13.9 27.4-21.6 40.8-7.6 13.3-15.7 26.2-24.2 39-14.9 1.1-30.4 1.6-46.1 1.6s-30.9-.5-45.6-1.4c-8.7-12.7-16.9-25.7-24.6-39s-14.8-26.8-21.5-40.6zm180.6 51.2c5.1-8.8 9.9-17.7 14.6-26.7 6.4 14.5 12 29.2 16.9 44.3-15.5 3.5-31.2 6.2-47 8 5.4-8.4 10.5-17 15.5-25.6zm14.4-76.5c-4.7-8.8-9.5-17.6-14.5-26.2-4.9-8.5-10-16.9-15.3-25.2 16.1 2 31.5 4.7 45.9 8-4.6 14.8-10 29.2-16.1 43.4zM256.2 118.3c10.5 11.4 20.4 23.4 29.6 35.8-19.8-.9-39.7-.9-59.5 0 9.8-12.9 19.9-24.9 29.9-35.8zM140.2 57c16.8-9.8 54.1 4.2 93.4 39 2.5 2.2 5 4.6 7.6 7-15.5 16.7-29.8 34.5-42.9 53.1-22.6 2-45 5.5-67.2 10.4-1.3-5.1-2.4-10.3-3.5-15.5-9.4-48.4-3.2-84.9 12.6-94zM115.7 320.6c-4.2-1.2-8.3-2.5-12.4-3.9-21.3-6.7-45.5-17.3-63-31.2-10.1-7-16.9-17.8-18.8-29.9 0-18.3 31.6-41.7 77.2-57.6 5.7-2 11.5-3.8 17.3-5.5 6.8 21.7 15 43 24.5 63.6-9.6 20.9-17.9 42.5-24.8 64.5zm116.6 98c-16.5 15.1-35.6 27.1-56.4 35.3-11.1 5.3-23.9 5.8-35.3 1.3-15.9-9.2-22.5-44.5-13.5-92 1.1-5.6 2.3-11.2 3.7-16.7 22.4 4.8 45 8.1 67.9 9.8 13.2 18.7 27.7 36.6 43.2 53.4-3.2 3.1-6.4 6.1-9.6 8.9zm24.5-24.3c-10.2-11-20.4-23.2-30.3-36.3 9.6 .4 19.5 .6 29.5 .6 10.3 0 20.4-.2 30.4-.7-9.2 12.7-19.1 24.8-29.6 36.4zm130.7 30c-.9 12.2-6.9 23.6-16.5 31.3-15.9 9.2-49.8-2.8-86.4-34.2-4.2-3.6-8.4-7.5-12.7-11.5 15.3-16.9 29.4-34.8 42.2-53.6 22.9-1.9 45.7-5.4 68.2-10.5 1 4.1 1.9 8.2 2.7 12.2 4.9 21.6 5.7 44.1 2.5 66.3zm18.2-107.5c-2.8 .9-5.6 1.8-8.5 2.6-7-21.8-15.6-43.1-25.5-63.8 9.6-20.4 17.7-41.4 24.5-62.9 5.2 1.5 10.2 3.1 15 4.7 46.6 16 79.3 39.8 79.3 58 0 19.6-34.9 44.9-84.8 61.4zM256 301.8a45.8 45.8 0 1 0 0-91.6 45.8 45.8 0 1 0 0 91.6z" />
+  </svg></g>
+<text x="1339.5344" y="791.0833333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Web ECS 2</text>
+</g>
+<g>
+<g transform="translate(1327.5344, 600.0833333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M418.2 177.2c-5.4-1.8-10.8-3.5-16.2-5.1 .9-3.7 1.7-7.4 2.5-11.1 12.3-59.6 4.2-107.5-23.1-123.3-26.3-15.1-69.2 .6-112.6 38.4-4.3 3.7-8.5 7.6-12.5 11.5-2.7-2.6-5.5-5.2-8.3-7.7-45.5-40.4-91.1-57.4-118.4-41.5-26.2 15.2-34 60.3-23 116.7 1.1 5.6 2.3 11.1 3.7 16.7-6.4 1.8-12.7 3.8-18.6 5.9-53.4 18.5-91.7 47.7-91.7 77.9 0 31.2 40.8 62.5 96.3 81.5 4.5 1.5 9 3 13.6 4.3-1.5 6-2.8 11.9-4 18-10.5 55.5-2.3 99.5 23.9 114.6 27 15.6 72.4-.4 116.6-39.1 3.5-3.1 7-6.3 10.5-9.7 4.4 4.3 9 8.4 13.6 12.4 42.8 36.8 85.1 51.7 111.2 36.6 27-15.6 35.8-62.9 24.4-120.5-.9-4.4-1.9-8.9-3-13.5 3.2-.9 6.3-1.9 9.4-2.9 57.7-19.1 99.5-50 99.5-81.7 0-30.3-39.4-59.7-93.8-78.4zM282.9 92.3c37.2-32.4 71.9-45.1 87.7-36 16.9 9.7 23.4 48.9 12.8 100.4-.7 3.4-1.4 6.7-2.3 10-22.2-5-44.7-8.6-67.3-10.6-13-18.6-27.2-36.4-42.6-53.1 3.9-3.7 7.7-7.2 11.7-10.7zM167.2 307.5c5.1 8.7 10.3 17.4 15.8 25.9-15.6-1.7-31.1-4.2-46.4-7.5 4.4-14.4 9.9-29.3 16.3-44.5 4.6 8.8 9.3 17.5 14.3 26.1zM136.9 187.2c14.4-3.2 29.7-5.8 45.6-7.8-5.3 8.3-10.5 16.8-15.4 25.4-4.9 8.5-9.7 17.2-14.2 26-6.3-14.9-11.6-29.5-16-43.6zm27.4 68.9c6.6-13.8 13.8-27.3 21.4-40.6s15.8-26.2 24.4-38.9c15-1.1 30.3-1.7 45.9-1.7s31 .6 45.9 1.7c8.5 12.6 16.6 25.5 24.3 38.7s14.9 26.7 21.7 40.4c-6.7 13.8-13.9 27.4-21.6 40.8-7.6 13.3-15.7 26.2-24.2 39-14.9 1.1-30.4 1.6-46.1 1.6s-30.9-.5-45.6-1.4c-8.7-12.7-16.9-25.7-24.6-39s-14.8-26.8-21.5-40.6zm180.6 51.2c5.1-8.8 9.9-17.7 14.6-26.7 6.4 14.5 12 29.2 16.9 44.3-15.5 3.5-31.2 6.2-47 8 5.4-8.4 10.5-17 15.5-25.6zm14.4-76.5c-4.7-8.8-9.5-17.6-14.5-26.2-4.9-8.5-10-16.9-15.3-25.2 16.1 2 31.5 4.7 45.9 8-4.6 14.8-10 29.2-16.1 43.4zM256.2 118.3c10.5 11.4 20.4 23.4 29.6 35.8-19.8-.9-39.7-.9-59.5 0 9.8-12.9 19.9-24.9 29.9-35.8zM140.2 57c16.8-9.8 54.1 4.2 93.4 39 2.5 2.2 5 4.6 7.6 7-15.5 16.7-29.8 34.5-42.9 53.1-22.6 2-45 5.5-67.2 10.4-1.3-5.1-2.4-10.3-3.5-15.5-9.4-48.4-3.2-84.9 12.6-94zM115.7 320.6c-4.2-1.2-8.3-2.5-12.4-3.9-21.3-6.7-45.5-17.3-63-31.2-10.1-7-16.9-17.8-18.8-29.9 0-18.3 31.6-41.7 77.2-57.6 5.7-2 11.5-3.8 17.3-5.5 6.8 21.7 15 43 24.5 63.6-9.6 20.9-17.9 42.5-24.8 64.5zm116.6 98c-16.5 15.1-35.6 27.1-56.4 35.3-11.1 5.3-23.9 5.8-35.3 1.3-15.9-9.2-22.5-44.5-13.5-92 1.1-5.6 2.3-11.2 3.7-16.7 22.4 4.8 45 8.1 67.9 9.8 13.2 18.7 27.7 36.6 43.2 53.4-3.2 3.1-6.4 6.1-9.6 8.9zm24.5-24.3c-10.2-11-20.4-23.2-30.3-36.3 9.6 .4 19.5 .6 29.5 .6 10.3 0 20.4-.2 30.4-.7-9.2 12.7-19.1 24.8-29.6 36.4zm130.7 30c-.9 12.2-6.9 23.6-16.5 31.3-15.9 9.2-49.8-2.8-86.4-34.2-4.2-3.6-8.4-7.5-12.7-11.5 15.3-16.9 29.4-34.8 42.2-53.6 22.9-1.9 45.7-5.4 68.2-10.5 1 4.1 1.9 8.2 2.7 12.2 4.9 21.6 5.7 44.1 2.5 66.3zm18.2-107.5c-2.8 .9-5.6 1.8-8.5 2.6-7-21.8-15.6-43.1-25.5-63.8 9.6-20.4 17.7-41.4 24.5-62.9 5.2 1.5 10.2 3.1 15 4.7 46.6 16 79.3 39.8 79.3 58 0 19.6-34.9 44.9-84.8 61.4zM256 301.8a45.8 45.8 0 1 0 0-91.6 45.8 45.8 0 1 0 0 91.6z" />
+  </svg></g>
+<text x="1339.5344" y="641.0833333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Web ECS 3</text>
+</g>
+<g>
+<g transform="translate(1770.5344, 551.25)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z" />
+  </svg></g>
+<text x="1782.5344" y="592.25" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">API Gateway</text>
+</g>
+<g>
+<g transform="translate(2228.1440000000002, 380.08333333333337)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0 160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17l0 80c0 13.3 10.7 24 24 24l80 0c13.3 0 24-10.7 24-24l0-40 40 0c13.3 0 24-10.7 24-24l0-40 40 0c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z" />
+  </svg></g>
+<text x="2240.1440000000002" y="421.08333333333337" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Auth Service</text>
+</g>
+<g>
+<g transform="translate(1990.1616, 666.5833333333334)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M24-16C10.7-16 0-5.3 0 8S10.7 32 24 32l45.3 0c3.9 0 7.2 2.8 7.9 6.6l52.1 286.3c6.2 34.2 36 59.1 70.8 59.1L456 384c13.3 0 24-10.7 24-24s-10.7-24-24-24l-255.9 0c-11.6 0-21.5-8.3-23.6-19.7l-5.1-28.3 303.6 0c30.8 0 57.2-21.9 62.9-52.2L568.9 69.9C572.6 50.2 557.5 32 537.4 32l-412.7 0-.4-2c-4.8-26.6-28-46-55.1-46L24-16zM208 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm224 0a48 48 0 1 0 0-96 48 48 0 1 0 0 96z" />
+  </svg></g>
+<text x="2002.1616" y="707.5833333333334" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Orders Service</text>
+</g>
+<g>
+<g transform="translate(2228.144, 712.25)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M0 128l0 32 512 0 0-32c0-35.3-28.7-64-64-64L64 64C28.7 64 0 92.7 0 128zm0 80L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-176-512 0zM64 360c0-13.3 10.7-24 24-24l48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-48 0c-13.3 0-24-10.7-24-24zm144 0c0-13.3 10.7-24 24-24l64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0c-13.3 0-24-10.7-24-24z" />
+  </svg></g>
+<text x="2240.144" y="753.25" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Payments Service</text>
+</g>
+<g>
+<g transform="translate(1990.1616, 499.08333333333337)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M224 0l0 64c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-64 32 0c35.3 0 64 28.7 64 64l0 128c0 5.5-.7 10.9-2 16l-252 0c-1.3-5.1-2-10.5-2-16l0-128c0-35.3 28.7-64 64-64l32 0zm96 512c-11.2 0-21.8-2.9-31-8 9.5-16.5 15-35.6 15-56l0-128c0-20.4-5.5-39.5-15-56 9.2-5.1 19.7-8 31-8l32 0 0 64c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-64 32 0c35.3 0 64 28.7 64 64l0 128c0 35.3-28.7 64-64 64l-128 0zM0 320c0-35.3 28.7-64 64-64l32 0 0 64c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-64 32 0c35.3 0 64 28.7 64 64l0 128c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 320z" />
+  </svg></g>
+<text x="2002.1616" y="540.0833333333334" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Inventory Service</text>
+</g>
+<g>
+<g transform="translate(1770.5344, 294.08333333333337)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M224 0c-17.7 0-32 14.3-32 32l0 3.2C119 50 64 114.6 64 192l0 21.7c0 48.1-16.4 94.8-46.4 132.4L7.8 358.3C2.7 364.6 0 372.4 0 380.5 0 400.1 15.9 416 35.5 416l376.9 0c19.6 0 35.5-15.9 35.5-35.5 0-8.1-2.7-15.9-7.8-22.2l-9.8-12.2C400.4 308.5 384 261.8 384 213.7l0-21.7c0-77.4-55-142-128-156.8l0-3.2c0-17.7-14.3-32-32-32zM162 464c7.1 27.6 32.2 48 62 48s54.9-20.4 62-48l-124 0z" />
+  </svg></g>
+<text x="1782.5344" y="335.08333333333337" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Notifications</text>
+</g>
+<g>
+<g transform="translate(2743.4992, 547)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M448 205.8c-14.8 9.8-31.8 17.7-49.5 24-47 16.8-108.7 26.2-174.5 26.2S96.4 246.5 49.5 229.8c-17.6-6.3-34.7-14.2-49.5-24L0 288c0 44.2 100.3 80 224 80s224-35.8 224-80l0-82.2zm0-77.8l0-48C448 35.8 347.7 0 224 0S0 35.8 0 80l0 48c0 44.2 100.3 80 224 80s224-35.8 224-80zM398.5 389.8C351.6 406.5 289.9 416 224 416S96.4 406.5 49.5 389.8c-17.6-6.3-34.7-14.2-49.5-24L0 432c0 44.2 100.3 80 224 80s224-35.8 224-80l0-66.2c-14.8 9.8-31.8 17.7-49.5 24z" />
+  </svg></g>
+<text x="2755.4992" y="588" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">RDS Primary</text>
+</g>
+<g>
+<g transform="translate(3067.4992, 547)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M448 205.8c-14.8 9.8-31.8 17.7-49.5 24-47 16.8-108.7 26.2-174.5 26.2S96.4 246.5 49.5 229.8c-17.6-6.3-34.7-14.2-49.5-24L0 288c0 44.2 100.3 80 224 80s224-35.8 224-80l0-82.2zm0-77.8l0-48C448 35.8 347.7 0 224 0S0 35.8 0 80l0 48c0 44.2 100.3 80 224 80s224-35.8 224-80zM398.5 389.8C351.6 406.5 289.9 416 224 416S96.4 406.5 49.5 389.8c-17.6-6.3-34.7-14.2-49.5-24L0 432c0 44.2 100.3 80 224 80s224-35.8 224-80l0-66.2c-14.8 9.8-31.8 17.7-49.5 24z" />
+  </svg></g>
+<text x="3079.4992" y="588" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">RDS Replica</text>
+</g>
+<g>
+<g transform="translate(2743.4992, 327)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224 416 224c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288 32 288c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3z" />
+  </svg></g>
+<text x="2755.4992" y="368" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Redis Cache</text>
+</g>
+<g>
+<g transform="translate(2743.4992, 767)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.1 253.9 416 208 416 93.1 416 0 322.9 0 208S93.1 0 208 0 416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+  </svg></g>
+<text x="2755.4992" y="808" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Elasticsearch</text>
+</g>
+<g>
+<g transform="translate(3922.4992, 137)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M40 48C26.7 48 16 58.7 16 72l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24L40 48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 64zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zM16 232l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0z" />
+  </svg></g>
+<text x="3934.4992" y="178" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">SQS</text>
+</g>
+<g>
+<g transform="translate(3726.4992, 287)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M87.9 11.5c-11.3-6.9-26.1-3.2-33 8.1-24.8 41-39 89.1-39 140.4s14.2 99.4 39 140.4c6.9 11.3 21.6 15 33 8.1s15-21.6 8.1-33C75.7 241.9 64 202.3 64 160S75.7 78.1 96.1 44.4c6.9-11.3 3.2-26.1-8.1-33zm400.1 0c-11.3 6.9-15 21.6-8.1 33 20.4 33.7 32.1 73.3 32.1 115.6s-11.7 81.9-32.1 115.6c-6.9 11.3-3.2 26.1 8.1 33s26.1 3.2 33-8.1c24.8-41 39-89.1 39-140.4S545.8 60.6 521 19.6c-6.9-11.3-21.6-15-33-8.1zM320 215.4c19.1-11.1 32-31.7 32-55.4 0-35.3-28.7-64-64-64s-64 28.7-64 64c0 23.7 12.9 44.4 32 55.4L256 480c0 17.7 14.3 32 32 32s32-14.3 32-32l0-264.6zM180.2 91c7.2-11.2 3.9-26-7.2-33.2s-26-3.9-33.2 7.2c-17.6 27.4-27.8 60-27.8 95s10.2 67.6 27.8 95c7.2 11.2 22 14.4 33.2 7.2s14.4-22 7.2-33.2c-12.8-19.9-20.2-43.6-20.2-69s7.4-49.1 20.2-69zM436.2 65c-7.2-11.2-22-14.4-33.2-7.2s-14.4 22-7.2 33.2c12.8 19.9 20.2 43.6 20.2 69s-7.4 49.1-20.2 69c-7.2 11.2-3.9 26 7.2 33.2s26 3.9 33.2-7.2c17.6-27.4 27.8-60 27.8-95s-10.2-67.6-27.8-95z" />
+  </svg></g>
+<text x="3738.4992" y="328" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">SNS</text>
+</g>
+<g>
+<g transform="translate(3726.4992, 137)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M0 80C0 53.5 21.5 32 48 32l96 0c26.5 0 48 21.5 48 48l0 16 128 0 0-16c0-26.5 21.5-48 48-48l96 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-96 0c-26.5 0-48-21.5-48-48l0-16-128 0 0 16c0 7.3-1.7 14.3-4.6 20.5l68.6 91.5 80 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-96 0c-26.5 0-48-21.5-48-48l0-96c0-7.3 1.7-14.3 4.6-20.5L128 224 48 224c-26.5 0-48-21.5-48-48L0 80z" />
+  </svg></g>
+<text x="3738.4992" y="178" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">EventBridge</text>
+</g>
+<g>
+<g transform="translate(3726.4992, 437)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M64 96c0-17.7 14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 288 96 0 0-128c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0 0 128c0 17.7-14.3 32-32 32l-160 0c-17.7 0-32-14.3-32-32l0-288-96 0 0 128c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-128z" />
+  </svg></g>
+<text x="3738.4992" y="478" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Kinesis</text>
+</g>
+<g>
+<g transform="translate(4457.4992, 1574.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M443.7 208c2.7 4.7 4.3 10.2 4.3 16 0 17.7-14.3 32-32 32l-5.1 0-22.4 213c-2.6 24.4-23.2 43-47.8 43l-233.6 0c-24.6 0-45.2-18.5-47.8-43L37.1 256 32 256c-17.7 0-32-14.3-32-32 0-5.8 1.6-11.3 4.3-16l439.4 0zM224-16c79.5 0 144 64.5 144 144l0 32-48 0 0-32c0-53-43-96-96-96s-96 43-96 96l0 32-48 0 0-32C80 48.5 144.5-16 224-16z" />
+  </svg></g>
+<text x="4469.4992" y="1615.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">S3 Buckets</text>
+</g>
+<g>
+<g transform="translate(4457.4992, 1354.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M64 32C28.7 32 0 60.7 0 96L0 260.1C18.1 247.4 40.2 240 64 240l320 0c23.8 0 45.9 7.4 64 20.1L448 96c0-35.3-28.7-64-64-64L64 32zM448 352c0-35.3-28.7-64-64-64L64 288c-35.3 0-64 28.7-64 64l0 64c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-64zM224 384a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm128-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+  </svg></g>
+<text x="4469.4992" y="1395.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">EFS</text>
+</g>
+<g>
+<g transform="translate(3726.4992, 1061.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7 262.6 153.4c-12.5-12.5-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l73.4-73.4 57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z" />
+  </svg></g>
+<text x="3738.4992" y="1102.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">CloudWatch</text>
+</g>
+<g>
+<g transform="translate(3726.4992, 1211.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M160.5-26.4c9.3-7.8 23-7.5 31.9 .9 12.3 11.6 23.3 24.4 33.9 37.4 13.5 16.5 29.7 38.3 45.3 64.2 5.2-6.8 10-12.8 14.2-17.9 1.1-1.3 2.2-2.7 3.3-4.1 7.9-9.8 17.7-22.1 30.8-22.1 13.4 0 22.8 11.9 30.8 22.1 1.3 1.7 2.6 3.3 3.9 4.8 10.3 12.4 24 30.3 37.7 52.4 27.2 43.9 55.6 106.4 55.6 176.6 0 123.7-100.3 224-224 224S0 411.7 0 288c0-91.1 41.1-170 80.5-225 19.9-27.7 39.7-49.9 54.6-65.1 8.2-8.4 16.5-16.7 25.5-24.2zM225.7 416c25.3 0 47.7-7 68.8-21 42.1-29.4 53.4-88.2 28.1-134.4-4.5-9-16-9.6-22.5-2l-25.2 29.3c-6.6 7.6-18.5 7.4-24.7-.5-17.3-22.1-49.1-62.4-65.3-83-5.4-6.9-15.2-8-21.5-1.9-18.3 17.8-51.5 56.8-51.5 104.3 0 68.6 50.6 109.2 113.7 109.2z" />
+  </svg></g>
+<text x="3738.4992" y="1252.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Prometheus</text>
+</g>
+<g>
+<g transform="translate(3922.4992, 1211.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M0 256a256 256 0 1 1 512 0 256 256 0 1 1 -512 0zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM256 416c35.3 0 64-28.7 64-64 0-16.2-6-31.1-16-42.3l69.5-138.9c5.9-11.9 1.1-26.3-10.7-32.2s-26.3-1.1-32.2 10.7L261.1 288.2c-1.7-.1-3.4-.2-5.1-.2-35.3 0-64 28.7-64 64s28.7 64 64 64zM176 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM96 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm352-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+  </svg></g>
+<text x="3934.4992" y="1252.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Grafana</text>
+</g>
+<g>
+<g transform="translate(3726.4992, 911.5)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M512 96c0 50.2-59.1 125.1-84.6 155-3.8 4.4-9.4 6.1-14.5 5L320 256c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0c53 0 96 43 96 96s-43 96-96 96l-276.4 0c8.7-9.9 19.3-22.6 30-36.8 6.3-8.4 12.8-17.6 19-27.2L416 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0c-53 0-96-43-96-96s43-96 96-96l39.8 0c-21-31.5-39.8-67.7-39.8-96 0-53 43-96 96-96s96 43 96 96zM117.1 489.1c-3.8 4.3-7.2 8.1-10.1 11.3l-1.8 2-.2-.2c-6 4.6-14.6 4-20-1.8-25.2-27.4-85-97.9-85-148.4 0-53 43-96 96-96s96 43 96 96c0 30-21.1 67-43.5 97.9-10.7 14.7-21.7 28-30.8 38.5l-.6 .7zM128 352a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM416 128a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" />
+  </svg></g>
+<text x="3738.4992" y="952.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">Jaeger Tracing</text>
+</g>
+<g>
+<g transform="translate(110, 618.4583333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M384 224c35.3 0 64-28.7 64-64l0-64c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96l0 64c0 35.3 28.7 64 64 64l128 0 0 64-32 0c-6.5 0-12.3 3.9-14.8 9.9s-1.1 12.9 3.5 17.4l64 64c6.2 6.2 16.4 6.2 22.6 0l64-64c4.6-4.6 5.9-11.5 3.5-17.4S294.5 288 288 288l-32 0 0-64 128 0zM64 288c-35.3 0-64 28.7-64 64l0 64c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-64c0-35.3-28.7-64-64-64l-34 0c5.6 21.7-.5 45.1-16.7 61.3l-64 64c-25 25-65.5 25-90.5 0l-64-64C98.6 333.1 92.4 309.7 98 288l-34 0z" />
+  </svg></g>
+<text x="122" y="659.4583333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">CodePipeline</text>
+</g>
+<g>
+<g transform="translate(404, 636.4583333333333)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+    <path fill="#e2e8f0" d="M284-1.3c-17.3-10-38.7-10-56 0L143.8 47.3c-17.3 10-28 28.5-28 48.5l0 101.9-88.3 51c-17.3 10-28 28.5-28 48.5l0 97.3c0 20 10.7 38.5 28 48.5l84.3 48.6c17.3 10 38.7 10 56 0l88.3-51 88.3 51c17.3 10 38.7 10 56 0L484.5 443c17.3-10 28-28.5 28-48.5l0-97.3c0-20-10.7-38.5-28-48.5l-88.3-51 0-101.9c0-20-10.7-38.5-28-48.5L284-1.3zM232 292.6l0 106.5-88.3 51c-1.2 .7-2.6 1.1-4 1.1l0-105.3 92.3-53.3zm231.4 .6c.7 1.2 1.1 2.6 1.1 4l0 97.3c0 2.9-1.5 5.5-4 6.9l-84.3 48.6c-1.2 .7-2.6 1.1-4 1.1l0-105.3 91.2-52.6zM348.3 95.8l0 101.9-92.3 53.3 0-106.5 91.2-52.6c.7 1.2 1.1 2.6 1.1 4z" />
+  </svg></g>
+<text x="416" y="677.4583333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#e2e8f0">ECR Registry</text>
+</g>
+<text x="3409.4992" y="1858.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">DNS</text>
+<text x="3409.4992" y="1983.5000000000002" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">HTTPS</text>
+<text x="1560.5344" y="792.3333333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">REST</text>
+<text x="1997.1616" y="415.08333333333337" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">JWT</text>
+<text x="3409.4992" y="721.5000000000002" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">charge</text>
+<text x="2539.4992" y="594.0000000000001" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">SQL</text>
+<text x="2539.4992" y="338.5000000000001" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">session</text>
+<text x="2912.4992" y="564" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">replicate</text>
+<text x="2539.4992" y="746.0000000000001" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">index</text>
+<text x="3409.4992" y="172.00000000000023" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">publish</text>
+<text x="4253.4992" y="322" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">send</text>
+<text x="3409.4992" y="541.5833333333337" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">stream</text>
+<text x="4253.4992" y="1561.5" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">archive</text>
+<text x="3831.4992" y="1621.5000000000002" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">assets</text>
+<text x="1135.5344" y="1143.8333333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">ssh</text>
+<text x="3409.4992" y="1096.5000000000002" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">metrics</text>
+<text x="3409.4992" y="995.0416666666664" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">spans</text>
+<text x="264" y="653.4583333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">push</text>
+<text x="619" y="822.8333333333333" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">deploy</text>
+</g>
+</g>
+</svg>
+</svg>

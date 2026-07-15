@@ -1,0 +1,129 @@
+<!--
+  PROVENANCE — do not regenerate.
+
+  This is the "before" half of docs/examples/00_raw_svg_vs_glyphic.{png,svg}:
+  a frontier model (Claude Opus 4.8) asked, in a SINGLE pass with no correction,
+  to hand-draw the architecture in docs/examples/32_production_platform_architecture.json
+  as raw SVG — placing every box and routing every edge by coordinate.
+
+  It is an experimental artifact, not a Glyphic output. Re-authoring it would
+  silently substitute a different sample into the methodology described in
+  docs/blog/is-the-comparison-fair.md. Keep it verbatim.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" font-family="Arial, sans-serif">
+  <rect width="1600" height="1100" fill="#0b1220"/>
+  <style>
+    .box{fill:#16233b;stroke:#4a9eff;stroke-width:1.5;rx:6}
+    .grp{fill:none;stroke:#33507d;stroke-width:1.5}
+    .t{fill:#e6eefc;font-size:13px;text-anchor:middle}
+    .gt{fill:#9db4d8;font-size:13px;text-anchor:middle}
+    .e{stroke:#5b7192;stroke-width:1.4;fill:none;marker-end:url(#a)}
+    .ed{stroke:#5b7192;stroke-width:1.4;fill:none;stroke-dasharray:5 4;marker-end:url(#a)}
+    .el{fill:#7f95b8;font-size:11px;text-anchor:middle}
+  </style>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#5b7192"/></marker></defs>
+
+  <!-- external -->
+  <rect class="box" x="40" y="40" width="120" height="46" rx="6"/><text class="t" x="100" y="68">End Users</text>
+
+  <!-- Edge/CDN group -->
+  <rect class="grp" x="220" y="30" width="180" height="230" rx="8"/><text class="gt" x="310" y="22">Edge / CDN</text>
+  <rect class="box" x="250" y="45" width="120" height="40" rx="6"/><text class="t" x="310" y="70">Route 53</text>
+  <rect class="box" x="250" y="105" width="120" height="40" rx="6"/><text class="t" x="310" y="130">CloudFront</text>
+  <rect class="box" x="250" y="165" width="120" height="40" rx="6"/><text class="t" x="310" y="190">WAF</text>
+
+  <!-- VPC -->
+  <rect class="grp" x="450" y="30" width="820" height="760" rx="8"/><text class="gt" x="860" y="22">Production VPC (10.0.0.0/16)</text>
+
+  <!-- public subnet -->
+  <rect class="grp" x="470" y="60" width="500" height="90" rx="6"/><text class="gt" x="720" y="52">Public Subnet</text>
+  <rect class="box" x="485" y="80" width="130" height="50" rx="6"/><text class="t" x="550" y="110">App Load Balancer</text>
+  <rect class="box" x="640" y="80" width="120" height="50" rx="6"/><text class="t" x="700" y="110">Bastion Host</text>
+  <rect class="box" x="790" y="80" width="120" height="50" rx="6"/><text class="t" x="850" y="110">NAT Gateway</text>
+
+  <!-- web tier -->
+  <rect class="grp" x="470" y="180" width="500" height="90" rx="6"/><text class="gt" x="720" y="172">Web Tier</text>
+  <rect class="box" x="490" y="200" width="130" height="50" rx="6"/><text class="t" x="555" y="230">Web ECS 1</text>
+  <rect class="box" x="650" y="200" width="130" height="50" rx="6"/><text class="t" x="715" y="230">Web ECS 2</text>
+  <rect class="box" x="810" y="200" width="130" height="50" rx="6"/><text class="t" x="875" y="230">Web ECS 3</text>
+
+  <!-- app tier -->
+  <rect class="grp" x="470" y="300" width="500" height="190" rx="6"/><text class="gt" x="720" y="292">App Tier</text>
+  <rect class="box" x="490" y="320" width="120" height="44" rx="6"/><text class="t" x="550" y="346">API Gateway</text>
+  <rect class="box" x="630" y="320" width="120" height="44" rx="6"/><text class="t" x="690" y="346">Auth Service</text>
+  <rect class="box" x="770" y="320" width="120" height="44" rx="6"/><text class="t" x="830" y="346">Orders Service</text>
+  <rect class="box" x="490" y="390" width="120" height="44" rx="6"/><text class="t" x="550" y="416">Payments</text>
+  <rect class="box" x="630" y="390" width="120" height="44" rx="6"/><text class="t" x="690" y="416">Inventory</text>
+  <rect class="box" x="770" y="390" width="120" height="44" rx="6"/><text class="t" x="830" y="416">Notifications</text>
+
+  <!-- data tier -->
+  <rect class="grp" x="470" y="520" width="500" height="90" rx="6"/><text class="gt" x="720" y="512">Data Tier</text>
+  <rect class="box" x="485" y="540" width="110" height="50" rx="6"/><text class="t" x="540" y="570">RDS Primary</text>
+  <rect class="box" x="610" y="540" width="110" height="50" rx="6"/><text class="t" x="665" y="570">RDS Replica</text>
+  <rect class="box" x="735" y="540" width="100" height="50" rx="6"/><text class="t" x="785" y="570">Redis</text>
+  <rect class="box" x="850" y="540" width="100" height="50" rx="6"/><text class="t" x="900" y="570">Elasticsearch</text>
+
+  <!-- async -->
+  <rect class="grp" x="1300" y="60" width="260" height="200" rx="8"/><text class="gt" x="1430" y="52">Async / Messaging</text>
+  <rect class="box" x="1320" y="80" width="100" height="40" rx="6"/><text class="t" x="1370" y="105">SQS</text>
+  <rect class="box" x="1440" y="80" width="100" height="40" rx="6"/><text class="t" x="1490" y="105">SNS</text>
+  <rect class="box" x="1320" y="140" width="100" height="40" rx="6"/><text class="t" x="1370" y="165">EventBridge</text>
+  <rect class="box" x="1440" y="140" width="100" height="40" rx="6"/><text class="t" x="1490" y="165">Kinesis</text>
+
+  <!-- storage -->
+  <rect class="grp" x="1300" y="300" width="260" height="120" rx="8"/><text class="gt" x="1430" y="292">Storage</text>
+  <rect class="box" x="1320" y="320" width="100" height="40" rx="6"/><text class="t" x="1370" y="345">S3 Buckets</text>
+  <rect class="box" x="1440" y="320" width="100" height="40" rx="6"/><text class="t" x="1490" y="345">EFS</text>
+
+  <!-- observability -->
+  <rect class="grp" x="1300" y="460" width="260" height="200" rx="8"/><text class="gt" x="1430" y="452">Observability</text>
+  <rect class="box" x="1320" y="480" width="100" height="40" rx="6"/><text class="t" x="1370" y="505">CloudWatch</text>
+  <rect class="box" x="1440" y="480" width="100" height="40" rx="6"/><text class="t" x="1490" y="505">Prometheus</text>
+  <rect class="box" x="1320" y="540" width="100" height="40" rx="6"/><text class="t" x="1370" y="565">Grafana</text>
+  <rect class="box" x="1440" y="540" width="100" height="40" rx="6"/><text class="t" x="1490" y="565">Jaeger</text>
+
+  <!-- cicd -->
+  <rect class="grp" x="470" y="660" width="300" height="110" rx="8"/><text class="gt" x="620" y="652">CI/CD</text>
+  <rect class="box" x="490" y="685" width="120" height="44" rx="6"/><text class="t" x="550" y="711">CodePipeline</text>
+  <rect class="box" x="630" y="685" width="120" height="44" rx="6"/><text class="t" x="690" y="711">ECR Registry</text>
+
+  <!-- external cloud -->
+  <rect class="box" x="1000" y="880" width="110" height="44" rx="6"/><text class="t" x="1055" y="906">Stripe</text>
+  <rect class="box" x="1150" y="880" width="110" height="44" rx="6"/><text class="t" x="1205" y="906">Email (SES)</text>
+
+  <!-- edges -->
+  <path class="e" d="M160,63 L250,65"/><text class="el" x="205" y="55">DNS</text>
+  <path class="e" d="M310,85 L310,105"/>
+  <path class="e" d="M310,145 L310,165"/>
+  <path class="e" d="M370,185 L485,105"/><text class="el" x="430" y="135">HTTPS</text>
+  <path class="e" d="M550,130 L555,200"/>
+  <path class="e" d="M560,130 L715,200"/>
+  <path class="e" d="M560,130 L875,200"/>
+  <path class="e" d="M555,250 L550,320"/><text class="el" x="540" y="290">REST</text>
+  <path class="e" d="M715,250 L560,320"/>
+  <path class="e" d="M875,250 L565,320"/>
+  <path class="e" d="M610,342 L630,342"/><text class="el" x="620" y="335">JWT</text>
+  <path class="e" d="M550,364 L550,390"/>
+  <path class="e" d="M690,364 L690,390"/>
+  <path class="e" d="M830,364 L770,390"/>
+  <path class="e" d="M550,434 L540,540"/><text class="el" x="530" y="500">SQL</text>
+  <path class="e" d="M550,434 L1000,895"/><text class="el" x="770" y="700">charge</text>
+  <path class="e" d="M770,412 L590,555"/>
+  <path class="ed" d="M595,565 L610,565"/><text class="el" x="600" y="558">replicate</text>
+  <path class="e" d="M830,364 L890,540"/><text class="el" x="880" y="470">index</text>
+  <path class="e" d="M830,342 L1320,150"/><text class="el" x="1100" y="230">publish</text>
+  <path class="e" d="M1370,180 L1370,140"/>
+  <path class="e" d="M1420,160 L1440,160"/>
+  <path class="ed" d="M1490,120 L1490,140"/>
+  <path class="ed" d="M1490,100 L1205,880"/><text class="el" x="1350" y="500">send</text>
+  <path class="e" d="M550,412 L1490,160"/><text class="el" x="1000" y="300">stream</text>
+  <path class="e" d="M1490,180 L1370,320"/><text class="el" x="1440" y="260">archive</text>
+  <path class="e" d="M620,250 L1320,340"/><text class="el" x="980" y="310">assets</text>
+  <path class="ed" d="M700,130 L555,200"/><text class="el" x="640" y="175">ssh</text>
+  <path class="ed" d="M550,342 L1320,500"/><text class="el" x="960" y="430">metrics</text>
+  <path class="ed" d="M555,250 L1440,500"/>
+  <path class="e" d="M1490,500 L1370,540"/>
+  <path class="ed" d="M830,364 L1490,540"/><text class="el" x="1200" y="470">spans</text>
+  <path class="e" d="M610,707 L630,707"/><text class="el" x="620" y="700">push</text>
+  <path class="ed" d="M690,685 L555,250"/><text class="el" x="640" y="620">deploy</text>
+</svg>

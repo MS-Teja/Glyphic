@@ -9,6 +9,16 @@ export interface BoundingBox {
 }
 
 /**
+ * Horizontal inset of a hexagon's top/bottom cap from its bounding box.
+ * MUST match buildHexagon's `inset` in the renderer, or edge clipping computes
+ * a different slope than the shape actually has and arrowheads land inside the
+ * body instead of on the border.
+ */
+export function hexagonInset(width: number): number {
+  return Math.min(width * 0.15, 20);
+}
+
+/**
  * Geometric helper: Finds the intersection between an orthogonal line segment and a shape's perimeter.
  * This prevents arrows from bleeding into non-rectangular shapes (diamonds, hexagons)
  * while respecting orthogonal routing endpoints.
@@ -49,7 +59,7 @@ export function getPerimeterIntersection(node: BoundingBox, pt: Point, ext: Poin
     }
 
     case 'hexagon': {
-      const capWidth = node.width * 0.2;
+      const capWidth = hexagonInset(node.width);
       if (isHorizontal) {
         const dy = Math.abs(pt.y - cy);
         const dxFromEdge = dy * (capWidth / (node.height / 2));

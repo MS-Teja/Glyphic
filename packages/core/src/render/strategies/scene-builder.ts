@@ -1,6 +1,6 @@
 import { type LayoutResult, type LayoutNode, type LayoutEdge, LayoutEdgeSegment } from "../../layout/types.js";
 import { type SceneGraph, type SceneElement, type SceneRect, type ScenePath, SceneText, SceneCircle, type SceneGroup, type ScenePolygon, SceneEllipse } from "../../scene/scene-graph.js";
-import { getPerimeterIntersection, BoundingBox } from "../../math/geometry.js";
+import { getPerimeterIntersection, hexagonInset, BoundingBox } from "../../math/geometry.js";
 import { getIconSVG } from "../icon-adapter.js";
 import { escapeXml, escapeCssString, sanitizeSvg, isHttpsUrl } from "../sanitize.js";
 import { type ThemeColors, DEFAULT_THEME, resolveFontFamily } from "../theme.js";
@@ -169,7 +169,7 @@ function buildCylinder(node: LayoutNode, theme: ThemeColors, style: StyleTokens 
 
 function buildHexagon(node: LayoutNode, theme: ThemeColors, style: StyleTokens = DEFAULT_STYLE): ScenePolygon | ScenePath {
   const c = getNodeColors(node, theme, style);
-  const inset = Math.min(node.width * 0.15, 20);
+  const inset = hexagonInset(node.width);
   const { x, y, width: w, height: h } = node;
   const pts = [
     { x: x + inset, y },

@@ -40,3 +40,16 @@ export function wrapTextToWidth(text: string, maxWidth: number, fontSize: number
   if (current) lines.push(current);
   return lines.length ? lines : [""];
 }
+
+// Sequence-message label metrics, shared so the layout adapter and the SVG
+// renderer wrap identically — sizing the diagram to the exact lines that get
+// drawn. Font matches the text scene-builder emits for edge labels (12px / 500).
+export const SEQ_LABEL_FONT_SIZE = 12;
+export const SEQ_LABEL_FONT_WEIGHT = 500;
+export const SEQ_LABEL_LINE_HEIGHT = 14; // must equal scene-builder's edgeLineHeight
+export const SEQ_LABEL_PAD = 40; // total horizontal padding subtracted from a message's span
+
+/** Wrap a sequence message label to the pixel width available across its span. */
+export function wrapSequenceLabel(label: string, maxWidth: number): string[] {
+  return wrapTextToWidth(label, maxWidth, SEQ_LABEL_FONT_SIZE, SEQ_LABEL_FONT_WEIGHT);
+}

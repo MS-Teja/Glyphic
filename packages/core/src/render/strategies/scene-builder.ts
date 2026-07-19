@@ -6,7 +6,7 @@ import { escapeXml, escapeCssString, sanitizeSvg, isHttpsUrl } from "../sanitize
 import { type ThemeColors, DEFAULT_THEME, resolveFontFamily } from "../theme.js";
 import { type StyleTokens, DEFAULT_STYLE } from "../style.js";
 import { roughPath, rectCorners } from "../roughen.js";
-import { wrapTextToWidth } from "../../text-metrics.js";
+import { wrapTextToWidth, wrapSequenceLabel, measureTextWidth, SEQ_LABEL_FONT_SIZE, SEQ_LABEL_FONT_WEIGHT } from "../../text-metrics.js";
 
 // Re-exported so the strategy modules can keep importing them from here.
 export type { ThemeColors } from "../theme.js";
@@ -747,21 +747,32 @@ export function buildSceneEdge(edge: LayoutEdge, theme: ThemeColors, allNodes: L
       segmentLength = Math.sqrt(dx*dx + dy*dy);
     }
 
-    const maxEdgeChars = 14;
-    const edgeWords = edge.label.split(" ");
-    const edgeLines: string[] = [];
-    let curLine = "";
-    for (const w of edgeWords) {
-      if ((`${curLine} ${w}`).trim().length > maxEdgeChars) {
-        if (curLine) edgeLines.push(curLine);
-        curLine = w;
-      } else {
-        curLine = curLine ? `${curLine} ${w}` : w;
+    // Sequence messages carry an explicit pixel budget (metadata.labelMaxWidth)
+    // set by the layout adapter, which sized the diagram from these exact lines.
+    // Wrap with the same shared helper so render and layout can't drift. Every
+    // other diagram type keeps the original 14-char greedy wrap unchanged.
+    const labelMaxWidth = edge.metadata?.labelMaxWidth;
+    let edgeLines: string[];
+    let textWidth: number;
+    if (typeof labelMaxWidth === "number") {
+      edgeLines = wrapSequenceLabel(edge.label, labelMaxWidth);
+      textWidth = Math.max(...edgeLines.map(l => measureTextWidth(l, SEQ_LABEL_FONT_SIZE, SEQ_LABEL_FONT_WEIGHT))) + 8;
+    } else {
+      const maxEdgeChars = 14;
+      const edgeWords = edge.label.split(" ");
+      edgeLines = [];
+      let curLine = "";
+      for (const w of edgeWords) {
+        if ((`${curLine} ${w}`).trim().length > maxEdgeChars) {
+          if (curLine) edgeLines.push(curLine);
+          curLine = w;
+        } else {
+          curLine = curLine ? `${curLine} ${w}` : w;
+        }
       }
+      if (curLine) edgeLines.push(curLine);
+      textWidth = Math.max(...edgeLines.map(l => l.length)) * 6.0 + 8; // approx 6px per char + 4px padding on each side
     }
-    if (curLine) edgeLines.push(curLine);
-
-    const textWidth = Math.max(...edgeLines.map(l => l.length)) * 6.0 + 8; // approx 6px per char + 4px padding on each side
     
     if (isHorizontal) {
       const padding = 30; // 15px padding on either side

@@ -739,7 +739,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 01_cloud_archite
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 02_ecommerce_checkout_sequence.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1430" viewBox="0 0 1480 1430" role="img">
+"<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1094" viewBox="0 0 1480 1094" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -849,33 +849,33 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 02_ecommerce_che
       
 <filter id="glyphic-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.12"/></filter>
 </defs>
-<rect x="0" y="0" width="1480" height="1430" fill="#0f172a"/>
+<rect x="0" y="0" width="1480" height="1094" fill="#0f172a"/>
 <g transform="translate(40, 40)">
-<path d="M 1240 112 L 1240 1308" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 970 112 L 970 1308" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 700 112 L 700 1308" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 430 112 L 430 1308" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 160 112 L 160 1308" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1240 112 L 1240 972" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 970 112 L 970 972" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 700 112 L 700 972" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 430 112 L 430 972" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 160 112 L 160 972" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
 <path d="M 162 190 L 428 190" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 432 270 L 698 270" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 702 350 L 1238 350" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 1238 430 L 702 430" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 1238 430 L 702 430" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 702 510 L 968 510" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 968 590 L 702 590" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 968 590 L 702 590" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 698 670 L 432 670" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 698 670 L 432 670" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 162 750 L 428 750" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 432 830 L 968 830" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
-<path d="M 968 910 L 702 910" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
-<path d="M 702 990 L 1238 990" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 1238 1070 L 702 1070" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 1238 1070 L 702 1070" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 968 1150 L 432 1150" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 968 1150 L 432 1150" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 428 1230 L 162 1230" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 428 1230 L 162 1230" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 432 246 L 698 246" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 702 302 L 1238 302" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1238 358 L 702 358" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1238 358 L 702 358" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 702 414 L 968 414" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 968 470 L 702 470" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 968 470 L 702 470" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 698 526 L 432 526" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 698 526 L 432 526" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 162 582 L 428 582" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 432 638 L 968 638" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
+<path d="M 968 694 L 702 694" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
+<path d="M 702 750 L 1238 750" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1238 806 L 702 806" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1238 806 L 702 806" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 968 862 L 432 862" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 968 862 L 432 862" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 428 918 L 162 918" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 428 918 L 162 918" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
 <g>
 <rect x="100" y="50" width="120" height="60" rx="10" ry="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
 <g transform="translate(147.04, 59.04)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="25.919999999999998" height="25.919999999999998">
@@ -905,42 +905,34 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 02_ecommerce_che
 <g>
 <text x="1240" y="86" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f8fafc">Inventory DB</text>
 </g>
-<rect x="259" y="178" width="72" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="295" y="183" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Click</text>
-<text x="295" y="197" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">&apos;Checkout&apos;</text>
-<rect x="517" y="265" width="96" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="565" y="270" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">POST /checkout</text>
-<rect x="931" y="345" width="78" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="970" y="350" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Check Stock</text>
-<rect x="922" y="425" width="96" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="970" y="430" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Stock Reserved</text>
-<rect x="787" y="498" width="96" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="835" y="503" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Create Payment</text>
-<text x="835" y="517" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Intent</text>
-<rect x="790" y="585" width="90" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="835" y="590" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Client Secret</text>
-<rect x="520" y="658" width="90" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="565" y="663" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Render Stripe</text>
-<text x="565" y="677" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Elements</text>
-<rect x="256" y="738" width="78" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="295" y="743" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Submit Card</text>
-<text x="295" y="757" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Details</text>
-<rect x="673" y="818" width="54" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="700" y="823" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Confirm</text>
-<text x="700" y="837" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Payment</text>
-<rect x="757" y="898" width="156" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="835" y="903" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Webhook:</text>
-<text x="835" y="917" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">payment_intent.succeeded</text>
-<rect x="928" y="985" width="84" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="970" y="990" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Deduct Stock</text>
-<rect x="943" y="1065" width="54" height="10" rx="2" ry="2" fill="#0f172a"/>
-<text x="970" y="1070" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Updated</text>
-<rect x="661" y="1138" width="78" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="700" y="1143" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Payment</text>
-<text x="700" y="1157" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Success URL</text>
-<rect x="253" y="1218" width="84" height="24" rx="2" ry="2" fill="#0f172a"/>
-<text x="295" y="1223" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Show Order</text>
-<text x="295" y="1237" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Confirmation</text>
+<rect x="240.64000000000001" y="185" width="108.71999999999998" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="295" y="190" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Click &apos;Checkout&apos;</text>
+<rect x="511.96000000000004" y="241" width="106.07999999999998" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="565" y="246" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">POST /checkout</text>
+<rect x="926.8" y="297" width="86.39999999999999" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="970" y="302" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Check Stock</text>
+<rect x="917.9200000000001" y="353" width="104.15999999999997" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="970" y="358" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Stock Reserved</text>
+<rect x="763" y="409" width="143.99999999999994" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="835" y="414" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Create Payment Intent</text>
+<rect x="790.72" y="465" width="88.55999999999999" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="835" y="470" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Client Secret</text>
+<rect x="490.48" y="521" width="149.03999999999996" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="565" y="526" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Render Stripe Elements</text>
+<rect x="230.32" y="577" width="129.35999999999999" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="295" y="582" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Submit Card Details</text>
+<rect x="643.72" y="633" width="112.55999999999997" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="700" y="638" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Confirm Payment</text>
+<rect x="718.48" y="689" width="233.04000000000002" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="835" y="694" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Webhook: payment_intent.succeeded</text>
+<rect x="924.64" y="745" width="90.71999999999998" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="970" y="750" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Deduct Stock</text>
+<rect x="939.4" y="801" width="61.199999999999996" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="970" y="806" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Updated</text>
+<rect x="628.24" y="857" width="143.51999999999998" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="700" y="862" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Payment Success URL</text>
+<rect x="214.96" y="913" width="160.07999999999998" height="10" rx="2" ry="2" fill="#0f172a"/>
+<text x="295" y="918" text-anchor="middle" dominant-baseline="central" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1">Show Order Confirmation</text>
 </g>
 </svg>"
 `;
@@ -4249,7 +4241,7 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 14_microservices
 `;
 
 exports[`docs/examples SVG snapshots (refactor guard) > renders 15_coffee_shop_sequence.json to a stable SVG 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" width="2020" height="1630" viewBox="0 0 2020 1630" role="img">
+"<svg xmlns="http://www.w3.org/2000/svg" width="2020" height="1260" viewBox="0 0 2020 1260" role="img">
 <defs>
 
         <marker id="arrow-solid" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
@@ -4362,37 +4354,37 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 15_coffee_shop_s
       @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
     ]]></style>
 </defs>
-<rect x="0" y="0" width="2020" height="1630" fill="#fefce8"/>
+<rect x="0" y="0" width="2020" height="1260" fill="#fefce8"/>
 <g transform="translate(40, 40)">
-<path d="M 1780 112 L 1780 1508" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 1510 112 L 1510 1508" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 1240 112 L 1240 1508" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 970 112 L 970 1508" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 700 112 L 700 1508" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 430 112 L 430 1508" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 160 112 L 160 1508" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1780 112 L 1780 1138" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1510 112 L 1510 1138" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1240 112 L 1240 1138" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 970 112 L 970 1138" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 700 112 L 700 1138" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 430 112 L 430 1138" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 160 112 L 160 1138" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
 <path d="M 1778 190 L 162 190" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 162 270 L 428 270" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 432 350 L 1508 350" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 1508 430 L 432 430" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 1508 430 L 432 430" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 432 510 L 698 510" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 428 590 L 162 590" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 428 590 L 162 590" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 702 670 L 968 670" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
-<path d="M 702 750 L 1238 750" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
-<path d="M 968 830 L 702 830" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 968 830 L 702 830" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 1238 910 L 702 910" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 1238 910 L 702 910" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 698 990 L 162 990" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 162 1070 L 220 1070 L 220 1100 L 162 1100" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 162 1190 L 1508 1190" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
-<path d="M 1508 1270 L 162 1270" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 1508 1270 L 162 1270" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
-<path d="M 162 1350 L 1778 1350" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
-<path d="M 1778 1430 L 162 1430" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
-<path d="M 1778 1430 L 162 1430" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 162 246 L 428 246" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 432 302 L 1508 302" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1508 358 L 432 358" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1508 358 L 432 358" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 432 414 L 698 414" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 428 470 L 162 470" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 428 470 L 162 470" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 702 526 L 968 526" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
+<path d="M 702 582 L 1238 582" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
+<path d="M 968 638 L 702 638" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 968 638 L 702 638" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 1238 694 L 702 694" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1238 694 L 702 694" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 698 750 L 162 750" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 162 806 L 220 806 L 220 836 L 162 836" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 162 916 L 1508 916" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-open-solid)"/>
+<path d="M 1508 972 L 162 972" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1508 972 L 162 972" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
+<path d="M 162 1028 L 1778 1028" fill="none" stroke="#a16207" stroke-width="1.5" marker-end="url(#arrow-solid)"/>
+<path d="M 1778 1084 L 162 1084" fill="none" stroke="#a16207" stroke-width="1.5" stroke-dasharray="8,5"/>
+<path d="M 1778 1084 L 162 1084" fill="none" stroke="transparent" stroke-width="1.5" marker-end="url(#arrow-dashed)"/>
 <g>
 <rect x="100" y="50" width="120" height="60" rx="10" ry="10" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5" filter="url(#glyphic-shadow)"/>
 <g transform="translate(147.04, 59.04)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="25.919999999999998" height="25.919999999999998">
@@ -4435,57 +4427,39 @@ exports[`docs/examples SVG snapshots (refactor guard) > renders 15_coffee_shop_s
 <g>
 <text x="1780" y="98" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="14" font-weight="600" fill="#422006">Customer</text>
 </g>
-<rect x="931" y="171" width="78" height="38" rx="2" ry="2" fill="#fefce8"/>
-<text x="970" y="176" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Order: Oat</text>
-<text x="970" y="190" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Milk Latte,</text>
-<text x="970" y="204" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Extra Shot</text>
-<rect x="250" y="258" width="90" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="295" y="263" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Ring up order</text>
-<text x="295" y="277" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">($6.50)</text>
-<rect x="922" y="338" width="96" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="970" y="343" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Check oat milk</text>
-<text x="970" y="357" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">stock</text>
-<rect x="931" y="411" width="78" height="38" rx="2" ry="2" fill="#fefce8"/>
-<text x="970" y="416" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Oat milk: 3</text>
-<text x="970" y="430" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">cartons</text>
-<text x="970" y="444" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">remaining</text>
-<rect x="517" y="498" width="96" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="565" y="503" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Enqueue: Latte</text>
-<text x="565" y="517" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">#247</text>
-<rect x="262" y="578" width="66" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="295" y="583" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Order</text>
-<text x="295" y="597" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">confirmed</text>
-<rect x="796" y="658" width="78" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="835" y="663" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Pull double</text>
-<text x="835" y="677" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">shot</text>
-<rect x="922" y="738" width="96" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="970" y="743" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Steam oat milk</text>
-<text x="970" y="757" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">(65°C)</text>
-<rect x="787" y="811" width="96" height="38" rx="2" ry="2" fill="#fefce8"/>
-<text x="835" y="816" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Espresso ready</text>
-<text x="835" y="830" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">(18s</text>
-<text x="835" y="844" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">extraction)</text>
-<rect x="922" y="898" width="96" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="970" y="903" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Milk steamed &amp;</text>
-<text x="970" y="917" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">textured</text>
-<rect x="382" y="978" width="96" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="430" y="983" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">All components</text>
-<text x="430" y="997" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">ready</text>
-<rect x="226" y="1073" width="96" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="228" y="1078" text-anchor="start" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Pour latte art</text>
-<text x="228" y="1092" text-anchor="start" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">(rosetta)</text>
-<rect x="790" y="1171" width="90" height="38" rx="2" ry="2" fill="#fefce8"/>
-<text x="835" y="1176" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Deduct: 250ml</text>
-<text x="835" y="1190" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">oat milk, 18g</text>
-<text x="835" y="1204" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">beans</text>
-<rect x="790" y="1265" width="90" height="10" rx="2" ry="2" fill="#fefce8"/>
-<text x="835" y="1270" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Stock updated</text>
-<rect x="922" y="1338" width="96" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="970" y="1343" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Oat Milk Latte</text>
-<text x="970" y="1357" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">ready! ☕</text>
-<rect x="925" y="1418" width="90" height="24" rx="2" ry="2" fill="#fefce8"/>
-<text x="970" y="1423" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Thanks! *tips</text>
-<text x="970" y="1437" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">$2*</text>
+<rect x="868" y="185" width="203.99999999999994" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="970" y="190" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Order: Oat Milk Latte, Extra Shot</text>
+<rect x="227.2" y="241" width="135.6" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="295" y="246" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Ring up order ($6.50)</text>
+<rect x="901.48" y="297" width="137.03999999999996" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="970" y="302" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Check oat milk stock</text>
+<rect x="876.64" y="353" width="186.71999999999997" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="970" y="358" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Oat milk: 3 cartons remaining</text>
+<rect x="498.88" y="409" width="132.23999999999998" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="565" y="414" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Enqueue: Latte #247</text>
+<rect x="240.76" y="465" width="108.47999999999999" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="295" y="470" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Order confirmed</text>
+<rect x="781.84" y="521" width="106.31999999999998" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="835" y="526" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Pull double shot</text>
+<rect x="898.96" y="577" width="142.07999999999998" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="970" y="582" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Steam oat milk (65°C)</text>
+<rect x="733.36" y="633" width="203.27999999999994" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="835" y="638" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Espresso ready (18s extraction)</text>
+<rect x="892.36" y="689" width="155.27999999999994" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="970" y="694" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Milk steamed &amp; textured</text>
+<rect x="359.44" y="745" width="141.11999999999998" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="430" y="750" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">All components ready</text>
+<rect x="226" y="809" width="89.03999999999999" height="24" rx="2" ry="2" fill="#fefce8"/>
+<text x="228" y="814" text-anchor="start" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Pour latte art</text>
+<text x="228" y="828" text-anchor="start" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">(rosetta)</text>
+<rect x="727.12" y="911" width="215.76" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="835" y="916" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Deduct: 250ml oat milk, 18g beans</text>
+<rect x="786.88" y="967" width="96.23999999999998" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="835" y="972" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Stock updated</text>
+<rect x="896.32" y="1023" width="147.35999999999996" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="970" y="1028" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Oat Milk Latte ready! ☕</text>
+<rect x="911.32" y="1079" width="117.35999999999997" height="10" rx="2" ry="2" fill="#fefce8"/>
+<text x="970" y="1084" text-anchor="middle" dominant-baseline="central" font-family="&apos;Outfit&apos;, system-ui, sans-serif" font-size="12" font-weight="500" fill="#854d0e">Thanks! *tips $2*</text>
 </g>
 </svg>"
 `;

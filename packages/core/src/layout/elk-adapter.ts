@@ -236,6 +236,257 @@ export function separateOverlappingOrthogonalSegments(edges: LayoutEdge[], nodes
   }
 }
 
+// The box ELK is told an edge label occupies (14-char greedy wrap, matching
+// the renderer's legacy edge-label wrap). Shared by the ELK edge builder and
+// the jog-collapse pass so obstacle boxes always agree with what ELK placed.
+export function estimateEdgeLabelSize(label: string): { width: number; height: number } {
+  const maxEdgeChars = 14;
+  const edgeWords = label.split(" ");
+  let maxLen = 0;
+  let curLine = "";
+  let lines = 0;
+  for (const w of edgeWords) {
+    if ((`${curLine} ${w}`).trim().length > maxEdgeChars) {
+      if (curLine) { lines++; maxLen = Math.max(maxLen, curLine.length); }
+      curLine = w;
+    } else {
+      curLine = curLine ? `${curLine} ${w}` : w;
+    }
+  }
+  if (curLine) { lines++; maxLen = Math.max(maxLen, curLine.length); }
+  return { width: maxLen * 6.0 + 8 + 10, height: lines * 14 - 4 + 10 };
+}
+
+// ELK's `elk.edgeLabels.inline=true` + `placement=CENTER` (see the label
+// sizing below, ~:395-423) turns each edge label into a sized dummy node
+// that occupies its own layer. The edge is routed through that dummy's
+// assigned row/column, then jogs back to its actual port row/column — a
+// short perpendicular hop (almost always exactly the inline-label dummy's
+// layer offset, well under JOG_MAX) sandwiched between two runs that
+// continue in the same direction. No ELK layout option removes these; they
+// have to be found and straightened after the fact. Example (main->reviewer
+// in the codex-dev-team fixture), raw ELK output:
+//   (345,309)(447,309)(447,134)(599,134)(599,112)(702,112)
+// collapses to:
+//   (345,309)(447,309)(447,112)(702,112)
+const JOG_MAX = 24; // hops longer than this may be genuine detours — leave them
+
+// How many times to re-scan a single section for a fresh jog pattern after a
+// collapse exposes one (e.g. two jogs chained back-to-back). Sections this
+// deep are not expected in practice; the cap is just a safety net.
+const JOG_COLLAPSE_MAX_ITERATIONS = 8;
+
+// Classifies a two-point run as a horizontal or vertical axis-aligned
+// segment and which way it travels along that axis (+1/-1), so the jog
+// pattern can require "continues in the same direction" rather than merely
+// "parallel" (a parallel-but-reversed pair is a U-turn, not a jog).
+function axisDir(p0: { x: number; y: number }, p1: { x: number; y: number }): { orientation: "h" | "v" | null; sign: number } {
+  const dx = p1.x - p0.x;
+  const dy = p1.y - p0.y;
+  if (Math.abs(dy) <= OVERLAP_TOLERANCE && Math.abs(dx) > OVERLAP_TOLERANCE) return { orientation: "h", sign: Math.sign(dx) };
+  if (Math.abs(dx) <= OVERLAP_TOLERANCE && Math.abs(dy) > OVERLAP_TOLERANCE) return { orientation: "v", sign: Math.sign(dy) };
+  return { orientation: null, sign: 0 };
+}
+
+// True if the rectangle swept by a run moving from `oldConst` to `newConst`
+// (over its span, expanded by NODE_CLEARANCE) intersects a leaf-node box.
+// Same clearance budget as the separation pass; unlike that pass this has no
+// "already running through this band" exemption — an interior run is being
+// moved into territory ELK never routed it through, so any intersection is
+// disqualifying.
+function sweepBlocked(
+  orientation: "h" | "v",
+  spanLo: number,
+  spanHi: number,
+  oldConst: number,
+  newConst: number,
+  leafRects: Rect[]
+): boolean {
+  const perpLo = Math.min(oldConst, newConst) - NODE_CLEARANCE;
+  const perpHi = Math.max(oldConst, newConst) + NODE_CLEARANCE;
+  for (const r of leafRects) {
+    const rSpanLo = orientation === "h" ? r.x : r.y;
+    const rSpanHi = orientation === "h" ? r.x + r.w : r.y + r.h;
+    const rPerpLo = orientation === "h" ? r.y : r.x;
+    const rPerpHi = orientation === "h" ? r.y + r.h : r.x + r.w;
+    if (rSpanHi <= spanLo || rSpanLo >= spanHi) continue; // no span overlap — not an obstacle
+    if (rPerpHi <= perpLo || rPerpLo >= perpHi) continue; // no perpendicular overlap
+    return true;
+  }
+  return false;
+}
+
+// Removes redundant points from a section's point sequence: consecutive
+// duplicates (a collapsed hop leaves its two endpoints coincident) and
+// interior points whose incoming and outgoing runs share an orientation
+// (a collapse can leave a straight line "bent" at a point that no longer
+// turns). startPoint/endPoint are never dropped — only interior points are
+// examined — so the section's endpoints are always preserved.
+function simplifyOrthoPoints(points: { x: number; y: number }[]): { x: number; y: number }[] {
+  let pts = points;
+  let changed = true;
+  while (changed && pts.length > 2) {
+    changed = false;
+    const next: typeof pts = [pts[0]];
+    for (let i = 1; i < pts.length - 1; i++) {
+      const prev = next[next.length - 1];
+      const cur = pts[i];
+      const after = pts[i + 1];
+      if (Math.abs(cur.x - prev.x) <= OVERLAP_TOLERANCE && Math.abs(cur.y - prev.y) <= OVERLAP_TOLERANCE) {
+        changed = true; // coincident with the point before it — drop
+        continue;
+      }
+      const inHoriz = Math.abs(cur.y - prev.y) <= OVERLAP_TOLERANCE;
+      const inVert = Math.abs(cur.x - prev.x) <= OVERLAP_TOLERANCE;
+      const outHoriz = Math.abs(after.y - cur.y) <= OVERLAP_TOLERANCE;
+      const outVert = Math.abs(after.x - cur.x) <= OVERLAP_TOLERANCE;
+      if ((inHoriz && outHoriz) || (inVert && outVert)) {
+        changed = true; // doesn't actually turn here anymore — drop
+        continue;
+      }
+      next.push(cur);
+    }
+    next.push(pts[pts.length - 1]);
+    pts = next;
+  }
+  return pts;
+}
+
+// Finds and applies (at most) one jog collapse in a section's current point
+// sequence. Returns true if a collapse was applied (the caller re-derives
+// bendPoints and re-scans from scratch, since a collapse can expose an
+// adjacent jog); false if no collapsible pattern remains.
+interface LabelRect extends Rect {
+  edge: LayoutEdge;
+}
+
+function collapseOneJog(points: { x: number; y: number }[], edge: LayoutEdge, leafRects: Rect[], labelRects: LabelRect[]): boolean {
+  const n = points.length;
+  for (let i = 0; i <= n - 4; i++) {
+    const a0 = points[i];
+    const a1 = points[i + 1];
+    const h0 = points[i + 1];
+    const h1 = points[i + 2];
+    const b0 = points[i + 2];
+    const b1 = points[i + 3];
+
+    const aDir = axisDir(a0, a1);
+    const bDir = axisDir(b0, b1);
+    if (!aDir.orientation || !bDir.orientation) continue;
+    if (aDir.orientation !== bDir.orientation || aDir.sign !== bDir.sign) continue; // not parallel-same-direction
+
+    const hopDir = axisDir(h0, h1);
+    if (!hopDir.orientation || hopDir.orientation === aDir.orientation) continue; // hop must be perpendicular
+    const hopLen = hopDir.orientation === "h" ? Math.abs(h1.x - h0.x) : Math.abs(h1.y - h0.y);
+    if (hopLen <= OVERLAP_TOLERANCE || hopLen > JOG_MAX) continue;
+
+    // Terminal segments touch the section's startPoint/endPoint — given the
+    // i <= n - 4 bound above, that can only be A touching startPoint (i===0)
+    // or B touching endPoint (i+3===n-1); they can never both be interior to
+    // a 4-point span. Port-anchored runs must never move (same invariant as
+    // the separation pass).
+    const aTerminal = i === 0;
+    const bTerminal = i + 3 === n - 1;
+    if (aTerminal && bTerminal) continue; // genuine port-offset Z — leave it alone
+
+    const orientation = aDir.orientation;
+    let moved: [{ x: number; y: number }, { x: number; y: number }];
+    let targetConst: number;
+    if (aTerminal) {
+      moved = [b0, b1];
+      targetConst = orientation === "h" ? a0.y : a0.x;
+    } else if (bTerminal) {
+      moved = [a0, a1];
+      targetConst = orientation === "h" ? b0.y : b0.x;
+    } else {
+      const aLen = orientation === "h" ? Math.abs(a1.x - a0.x) : Math.abs(a1.y - a0.y);
+      const bLen = orientation === "h" ? Math.abs(b1.x - b0.x) : Math.abs(b1.y - b0.y);
+      if (aLen <= bLen) {
+        moved = [a0, a1];
+        targetConst = orientation === "h" ? b0.y : b0.x;
+      } else {
+        moved = [b0, b1];
+        targetConst = orientation === "h" ? a0.y : a0.x;
+      }
+    }
+
+    const oldConst = orientation === "h" ? moved[0].y : moved[0].x;
+    const delta = targetConst - oldConst;
+    if (Math.abs(delta) <= OVERLAP_TOLERANCE) continue; // already aligned
+
+    const spanLo = orientation === "h" ? Math.min(moved[0].x, moved[1].x) : Math.min(moved[0].y, moved[1].y);
+    const spanHi = orientation === "h" ? Math.max(moved[0].x, moved[1].x) : Math.max(moved[0].y, moved[1].y);
+    if (sweepBlocked(orientation, spanLo, spanHi, oldConst, targetConst, leafRects)) continue;
+
+    // "Does the label ride this run" — like the separation pass, but measured
+    // from the label box CENTER, not its top-left. labelPosition is the box
+    // origin, so the top-left sits systematically up-and-left of the text; a
+    // label hanging just right of a vertical trunk would otherwise be
+    // attributed to the trunk instead of the run it annotates.
+    let moveLabel = false;
+    if (edge.labelPosition && edge.label) {
+      const size = estimateEdgeLabelSize(edge.label);
+      const center = { x: edge.labelPosition.x + size.width / 2, y: edge.labelPosition.y + size.height / 2 };
+      const distMoved = distToOrthoSegment(center, moved[0], moved[1]);
+      let distOther = Number.POSITIVE_INFINITY;
+      for (const otherSec of edge.sections) {
+        const otherPts = [otherSec.startPoint, ...(otherSec.bendPoints || []), otherSec.endPoint];
+        for (let k = 0; k < otherPts.length - 1; k++) {
+          if (otherPts[k] === moved[0] && otherPts[k + 1] === moved[1]) continue; // the run itself
+          distOther = Math.min(distOther, distToOrthoSegment(center, otherPts[k], otherPts[k + 1]));
+        }
+      }
+      moveLabel = distMoved <= distOther + 1;
+    }
+
+    // Edge labels are obstacles too: ELK's jogs often exist precisely to
+    // sidestep a label box, and collapsing one drives the line through the
+    // text (labels have no opaque background). The edge's OWN label is exempt
+    // only when it rides the moved run — it moves along, keeping its offset.
+    const labelObstacles = labelRects.filter((r) => !(moveLabel && r.edge === edge));
+    if (sweepBlocked(orientation, spanLo, spanHi, oldConst, targetConst, labelObstacles)) continue;
+
+    if (orientation === "h") { moved[0].y = targetConst; moved[1].y = targetConst; }
+    else { moved[0].x = targetConst; moved[1].x = targetConst; }
+    if (moveLabel && edge.labelPosition) {
+      if (orientation === "h") edge.labelPosition.y += delta;
+      else edge.labelPosition.x += delta;
+    }
+
+    return true;
+  }
+  return false;
+}
+
+// Exported for unit tests only — layoutNodeEdgeDiagram is the real caller.
+// See the block comment above JOG_MAX for why this pass exists.
+export function collapseAxisAlignedJogs(edges: LayoutEdge[], nodes: LayoutNode[]): void {
+  const leafRects = collectLeafRects(nodes);
+  // Every placed edge label, sized with the same estimate ELK was given.
+  // Rebuilt before each scan because a collapse can move a riding label.
+  const buildLabelRects = (): LabelRect[] => {
+    const rects: LabelRect[] = [];
+    for (const edge of edges) {
+      if (edge.label && edge.labelPosition) {
+        const size = estimateEdgeLabelSize(edge.label);
+        rects.push({ x: edge.labelPosition.x, y: edge.labelPosition.y, w: size.width, h: size.height, edge });
+      }
+    }
+    return rects;
+  };
+
+  for (const edge of edges) {
+    for (const sec of edge.sections) {
+      for (let iter = 0; iter < JOG_COLLAPSE_MAX_ITERATIONS; iter++) {
+        const points = [sec.startPoint, ...(sec.bendPoints || []), sec.endPoint];
+        if (!collapseOneJog(points, edge, leafRects, buildLabelRects())) break;
+        const simplified = simplifyOrthoPoints(points);
+        sec.bendPoints = simplified.slice(1, -1);
+      }
+    }
+  }
+}
+
 export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style: StyleTokens = DEFAULT_STYLE): Promise<LayoutResult> {
   const direction = diagram.direction === "TB" ? "DOWN" :
                     diagram.direction === "BT" ? "UP" :
@@ -393,32 +644,12 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
   });
 
   const edges = diagram.edges.map((e, idx) => {
-    let textWidth = 0;
-    let textHeight = 0;
-    if (e.label) {
-      const maxEdgeChars = 14;
-      const edgeWords = e.label.split(" ");
-      let maxLen = 0;
-      let curLine = "";
-      let lines = 0;
-      for (const w of edgeWords) {
-        if ((`${curLine} ${w}`).trim().length > maxEdgeChars) {
-          if (curLine) { lines++; maxLen = Math.max(maxLen, curLine.length); }
-          curLine = w;
-        } else {
-          curLine = curLine ? `${curLine} ${w}` : w;
-        }
-      }
-      if (curLine) { lines++; maxLen = Math.max(maxLen, curLine.length); }
-      textWidth = maxLen * 6.0 + 8;
-      textHeight = lines * 14 - 4;
-    }
-
+    const labelSize = e.label ? estimateEdgeLabelSize(e.label) : undefined;
     return {
       id: `e${idx}`,
       sources: [e.source],
       targets: [e.target],
-      labels: e.label ? [{ text: e.label, width: textWidth + 10, height: textHeight + 10 }] : undefined
+      labels: e.label && labelSize ? [{ text: e.label, width: labelSize.width, height: labelSize.height }] : undefined
     };
   });
 
@@ -621,6 +852,10 @@ export async function layoutNodeEdgeDiagram(diagram: NodeEdgeLayoutInput, style:
   };
 
   extractEdges(layout);
+  // Straighten inline-label jogs first: it turns each collapsed run into a
+  // terminal segment, which separateOverlappingOrthogonalSegments already
+  // refuses to move, so it cannot reintroduce the jog it just removed.
+  collapseAxisAlignedJogs(mappedEdges, mappedNodes);
   separateOverlappingOrthogonalSegments(mappedEdges, mappedNodes);
 
   return {

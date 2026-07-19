@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { layoutNodeEdgeDiagram, separateOverlappingOrthogonalSegments } from "./elk-adapter.js";
+import { layoutNodeEdgeDiagram, separateOverlappingOrthogonalSegments, collapseAxisAlignedJogs } from "./elk-adapter.js";
+import { layoutDiagram } from "./index.js";
 import type { LayoutEdge, LayoutNode } from "./types.js";
 
 // Regression test for a real bug report: edges crossing a compound node's
@@ -240,6 +241,240 @@ describe("elk-adapter: parallel orthogonal edge separation", () => {
       edges[0].labelPosition = { x: 5, y: 95 };
       separateOverlappingOrthogonalSegments(edges, []);
       expect(edges[0].labelPosition).toEqual({ x: 5, y: 95 });
+    });
+  });
+
+  // Direct unit tests for the jog-collapse pass on synthetic geometry. All
+  // five use (a shape of) the real main->reviewer bend dump from the
+  // codex-dev-team fixture: `elk.edgeLabels.inline` routes the edge through
+  // its label's dummy row (y=134) then hops 22px back to the port row
+  // (y=112) it should have stayed on the whole time.
+  describe("collapseAxisAlignedJogs", () => {
+    // start(345,309) -> (447,309) -> (447,134) -> (599,134) -> (599,112) -> end(702,112)
+    // The (599,134)->(599,112) hop is the label-dummy jog: A=(447,134)-(599,134)
+    // is interior, B=(599,112)-(702,112) is terminal (touches endPoint), so A
+    // should move onto B's row (112) and the two now-redundant points drop out.
+    const makeJoggedEdge = (labelPosition?: { x: number; y: number }): LayoutEdge => ({
+      id: "main-reviewer",
+      source: "main",
+      target: "reviewer",
+      style: "solid",
+      arrow: "forward",
+      label: "concrete residual risk",
+      labelPosition,
+      sections: [
+        {
+          startPoint: { x: 345, y: 309 },
+          bendPoints: [
+            { x: 447, y: 309 },
+            { x: 447, y: 134 },
+            { x: 599, y: 134 },
+            { x: 599, y: 112 },
+          ],
+          endPoint: { x: 702, y: 112 },
+        },
+      ],
+    });
+
+    const node = (id: string, x: number, y: number, w: number, h: number): LayoutNode => ({
+      id, x, y, width: w, height: h, label: id, shape: "service",
+    });
+
+    it("collapses an interior run onto a terminal run and drops the jog points", () => {
+      const edges = [makeJoggedEdge()];
+      collapseAxisAlignedJogs(edges, []);
+
+      const sec = edges[0].sections[0];
+      expect(sec.startPoint).toEqual({ x: 345, y: 309 });
+      expect(sec.endPoint).toEqual({ x: 702, y: 112 });
+      expect(sec.bendPoints).toEqual([
+        { x: 447, y: 309 },
+        { x: 447, y: 112 },
+      ]);
+    });
+
+    it("skips the collapse when the swept corridor is blocked by a leaf-node rect", () => {
+      const edges = [makeJoggedEdge()];
+      // Sits between the old row (134) and the new row (112), spanning the
+      // moved run's x range (447..599) — directly in the swept corridor.
+      const obstacle = node("obs", 500, 115, 40, 15);
+      collapseAxisAlignedJogs(edges, [obstacle]);
+
+      const sec = edges[0].sections[0];
+      expect(sec.bendPoints).toEqual([
+        { x: 447, y: 309 },
+        { x: 447, y: 134 },
+        { x: 599, y: 134 },
+        { x: 599, y: 112 },
+      ]);
+    });
+
+    it("skips the collapse when the swept corridor crosses another edge's label box", () => {
+      const edges = [makeJoggedEdge()];
+      // An unrelated edge whose label sits in the corridor (between rows 134
+      // and 112 over x 447..599). ELK's jog exists to dodge exactly this box;
+      // collapsing would run the line through the text.
+      const other: LayoutEdge = {
+        id: "other",
+        source: "a",
+        target: "b",
+        style: "solid",
+        arrow: "forward",
+        label: "X",
+        labelPosition: { x: 500, y: 115 },
+        sections: [{ startPoint: { x: 0, y: 900 }, endPoint: { x: 100, y: 900 } }],
+      };
+      edges.push(other);
+      collapseAxisAlignedJogs(edges, []);
+
+      expect(edges[0].sections[0].bendPoints).toEqual([
+        { x: 447, y: 309 },
+        { x: 447, y: 134 },
+        { x: 599, y: 134 },
+        { x: 599, y: 112 },
+      ]);
+    });
+
+    it("does not let the edge's own riding label block its collapse", () => {
+      // Label box (493,97 · 96×34) overlaps the swept corridor, but it rides
+      // the moved run — it moves along with it, so it must not count as an
+      // obstacle. The collapse proceeds and the label keeps its offset.
+      const edges = [makeJoggedEdge({ x: 493, y: 97 })];
+      collapseAxisAlignedJogs(edges, []);
+
+      expect(edges[0].sections[0].bendPoints).toEqual([
+        { x: 447, y: 309 },
+        { x: 447, y: 112 },
+      ]);
+      expect(edges[0].labelPosition).toEqual({ x: 493, y: 75 }); // followed the -22px move
+    });
+
+    it("skips a both-terminal Z and a hop longer than JOG_MAX", () => {
+      // Both-terminal: only 4 points, so the single run on each side of the
+      // hop touches startPoint and endPoint respectively — a genuine port
+      // misalignment, not an inline-label jog.
+      const misalignedPorts: LayoutEdge = {
+        id: "z",
+        source: "s",
+        target: "t",
+        style: "solid",
+        arrow: "forward",
+        sections: [
+          {
+            startPoint: { x: 0, y: 50 },
+            bendPoints: [
+              { x: 40, y: 50 },
+              { x: 40, y: 60 },
+            ],
+            endPoint: { x: 80, y: 60 },
+          },
+        ],
+      };
+      const bothEdges = [misalignedPorts];
+      collapseAxisAlignedJogs(bothEdges, []);
+      expect(bothEdges[0].sections[0].bendPoints).toEqual([
+        { x: 40, y: 50 },
+        { x: 40, y: 60 },
+      ]);
+
+      // Hop too long: same shape as the collapsible fixture, but the hop is
+      // 30px (> JOG_MAX = 24) — a plausible genuine detour, not a dummy jog.
+      const longHop = makeJoggedEdge();
+      longHop.sections[0].bendPoints = [
+        { x: 447, y: 309 },
+        { x: 447, y: 134 },
+        { x: 599, y: 134 },
+        { x: 599, y: 104 }, // 30px hop instead of 22px
+      ];
+      longHop.sections[0].endPoint = { x: 702, y: 104 };
+      const longHopEdges = [longHop];
+      collapseAxisAlignedJogs(longHopEdges, []);
+      expect(longHopEdges[0].sections[0].bendPoints).toEqual([
+        { x: 447, y: 309 },
+        { x: 447, y: 134 },
+        { x: 599, y: 134 },
+        { x: 599, y: 104 },
+      ]);
+    });
+
+    it("moves labelPosition with the run it rides, and leaves it when a different segment moves", () => {
+      // Label sits on the run that collapses (A: (447,134)-(599,134)).
+      const ridingEdge = makeJoggedEdge({ x: 500, y: 134 });
+      collapseAxisAlignedJogs([ridingEdge], []);
+      // A moved from y=134 to y=112, a delta of -22 — the label follows.
+      expect(ridingEdge.labelPosition).toEqual({ x: 500, y: 112 });
+
+      // Label sits on the untouched start stub ((345,309)-(447,309)).
+      const otherEdge = makeJoggedEdge({ x: 400, y: 309 });
+      collapseAxisAlignedJogs([otherEdge], []);
+      expect(otherEdge.labelPosition).toEqual({ x: 400, y: 309 });
+    });
+
+    // Integration: a fan-out/fan-in shape modeled on the codex-dev-team
+    // fixture (source -> two labeled groups of two children each -> sink),
+    // run through the full layoutDiagram pipeline. No section should still
+    // contain the jog pattern after both post-passes run.
+    it("leaves no jog pattern in a fan-out/fan-in architecture diagram after layout", async () => {
+      const diagram = {
+        type: "architecture",
+        direction: "LR",
+        routing: "orthogonal",
+        nodes: [
+          { id: "main", label: "Main thread — decide & scope", shape: "service" },
+          { id: "readonly", label: "Read-only", shape: "rectangle" },
+          { id: "write", label: "Workspace-write", shape: "rectangle" },
+          { id: "explorer", label: "Explorer · Luna Medium", shape: "service", groupId: "readonly" },
+          { id: "reviewer", label: "Reviewer · Sol High · fresh context", shape: "service", groupId: "readonly" },
+          { id: "executor", label: "Executor · Luna High", shape: "service", groupId: "write" },
+          { id: "complex", label: "Complex Executor · Terra High", shape: "service", groupId: "write" },
+          { id: "sink", label: "Main thread — verify & accept", shape: "service" },
+        ],
+        edges: [
+          { source: "main", target: "explorer", label: "read-only discovery" },
+          { source: "main", target: "reviewer", label: "concrete residual risk" },
+          { source: "main", target: "executor", label: "clear bounded task" },
+          { source: "main", target: "complex", label: "substantial bounded work" },
+          { source: "explorer", target: "sink", label: "evidence, open questions" },
+          { source: "reviewer", target: "sink", label: "independent findings" },
+          { source: "executor", target: "sink", label: "result + checks" },
+          { source: "complex", target: "sink", label: "result + checks" },
+        ],
+      } as any;
+
+      const result = await layoutDiagram(diagram);
+
+      // Same detection logic as collapseOneJog's pattern match, but read-only:
+      // parallel, same-direction runs separated by a perpendicular hop of
+      // length in (0, 24].
+      const dir = (p0: { x: number; y: number }, p1: { x: number; y: number }): { orientation: "h" | "v" | null; sign: number } => {
+        const dx = p1.x - p0.x;
+        const dy = p1.y - p0.y;
+        if (Math.abs(dy) <= 0.5 && Math.abs(dx) > 0.5) return { orientation: "h", sign: Math.sign(dx) };
+        if (Math.abs(dx) <= 0.5 && Math.abs(dy) > 0.5) return { orientation: "v", sign: Math.sign(dy) };
+        return { orientation: null, sign: 0 };
+      };
+      const hasJogPattern = (edges: LayoutEdge[]): boolean => {
+        for (const edge of edges) {
+          for (const sec of edge.sections) {
+            const points = [sec.startPoint, ...(sec.bendPoints || []), sec.endPoint];
+            for (let i = 0; i <= points.length - 4; i++) {
+              const aDir = dir(points[i], points[i + 1]);
+              const bDir = dir(points[i + 2], points[i + 3]);
+              if (!aDir.orientation || !bDir.orientation) continue;
+              if (aDir.orientation !== bDir.orientation || aDir.sign !== bDir.sign) continue;
+              const hopDir = dir(points[i + 1], points[i + 2]);
+              if (!hopDir.orientation || hopDir.orientation === aDir.orientation) continue;
+              const hopLen = hopDir.orientation === "h"
+                ? Math.abs(points[i + 2].x - points[i + 1].x)
+                : Math.abs(points[i + 2].y - points[i + 1].y);
+              if (hopLen > 0.5 && hopLen <= 24) return true;
+            }
+          }
+        }
+        return false;
+      };
+
+      expect(hasJogPattern(result.edges)).toBe(false);
     });
   });
 });

@@ -1,7 +1,16 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "files": {
-    "ignore": ["dist", "node_modules", ".turbo", "**/*.snap", "docs/examples", "internal", "apps"]
+    "ignore": [
+      "dist",
+      "node_modules",
+      ".turbo",
+      "**/*.snap",
+      "docs/examples",
+      "internal",
+      "apps",
+      "docs/strategy/spikes"
+    ]
   },
   "formatter": {
     "enabled": false

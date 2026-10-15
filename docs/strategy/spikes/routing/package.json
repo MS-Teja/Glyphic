@@ -1,0 +1,9 @@
+{
+  "name": "glyphic-spike-routing",
+  "private": true,
+  "type": "module",
+  "description": "Throwaway spike: route edges around a frozen layout with libavoid-js (LGPL-2.1, loaded as a separate WASM file).",
+  "dependencies": {
+    "libavoid-js": "0.5.0-beta.5"
+  }
+}
